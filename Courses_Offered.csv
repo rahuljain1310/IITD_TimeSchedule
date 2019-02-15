@@ -2,18 +2,18 @@
 ,,,,,,,,,,,,Date  :,,15/02/2019 5.11 PM,,
 ,,,,Courses Offered during 2018-2019 Even Semester  ,,,,,,,,,,,,
 Department    :,,Applied Mechanics,,,,,,,,,,,,,,
-S.No,Course Name,,Slot Name,,Units,,Type,Instructor,Instructor Email,Lecture Time,Tutorial Time,,Practical Time,,Vacancy,Current Strength
-1,MINI PROJECT (AM)                                 -AMD310,,P,,0.0-0.0-6.0,,,VIKRANT TIWARI   ,tiwariv@am.iitd.ac.in,,,,,,30,7
-2,MAJOR PROJECT PART-I                              -AMD811,,P,,0.0-0.0-12.0,,,ARGHYA SAMANTA   ,arghya@am.iitd.ac.in,,,,,,30,0
-3,MAJOR PROJECT PART-II                             -AMD812,,P,,0.0-0.0-24.0,,,ARGHYA SAMANTA   ,arghya@am.iitd.ac.in,,,,,,30,31
-4,MAJOR PROJECT PART-I                              -AMD813,,P,,0.0-0.0-12.0,,,ARGHYA SAMANTA   ,arghya@am.iitd.ac.in,,,,,,30,1
-5,MAJOR PROJECT PART-II                             -AMD814,,P,,0.0-0.0-24.0,,,ARGHYA SAMANTA   ,arghya@am.iitd.ac.in,,,,,,30,4
-6,MAJOR PROJECT                                     -AMD895,,P,,0.0-0.0-80.0,,,AJEET KUMAR   ,ajeetk@am.iitd.ac.in,,,,,,30,2
-7,MINOR PROJECT                                     -AMD897,,X,,0.0-0.0-8.0,,,SHASHANK SHANKAR   ,shashankrv@am.iitd.ac.in,,,,,,60,25
-8,APPLIED COMPUTATIONAL METHOD                      -AML702,,F,,3.0-0.0-2.0,,,VAMSI KRISHNA CHALAMALLA ,vchalama@am.iitd.ac.in,TWF 11:00-12:00,,,,,100,36
-9,FINITE ELEMENT METHODS & ITS APPL.TO MARINE STRU. -AML706,,B,,3.0-0.0-0.0,,,SRIRAM HEGDE   ,hegde@cc.iitd.ernet.in,MTh 09:30-11:00,,,,,100,32
-10,APPLIED ELASTICITY                                -AML731,,X,,3.0-1.0-0.0,,,GAURAV SINGH   ,gsingh@am.iitd.ac.in,,,,,,60,9
-11,SHIP DYNAMICS                                     -AML793,,X,,3.0-0.0-0.0,,,MP MATHEW   ,mpmathew@am.iitd.ac.in,,,,,,60,25
+S.No,Course Name,,Slot Name,Units,Type,Instructor,Instructor Email,Lecture Time,Tutorial Time,,Practical Time,,Vacancy,Current Strength
+1,MINI PROJECT (AM)                                 -AMD310,,P,0.0-0.0-6.0,,VIKRANT TIWARI   ,tiwariv@am.iitd.ac.in,,,,,,30,7
+2,MAJOR PROJECT PART-I                              -AMD811,,P,0.0-0.0-12.0,,ARGHYA SAMANTA   ,arghya@am.iitd.ac.in,,,,,,30,0
+3,MAJOR PROJECT PART-II                             -AMD812,,P,0.0-0.0-24.0,,ARGHYA SAMANTA   ,arghya@am.iitd.ac.in,,,,,,30,31
+4,MAJOR PROJECT PART-I                              -AMD813,,P,0.0-0.0-12.0,,ARGHYA SAMANTA   ,arghya@am.iitd.ac.in,,,,,,30,1
+5,MAJOR PROJECT PART-II                             -AMD814,,P,0.0-0.0-24.0,,ARGHYA SAMANTA   ,arghya@am.iitd.ac.in,,,,,,30,4
+6,MAJOR PROJECT                                     -AMD895,,P,0.0-0.0-80.0,,AJEET KUMAR   ,ajeetk@am.iitd.ac.in,,,,,,30,2
+7,MINOR PROJECT                                     -AMD897,,X,0.0-0.0-8.0,,SHASHANK SHANKAR   ,shashankrv@am.iitd.ac.in,,,,,,60,25
+8,APPLIED COMPUTATIONAL METHOD                      -AML702,,F,3.0-0.0-2.0,,VAMSI KRISHNA CHALAMALLA ,vchalama@am.iitd.ac.in,TWF 11:00-12:00,,,,,100,36
+9,FINITE ELEMENT METHODS & ITS APPL.TO MARINE STRU. -AML706,,B,3.0-0.0-0.0,,SRIRAM HEGDE   ,hegde@cc.iitd.ernet.in,MTh 09:30-11:00,,,,,100,32
+10,APPLIED ELASTICITY                                -AML731,,X,3.0-1.0-0.0,,GAURAV SINGH   ,gsingh@am.iitd.ac.in,,,,,,60,9
+11,SHIP DYNAMICS                                     -AML793,,X,3.0-0.0-0.0,,MP MATHEW   ,mpmathew@am.iitd.ac.in,,,,,,60,25
 Department    :,,Applied Mechanics,,,,,,,,,,
 S.No,Course Name,,Slot Name,Units,Type,Instructor,Instructor Email,Lecture Time,Tutorial Time,Practical Time,Vacancy,Current Strength
 12,SUBMARINE DESIGN                                  -AML795,,X,3.0-0.0-0.0,,SHASHANK SHANKAR   ,shashankrv@am.iitd.ac.in,,,,60,25
