@@ -520,15 +520,15 @@ S.No,Course Name,,Slot Name,Units,Type,Instructor,Instructor Email,Lecture Time,
 450,CRITICAL READING IN PHILOSOPHICAL                 -HSL751,,X,3.0-0.0-0.0,,SANIL V.   ,sanil@hss.iitd.ac.in,,,,30,6
 451,The Psychology of Leadership and Social Change-HSL766,,M,3.0-0.0-0.0,PC,YASHPAL ASHOKRAO JOGDAND   ,yaj@hss.iitd.ac.in,MTh 17:00-18:30,,,30,8
 452,SOCIOLOGY OF INDIA                                -HSL772,,X,3.0-0.0-0.0,,RICHA KUMAR   ,richa@hss.iitd.ac.in,,,,30,7
-453,RESEARCH WRITING                                  -HSL800,,A,3.0-0.0-0.0,,MILIND WAKANKAR   ,milindw@hss.iitd.ac.in,MTh 08:00-09:30,,,90,82
-454,RESEARCH WRITING                                  -HSL800,,M,3.0-0.0-0.0,,MILIND WAKANKAR   ,milindw@hss.iitd.ac.in,MTh 17:00-18:30,,,90,144
+453,RESEARCH WRITING                                  -HSL800A,,A,3.0-0.0-0.0,,MILIND WAKANKAR   ,milindw@hss.iitd.ac.in,MTh 08:00-09:30,,,90,82
+454,RESEARCH WRITING                                  -HSL800B,,M,3.0-0.0-0.0,,MILIND WAKANKAR   ,milindw@hss.iitd.ac.in,MTh 17:00-18:30,,,90,144
 455,MINIMALIST ARCHITECTURE OF GRAMMAR                -HSL841,,X,3.0-0.0-0.0,,PRITHA CHANDRA   ,pritha@hss.iitd.ac.in,,,,60,3
 456,POLITICAL PHILOSOPHY                              -HSL852,,AC,3.0-0.0-0.0,OE,SIMONA SAWHNEY   ,ssawhney@hss.iitd.ac.in,TF 14:00-15:30,,,30,18
 457,ADVANCED TOPICS IN PHILOSOPHY                     -HSL860,,X,3.0-0.0-0.0,,MILIND WAKANKAR   ,milindw@hss.iitd.ac.in,,,,60,13
 458,DATA ANALYSIS FOR PSYCHOLINGUISTICS USING R       -HSV748,,X,2.0-0.0-0.0,,SAMAR HUSAIN   ,samar@hss.iitd.ac.in,,,,60,14
 459,Introduction to research methodology-HSV781,,X,1.5-0.0-0.0,,UPASNA SHARMA   ,upasna@hss.iitd.ac.in,,,,30,22
-460,INTRODUCTION TO ECONOMICS                         -HUL211,,A,3.0-1.0-0.0,HU,JAYAN JOSE THOMAS   ,jayan@hss.iitd.ac.in,MTh 08:00-09:30,MTThF 13:00-14:00,,100,101
-461,INTRODUCTION TO ECONOMICS                         -HUL211,,M,3.0-1.0-0.0,HU,ANKUSH AGRAWAL   ,ankush@hss.iitd.ac.in,MTh 17:00-18:30,,,100,95
+460,INTRODUCTION TO ECONOMICS                         -HUL211A,,A,3.0-1.0-0.0,HU,JAYAN JOSE THOMAS   ,jayan@hss.iitd.ac.in,MTh 08:00-09:30,MTThF 13:00-14:00,,100,101
+461,INTRODUCTION TO ECONOMICS                         -HUL211B,,M,3.0-1.0-0.0,HU,ANKUSH AGRAWAL   ,ankush@hss.iitd.ac.in,MTh 17:00-18:30,,,100,95
 462,MICROECONOMICS                                    -HUL212,,M,3.0-1.0-0.0,HU,DEBASIS MONDAL   ,debasis@hss.iitd.ac.in,MTh 17:00-18:30,,,100,100
 Department    :,,Humanities & Social Sciences,,,,,,,,,,
 S.No,Course Name,,Slot Name,Units,Type,Instructor,Instructor Email,Lecture Time,Tutorial Time,Practical Time,Vacancy,Current Strength
@@ -539,8 +539,8 @@ S.No,Course Name,,Slot Name,Units,Type,Instructor,Instructor Email,Lecture Time,
 467,POSITIVE PSYCHOLOGY                               -HUL267,,A,3.0-1.0-0.0,HU,KAMLESH SINGH   ,singhk@hss.iitd.ac.in,MTh 08:00-09:30,MTThF 13:00-14:00,,88,93
 468,INTRODUCTION TO SOCIOLOGY                         -HUL271,,M,3.0-1.0-0.0,HU,SARBESWAR SAHOO   ,sarbeswar@hss.iitd.ac.in,MTh 17:00-18:30,,,100,97
 469,RETHINKING THE INDIAN TRADITION                   -HUL274,,B,3.0-1.0-0.0,HU,MILIND WAKANKAR   ,milindw@hss.iitd.ac.in,MTh 09:30-11:00,,,100,104
-470,SOCIAL SCIENCE APPROACHES TO DEVELOPMENT          -HUL286,,M,3.0-1.0-0.0,HU,UPASNA SHARMA   ,upasna@hss.iitd.ac.in,MTh 17:00-18:30,,,100,115
-471,SOCIAL SCIENCE APPROACHES TO DEVELOPMENT          -HUL286,,B,3.0-1.0-0.0,HU,RAVINDER KAUR   ,rkaur@hss.iitd.ac.in,MTh 09:30-11:00,,,100,101
+470,SOCIAL SCIENCE APPROACHES TO DEVELOPMENT          -HUL286A,,M,3.0-1.0-0.0,HU,UPASNA SHARMA   ,upasna@hss.iitd.ac.in,MTh 17:00-18:30,,,100,115
+471,SOCIAL SCIENCE APPROACHES TO DEVELOPMENT          -HUL286B,,B,3.0-1.0-0.0,HU,RAVINDER KAUR   ,rkaur@hss.iitd.ac.in,MTh 09:30-11:00,,,100,101
 472,FANTASY LITERATURE                                -HUL307,,H,3.0-0.0-0.0,HU,ANGELIE MULTANI   ,angelie@hss.iitd.ac.in,M 11:00-12:00,,,34,32
 473,ECONOMETRIC METHODS                               -HUL315,,M,3.0-0.0-0.0,HU,SOURABH BIKAS PAUL   ,sbpaul@hss.iitd.ac.in,MTh 17:00-18:30,,,35,42
 474,INDIAN ECONOMIC PROBLEMS AND POLICIES             -HUL316,,M,3.0-0.0-0.0,HU,JAYAN JOSE THOMAS   ,jayan@hss.iitd.ac.in,MTh 17:00-18:30,,,35,44
@@ -552,14 +552,14 @@ S.No,Course Name,,Slot Name,Units,Type,Instructor,Instructor Email,Lecture Time,
 478,SELECTED TOPICS IN PHILOSOPHY                     -HUL360,,A,3.0-0.0-0.0,HU,SANIL V.   ,sanil@hss.iitd.ac.in,MTh 08:00-09:30,,,35,37
 479,ORGANIZATIONAL BEHAVIOUR                          -HUL362,,M,3.0-0.0-0.0,HU,PURNIMA SINGH   ,psingh@hss.iitd.ernet.in,MTh 17:00-18:30,,,35,36
 480,SELECTED TOPICS IN PSYCHOLOGY                     -HUL370,,B,3.0-0.0-0.0,HU,SUMITAVA MUKHERJEE   ,sm1@hss.iitd.ac.in,MTh 09:30-11:00,,,35,42
-481,"SCIENCE, TECHNOLOGY AND SOCIETY                   -HUL371",,A,3.0-0.0-0.0,HU,NAVEEN THAYYIL KAMALUDDIN   ,nthayyil@hss.iitd.ac.in,MTh 08:00-09:30,,,34,37
-482,"SCIENCE, TECHNOLOGY AND SOCIETY                   -HUL371",,M,3.0-0.0-0.0,HU,AMBUJ D. SAGAR   ,asagar@hss.iitd.ac.in,MTh 17:00-18:30,,,30,33
+481,"SCIENCE, TECHNOLOGY AND SOCIETY                   -HUL371A",,A,3.0-0.0-0.0,HU,NAVEEN THAYYIL KAMALUDDIN   ,nthayyil@hss.iitd.ac.in,MTh 08:00-09:30,,,34,37
+482,"SCIENCE, TECHNOLOGY AND SOCIETY                   -HUL371B",,M,3.0-0.0-0.0,HU,AMBUJ D. SAGAR   ,asagar@hss.iitd.ac.in,MTh 17:00-18:30,,,30,33
 483,THE SOCIOLOGY OF RELIGION                         -HUL375,,J,3.0-0.0-0.0,HU,FARHANA IBRAHIM   ,fibrahim@hss.iitd.ac.in,MTW 12:00-13:00,,,35,35
 484,POLITICAL ECOLOGY OF WATER                        -HUL376,,M,3.0-0.0-0.0,HU,VIBHA ARORA   ,aurora@hss.iitd.ac.in,MTh 17:00-18:30,,,35,36
 485,INDUSTRY AND WORK CULTURE UNDE                    -HUL378,,H,3.0-0.0-0.0,HU,MAHUYA BANDYOPADHYAY ,mahuya@hss.iitd.ac.in,M 11:00-12:00,,,35,35
 486,SELECTED TOPICS IN SOCIOLOGY                      -HUL380,,J,3.0-0.0-0.0,HU,RICHA KUMAR   ,richa@hss.iitd.ac.in,MTW 12:00-13:00,,,35,36
-487,MIND                                              -HUL381,,M,3.0-0.0-0.0,HU,SUMITAVA MUKHERJEE   ,sm1@hss.iitd.ac.in,MTh 17:00-18:30,,,33,32
-488,MIND                                              -HUL381,,A,3.0-0.0-0.0,HU,ASHWINI J VAIDYA   ,avaidya@hss.iitd.ac.in,MTh 08:00-09:30,,,35,35
+487,MIND                                              -HUL381A,,M,3.0-0.0-0.0,HU,SUMITAVA MUKHERJEE   ,sm1@hss.iitd.ac.in,MTh 17:00-18:30,,,33,32
+488,MIND                                              -HUL381B,,A,3.0-0.0-0.0,HU,ASHWINI J VAIDYA   ,avaidya@hss.iitd.ac.in,MTh 08:00-09:30,,,35,35
 489,"Language Acquisition, Teaching and Assessment-HUL743",,B,3.0-0.0-0.0,,PAROMA SANYAL   ,psanyal@hss.iitd.ac.in,MTh 09:30-11:00,,,30,3
 490,Cognitive Psychology-HUL763,,J,3.0-0.0-0.0,,VARSHA SINGH   ,vsingh@hss.iitd.ac.in,MTW 12:00-13:00,,,30,17
 Department    :,,Humanities & Social Sciences,,,,,,,,,,
@@ -605,34 +605,34 @@ S.No,Course Name,,Slot Name,Units,Type,Instructor,Instructor Email,Lecture Time,
 525,ORGANIZATION AND PEOPLE MANAGEMENT                -MSL301,,M,3.0-0.0-0.0,,VENKAT RAM REDDY   ,ganuthula@dms.iitd.ac.in,MTh 17:00-18:30,,,80,91
 526,MARKETING MANAGEMENT                              -MSL303,,A,3.0-0.0-0.0,,MAHIM SAGAR   ,mahim@dms.iitd.ac.in,MTh 08:00-09:30,,,80,84
 527,FUNDAMENTALS OF MANAGEMENT OF TECHNOLOGY          -MSL700,,T,3.0-0.0-0.0,FE,SUSHIL   ,sushil@dms.iitd.ac.in,,,,60,55
-528,HRM SYSTEMS                                       -MSL705,,R1,1.5-0.0-0.0,PC,KANIKA TANDON BHAL   ,kanika@dms.iitd.ac.in,,,,60,34
-529,HRM SYSTEMS                                       -MSL705,,AA,1.5-0.0-0.0,PC,KANIKA TANDON BHAL   ,kanika@dms.iitd.ac.in,MTh 14:00-15:30,,,60,37
-530,HRM SYSTEMS                                       -MSL705,,AB,1.5-0.0-0.0,PC,KANIKA TANDON BHAL   ,kanika@dms.iitd.ac.in,MTh 15:30-17:00,,,60,32
+528,HRM SYSTEMS                                       -MSL705A,,R1,1.5-0.0-0.0,PC,KANIKA TANDON BHAL   ,kanika@dms.iitd.ac.in,,,,60,34
+529,HRM SYSTEMS                                       -MSL705B,,AA,1.5-0.0-0.0,PC,KANIKA TANDON BHAL   ,kanika@dms.iitd.ac.in,MTh 14:00-15:30,,,60,37
+530,HRM SYSTEMS                                       -MSL705C,,AB,1.5-0.0-0.0,PC,KANIKA TANDON BHAL   ,kanika@dms.iitd.ac.in,MTh 15:30-17:00,,,60,32
 531,BUSINESS LAWS                                     -MSL706,,D,3.0-0.0-0.0,PC,M.P. GUPTA   ,mpgupta@dms.iitd.ac.in,TWF 09:00-10:00,,,60,113
-532,FINANCIAL MANAGEMENT                              -MSL708,,T,3.0-0.0-0.0,PC,SHVETA SINGH   ,shvetasingh@dms.iitd.ac.in,,,,60,39
+532,FINANCIAL MANAGEMENT                              -MSL708A,,T,3.0-0.0-0.0,PC,SHVETA SINGH   ,shvetasingh@dms.iitd.ac.in,,,,60,39
 Department    :,,Management Studies,,,,,,,,,,
 S.No,Course Name,,Slot Name,Units,Type,Instructor,Instructor Email,Lecture Time,Tutorial Time,Practical Time,Vacancy,Current Strength
-533,FINANCIAL MANAGEMENT                              -MSL708,,F,3.0-0.0-0.0,PC,P.K.JAIN   ,pkjain@dms.iitd.ac.in,TWF 11:00-12:00,,,60,74
-534,STRATEGIC MANAGEMENT                              -MSL711,,AC,3.0-0.0-0.0,PC,SANJAY DHIR   ,sanjaydhir@dms.iitd.ac.in,TF 14:00-15:30,,,60,41
-535,STRATEGIC MANAGEMENT                              -MSL711,,D,3.0-0.0-0.0,PC,SANJAY DHIR   ,sanjaydhir@dms.iitd.ac.in,TWF 09:00-10:00,,,60,32
-536,INFORMATION SYSTEMS MANAGEMENT                    -MSL713,,S,3.0-0.0-0.0,PC,P. VIGNESWARA ILAVARASAN   ,vignes@dms.iitd.ac.in,,,,60,35
-537,INFORMATION SYSTEMS MANAGEMENT                    -MSL713,,A,3.0-0.0-0.0,PC,ARPAN KUMAR KAR   ,arpankar@dms.iitd.ac.in,MTh 08:00-09:30,,,60,42
-538,INFORMATION SYSTEMS MANAGEMENT                    -MSL713,,B1,3.0-0.0-0.0,PC,M.P. GUPTA   ,mpgupta@dms.iitd.ac.in,MTh 15:30-17:00,,,60,32
-539,MACROECONOMIC ENV. OF BUSINESS                    -MSL720,,E,3.0-0.0-0.0,PC,SEEMA SHARMA   ,seemash@dms.iitd.ernet.in,TWF 10:00-11:00,,,60,48
-540,MACROECONOMIC ENV. OF BUSINESS                    -MSL720,,H,3.0-0.0-0.0,PC,SEEMA SHARMA   ,seemash@dms.iitd.ernet.in,M 11:00-12:00,,,60,37
+533,FINANCIAL MANAGEMENT                              -MSL708B,,F,3.0-0.0-0.0,PC,P.K.JAIN   ,pkjain@dms.iitd.ac.in,TWF 11:00-12:00,,,60,74
+534,STRATEGIC MANAGEMENT                              -MSL711A,,AC,3.0-0.0-0.0,PC,SANJAY DHIR   ,sanjaydhir@dms.iitd.ac.in,TF 14:00-15:30,,,60,41
+535,STRATEGIC MANAGEMENT                              -MSL711B,,D,3.0-0.0-0.0,PC,SANJAY DHIR   ,sanjaydhir@dms.iitd.ac.in,TWF 09:00-10:00,,,60,32
+536,INFORMATION SYSTEMS MANAGEMENT                    -MSL713A,,S,3.0-0.0-0.0,PC,P. VIGNESWARA ILAVARASAN   ,vignes@dms.iitd.ac.in,,,,60,35
+537,INFORMATION SYSTEMS MANAGEMENT                    -MSL713B,,A,3.0-0.0-0.0,PC,ARPAN KUMAR KAR   ,arpankar@dms.iitd.ac.in,MTh 08:00-09:30,,,60,42
+538,INFORMATION SYSTEMS MANAGEMENT                    -MSL713C,,B1,3.0-0.0-0.0,PC,M.P. GUPTA   ,mpgupta@dms.iitd.ac.in,MTh 15:30-17:00,,,60,32
+539,MACROECONOMIC ENV. OF BUSINESS                    -MSL720A,,E,3.0-0.0-0.0,PC,SEEMA SHARMA   ,seemash@dms.iitd.ernet.in,TWF 10:00-11:00,,,60,48
+540,MACROECONOMIC ENV. OF BUSINESS                    -MSL720B,,H,3.0-0.0-0.0,PC,SEEMA SHARMA   ,seemash@dms.iitd.ernet.in,M 11:00-12:00,,,60,37
 541,ECONOMETRICS                                      -MSL721,,T,3.0-0.0-0.0,SE,AMLENDU KUMAR DUBEY   ,amlendu@dms.iitd.ac.in,,,,60,69
 542,TELECOM SYSTEMS MANAGEMENT                        -MSL723,,K,3.0-0.0-0.0,,MAHIM SAGAR   ,mahim@dms.iitd.ac.in,"W 12:00-13:00 ,TF 17:00-18:00",,,60,21
-543,INTERPERSONAL BEHAVIOR & TEAM DYNAMICS            -MSL727,,Q1,1.5-0.0-0.0,SE,SHUCHI SINHA   ,shuchi@dms.iitd.ac.in,,,,60,70
-544,INTERPERSONAL BEHAVIOR & TEAM DYNAMICS            -MSL727,,B1,1.5-0.0-0.0,SE,SHUCHI SINHA   ,shuchi@dms.iitd.ac.in,,,,60,42
-545,INTERPERSONAL BEHAVIOR & TEAM DYNAMICS            -MSL727,,AA,1.5-0.0-0.0,SE,SHUCHI SINHA   ,shuchi@dms.iitd.ac.in,MTh 14:00-15:30,,,60,35
-546,ORGANIZATION THEORY                               -MSL733,,Q2,1.5-0.0-0.0,SE,SHUCHI SINHA   ,shuchi@dms.iitd.ac.in,,,,60,71
+543,INTERPERSONAL BEHAVIOR & TEAM DYNAMICS            -MSL727A,,Q1,1.5-0.0-0.0,SE,SHUCHI SINHA   ,shuchi@dms.iitd.ac.in,,,,60,70
+544,INTERPERSONAL BEHAVIOR & TEAM DYNAMICS            -MSL727B,,B1,1.5-0.0-0.0,SE,SHUCHI SINHA   ,shuchi@dms.iitd.ac.in,,,,60,42
+545,INTERPERSONAL BEHAVIOR & TEAM DYNAMICS            -MSL727C,,AA,1.5-0.0-0.0,SE,SHUCHI SINHA   ,shuchi@dms.iitd.ac.in,MTh 14:00-15:30,,,60,35
+546,ORGANIZATION THEORY                               -MSL733A,,Q2,1.5-0.0-0.0,SE,SHUCHI SINHA   ,shuchi@dms.iitd.ac.in,,,,60,71
 Department    :,,Management Studies,,,,,,,,,,
 S.No,Course Name,,Slot Name,Units,Type,Instructor,Instructor Email,Lecture Time,Tutorial Time,Practical Time,Vacancy,Current Strength
-547,ORGANIZATION THEORY                               -MSL733,,B2,1.5-0.0-0.0,SE,VENKAT RAM REDDY   ,ganuthula@dms.iitd.ac.in,,,,60,41
-548,ORGANIZATION THEORY                               -MSL733,,A2,1.5-0.0-0.0,SE,VENKAT RAM REDDY   ,ganuthula@dms.iitd.ac.in,,,,60,31
+547,ORGANIZATION THEORY                               -MSL733B,,B2,1.5-0.0-0.0,SE,VENKAT RAM REDDY   ,ganuthula@dms.iitd.ac.in,,,,60,41
+548,ORGANIZATION THEORY                               -MSL733C,,A2,1.5-0.0-0.0,SE,VENKAT RAM REDDY   ,ganuthula@dms.iitd.ac.in,,,,60,31
 549,QUANTITATIVE METHODS IN MGMT.                     -MSL740,,Q,3.0-0.0-0.0,SE,SURYA PRAKASH SINGH   ,sprsingh@dms.iitd.ac.in,,,,60,39
-550,OPERATIONS MANAGEMENT                             -MSL745,,AB,3.0-0.0-0.0,PC,JITENDRA MADAAN   ,jmadaan@dms.iitd.ac.in,MTh 15:30-17:00,,,60,46
-551,OPERATIONS MANAGEMENT                             -MSL745,,E,3.0-0.0-0.0,PC,JITENDRA MADAAN   ,jmadaan@dms.iitd.ac.in,TWF 10:00-11:00,,,60,31
+550,OPERATIONS MANAGEMENT                             -MSL745A,,AB,3.0-0.0-0.0,PC,JITENDRA MADAAN   ,jmadaan@dms.iitd.ac.in,MTh 15:30-17:00,,,60,46
+551,OPERATIONS MANAGEMENT                             -MSL745B,,E,3.0-0.0-0.0,PC,JITENDRA MADAAN   ,jmadaan@dms.iitd.ac.in,TWF 10:00-11:00,,,60,31
 552,MANAGERIAL ECONOMICS                              -MSL780,,R2,1.5-0.0-0.0,PC,AMLENDU KUMAR DUBEY   ,amlendu@dms.iitd.ac.in,,,,60,43
 553,MGMT. OF INTELLECTUAL PR. RIG.                    -MSL802,,U,3.0-0.0-0.0,PE,SUDHIR KUMAR JAIN   ,skjain@dms.iitd.ac.in,,,,60,31
 554,MERGERS & ACQUISITIONS                            -MSL806,,J,3.0-0.0-0.0,PE,SMITA KASHIRAMKA   ,smitak@dms.iitd.ac.in,MTW 12:00-13:00,,,60,15
