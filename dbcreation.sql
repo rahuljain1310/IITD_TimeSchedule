@@ -1,6 +1,7 @@
 create table organizational_units(id int primary key, alias varchar(15) unique not null);
 create table user_groups(id int primary key,alias varchar(20),parent_userid int null references user_groups(id), orgid int references organizational_units(id),unique(alias,orgid));
-create table users (alias varchar(15) primary key,name varchar(40),leaf_groupid int null references user_groups(id));
+create table users(userid int primary key,alias varchar(20) unique not null,name varchar(70));
+create table usersgroup (userid int references users(userid),leaf_group varchar(30),unique(userid,leaf_group));
 create domain course_code as
   varchar(8) not null check (value not similar to  '_{0,5}\s')
 create domain day as
@@ -28,5 +29,13 @@ create table ProfessorCourses (profid int not null references faculty(id) not nu
 create table coursesstudents(studentid int references students(id),courseid int references courses(courseid),unique(studentid,courseid));
 create index studentsort on coursesstudents(studentid);
 create index coursesort on coursesstudents(courseid);
-
 create table studentcourses1 (select students
+create table users2 (alias varchar(20),name varchar(70),leafgroup varchar(30));
+\copy users2 from '/home/vishwajeet/Desktop/COL362/IITD_TimeSchedule/Users.csv';
+insert into users (select distinct alias,name from
+users2);
+insert into usersgroup (
+  select distinct userid,leafgroup from
+  users , users2 where
+  users.alias = users2.alias
+);
