@@ -1,5 +1,5 @@
 drop materialized view CourseDetails cascade;
-drop view view CourseD cascade;
+drop view CourseD cascade;
 
 -- Checking Whether Entries are same or not in both course code
 -- 0 0 should be utput of next two queries
@@ -20,11 +20,11 @@ drop view view CourseD cascade;
 -- );
 
 create view CourseD as
-select distinct coursename, coursecode, slot, type, credits, l, t, p
+select distinct coursename, coursecode, slot, type, credits, l, t, p, vacancy, currentstrength
 from coursesoffered;
 
 create materialized view CourseDetails as
-select courseid, CD.coursecode, CD.coursename, CD.slot, CD.type, CD.credits,CD.l, CD.t, CD.p
+select courseid, CD.coursecode, CD.coursename, CD.slot, CD.type, CD.credits,CD.l, CD.t, CD.p, CD.vacancy, CD.currentstrength
 from courseslist, CourseD as CD
 where CD.coursecode = courseslist.coursecode
 order by courseid;
