@@ -24,6 +24,8 @@ create table courses(courseid int primary key,code course_code not null,name var
   credits float, lec_dur float, tut_dur float, prac_dur float,
   check (credits = lec_dur+tut_dur+prac_dur/2 ),
 strength int, registered int);
+create table usergroupsdef(id int primary key, alias varchar(30) not null unique,name varchar(70));
+create table usersgroup (userid int references users(userid),gid int references usergroupsdef(id),unique(userid,gid));
 
 create table ProfessorCourses (profid int not null references faculty(id) not null, courseid int not null references courses(courseid));
 create table coursesstudents(studentid int references students(id),courseid int references courses(courseid),unique(studentid,courseid));
@@ -31,11 +33,12 @@ create index studentsort on coursesstudents(studentid);
 create index coursesort on coursesstudents(courseid);
 create table studentcourses1 (select students
 create table users2 (alias varchar(20),name varchar(70),leafgroup varchar(30));
-\copy users2 from '/home/vishwajeet/Desktop/COL362/IITD_TimeSchedule/Users.csv';
+\copy users2 from '/home/vishwajeet/Desktop/COL362/IITD_TimeSchedule/Users.csv' delimiter '$';
 insert into users (select distinct alias,name from
 users2);
 insert into usersgroup (
-  select distinct userid,leafgroup from
-  users , users2 where
-  users.alias = users2.alias
+  select distinct userid, usergroupsdef.id from
+  users , usergroupsdef,users2 where
+  users.alias = users2.alias and
+  usergroupsdef.alias = users2.leafgroup
 );

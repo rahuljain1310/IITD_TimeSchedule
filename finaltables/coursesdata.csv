@@ -1,0 +1,802 @@
+1$AMD310$MINI PROJECT (AM)                                  $P$""$3$0$0$6$30$7
+2$AMD811$MAJOR PROJECT PART I                               $P$""$6$0$0$12$30$0
+3$AMD812$MAJOR PROJECT PART II                              $P$""$12$0$0$24$30$31
+4$AMD813$MAJOR PROJECT PART I                               $P$""$6$0$0$12$30$1
+5$AMD814$MAJOR PROJECT PART II                              $P$""$12$0$0$24$30$4
+6$AMD895$MAJOR PROJECT                                      $P$""$40$0$0$80$30$2
+7$AMD897$MINOR PROJECT                                      $X$""$4$0$0$8$60$25
+8$AML702$APPLIED COMPUTATIONAL METHOD                       $F$""$4$3$0$2$100$36
+9$AML706$FINITE ELEMENT METHODS & ITS APPL.TO MARINE STRU.  $B$""$3$3$0$0$100$32
+10$AML731$APPLIED ELASTICITY                                 $X$""$4$3$1$0$60$9
+11$AML793$SHIP DYNAMICS                                      $X$""$3$3$0$0$60$25
+12$AML795$SUBMARINE DESIGN                                   $X$""$3$3$0$0$60$25
+13$AML831$THEORY OF PLATES AND SHELLS                        $A$""$3$3$0$0$50$21
+14$AML832$APPLICATIONS OF THEORY OF PLATES AND SHELLS        $A$""$2$2$0$0$50$29
+15$AML835$MECHANICS OF COMPOSITE MATERIALS                   $X$""$3$3$0$0$40$20
+16$AMP776$PRODUCT DESIGN PROJECT 1                           $F$""$4$2$0$4$60$20
+17$APL100$ENGINEERING MECHANICS                              $A$""$4$3$1$0$250$469
+18$APL102$INTR.TO MATERIAL SC. & ENGG.                       $E$""$4$3$0$2$300$131
+19$APL105$MECHANICS OF SOLIDS AND FLUIDS                     $A$""$4$3$1$0$150$122
+20$APL300$COMPUTATIONAL MECHANICS                            $A$""$4$3$0$2$100$31
+21$APL705$FINITE ELEMENT METHOD                              $B$""$4$3$0$2$100$53
+22$APL711$ADVANCED FLUID MECHANICS                           $C$""$3$3$0$0$50$12
+23$APL713$TURBULENCE AND ITS MODELING                        $D$""$3$3$0$0$50$20
+24$APL720$COMPUTATIONAL FLUID DYNAMICS                       $E$""$4$3$0$2$50$22
+25$APL750$MODERN ENGINEERING MATERIALS                       $A$""$3$3$0$0$50$13
+26$APL767$ENGG. FAILURE ANALYSIS & PREV.                     $AC$""$3$3$0$0$40$15
+27$APL774$MODELING AND ANALYSIS                              $AA$""$3$3$0$0$40$9
+28$APL796$ADVANCED SOLID MECHANICS                           $X$""$3$3$0$0$50$19
+29$APL871$PRODUCT RELIABILITY & MAINTENANCE                  $H$""$3$3$0$0$60$33
+30$APV707$Micromechanics of Fracture $X$""$1$1$0$0$30$0
+31$ASD882$PROJECT II                                         $Q$""$12$0$0$24$12$12
+32$ASL340$Fundamentals of Weather and Climate $F$PC$3$3$0$0$80$68
+33$ASL350$INTRODUCTION TOOCEANOGRAPHY                        $B$""$3$3$0$0$80$71
+34$ASL360$THE EARTH`S ATMOSPHERE:PHYSICAL PRINCIPLES         $M$""$3$3$0$0$80$80
+35$ASL734$DYNAMICS OF THE ATMOSPHERE                         $H$""$3$3$0$0$30$24
+36$ASL736$SCIENCE OF CLIMATE CHANGE                          $J$""$3$3$0$0$25$21
+37$ASL737$PHYSICAL AND DYNAMICAL OCEANOGRAPHY                $E$""$3$3$0$0$25$14
+38$ASL738$NUMERICAL MODELING OF THE ATMOSPHERE AND OCEAN     $AD$""$3$2$0$2$16$14
+39$ASL751$DISPERSION OF AIR POLLUTANTS                       $F$""$3$3$0$0$40$21
+40$ASL754$CLOUD PHYSICS                                      $B$""$3$3$0$0$50$7
+41$ASL760$RENEWABLE ENERGY METEOROLOGY                       $M$""$3$3$0$0$25$5
+42$ASP820$ADVANCED DATA ANALYSIS FOR WEATHER AND CLIMATE     $K$""$3$1$0$4$15$12
+43$BBD451$MAJOR PROJECT PART 1 (BB1)                         $P$""$3$0$0$6$30$4
+44$BBD452$MAJOR PROJECT PART 2 (BB1)                         $Q$""$8$0$0$16$100$0
+45$BBD851$MAJOR PROJECT PART 1 (BB5)                         $Q$""$6$0$0$12$60$0
+46$BBD852$MAJOR PROJECT PART 2 (BB5)                         $Q$""$14$0$0$28$60$5
+47$BBD853$MAJOR PROJECT PART 1 (BB5)                         $Q$""$4$0$0$8$60$0
+48$BBD854$MAJOR PROJECT PART 2 (BB5)                         $Q$""$16$0$0$32$60$11
+49$BBD895$MAJOR PROJECT                                      $Q$""$36$0$0$72$60$11
+50$BBL341$ENVIRONMENTAL BIOTECHNOLOGY                        $H$DE$3$3$0$0$100$13
+51$BBL431$BIOPROCESS TECHNOLOGY                              $J$DC$2$2$0$0$100$77
+52$BBL432$FLUID SOLID SYSTEMS                                $H$DC$2$2$0$0$100$56
+53$BBL433$ENZYME SCIENCE AND ENGINEERING                     $D$DC$4$3$0$2$100$55
+54$BBL434$BIOINFORMATICS                                     $C$DC$3$2$0$2$100$73
+55$BBL443$MODELING & SIMULATION OF BIO.                      $J$DE$4$3$0$2$100$13
+56$BBL445$MEMBRANE APPLICATIONS IN BIO.                      $E$DE$3$3$0$0$100$33
+57$BBL736$DYNAMICS OF MICROBIAL SYSTEMS                      $B$""$3$3$0$0$60$27
+58$BBL740$PLANT CELL TECHNOLOGY                              $K$""$3$2$0$2$60$19
+59$BBL742$BIOLOGICAL WASTE TREATMENT                         $D$""$4$3$0$2$60$32
+60$BBL745$COMBINATORIAL BIOTECHNOLOGY                        $J$""$3$3$0$0$60$25
+61$BBL746$CURRENT TOPICS IN BIOCHEMICALENGINEERING AND BIOTE $H$""$3$3$0$0$60$15
+62$BBL747$BIONANOTECHNOLOGY                                  $E$""$3$3$0$0$60$22
+63$BBL749$CANCER CELL BIOLOGY                                $F$""$4.5$3$0$3$60$36
+64$BBQ301$SEMINAR COURSE   I                                 $Q$""$1$0$0$2$20$20
+65$BBQ302$SEMINAR COURSE   II                                $Q$""$1$0$0$2$20$16
+66$BBQ303$SEMINAR COURSE   III                               $Q$""$1$0$0$2$20$20
+67$BED800$MAJOR PROJECT                                      $P$""$40$0$0$80$10$1
+68$BMD802$Major Project 2 $X$PC$12$0$0$24$60$7
+69$BML735$BIOMEDICAL SIGNAL AND IMAGE PR                     $AD$PE$3$2$0$2$60$35
+70$BML737$APPLICATIONS OF MATHEMATICS IN BIOMEDICAL ENG.     $D$PC$2$2$0$0$60$16
+71$BML740$BIOMEDICAL INSTRUMENTATION                         $E$PC$3$3$0$0$60$17
+72$BML750$POINT OF CARE MEDICAL DIAG DEV                     $F$PE$3$3$0$0$60$5
+73$BML760$BIOMEDICAL ETHICS, SAFETY AND REGULATORY AFFAIRS   $B$PC$2$2$0$0$60$9
+74$BML771$Orthopaedic Device Design $H$PE$2$2$0$0$60$8
+75$BML820$BIOMATERIALS                                       $J$PE$3$3$0$0$60$8
+76$BML860$NANOMEDICINE                                       $K$PE$3$3$0$0$60$9
+77$BMP743$BASIC BIOMEDICAL LABORATORY                        $X$PC$2$0$0$4$60$7
+78$BSD895$MAJOR PROJECT(MSR)                                 $P$""$40$0$0$80$60$4
+79$CHD771$MINOR PROJECT                                      $Q$PC$4$0$0$8$60$0
+80$CHD871$MAJOR PROJECT PART 1 (CM)                          $Q$PC$6$0$0$12$60$2
+81$CHD872$MAJOR PROJECT PART II (CM)                         $Q$PC$14$0$0$28$60$1
+82$CHD873$MAJOR PROJECT PART 1 (CM)                          $Q$PC$4$0$0$8$60$0
+83$CHD874$MAJOR PROJECT PART 2 (CM)                          $Q$PC$16$0$0$32$60$0
+84$CLD411$B. TECH. PROJECT                                   $Q$DC$4$0$0$8$100$13
+85$CLD412$MAJOR PROJECT IN ENERGY & ENV.                     $Q$DE$5$0$0$10$100$5
+86$CLD413$MAJOR PROJECT IN COMPLEX FLUID                     $Q$DE$5$0$0$10$100$0
+87$CLD414$MAJOR PROJ. IN P.E, MOD. & OP.                     $Q$DE$5$0$0$10$100$0
+88$CLD415$MAJOR PROJ IN BIOP. & FINE CH.                     $Q$DE$5$0$0$10$100$3
+89$CLD771$MINOR PROJECT                                      $Q$PC$3$0$0$6$60$32
+90$CLD781$MAJOR PROJECT   I                                  $Q$PC$8$0$0$16$60$1
+91$CLD782$MAJOR PROJECT   II                                 $Q$PC$12$0$0$24$60$15
+92$CLD880$MINOR PROJECT                                      $Q$PC$4$0$0$8$60$42
+93$CLD881$MAJOR PROJECT PARTI                                $Q$PC$8$0$0$16$60$2
+94$CLD882$MAJOR PROJECT PARTII                               $Q$PC$12$0$0$24$60$39
+95$CLL121$CHEMICAL ENGG. THERMODYNAMICS                      $A$DC$4$3$1$0$100$143
+96$CLL122$CHEMICAL REACTION ENGG I                           $D$DC$4$3$1$0$100$178
+97$CLL231$FLUID MECHS. FOR CHEM. ENGINEE                     $F$DC$4$3$1$0$100$194
+98$CLL251$HEAT TRANSFER FOR CHEMICAL ENG                     $B$DC$4$3$1$0$100$187
+99$CLL271$INTRO TO INDUSTRIAL BIOTECH.                       $D$DC$3$3$0$0$100$108
+100$CLL352$MASS TRANSFER II                                   $B$DC$4$3$1$0$100$118
+101$CLL361$INSTRUMENTATION AND AUTOMATION                     $C$DC$2.5$1$0$3$100$106
+102$CLL371$CHEM. PROCESS TECH.& ECONOMICS                     $E$DC$4$3$1$0$100$127
+103$CLL402$PROCESS PLANT DESIGN                               $D$DE$3$3$0$0$50$12
+104$CLL475$SAFETY & HAZARDS IN PROC. IND.                     $B$DE$3$3$0$0$50$25
+105$CLL722$ELECTROCHEM. CONV. & STO. DEV.                     $B$""$3$3$0$0$50$36
+106$CLL727$HETERO. CATALYSIS & CATA. REA.                     $E$""$3$3$0$0$50$41
+107$CLL731$ADVANCED TRANSPORT PHENOMENA                       $A$""$3$3$0$0$60$100
+108$CLL732$ADV. CHE. ENGG. THERMODYNAMICS                     $AA$""$3$3$0$0$60$20
+109$CLL733$INDUSTRIAL MULTIPHASE REACTORS                     $H$PC,DE,PE$3$3$0$0$110$115
+110$CLL766$INTERFACIAL ENGINEERING                            $F$""$3$3$0$0$50$61
+111$CLL767$STRUCTURES & PROP. OF POLYMERS                     $B$""$3$3$0$0$50$22
+112$CLL768$FUNDAMENTALS OF COMP. FLUID DY                     $F$""$3$2$0$2$30$12
+113$CLL771$INTRODUCTION TO COMPLEX FLUIDS                     $F$""$3$3$0$0$50$32
+114$CLL772$TRANS. PHEN. IN COMPLEX FLUIDS                     $E$""$3$3$0$0$50$12
+115$CLL779$MOL. BIOTECH. & IN VITRO DIAG.                     $D$""$3$3$0$0$50$12
+116$CLL782$PROCESS OPTIMIZATION                               $E$""$3$3$0$0$50$34
+117$CLL786$FINE CHEMICALS TECHNOLOGY                          $E$""$3$3$0$0$50$56
+118$CLL788$Process Data Analytics $D$""$3$3$0$0$60$56
+119$CLL793$MEMBRANE SCIENCE & ENGINEERING                     $F$""$3$3$0$0$50$50
+120$CLP302$CHEMICAL ENGINEERING LAB   II                      $E$DC$1.5$0$0$3$100$159
+121$CLP704$TECHNICAL COMMUNICATION FOR CHEMICAL ENGINEERS     $Q$""$1$0$0$2$60$66
+122$CLQ301$SEMINAR COURSE   I                                 $P$""$1$0$0$2$35$43
+123$CLQ302$SEMINAR COURSE   II                                $Q$""$1$0$0$2$35$33
+124$CLV797$RECENT  ADV. IN CHEMICAL ENGG.                     $X$""$2$2$0$0$60$8
+125$CMD641$PROJECT PART II                                    $P$""$10$0$0$20$60$49
+126$CMD807$MAJOR  PROJECT PART   II                           $P$""$9$0$0$18$30$11
+127$CML100$INTRODUCTION TO CHEMISTRY                          $D$""$3$3$0$0$200$461
+128$CML521$MOLECULAR THERMODYNAMICS                           $C$""$3$3$0$0$60$55
+129$CML522$CHEMICAL DYNA. & SURFACE CHEM.                     $F$""$3$3$0$0$60$54
+130$CML523$ORGANIC SYNTHESIS                                  $D$""$3$3$0$0$60$55
+131$CML524$TRAN. & INNER TRAN. METAL CHE.                     $A$""$3$3$0$0$60$54
+132$CML525$BASIC ORGANOMETALIC CHEMISTRY                      $B$""$3$3$0$0$60$54
+133$CML526$STR. & FUNC. OF CELLULAR BIOM.                     $E$""$3$3$0$0$60$54
+134$CML665$BIOPHYSICAL CHEMISTRY                              $D$""$3$3$0$0$60$8
+135$CML673$Bio organic and Medicinal chemistry                $F$""$3$3$0$0$60$7
+136$CML682$Inorganic Polymers $E$PC$3$3$0$0$60$30
+137$CML724$SYNTHESIS OF INDUSTRIALLY IMPO                     $H$""$3$3$0$0$60$30
+138$CML729$MATERIAL CHARACTERIZATION                          $C$""$3$3$0$0$60$28
+139$CML737$APPLIED SPECTROSCOPY                               $E$""$3$3$0$0$60$31
+140$CML738$APPLICATIONS OF P BLOCK ELEMEN                     $B$""$3$3$0$0$60$16
+141$CML739$APPLIED BIOCATALYSIS                               $K$""$3$3$0$0$60$28
+142$CML740$CHEMISTRY OF HETEROCYCLIC COMP                     $A$""$3$3$0$0$60$33
+143$CML801$MOLECULAR MODELLING AND SIMULA                     $B$""$3$3$0$0$60$21
+144$CMP100$CHEMISTRY LABORATORY                               $P$""$2$0$0$4$1000$458
+145$CMP521$LAB III                                            $P$""$2$0$0$4$240$53
+146$CMP522$LAB IV                                             $P$""$2$0$0$4$240$53
+147$CMP728$INSTRUMENTATION LABORATORY                         $P$""$3$0$0$6$60$8
+148$COD310$MINI PROJECT                                       $P$""$3$0$0$6$40$27
+149$COD492$B.TECH PROJECT PART 1                              $P$""$6$0$0$12$120$4
+150$COD494$B.TECH PROJECT PART 2                              $P$""$8$0$0$16$120$40
+151$COD891$MINOR PROJECT                                      $P$""$3$0$0$6$80$51
+152$COD892$M.TECH PROJECT PARTI                               $P$""$7$0$0$14$40$0
+153$COD893$M.TECH PROJECT PARTII                              $P$""$14$0$0$28$50$43
+154$COD895$MSR PROJECT                                        $P$""$36$0$0$72$30$5
+155$COL100$INTRO. TO COMPUTER SCIENCE                         $B$""$4$3$0$2$600$513
+156$COL106$DATA STRUCTURES AND ALGORITHMS                     $F$""$5$3$0$4$180$206
+157$COL216$COMPUTER ARCHITECTURE                              $B$""$4$3$0$2$125$113
+158$COL226$PROGRAMMING LANGUAGES                              $F$""$5$3$0$4$140$127
+159$COL331$OPERATING SYSTEMS                                  $E$""$5$3$0$4$120$121
+160$COL352$INTRO TO AUTOMATA & TH. OF CO.                     $H$""$3$3$0$0$125$120
+161$COL362$INTRO. TO DATABASE MGMT. SYST.                     $C$""$4$3$0$2$150$115
+162$COL380$INTRO. TO PARALLEL & DIS. PRO.                     $J$""$3$2$0$2$120$122
+163$COL632$INTRODUCTION TO DATA BASESYSTEMS                   $C$""$4$3$0$2$30$15
+164$COL633$RESOURCE MANAGEMENT IN COMPUTER SYSTEMS            $E$""$4$3$0$2$30$3
+165$COL724$ADVANCED COMPUTER NETWORKS                         $D$""$4$3$0$2$40$21
+166$COL726$NUMERICAL ALGORITHMS                               $M$""$4$3$0$2$70$53
+167$COL729$COMPILER OPTIMIZATION                              $A$""$4.5$3$0$3$45$11
+168$COL740$SOFTWARE ENGINEERING                               $H$""$4$3$0$2$95$64
+169$COL758$ADVANCED ALGORITHMS                                $B$""$4$3$0$2$50$32
+170$COL772$NATURAL LANGUAGE PROCESSING                        $AA$""$4$3$0$2$30$45
+171$COL774$MACHINE LEARNING                                   $F$""$4$3$0$2$130$137
+172$COL781$COMPUTER GRAPHICS                                  $K$""$4.5$3$0$3$90$53
+173$COL786$ADVANCED FUNCTIONAL BRAIN IMG.                     $AC$""$4$3$0$2$30$20
+174$COL812$SYSTEM LEVEL DESIGN& MODELLING                     $C$""$3$3$0$0$30$6
+175$COL863$SPL. TOPICS IN THEO. COMP. SC. $AC$""$3$3$0$0$40$25
+176$COL864$SPL. TOPICS IN ARTIFICIAL INT.                     $AA$""$3$3$0$0$30$23
+177$COL872$SPL. TOPICS IN CRYPTOGRAPHY                        $AD$""$3$3$0$0$30$30
+178$COL886$Special Topics in Operating Systems $AC$""$3$3$0$0$15$6
+179$COP290$DESIGN PRACTICES                                   $P$""$3$0$0$6$120$135
+180$COP315$EMBEDDED SYSTEM DESIGN PROJECT                     $P$""$4$0$1$6$100$56
+181$COP701$SOFTWARE SYSTEMS LABORATORY                        $P$""$3$0$0$6$40$2
+182$COQ301$SEMINAR COURSE   I                                 $P$""$1$0$0$2$60$22
+183$COQ302$SEMINAR COURSE   II                                $P$""$1$0$0$2$60$29
+184$COQ303$SEMINAR COURSE   III                               $P$""$1$0$0$2$60$19
+185$COQ304$SEMINAR COURSE   IV                                $P$""$1$0$0$2$60$24
+186$COS310$INDEPENDENT STUDY (CS)                             $P$""$3$0$3$0$30$13
+187$COS799$INDEPENDENT STUDY                                  $P$""$3$0$3$0$30$6
+188$COV878$SPECIAL MODULE IN MACHINE LEA.                     $X$""$1$1$0$0$60$27
+189$COV880$SPECIAL MODULE IN PARALLEL CO.                     $X$""$1$1$0$0$30$7
+190$COV883$SPL. MODULE IN THEO. COMP. SC.                     $P$""$1$1$0$0$60$7
+191$COV884$SPL. MODULE IN ARTIFICIAL INT.                     $X$""$1$1$0$0$30$7
+192$COV887$SPL. MODULE IN HIGH SPEED NET.                     $X$""$1$1$0$0$30$22
+193$COV888$SPL. MODULE IN DATABASE SYST.                      $X$""$1$1$0$0$30$8
+194$CRD802$MINOR PROJECT                                      $A$PC$3$0$0$6$60$25
+195$CRD811$MAJOR PROJECT PART I                               $Q$PC$6$0$0$12$60$1
+196$CRD812$MAJOR PROJECT PART 2                               $Q$PC$12$0$0$24$60$22
+197$CRD814$MAJOR PROJECT III                                  $Q$PC$6$0$0$12$60$1
+198$CRL702$ARCHITECTURES AND ALGORITHMS FOR DSP SYSTEMS       $E$PC$4$2$0$4$40$27
+199$CRL704$SENSOR ARRAY SIGNAL PROCESSING                     $H$""$3$3$0$0$60$15
+200$CRL706$SONARS                                             $J$PE$3$3$0$0$60$7
+201$CRL712$RF AND MICROWAVE ACTIVE CIRCUITS                   $A$PE$3$3$0$0$60$26
+202$CRL722$RF AND MICROWAVE SOLID STATE DEVICES               $H$PE$3$3$0$0$60$10
+203$CRL724$RF AND MICROWAVE MEASUREMENT SYSTEM TECHNIQUES     $B$PC$3$3$0$0$60$27
+204$CRL732$SELECTED TOPICS IN RFDT II                         $D$PE$3$3$0$0$60$8
+205$CRV742$SPECIAL MODULE IN RADIO FREQUENCY DESIGN & TECH. I $X$""$1$1$0$0$20$20
+206$CSD411$MAJOR PROJECT PART 1 (CS)                          $P$""$4$0$0$8$40$0
+207$CSD853$MAJOR PROJECT PART 1 (CO)                          $P$""$4$0$0$8$40$0
+208$CVC772$SEMINAR IN CONSTRUCTION TECHNO                     $R$""$1$0$0$2$30$30
+209$CVD411$BTECH PROJECT PART 1                               $P$""$4$0$0$8$120$30
+210$CVD412$BTECH PROJECT PART 2                               $P$""$6$0$0$12$120$15
+211$CVD700$MINOR PROJECT                                      $P$""$3$0$0$6$5$0
+212$CVD710$MINOR PROJECT                                      $P$""$3$0$0$6$5$0
+213$CVD720$MAJOR THESIS PART I                                $M$""$6$0$0$12$24$0
+214$CVD721$MAJOR THESIS PART II                               $M$""$12$0$0$24$25$6
+215$CVD756$MINOR PROJECT IN STRUCTURAL ENGINEERING            $P$""$3$0$0$6$50$0
+216$CVD757$MAJOR PROJECT PART I (CES)                         $P$""$9$0$0$18$50$0
+217$CVD758$MAJOR PROJECT PART II (CES)                        $P$""$9$0$0$18$50$17
+218$CVD772$MAJOR PROJECT PART I (CEC)                         $P$""$9$0$0$18$50$0
+219$CVD773$MAJOR PROJECT PART II (CEC)                        $P$""$12$0$0$24$30$24
+220$CVD776$MINOR PROJECT (CET)                                $P$""$3$0$0$6$50$0
+221$CVD777$MAJOR PROJECT PART I (CET)                         $P$""$9$0$0$18$50$1
+222$CVD778$MAJOR PROJECT PART II (CET)                        $P$""$12$0$0$24$30$19
+223$CVD801$MAJOR THESIS PART II                               $P$""$12$0$0$24$25$8
+224$CVD810$MAJOR PROJECT PART I                               $P$""$6$0$0$12$30$2
+225$CVD811$MAJOR PROJECT PART II (CEU)                        $P$""$12$0$0$24$26$16
+226$CVD832$MAJOR PROJECT PART II                              $P$""$12$0$0$24$50$12
+227$CVD854$MAJOR PROJECT PART II                              $P$""$12$0$0$24$30$12
+228$CVD895$MSR MAJOR PROJECT                                  $P$""$36$0$0$72$30$2
+229$CVL100$ENVIRONMENTAL SCIENCE                              $C$""$2$2$0$0$500$550
+230$CVL212$ENVIRONMENTAL ENGINEERING                          $B$""$4$3$0$2$120$97
+231$CVL222$SOIL MECHANICS                                     $F$""$3$3$0$0$120$103
+232$CVL242$STRUCTURAL ANALYSIS I                              $D$""$3$3$0$0$120$103
+233$CVL244$CONSTRUCTION PRACTICES                             $C$""$2$2$0$0$120$95
+234$CVL261$INTRO. TO TRANSPORTATION ENGG.                     $B$""$3$3$0$0$120$100
+235$CVL281$HYDRAULICS                                         $E$""$4$3$1$0$120$101
+236$CVL313$AIR AND NOISE POLLUTION                            $F$""$3$3$0$0$40$41
+237$CVL342$STEEL DESIGN                                       $D$""$3$3$0$0$120$99
+238$CVL381$DESIGN OF HYDRAULIC STRUCTURES                     $E$""$4$3$0$2$120$94
+239$CVL382$GROUNDWATER                                        $H$""$2$2$0$0$30$43
+240$CVL422$ROCK ENGINEERING                                   $M$""$3$3$0$0$40$40
+241$CVL431$DESIGN OF FOUN. & RET. STRUCT.                     $J$""$3$3$0$0$59$42
+242$CVL443$PRESTRESSED CON. & IND. STRUC.                     $H$""$3$3$0$0$50$50
+243$CVL482$WATER POWER ENGINEERING                            $X$""$3$2$0$2$30$32
+244$CVL702$GROUND IMPROVEMENT AND GEOSYNTHETICS               $F$""$3$3$0$0$30$12
+245$CVL703$GEOENVIRONMENTAL ENGINEERING                       $J$""$3$3$0$0$30$14
+246$CVL705$SLOPES AND RETAINING STRUCTURES                    $E$""$3$3$0$0$30$15
+247$CVL706$SOIL DYNAMICS AND EARTHQUAKE GEOTECHNICAL ENGG.    $B$""$3$3$0$0$30$13
+248$CVL712$SLOPES AND FOUNDATIONS                             $C$""$3$3$0$0$30$15
+249$CVL713$ANALYSIS AND DESIGN OF UNDERGROUND STRUCTURES      $D$""$3$3$0$0$30$13
+250$CVL714$FIELD EXPLORATION AND GEOTECHNICAL PROCESSES       $E$""$3$3$0$0$30$16
+251$CVL715$EXCAVATION METHODS & UNDERGROUND SPACE TECHNOLOGY  $A$""$3$3$0$0$40$13
+252$CVL721$SOLID WASTE ENGINEERING                            $F$""$3$3$0$0$40$40
+253$CVL723$WASTE WATER ENGINEERING                            $D$""$3$3$0$0$40$24
+254$CVL724$ENVIRONMENTAL SYSTEMS ANALYSIS                     $C$""$3$3$0$0$40$41
+255$CVL727$ENVIROMENTAL RISK ASSESMENT $M$""$3$2$1$0$40$10
+256$CVL728$ENVIRONMENTAL QUALITY MODELING                     $A$""$3$3$0$0$40$36
+257$CVL734$ADVANCED HYDRAULICS                                $D$""$3$3$0$0$50$15
+258$CVL735$FINITE ELEMENT IN WATER RESOU.                     $J$""$3$3$0$0$50$12
+259$CVL743$AIRPORT PLANNING AND DESIGN                        $K$""$3$3$0$0$30$10
+260$CVL746$PUBLIC TRANSPORTATION SYSTEMS                      $L$""$3$3$0$0$30$20
+261$CVL760$THEORY OF CONCRETE STRUCTURES                      $F$""$3$3$0$0$50$20
+262$CVL761$THEORY OF STEEL STRUCTURES                         $B$""$3$3$0$0$50$22
+263$CVL762$EARTHQUAKE ANALYSIS AND DESIGN                     $A$""$3$3$0$0$50$36
+264$CVL774$CONSTRUCTION CONTRACT MGMT.                        $J$""$3$3$0$0$75$41
+265$CVL775$CONSTRUCTION ECONOMICS AND FI                      $B$""$3$3$0$0$75$50
+266$CVL776$CONSTRUCTION PRACTICES AND EQ                      $D$""$3$3$0$0$75$48
+267$CVL778$BUILDING SERVICES AND MAINTENA                     $H$""$3$3$0$0$40$6
+268$CVL811$NUMERICAL AND COMPUTER METHODS IN GEOMECHANICS     $F$""$3$3$0$0$10$0
+269$CVL830$GROUNDWATER FLOW AND POLLUTION MODELING            $F$""$3$3$0$0$50$16
+270$CVL833$WATER RESOURCES SYSTEMS                            $A$""$3$3$0$0$50$8
+271$CVL838$GEOGRAPHIC INFORMATION SYSTEMS                     $H$""$3$2$0$2$50$18
+272$CVL841$ADVANCED TRANSPORTATION MODELLING                  $H$""$3$2$0$2$10$6
+273$CVL845$VISCOELASTIC BEHAVIOR OF BITUM                     $X$""$3$3$0$0$30$5
+274$CVL847$TRANSPORTATION ECONOMICS                           $A$""$3$3$0$0$30$23
+275$CVL849$TRAFFIC FLOW MODELLING                             $M$""$3$3$0$0$30$6
+276$CVL850$TRANSPORTATION LOGISTICS                           $B$""$3$3$0$0$30$12
+277$CVL861$ANALYSIS & DESIGN OF M/C FOU.                      $E$""$3$3$0$0$50$20
+278$CVL863$General Continuum Mechanics $J$""$3$3$0$0$50$6
+279$CVL864$STRUCTURAL HEALTH MONITORING                       $C$""$3$3$0$0$50$18
+280$CVL865$Structural Vibration Control $D$PC$3$3$0$0$50$6
+281$CVL871$DURABILITY AND REPAIR OF CONCR                     $C$""$3$3$0$0$40$8
+282$CVL874$QUALITY AND SAFETY IN CONSTRUC                     $E$""$3$3$0$0$40$11
+283$CVL875$SUSTAINABLE MATERIALS AND GREE                     $A$""$3$3$0$0$40$31
+284$CVP222$SOIL MECHANICS LABORATORY                          $E$""$1$0$0$2$120$101
+285$CVP242$STRUCTURAL ANALYSIS LABORATORY                     $P$""$1$0$0$2$100$102
+286$CVP261$TRANSPORTATION ENGG. LABORATOR                     $P$""$1$0$0$2$120$101
+287$CVP281$HYDRAULICS LABORATORY                              $P$""$1$0$0$2$120$101
+288$CVP342$STRUCTURES & MATERIAL LAB                          $P$""$1$0$0$2$120$94
+289$CVP730$SIMULATION LABORATORY I                            $P$""$1.5$0$0$3$50$11
+290$CVP731$SIMULATION LABORATORY II                           $P$""$1.5$0$0$3$50$11
+291$CVP756$STRUCTURAL ENGINEERING LAB                         $P$""$3$0$0$6$50$32
+292$CVP771$CONSTRUCTION TECHNOLOGY LABORA                     $P$""$1.5$0$0$3$40$17
+293$CVP800$GEOENVIRONMENTAL AND GEOTECHNICAL ENGINEERING LAB  $R$""$3$0$0$6$30$11
+294$CVP810$ROCK MECHANICS LABORATORY II                       $R$""$3$0$0$6$30$9
+295$CVQ301$CIVIL ENGINEERING SEMINAR                          $Q$""$1$0$0$2$120$137
+296$CVS810$INDEPENDENT STUDY (CEU)                            $P$""$3$0$0$6$10$1
+297$DSD792$DESIGN PROJECT 1                                   $P$PC$3$0$0$6$20$21
+298$DSD799$DESIGN PROJECT                                     $P$PC$4$1$0$6$20$17
+299$DSD802$MAJOR PROJECT PART II                              $P$PC$12$0$0$24$18$6
+300$DSD892$INDUSTRY/ RESEARCH DESIGN PRO.                     $P$PC$9$0$0$18$20$15
+301$DSL712$ELECTRONIC TECH. FOR SIGNAL CONDITIONING & INTERFA $E$PC$3$3$0$0$80$37
+302$DSL714$INSTRUMENT DESIGN AND SIMULATIONS                  $J$PC$3$2$0$2$20$16
+303$DSL734$LASER BASED INSTRUMENTATION                        $H$PC$3$3$0$0$30$16
+304$DSL737$DISPLAY DEVICES & TECHNOLOGY                       $K$PE$3$3$0$0$20$12
+305$DSL782$DESIGN FOR USABILITY                               $E$PE$3$2$0$2$60$33
+306$DSL811$SELECTED TOPICS IN INSTRUMENTATION I               $F$PE$3$3$0$0$30$9
+307$DSP704$INSTRUMENT TECHNOLOGY LABORATORY II                $P$PC$3$0$0$6$20$16
+308$DSP711$COMP.  AIDED PRODUCT DETAILING                     $J$PC$3$1$0$4$40$22
+309$DSP722$APPLIED ERGONOMICS                                 $A$PC$2$1$0$2$40$33
+310$DSP741$PRODUCT INTERFACE & DESIGN                         $B$PC$2$1$0$2$40$23
+311$DSR772$TRANSPORTATION DESIGN                              $P$PE$3$2$0$2$20$13
+312$DSR812$MEDIA STUDIES                                      $D$PE$3$2$0$2$60$21
+313$DSS720$Independent Study $P$""$3$0$3$0$30$1
+314$DTD899$DOCTORAL THESIS                                    $X$""$0$0$0$0$5000$2097
+315$EED854$MAJOR PROJECT PART 2 (EI)                          $P$""$16$0$0$32$30$2
+316$EED898$MAJOR PROJECT PART II                              $P$""$12$0$0$24$30$1
+317$EET410$PRACTICAL TRAINING                                 $P$""$0$0$0$0$10$2
+318$ELD411$B.TECH. PROJECT   I                                $P$""$3$0$0$6$100$14
+319$ELD431$B.TECH. PROJECT   I                                $P$""$3$0$0$6$100$11
+320$ELD450$BTP PART II                                        $P$""$8$0$0$16$100$11
+321$ELD451$BTP PART II                                        $P$""$8$0$0$16$100$0
+322$ELD452$BTP PART II                                        $P$""$8$0$0$16$100$0
+323$ELD453$BTP PART II                                        $P$""$8$0$0$16$100$0
+324$ELD454$BTP PART II                                        $P$""$8$0$0$16$100$0
+325$ELD455$BTP PART II                                        $P$""$8$0$0$16$100$0
+326$ELD456$BTP PART II                                        $P$""$8$0$0$16$100$0
+327$ELD457$BTP PART II                                        $P$""$8$0$0$16$100$1
+328$ELD458$BTP PART II                                        $P$""$8$0$0$16$100$0
+329$ELD459$BTP PART II                                        $P$""$8$0$0$16$100$0
+330$ELD780$MINOR PROJECT                                      $P$""$2$0$0$4$60$22
+331$ELD800$MINOR PROJECT (EEA)                                $P$""$3$0$0$6$60$0
+332$ELD802$MAJOR PROJECT PART II                              $P$""$12$0$0$24$60$4
+333$ELD810$MINOR PROJECT (COMMUNICATION E                     $P$""$3$0$0$6$60$1
+334$ELD811$MAJOR PROJECT PART I (COMMUNIC                     $P$""$6$0$0$12$60$0
+335$ELD812$MAJOR PROJECT PART II                              $P$""$12$0$0$24$60$11
+336$ELD831$MAJOR PROJECT PART I (INTEGRAT                     $P$""$6$0$0$12$60$1
+337$ELD832$MAJOR PROJECT PART II                              $P$""$12$0$0$24$60$10
+338$ELD851$MAJOR PROJECT PART I                               $P$""$6$0$0$12$60$0
+339$ELD852$MAJOR PROJECT PART II                              $P$""$12$0$0$24$60$9
+340$ELD871$MAJOR PROJECT PART I                               $P$""$6$0$0$12$60$3
+341$ELD872$MAJOR PROJECT PART II                              $P$""$12$0$0$24$60$3
+342$ELD880$MAJOR PROJECT PART I                               $P$""$6$0$0$12$60$15
+343$ELD881$MAJOR PROJECT PART II                              $P$""$12$0$0$24$60$8
+344$ELD895$MS RESEARCH PROJECT                                $P$""$36$0$0$72$60$20
+345$ELL100$INTRO. TO ELECTRICAL ENGG.                         $E$""$4$3$0$2$400$455
+346$ELL201$DIGITAL ELECTRONICS                                $B$""$4.5$3$0$3$350$276
+347$ELL205$SIGNALS AND SYSTEMS                                $D$""$4$3$1$0$150$115
+348$ELL212$ENGINEERING ELECROMAGNETICS                        $E$""$4$3$1$0$150$92
+349$ELL225$CONTROL ENGINEERING I                              $F$""$4$3$1$0$150$129
+350$ELL231$POWER ELECTR. & ENERGY DEVICES                     $A$""$3$3$0$0$150$46
+351$ELL301$ELECTRICAL & ELECTRONIC INSTR.                     $C$""$3$3$0$0$130$119
+352$ELL303$POWER ENGINEERING I                                $F$""$4$3$1$0$150$145
+353$ELL319$DIGITAL SIGNAL PROCESSING                          $M$""$4$3$0$2$70$33
+354$ELL332$ELECTRIC DRIVES                                    $B$""$3$3$0$0$100$67
+355$ELL365$EMBEDDED SYSTEMS                                   $A$""$3$3$0$0$160$123
+356$ELL400$POWER SYSTEMS PROTECTION                           $E$""$3$3$0$0$50$34
+357$ELL402$COMPUTER COMMUNICATION                             $K$""$3$3$0$0$100$12
+358$ELL409$MACHINE INTELLIGENCE& LEARNING                     $J$""$4$3$0$2$65$66
+359$ELL411$DIGITAL COMMUNICATIONS                             $F$""$4$3$0$2$120$4
+360$ELL457$SPECIAL TOPICS IN COGNITIVE & INTELLIGENT SYSTEMS  $M$""$3$3$0$0$50$4
+361$ELL703$OPTIMAL CONTROL THEORY                             $M$""$3$3$0$0$60$23
+362$ELL705$STOCHASTIC FILTERING AND IDENT                     $B$""$3$3$0$0$60$20
+363$ELL715$DIGITAL IMAGE PROCESSING                           $J$""$4$3$0$2$150$65
+364$ELL717$OPTICAL COMMUNICATION SYSTEMS                      $A$""$3$3$0$0$60$24
+365$ELL719$DETECTION & ESTIMATION THEORY                      $B$""$3$3$0$0$60$44
+366$ELL720$ADVANCED DIGITAL SIGNAL PROCES                     $H$""$3$3$0$0$60$14
+367$ELL723$BROADBAND COMMUNICATION SYSTEM                     $F$""$3$3$0$0$90$65
+368$ELL725$WIRELESS COMMUNICATIONS                            $M$""$3$3$0$0$60$12
+369$ELL726$NANOPHOTONICS AND PLASMONICS                       $X$""$3$3$0$0$60$17
+370$ELL730$I.C. TECHNOLOGY                                    $C$""$3$3$0$0$60$41
+371$ELL731$MIXED SIGNAL CIRCUIT DESIGN                        $X$""$3$3$0$0$60$27
+372$ELL742$INTRODUCTION TO MEMS DESIGN                        $X$""$3$3$0$0$60$10
+373$ELL752$ELECTRIC DRIVE SYSTEM                              $F$""$3$3$0$0$60$21
+374$ELL759$POWER ELECTRONIC CONVERTERS FO                     $X$""$3$3$0$0$60$12
+375$ELL760$SWITCHED MODE POWER CONVERSION                     $M$""$3$3$0$0$60$18
+376$ELL769$ELECTRICAL SYSTEMS FOR CONSTRUCTION INDUSTRIES     $E$""$4$3$0$2$60$23
+377$ELL776$ADVANCED POWER SYSTEM OPTIMIZA                     $D$""$3$3$0$0$60$17
+378$ELL778$DYNAMIC MODELLING AND CONTROL                      $H$""$3$3$0$0$60$28
+379$ELL783$OPERATING SYSTEMS                                  $A$""$4$3$0$2$60$29
+380$ELL784$INTRODUCTION TO MACHINE LEARNI                     $C$""$3$3$0$0$50$49
+381$ELL791$NEURAL SYSTEMS AND LEARNING MA                     $J$""$4$3$0$2$20$7
+382$ELL802$ADAPTIVE AND LEARNING CONTROL                      $AD$""$3$3$0$0$60$22
+383$ELL803$MODEL REDUCTION IN CONTROL                         $A$""$3$3$0$0$60$1
+384$ELL805$NETWORKED AND MULTI AGENT CONT                     $X$""$3$3$0$0$60$12
+385$ELL814$WIRELESS OPTICAL COMMUNICATION                     $H$""$3$3$0$0$60$28
+386$ELL815$MIMO WIRELESS COMMUNICATIONS                       $E$""$3$3$0$0$60$22
+387$ELL821$SELECTED TOPICS IN COMMUNICATI                     $X$""$3$3$0$0$60$8
+388$ELL822$SELECTED TOPICS IN COMMUNICATI                     $X$""$3$3$0$0$60$5
+389$ELL823$SELECTED TOPICS IN INFORMATION PROCESSING I        $X$""$3$3$0$0$60$26
+390$ELL824$SELECTED TOPICS ININFORMATION PROCESSING   II      $X$""$3$3$0$0$60$13
+391$ELL833$CMOS RF IC DESIGN                                  $X$""$3$3$0$0$70$63
+392$ELL850$DIGITAL CONTROL OF POWER ELECT                     $K$""$3$3$0$0$60$26
+393$ELL851$COMPUTER AIDED DESIGN OF ELECT                     $D$""$3$3$0$0$60$17
+394$ELL870$RESTRUCTURED POWER SYSTEM                          $M$""$3$3$0$0$60$14
+395$ELL880$SPECIAL TOPICS IN COMPUTERS 1                      $X$""$3$3$0$0$60$15
+396$ELL888$ADVANCED MACHINE LEARNING                          $X$""$3$3$0$0$70$69
+397$ELL896$Mobile Computing                                   $X$""$3$3$0$0$60$15
+398$ELP203$ELECTROMECHANICS LABORATORY                        $P$""$1.5$0$0$3$150$131
+399$ELP302$POWER ELECTRONICS LABORATORY                       $P$""$1.5$0$0$3$140$150
+400$ELP305$DESIGN AND SYSTEM LABORATORY                       $P$""$1.5$0$0$3$100$197
+401$ELP311$COMMUNICATION ENGINEERING LAB.                     $D$""$1$0$0$2$220$85
+402$ELP720$TELECOMMUNICATION NETWORKS LABORATORY              $P$""$3$0$1$4$60$12
+403$ELP725$WIRELESS COMMUNICATION LABORAT                     $P$""$3$0$1$4$60$30
+404$ELP736$PHYSICAL DESIGN LABORATORY                         $P$""$3$0$0$6$60$13
+405$ELP801$ADVANCED CONTROL LABORATORY                        $P$""$2$0$0$4$60$14
+406$ELP832$IEC LABORATORY II                                  $P$""$3$0$0$6$60$11
+407$ELP852$ELECTRICAL DRIVES LABORATORY                       $P$""$1.5$0$0$3$60$11
+408$ELP853$DSP BASED CONTROL OF POWER ELE                     $P$""$1.5$0$0$3$60$11
+409$ELP871$POWER SYSTEM LAB 2                                 $P$""$3$0$1$4$60$16
+410$ELQ301$SEMINAR COURSE   I                                 $P$""$1$0$0$2$100$101
+411$ELS310$INDEPENDENT STUDY (EE1)                            $P$""$3$0$3$0$100$15
+412$ELS330$INDEPENDENT STUDY (EE3)                            $P$""$3$0$3$0$100$8
+413$ELS880$Independent Study $P$""$3$3$0$0$60$1
+414$ELV780$SPECIAL MODULE IN COMPUTERS                        $X$""$1$1$0$0$60$20
+415$ELV781$SPECIAL MODULE IN INFORMATIONPROCESSING  I         $X$""$1$1$0$0$25$21
+416$EPC410$COLLOQUIUM (PH)                                    $P$""$3$0$3$0$5$2
+417$ESL300$SELF ORGANIZING DYNAMICAL SYSTEMS                  $J$""$3$3$0$0$60$61
+418$ESL330$ENERGY, ECOLOGY AND ENVIRONMENT                    $D$""$4$3$1$0$60$61
+419$ESL340$NON CONVENTIONAL SOURCES OF ENERGY                 $E$""$4$3$0$2$60$15
+420$ESL350$ENERGY CONSERVATION MANAGEMENT                     $X$""$3$3$0$0$75$62
+421$ESL360$DIRECT ENERGY CONVERSION                           $F$""$4$3$1$0$60$16
+422$ESL710$ENERGY,ECOLOGY AND ENVIRONMENT                     $D$""$3$3$0$0$60$35
+423$ESL714$POWER PLANT ENGG.                                  $H$""$3$3$0$0$60$16
+424$ESL718$POWER GENERATION ,TRANSMISSION & DISTRIBUTION      $M$""$3$3$0$0$60$12
+425$ESL730$DIRECT ENERGY CONVERSION                           $B$""$3$3$0$0$60$24
+426$ESL734$NUCLEAR ENERGY                                     $E$""$3$3$0$0$60$12
+427$ESL750$ECONOMICS & PLANNING OF ENERGY SYSTEMS             $A$""$3$3$0$0$60$29
+428$ESL755$SOLAR PHOTOVOLTAIC DEVICES AND SYSTEMS             $F$""$3$3$0$0$60$14
+429$ESL796$OPERATION AND CONTROL OF ELECTRICAL ENERGY SYSTEMS $AA$""$3$3$0$0$60$8
+430$ESL840$SOLAR ARCHITECTURE                                 $AA$""$3$3$0$0$60$7
+431$ESL871$ADVANCAED FUSION ENERGY                            $F$""$3$3$0$0$60$11
+432$ESL880$SOLAR THERMAL POWER GENERATION                     $M$""$3$3$0$0$60$11
+433$ESP713$ENERGY LABORATORY                                  $P$PC$3$0$0$6$35$23
+434$ESQ301$SEMINAR COURSE   I                                 $X$""$1$0$0$2$25$26
+435$ESQ303$SEMINAR COURSE III                                 $X$""$1$0$0$2$25$24
+436$ESQ304$SEMINAR COURSE IV                                  $X$""$1$0$0$2$25$24
+437$ESQ306$SEMINAR COURSE ON BIOENERGY                        $X$""$1$0$0$2$25$17
+438$ESQ307$SEMINAR COURSE ON NUCLEARENERGY AND FUTURISTIC USE $X$""$1$0$0$2$25$25
+439$ESQ308$SEMINAR COURSE ONENERGY ENVIRONMENT INTERACTION    $X$""$1$0$0$2$25$22
+440$ESQ309$SEMINAR COURSE ON ALTERNATIVEFUELS FOR TRANSPORTAT $X$""$1$0$0$2$25$23
+441$ESQ310$NGU: Seminar Course on Multiphase Flows in the Energy Sector $X$""$1$0$0$2$25$4
+442$HSD700$SEMINAR (CASE MATERIAL BASED)MINOR PROJECT         $X$""$3$0$0$6$60$6
+443$HSL262$Social Psychological Approaches to Health and Wellbeing $A$HU$4$3$1$0$46$53
+444$HSL701$INTRODUCTION TO SCIENCE ANDTECHNOLOGY POLICY STUDI $X$""$1.5$1$0$1$30$12
+445$HSL702$Approaches to Science and Technology Policy Studies $X$""$1.5$1.5$0$0$9$10
+446$HSL713$MACROECONOMICS                                     $B$""$3$3$0$0$60$12
+447$HSL719$ADVANCED ECONOMETRICS                              $X$""$3$3$0$0$30$5
+448$HSL731$WHAT IS A TEXT                                     $X$""$3$3$0$0$30$9
+449$HSL751$CRITICAL READING IN PHILOSOPHICAL                  $X$""$3$3$0$0$30$6
+450$HSL766$The Psychology of Leadership and Social Change $M$PC$3$3$0$0$30$8
+451$HSL772$SOCIOLOGY OF INDIA                                 $X$""$3$3$0$0$30$7
+452$HSL800A$RESEARCH WRITING                                   $A$""$3$3$0$0$90$82
+453$HSL800B$RESEARCH WRITING                                   $M$""$3$3$0$0$90$144
+454$HSL841$MINIMALIST ARCHITECTURE OF GRAMMAR                 $X$""$3$3$0$0$60$3
+455$HSL852$POLITICAL PHILOSOPHY                               $AC$OE$3$3$0$0$30$18
+456$HSL860$ADVANCED TOPICS IN PHILOSOPHY                      $X$""$3$3$0$0$60$13
+457$HSV319$Global Political Economy $X$""$1$1$0$0$100$0
+458$HSV748$DATA ANALYSIS FOR PSYCHOLINGUISTICS USING R        $X$""$2$2$0$0$60$14
+459$HSV781$Introduction to research methodology $X$""$1.5$1.5$0$0$30$22
+460$HUL211A$INTRODUCTION TO ECONOMICS                          $A$HU$4$3$1$0$100$101
+461$HUL211B$INTRODUCTION TO ECONOMICS                          $M$HU$4$3$1$0$100$95
+462$HUL212$MICROECONOMICS                                     $M$HU$4$3$1$0$100$100
+463$HUL231$AN INTRODUCTION TO LITERATURE                      $J$HU$4$3$1$0$99$102
+464$HUL239$INDIAN FICTION IN ENGLISH                          $M$HU$4$3$1$0$100$101
+465$HUL242$FUNDAMENTALS OF LANGUAGE SCIENCES                  $A$HU$4$3$1$0$300$301
+466$HUL261$INTRODUCTION TO PSYCHOLOGY                         $A$HU$4$3$1$0$100$99
+467$HUL267$POSITIVE PSYCHOLOGY                                $A$HU$4$3$1$0$88$93
+468$HUL271$INTRODUCTION TO SOCIOLOGY                          $M$HU$4$3$1$0$100$97
+469$HUL274$RETHINKING THE INDIAN TRADITION                    $B$HU$4$3$1$0$100$104
+470$HUL286A$SOCIAL SCIENCE APPROACHES TO DEVELOPMENT           $M$HU$4$3$1$0$100$115
+471$HUL286B$SOCIAL SCIENCE APPROACHES TO DEVELOPMENT           $B$HU$4$3$1$0$100$101
+472$HUL307$FANTASY LITERATURE                                 $H$HU$3$3$0$0$34$32
+473$HUL315$ECONOMETRIC METHODS                                $M$HU$3$3$0$0$35$42
+474$HUL316$INDIAN ECONOMIC PROBLEMS AND POLICIES              $M$HU$3$3$0$0$35$44
+475$HUL320$SELECTED TOPICS IN ECONOMICS                       $M$HU$3$3$0$0$35$36
+476$HUL335$INDIAN THEATRE                                     $M$HU$3$3$0$0$29$28
+477$HUL356$BUDDHISM ACROSS TIME AND PLACE                     $M$""$3$3$0$0$35$35
+478$HUL360$SELECTED TOPICS IN PHILOSOPHY                      $A$HU$3$3$0$0$35$37
+479$HUL362$ORGANIZATIONAL BEHAVIOUR                           $M$HU$3$3$0$0$35$36
+480$HUL370$SELECTED TOPICS IN PSYCHOLOGY                      $B$HU$3$3$0$0$35$42
+481$HUL371A$SCIENCE, TECHNOLOGY AND SOCIETY                    $A$HU$3$3$0$0$34$37
+482$HUL371B$SCIENCE, TECHNOLOGY AND SOCIETY                    $M$HU$3$3$0$0$30$33
+483$HUL375$THE SOCIOLOGY OF RELIGION                          $J$HU$3$3$0$0$35$35
+484$HUL376$POLITICAL ECOLOGY OF WATER                         $M$HU$3$3$0$0$35$36
+485$HUL378$INDUSTRY AND WORK CULTURE UNDE                     $H$HU$3$3$0$0$35$35
+486$HUL380$SELECTED TOPICS IN SOCIOLOGY                       $J$HU$3$3$0$0$35$36
+487$HUL381A$MIND                                               $M$HU$3$3$0$0$33$32
+488$HUL381B$MIND                                               $A$HU$3$3$0$0$35$35
+489$HUL743$Language Acquisition, Teaching and Assessment $B$""$3$3$0$0$30$3
+490$HUL763$Cognitive Psychology $J$""$3$3$0$0$30$17
+491$HUL843$THE PHILOSOPHY OF LANGUAGE                         $X$""$3$3$0$0$30$7
+492$HUL861$Psychology of Decision Making $AA$""$3$3$0$0$30$12
+493$HUL874$Civil Society and Democracy in India $X$""$3$3$0$0$60$4
+494$HUL875$Ethnic Identity, Development and Democratization in North east India $AA$""$3$3$0$0$30$3
+495$HUL888$APPLIED LINGUISTICS                                $X$""$3$3$0$0$30$3
+496$HUV705$Climate policy, politics and governance $X$HU$1$1$0$0$29$28
+497$HUV751$CURRENT TRENDS IN PSYCHOLINGUISTICS                $X$""$1$1$0$0$60$34
+498$ITL702$DIAGNOSTIC MAINTENANCE AND MONITORING              $J$""$4$3$0$2$60$16
+499$ITL711$RELIABILITY AVAILABILITY AND MAINTAINABILITY(RAM)  $F$""$3$3$0$0$60$21
+500$ITL714$FAILURE ANALYSIS AND REPAIR                        $B$""$4$3$0$2$60$15
+501$ITL717$CORROSION AND ITS CONTROL                          $A$""$3$3$0$0$60$9
+502$JID802$MAJOR PROJECT PART II                              $P$""$12$0$0$24$60$12
+503$JOD802$MAJOR PROJECT PART II                              $P$""$12$0$0$24$60$8
+504$JOP792$FIBER OPTICS AND OPTICAL COMMUNICATION LAB.II      $P$""$3$0$0$6$60$22
+505$JPD802$MAJOR PROJECT PART II                              $A$""$12$0$0$24$60$14
+506$JRD301$MINI PROJECT IN ROBOTICS                           $P$""$7$0$0$14$20$7
+507$JSD801$MAJOR PROJECT PART I                               $P$PC$6$0$0$12$35$0
+508$JSD802$MAJOR PROJECT PART II                              $P$PE$12$0$0$24$35$6
+509$JTD792$MINOR PROJECT                                      $P$""$3$0$0$6$60$15
+510$JTD802$MAJOR PROJECT PART II                              $P$""$12$0$0$24$60$9
+511$JVD809$MINOR PROJECT                                      $P$""$6$0$0$12$60$0
+512$JVD811$MAJOR PROJECT PART I                               $P$""$12$0$0$24$60$1
+513$JVD812$MAJOR PROJECT PART II                              $P$""$12$0$0$24$60$7
+514$MAD852$MAJOR PROJECT PART 2 (MT)                          $P$""$14$0$0$28$30$2
+515$MCD310$MINI PROJECT                                       $P$""$3$0$0$6$100$19
+516$MCD411$B.TECH.PROJECT                                     $P$""$4$0$0$8$100$28
+517$MCD412$B.TECH.PROJECT   II                                $P$""$7$0$0$14$100$54
+518$MCD812$MAJOR PROJECT PART II (THERMALENGINEERING)         $P$""$12$0$0$24$60$18
+519$MCD832$MAJOR PROJECT PART II                              $P$""$12$0$0$24$60$14
+520$MCD862$MAJOR PROJECT PART II                              $Q$""$12$0$0$24$60$7
+521$MCD882$MAJOR PROJECT PART 2                               $X$""$12$0$0$24$60$8
+522$MCD895$MAJOR PROJECT                                      $P$""$40$0$0$80$60$2
+523$MCL131$MANUFACTURING PROCESSES I                          $F$""$3$3$0$0$100$72
+524$MCL132$METAL FORMING AND PRESS TOOLS                      $H$""$3$3$0$0$100$64
+525$MCL133$NEAR NET SHAPE MANUFACTURING                       $F$""$3$3$0$0$100$66
+526$MCL136$MATERIAL REMOVAL PROCESSES                         $H$""$3$3$0$0$100$68
+527$MCL142$THERMAL SC. FOR ELE. ENGINEERS                     $D$""$3$3$0$0$100$131
+528$MCL201$MECHANICAL ENGG. DRAWING                           $E$DC$3.5$2$0$3$100$133
+529$MCL212$CONTROL THEORY & APPLICATIONS                      $B$DC$4$3$0$2$100$151
+530$MCL241$ENERGY SYSTEMS AND TECH.                           $B$""$3.5$3$0$1$100$73
+531$MCL311$CAD & FINITE ELEMENT ANALYSIS                      $E$DC$4$3$0$2$100$146
+532$MCL321$AUTOMOTIVE SYSTEMS                                 $F$DE$4$3$0$2$60$32
+533$MCL331$MICRO AND NANO MANUFACTURING                       $A$""$3$3$0$0$100$55
+534$MCL343$INTRODUCTION TO COMBUSTION                         $J$""$3$3$0$0$100$31
+535$MCL347$INTERMEDIATE HEAT TRANSFER                         $H$""$3$3$0$0$60$37
+536$MCL361$MANUFACTURING SYSTEM DESIGN                        $D$""$3$3$0$0$100$141
+537$MCL380$SPL. TOPICS IN MECHANICAL ENGG                     $H$""$3$3$0$0$100$12
+538$MCL421$AUTOMOTIVE STRUCTURAL DESIGN                       $H$DE$3$2$0$2$60$7
+539$MCL443$ELECTROCHEMICAL ENERGY SYSTEMS                     $B$""$3$3$0$0$25$10
+540$MCL705$EXPERIMENTAL METHODS                               $C$PC$4$3$0$2$60$54
+541$MCL723$Vehicle Dynamics $C$DE$3$3$0$0$30$12
+542$MCL730$DESIGNING WITH ADVANCE MATERIALS                   $B$""$4$3$0$2$40$24
+543$MCL733$VIBRATIONS AND NOISE ENGINEERING                   $A$DE,PE$4$3$0$2$50$30
+544$MCL736$AUTOMOTIVE DESIGN                                  $H$DE,PE$4$3$0$2$40$15
+545$MCL738$DYNAMICS OF MULTIBODY SYSTEMS                      $F$DE,PE$3$2$0$2$40$15
+546$MCL741$CONTROL ENGINEERING                                $C$PE$4$3$0$2$25$13
+547$MCL743$PLANT EQUIPMENT DESIGN                             $F$DE,PE$3$3$0$0$40$26
+548$MCL745$ROBOTICS                                           $H$DE,PE$4$3$0$2$40$21
+549$MCL747$DESIGN OF PRECISION MACHINES                       $F$DE,PE$3$2$0$2$40$20
+550$MCL754$OPERATIONS PLANNING AND CONTRO                     $B$PC$3$3$0$0$60$19
+551$MCL759$ENTREPRENEURSHIP                                   $K$PE$3$3$0$0$40$51
+552$MCL770$STOCHASTIC MODELING AND SIMULATION                 $A$PE$3$3$0$0$60$10
+553$MCL771$VALUE ENGINEERING AND LIFE CYC                     $H$PE$3$3$0$0$50$32
+554$MCL778$DESIGN AND METALLURGY OF WELDE                     $A$""$4$3$0$2$60$15
+555$MCL782$COMPUTATIONAL METHODS                              $B$""$2$2$0$0$60$37
+556$MCL784$COMPUTER AIDED MANUFACTURING                       $F$""$4$3$0$2$60$25
+557$MCL786$METROLOGY                                          $E$""$3$2$0$2$60$20
+558$MCL813$COMPUTATIONAL HEAT TRANSFER                        $E$""$4$3$0$2$25$27
+559$MCL814$CONVECTIVE HEAT TRANSFER                           $F$""$3$3$0$0$60$34
+560$MCL818$HEATING, VENTILATING AND AIR C                     $J$""$3$3$0$0$60$6
+561$MCL821$RADIATION HEAT TRANSFER                            $J$""$3$3$0$0$60$8
+562$MCL822$STEAM AND GAS TURBINES                             $B$""$4$3$0$2$60$2
+563$MCL823$THERMAL DESIGN                                     $B$""$4$3$0$2$60$12
+564$MCL825$DESIGN OF WIND POWER FARMS                         $D$""$4$3$0$2$60$22
+565$MCL826$INTRODUCTION TO MICROFLUIDICS                      $H$""$4$3$0$2$60$11
+566$MCL865$ADVANCED OPERATIONS RESEARCH                       $J$PE$3$3$0$0$60$43
+567$MCP100$ENGG. VISUALIZATION & COMM.                        $Q$""$1.5$0$0$3$100$471
+568$MCP101$PRODUCT REALIZATION BY MANF.                       $Q$""$2$0$0$4$500$455
+569$MCP261$INDUSTRIAL ENGINEERING LAB   I                     $Q$""$1$0$0$2$100$59
+570$MCP301$MECHANICAL ENGINEERING LAB   I                     $Q$""$1.5$0$0$3$100$76
+571$MCP331$MANUFACTURING LABORATORY II                        $Q$""$1$0$0$2$100$79
+572$MCP332$PRODUCTION ENGINEERING LAB  II                     $Q$""$1$0$0$2$100$63
+573$MCQ301$SEMINAR COURSE   I                                 $X$""$1$0$0$2$30$30
+574$MCQ302$SEMINAR COURSE   II                                $X$""$1$0$0$2$30$28
+575$MCQ303$SEMINAR COURSE   III                               $X$""$1$0$0$2$30$30
+576$MCV849$SPECIAL MODULE IN SYSTEM DESIGN                    $C$""$1$1$0$0$30$7
+577$MEC410$COLLOQUIUM (ME)                                    $P$""$3$0$3$0$10$1
+578$MED411$MAJOR PROJECT PART 1 (ME)                          $P$""$3$0$0$6$60$0
+579$MED412$MAJOR PROJECT PART 2 (ME)                          $P$""$7$0$0$14$100$2
+580$MSD792$MINOR PROJECT                                      $P$""$3$0$0$6$60$17
+581$MSD890$MAJOR PROJECT (UNIQUE CORE)                        $P$""$6$0$0$12$60$85
+582$MSD891$MAJOR PROJECT (UNIQUE CORE)                        $P$""$6$0$0$12$60$26
+583$MSD892$MAJOR PROJECT (UNIQUE CORE)                        $P$""$6$0$0$12$60$50
+584$MSL301$ORGANIZATION AND PEOPLE MANAGEMENT                 $M$""$3$3$0$0$80$91
+585$MSL303$MARKETING MANAGEMENT                               $A$""$3$3$0$0$80$84
+586$MSL700$FUNDAMENTALS OF MANAGEMENT OF TECHNOLOGY           $T$FE$3$3$0$0$60$55
+587$MSL705A$HRM SYSTEMS                                        $R1$PC$1.5$1.5$0$0$60$34
+588$MSL705B$HRM SYSTEMS                                        $AA$PC$1.5$1.5$0$0$60$37
+589$MSL705C$HRM SYSTEMS                                        $AB$PC$1.5$1.5$0$0$60$32
+590$MSL706$BUSINESS LAWS                                      $D$PC$3$3$0$0$60$113
+591$MSL708A$FINANCIAL MANAGEMENT                               $T$PC$3$3$0$0$60$39
+592$MSL708B$FINANCIAL MANAGEMENT                               $F$PC$3$3$0$0$60$74
+593$MSL711A$STRATEGIC MANAGEMENT                               $AC$PC$3$3$0$0$60$41
+594$MSL711B$STRATEGIC MANAGEMENT                               $D$PC$3$3$0$0$60$32
+595$MSL713A$INFORMATION SYSTEMS MANAGEMENT                     $S$PC$3$3$0$0$60$35
+596$MSL713B$INFORMATION SYSTEMS MANAGEMENT                     $A$PC$3$3$0$0$60$42
+597$MSL713C$INFORMATION SYSTEMS MANAGEMENT                     $B1$PC$3$3$0$0$60$32
+598$MSL720A$MACROECONOMIC ENV. OF BUSINESS                     $E$PC$3$3$0$0$60$48
+599$MSL720B$MACROECONOMIC ENV. OF BUSINESS                     $H$PC$3$3$0$0$60$37
+600$MSL721$ECONOMETRICS                                       $T$SE$3$3$0$0$60$69
+601$MSL723$TELECOM SYSTEMS MANAGEMENT                         $K$""$3$3$0$0$60$21
+602$MSL727A$INTERPERSONAL BEHAVIOR & TEAM DYNAMICS             $Q1$SE$1.5$1.5$0$0$60$70
+603$MSL727B$INTERPERSONAL BEHAVIOR & TEAM DYNAMICS             $B1$SE$1.5$1.5$0$0$60$42
+604$MSL727C$INTERPERSONAL BEHAVIOR & TEAM DYNAMICS             $AA$SE$1.5$1.5$0$0$60$35
+605$MSL733A$ORGANIZATION THEORY                                $Q2$SE$1.5$1.5$0$0$60$71
+606$MSL733B$ORGANIZATION THEORY                                $B2$SE$1.5$1.5$0$0$60$41
+607$MSL733C$ORGANIZATION THEORY                                $A2$SE$1.5$1.5$0$0$60$31
+608$MSL740$QUANTITATIVE METHODS IN MGMT.                      $Q$SE$3$3$0$0$60$39
+609$MSL745A$OPERATIONS MANAGEMENT                              $AB$PC$3$3$0$0$60$46
+610$MSL745B$OPERATIONS MANAGEMENT                              $E$PC$3$3$0$0$60$31
+611$MSL780$MANAGERIAL ECONOMICS                               $R2$PC$1.5$1.5$0$0$60$43
+612$MSL802$MGMT. OF INTELLECTUAL PR. RIG.                     $U$PE$3$3$0$0$60$31
+613$MSL806$MERGERS & ACQUISITIONS                             $J$PE$3$3$0$0$60$15
+614$MSL825$STRATEGIES IN FUNCTIONAL MGMT.                     $Q$PE$3$3$0$0$60$14
+615$MSL827$INTERNATIONAL COMPETITIVENESS                      $R$PE$3$3$0$0$60$20
+616$MSL849$CURRENT & EM. ISS. IN MA. MGMT                     $R$PE$3$3$0$0$60$26
+617$MSL859$Current and Emerging Issues in IT Management $S$PE$3$3$0$0$60$90
+618$MSL863$ADVERTISING AND SALESPROMOTION MANAGEMENT          $U$PE$3$3$0$0$60$111
+619$MSL865$SALES MANAGEMENT                                   $T$""$3$3$0$0$60$93
+620$MSL870$CORPORATE GOVERNANCE                               $U1$PE$1.5$1.5$0$0$60$10
+621$MSL871$BANKING AND FINANCIAL SERVICES                     $R2$PE$1.5$1.5$0$0$60$26
+622$MSL873$SECURITY ANALYSIS & PORTFOLIOMANAGEMENT            $AB$PE$3$3$0$0$60$54
+623$MSL874$INDIAN FINANCIAL SYSTEM                            $R1$PE$1.5$1.5$0$0$60$31
+624$MSL875$INTERNATIONAL FINANCIAL MANAGEMENT                 $S$PE$3$3$0$0$60$14
+625$MSL878$ELECTRONIC PAYMENTS                                $T2$PE$1.5$1.5$0$0$60$14
+626$MSL879$CURRENT AND EMERGING ISSUES IN FINANCE             $U$PE$3$3$0$0$60$62
+627$MSL886$IT CONSULTING AND PRACTICE                         $U$PE$3$3$0$0$60$16
+628$MSL894$SOCIAL MEDIA AND BUSINESS PRACTICES                $R$PE$3$3$0$0$60$32
+629$MSL896$INTERNATIONAL ECONOMIC POLICY                      $Q$PE$3$3$0$0$60$20
+630$MST894$SOCIAL  SECTOR ATTACHMENT                          $P$NC$1$0$0$2$60$67
+631$MSV802$SELECTED TOPICS IN FINANCE                         $X$""$1$1$0$0$60$46
+632$MSV803$SELECTED TOPICS IN I T MANAGEMENT                  $X$""$1$1$0$0$60$11
+633$MSV805$SELECTED TOPICS IN ECONOMICS                       $X$""$1$1$0$0$60$28
+634$MTD350$MINI PROJECT                                       $P$""$3$0$0$6$30$12
+635$MTD421$B.TECH. PROJECT                                    $Q$""$4$0$0$8$100$43
+636$MTD702$PROJECT 2                                          $P$""$6$0$0$12$30$19
+637$MTD852$MAJOR PROJECT PARTII                               $Q$""$16$0$0$32$60$1
+638$MTD854$MAJOR PROJECT PART II                              $P$""$18$0$0$36$30$20
+639$MTL100$CALCULUS                                           $D$""$4$3$1$0$400$474
+640$MTL101$LINEAR ALGEBRA & DIFFE. EQUA.                      $C$""$4$3$1$0$400$471
+641$MTL102$DIFFERENTIAL EQUATIONS                             $E$""$3$3$0$0$100$160
+642$MTL103$OPTIMIZATION METHODS & APPL.                       $D$""$3$3$0$0$140$156
+643$MTL106$PROBABILITY & STOCHASTIC PRO.                      $D$""$4$3$1$0$200$226
+644$MTL108$INTRODUCTION TO STATISTICS                         $D$""$4$3$1$0$175$166
+645$MTL122$REAL AND COMPLEX ANALYSIS                          $F$""$4$3$1$0$100$76
+646$MTL145$NUMBER THEORY                                      $AA$""$3$3$0$0$100$100
+647$MTL390$STATISTICAL METHODS                                $J$""$4$3$1$0$100$77
+648$MTL411$FUNCTIONAL ANALYSIS                                $F$""$3$3$0$0$100$91
+649$MTL506$COMPLEX ANALYSIS                                   $B$""$4$3$1$0$60$57
+650$MTL507$TOPOLOGY                                           $D$""$4$3$1$0$60$54
+651$MTL508$MATHEMATICAL PROGRAMMING                           $AB$""$4$3$1$0$60$58
+652$MTL509$NUMERICAL  ANALYSIS                                $AA$""$4$3$1$0$60$51
+653$MTL510$MEASURE AND INTEGRATION                            $C$""$4$3$1$0$60$53
+654$MTL725$STOCHASTIC PROCESSES & ITS APP                     $H$""$3$3$0$0$60$50
+655$MTL730$CRYPTOGRAPHY                                       $A$""$3$3$0$0$150$136
+656$MTL732$FINANCIAL MATHEMATICS                              $A$""$3$3$0$0$60$52
+657$MTL742$OPERATOR THEORY                                    $AD$""$3$3$0$0$60$36
+658$MTL755$ALGEBRAIC GEOMETRY                                 $M$""$3$3$0$0$60$46
+659$MTL768$GRAPH THEORY                                       $AA$""$3$3$0$0$60$68
+660$MTL782$DATA MINING                                        $B$""$4$3$0$2$60$62
+661$MTL792$MODERN METH. IN PAR. DIFF. EQ.                     $AA$""$3$3$0$0$60$14
+662$MTP290$COMPUTING LABORATORY                               $Q$""$2$0$0$4$100$67
+663$NEN101$PROFE. ETHICS &SOCIAL RESP. 2                      $P$""$0.5$0$0$1$1000$910
+664$NLN101$LANGUAGE & WRITING SKILL 2                         $P$""$1$0$0$2$100$916
+665$PTL702$POLYMER PROCESSING                                 $B$""$3$3$0$0$60$18
+666$PTL706$POLYMER TESTING & PROPERTIES                       $M$""$3$3$0$0$60$18
+667$PTL709$POLYMER TECHNOLOGY                                 $D$""$3$3$0$0$60$19
+668$PTL712$POLYMER COMPOSITES                                 $E$""$3$3$0$0$60$23
+669$PTP720$POLYMER ENGINEERING LAB                            $AA$""$1$0$0$2$60$15
+670$PTV700$SPECIAL LECTURES IN POLYMERS:                      $X$""$1$1$0$0$30$17
+671$PYD411$PROJECT I                                          $Q$""$4$0$0$8$100$10
+672$PYD412$MAJOR PROJECT PART II                              $Q$""$8$0$0$16$100$13
+673$PYD414$PROJECT III                                        $Q$""$4$0$0$8$100$1
+674$PYD562$PROJECT II                                         $Q$""$6$0$0$12$60$44
+675$PYD658$MINI PROJECT                                       $Q$""$3$0$0$6$60$7
+676$PYD802$MAJOR PROJECT PART II                              $Q$""$12$0$0$24$60$16
+677$PYD852$MAJOR PROJECT PART II                              $Q$""$12$0$0$24$60$17
+678$PYL100$ELECTROMAGNETIC WAVES&QUA.MEC.                     $A$""$3$3$0$0$100$485
+679$PYL102$PRINCIPLES OF ELECT. MATERIALS                     $H$""$3$3$0$0$150$157
+680$PYL111$ELECTRODYNAMICS                                    $A$""$4$3$1$0$100$64
+681$PYL112$QUANTUM MECHANICS                                  $E$""$4$3$1$0$100$110
+682$PYL114$SOLID STATE PHYSICS                                $D$""$4$3$1$0$100$60
+683$PYL202$STATISTICAL PHYSICS                                $F$""$4$3$1$0$100$56
+684$PYL204$COMPUTATIONAL PHYSICS                              $J$""$4$3$1$0$100$57
+685$PYL302$NUCLEAR SCIENCE & ENGINEERING                      $E$""$3$3$0$0$100$16
+686$PYL304$SUPERCONDUCTIVITY & APPLICAT.                      $C$""$3$3$0$0$100$18
+687$PYL306$MICROELECTRONIC DEVICES                            $K$""$3$3$0$0$100$28
+688$PYL312$SEMICONDUCTOR OPTOELECTRONICS                      $D$""$3$3$0$0$100$25
+689$PYL331$APPLIED QUANTUM MECHANICS                          $H$""$3$3$0$0$50$10
+690$PYL552$ELECTRODYNAMICS                                    $E$""$4$3$1$0$60$52
+691$PYL555$QUANTUM MECHANICS I                                $E$""$4$3$1$0$60$8
+692$PYL556$QUANTUM MECHANICS II                               $B$""$3$3$0$0$60$50
+693$PYL558$STATISTICAL MECHANICS                              $F$""$4$3$1$0$60$54
+694$PYL560$APPLIED OPTICS                                     $H$""$4$3$1$0$60$53
+695$PYL563$SOLID STATE PHYSICS                                $D$""$4$3$1$0$60$53
+696$PYL651$ADVANCED SOLID STATE PHYSICS                       $C$""$3$3$0$0$35$6
+697$PYL659$LASER SPECTROSCOPY                                 $F$""$3$3$0$0$60$21
+698$PYL704$SC. & TECHNOLOGY OF THIN FILMS                     $J$""$3$3$0$0$60$43
+699$PYL705$NANOSTRUCTURED MATERIALS                           $E$""$3$3$0$0$60$36
+700$PYL707$CHARACTERISATION TEC. FOR MAT.                     $D$""$3$3$0$0$60$27
+701$PYL725$SURFACE PHYSICS AND ANALYSIS                       $H$""$3$3$0$0$60$30
+702$PYL726$SEMICONDUCTOR DEVICE TECHNOLOGY                    $K$""$3$3$0$0$60$16
+703$PYL727$ENERGY MATERIALS AND DEVICES                       $M$""$3$3$0$0$60$17
+704$PYL742$GEN. RELATIVITY & INTRO. ASTR.                     $M$""$3$3$0$0$75$38
+705$PYL743$GROUP THEORY & ITS APPLICATION                     $A$""$3$3$0$0$60$66
+706$PYL744$HIGH ENERGY PHYSICS                                $K$""$3$3$0$0$75$31
+707$PYL746$NON EQUILIBRIUM STATISTICAL ME                     $L$""$3$3$0$0$40$14
+708$PYL748$QUANTUM OPTICS                                     $B$""$3$3$0$0$60$26
+709$PYL752$LASER SYSTEMS AND APPLICATIONS                     $J$""$3$3$0$0$60$27
+710$PYL756$Fourier Optics and Holography $L$PC$3$3$0$0$60$31
+711$PYL760$BIOMEDICAL OPTICS & BIO PHOTO.                     $H$""$3$3$0$0$60$35
+712$PYL762$STATISTICAL OPTICS                                 $A$""$3$3$0$0$60$20
+713$PYL770$ULTRA FAST OPTICS & APPLICATI.                     $F$""$3$3$0$0$60$24
+714$PYL772$PLASMONIC SENSORS                                  $K$""$3$3$0$0$60$9
+715$PYL780$DIFFRACTIVE AND MICRO OPTICS                       $M$""$3$3$0$0$60$17
+716$PYL792$OPTICAL ELECTRONICS                                $E$""$3$3$0$0$60$26
+717$PYL800$NUM. & COMP. METH. IN RESEARCH                     $B$""$3$3$0$0$65$61
+718$PYL879$SELECTED TOPICS IN APPLIED OPT                     $X$""$3$3$0$0$60$1
+719$PYL891$FIBER OPTIC COMPONENTS AND DEVICES                 $D$""$3$3$0$0$60$16
+720$PYP100$PHYSICS LABORATORY                                 $Q$""$2$0$0$4$100$459
+721$PYP212$ENGG. PHYSICS LABORATORY II                        $Q$""$3$0$0$6$100$47
+722$PYP222$ENGINEERING PHYSICS LAB.   IV                      $Q$""$4$0$0$8$100$56
+723$PYP562$LABORATORY II                                      $Q$""$4$0$0$8$60$51
+724$PYP702$SOLID STATE MATERIALS LABORATORY II                $Q$""$3$0$0$6$60$20
+725$PYP762$ADVANCED OPTICS LABORATORY                         $Q$""$3$0$0$6$60$17
+726$PYP764$ADVANCED OPTICAL WORKSHOP                          $Q$""$3$0$0$6$60$1
+727$PYQ303$SEMINAR COURSE   III                               $Q$""$1$0$0$2$100$76
+728$PYS300$INDEPENDENT STUDY                                  $X$""$3$0$3$0$100$2
+729$RDD750$MINOR PROJECT                                      $Q$OE$3$0$0$6$20$1
+730$RDL700$BIOMAS PRODUCTION                                  $J$OE$3$3$0$0$60$49
+731$RDL701$RURAL INDUSTRIALISATION POLICES PROGRAMMES & CASE  $E$OE$3$3$0$0$100$99
+732$RDL710$RURAL INDIA AND PLANNING FOR DEVELOPMENT           $J$OE$3$3$0$0$50$65
+733$RDL722$RURAL ENERGY SYSTEMS                               $F$OE$3$3$0$0$100$102
+734$RDL726$HERBAL,MEDICINAL ANDAROMATIC PRODUCTS              $M$OE$3$3$0$0$30$30
+735$RDL740$TECHNOLOGY OF UTILIZATION OF WASTELANDS & WEEDS    $AA$OE$3$3$0$0$50$44
+736$RDL760$FOOD QUALITY AND SAFETY                            $J$OE$3$3$0$0$50$55
+737$RDP750$BIOMASS LABORATORY                                 $Q$OE$3$0$0$6$20$13
+738$RDQ301$SEMINAR COURSE   I                                 $X$OE$1$0$0$2$30$32
+739$RDQ302$SEMINAR COURSE   II                                $X$OE$1$0$0$2$30$33
+740$RDQ303$SEMINAR COURSE   III                               $X$OE$1$0$0$2$30$34
+741$RDQ304$SEMINAR COURSE IV                                  $X$OE$1$0$0$2$30$31
+742$RDQ305$SEMINAR COURSE V                                   $X$OE$1$0$0$2$30$44
+743$SBC796$GRADUATE STUDENT SEMINAR II                        $P$""$0.5$0$0$1$60$13
+744$SBD301$MINI PROJECT                                       $Q$""$3$0$0$6$10$3
+745$SBD895$MS RESEARCH PROJECT                                $P$""$40$0$0$80$60$5
+746$SBL100$INTRO. TO BIOLOGY FOR ENGINEER                     $C$""$4$3$0$2$600$402
+747$SBL201$HIGH DIMENSIONAL BIOLOGY                           $F$""$3$3$0$0$60$14
+748$SBL701$BIOMETRY                                           $M$""$3$3$0$0$60$10
+749$SBL703$ADVANCED CELL BIOLOGY                              $H$""$3$3$0$0$50$14
+750$SBL704$HUMAN VIROLOGY                                     $E$""$3$3$0$0$60$12
+751$SBL705$BIOLOGY OF PROTEINS                                $B$""$3$3$0$0$60$19
+752$SBL714$PLANT BIOTECH. & HUMAN HEALTH                      $F$""$3$3$0$0$60$1
+753$SBL720$GENOME AND HEALTHCARE                              $B$""$3$3$0$0$60$5
+754$SBP200$INTRODUCTION TO PRACTICAL MODERN BIOLOGY           $Q$""$2$0$0$4$60$7
+755$SBS800$INDEPENDENT STUDY                                  $Q$""$3$0$3$0$10$1
+756$SBV750$BIOINSPIRATION AND BIOMIMETICS                     $K$""$1$1$0$0$60$21
+757$SBV884$ELEMENTS OF NEUROSCIENCE                           $J$""$1$1$0$0$60$8
+758$SID880$MINOR PROJECT IN INFORMATION TECHNOLOGY            $P$""$3$0$0$6$30$0
+759$SID890$MS RESEARCH PROJECT                                $P$""$40$0$0$80$30$4
+760$SIL765$NETWORKS & SYSTEM SECURITY                         $B$""$4$3$0$2$40$33
+761$SIV895$SPECIAL MODULE ON INTELLIGENT INFO. PROCESSING     $P$""$1$1$0$0$30$1
+762$TTC410$COLLOQUIUM (TT)                                    $P$""$3$0$3$0$30$2
+763$TTT410$PRACTICAL TRAINING                                 $P$""$0$0$0$0$10$2
+764$TXD357$MINOR DESIGN PROJECT   VII                         $P$""$2$0$0$4$120$1
+765$TXD358$MINOR DESIGN PROJECT VIII                          $P$""$2$0$0$4$120$1
+766$TXD401$MAJOR PROJECT PART I                               $P$DC$4$0$0$8$120$14
+767$TXD402$MAJOR PROJECT PART II                              $P$""$8$0$0$16$120$19
+768$TXD803$MAJOR PROJECT PART II                              $P$PC$12$0$0$24$30$22
+769$TXD804$MAJOR PROJECT PART II                              $P$PC$12$0$0$24$30$15
+770$TXD806$MAJOR PROJECT PART II (TCP) $P$PC$12$0$0$24$30$10
+771$TXL211$STRUCTURE & PHYSICAL PROPERTIE                     $D$DC$3$3$0$0$120$125
+772$TXL221$YARN MANUFACTURE I                                 $E$DC$3$3$0$0$120$109
+773$TXL231$FABRIC MANUFACTURE I                               $B$DC$3$3$0$0$120$119
+774$TXL241$TECH. OF TEXT. PREPARATION & F                     $F$DC$3$3$0$0$120$129
+775$TXL361$EVALUATION OF TEXTILE MATERIAL                     $D$DC$3$3$0$0$120$92
+776$TXL371$THEORY OF TEXTILE STRUCTURES                       $C$DC$4$3$1$0$120$123
+777$TXL372$SPECIALITY YARNS AND FABRICS                       $J$DC$2$2$0$0$120$97
+778$TXL714$ADVANCED MATERIALS CHARACTERIZATION TECHNIQUES     $P$PC$1$1$0$0$75$40
+779$TXL715$TECHNOLOGY OF SOLUTION SPUN FIBRES                 $B$PC$3$3$0$0$75$17
+780$TXL725$MECHANICS OF SPINNING MACHINES                     $A$PC$3$3$0$0$40$18
+781$TXL740$SC. & APP. OF NANOTEC. IN TEX.                     $E$PE$3$3$0$0$65$77
+782$TXL748$ADVANCES IN FINISHING OF TEXTILES                  $F$PC$3$3$0$0$40$30
+783$TXL754$SUSTAINABLE CHEMICAL PROCESSING OF TEXTILES        $B$PC$2$2$0$0$40$11
+784$TXL756$TEXTILE AUXILIARIES                                $J$PE$3$3$0$0$65$13
+785$TXL766$DE. & MANUF. OF TEXT. STR. CO.                     $B$PE$3$3$0$0$65$69
+786$TXL771$ELECTRONICS AND CONTROLS FOR TEXTILEINDUSTRY       $J$PE$4$3$0$2$65$54
+787$TXL775$TECHNICAL TEXTILES                                 $D$""$3$3$0$0$65$57
+788$TXL777$PRODUCT DESIGN AND DEVELOPMENT                     $H$PE$3$3$0$0$65$27
+789$TXL782$PRODUCTION & OPERATIONS MGMT                       $F$PE$3$3$0$0$65$53
+790$TXL783$DESIGN OF EXPER. & STAT. TECH.                     $E$""$3$3$0$0$65$71
+791$TXP212$MANUFACTURED FIBRE TECHNO. LAB                     $C$DC$1$0$0$2$120$97
+792$TXP221$YARN MANUFACTURE LABORATORYI                       $E$DC$1$0$0$2$120$108
+793$TXP231$FABRIC MANUFACTURE LAB.   I                        $B$DC$1$0$0$2$120$112
+794$TXP241$TECH. OF TEX. PRE. & FIN. LAB.                     $F$DC$1.5$0$0$3$120$117
+795$TXP361$EVALUATION OF TEXTILES LAB                         $D$DC$1$0$0$2$120$92
+796$TXP716$Fibre Production and Post Spinning Operation Laboratory $F$PE$2$0$0$4$65$17
+797$TXP725$MECHANICS OF SPINNING MACHINES LAB                 $P$PC$1$0$0$2$40$18
+798$TXP748$TEXTILE PREPARATION AND FINISHING LAB              $P$PC$1$0$0$2$25$17
+799$TXP761$EVALUATION OF TEXTILE MATERIALS                    $C$PC$2$0$0$4$75$19
+800$TXQ302$SEMINAR COURSE 2                                   $P$""$1$0$0$2$120$128
+801$VED750$MINOR PROJECT                                      $P$""$3$0$0$6$60$0
+802$VEL700$HUMAN VALUES AND TECHNOLOGY                        $M$""$3$2$1$0$60$54
