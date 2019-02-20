@@ -13,9 +13,12 @@ cur.execute("insert into runproof (num,name) values (%s,%s)",(4,'amal'))
 cur.execute("insert into runproof (num,name) values (%s,%s)",(5,'vedant'))
 cur.execute("insert into runproof (num,name) values (%s,%s)",(6,'sameerphone'))
 cur.execute("insert into runp (age,nam) values (%s,%s)",(20,'sameerphone'))
-cur.execute("(select name as name1 from runproof where num=6);")
-x =cur.fetchone()[0]
-print x
-cur.close()
+cur.execute("select num from runproof where name = 'sameerphone';")
+#now i will show how i would use a variable x of python as a PARAMETER in another query
+x= 2*3
+cur.execute("create table variable (nume integer );")
+cur.execute("insert into variable (nume) values (%s)",(x,))
+cur.execute("select name from runproof where num in (select nume from variable);")
+y =cur.fetchone()[0]
+print(y)
 
-conn.close()
