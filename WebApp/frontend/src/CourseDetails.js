@@ -44,15 +44,14 @@ class CourseDetails extends React.Component {
           <ul>
             {courses.map(course => (
               <li key={course.name}>
-                {course.name} {course.code}
+                <a href="http://localhost:5000/">
+                    {course.name} {course.code}
+                </a>
               </li>
             ))}
           </ul>
         );
       }
-    // return (
-    //     <p>Working</p>
-    // )
     }
   }
 

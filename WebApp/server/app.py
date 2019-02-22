@@ -29,20 +29,25 @@ CORS(app)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
 # db.init_app(app)
 
-x = { "courses": [
-        { "name": "MATHS","code": "MTL106"},
-        { "name": "NOL", "code": "COL"}
-    ]
-}
+courses = [
+    {
+        "name": "MATHS",
+        "code": "MTL106",
+    },
+    {
+        "name": "NOL",
+        "code": "COL",
+    }
+]
 
 @app.route("/courses_all",methods = ['GET'])
 def courses_all():
-    print("Hello")
-    return jsonify(x)
+    print("All courses fetched")
+    return jsonify({'courses':courses})
 
-@app.route("/courses")
+
 @app.route("/", methods=['GET', 'POST'])
-@app.route("/hello")
+@app.route("/courses")
 @app.route("/timetable", methods=['GET','POST'])
 def index():
     return render_template('index.html')
