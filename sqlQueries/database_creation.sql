@@ -17,17 +17,24 @@ create table users(userid serial primary key,alias varchar(30) unique not null,n
 create table groups(gid serial primary key, alias varchar(30) not null unique);
 
 create table events(id serial primary key,alias varchar(30) references groups(alias),name varchar(120),type eventtype,linkto varchar(120));
+create index events_alias_key on events(alias);
+create index events_name_key on events(name);
 
 create table weeklyeventtime(id int references events(id),slotname varchar(4) not null);
+create index weeklyeventtime_id_key on weeklyeventtime(id);
 
 create table onetimeeventtime(id int references events(id),ondate date,begintime time(0),endtime time(0));
+create index onetimeeventtime_id_key on onetimeeventtime(id);
+create index onetimeeventtime_time_key on onetimeeventtime(ondate,begintime);
 
 create table slotdetails(slotname varchar(4),days day not null,begintime time(0) not null,endtime time(0) not null);
 
 create table usersgroups(
-  userid int references users(userid),
-  gid int references groups(gid),unique(userid,gid));
+  useralias varchar(30) references users(alias),
+  groupalias varchar(30) references groups(alias),unique(useralias,groupalias));
 
+create index usersgroups_groupalias_index on usersgroups(groupalias);
+create index usersgroups_useralias_index on usersgroups(useralias);
 
 create table courses(courseid serial primary key,code varchar(8) not null,name varchar(120),
   slot varchar(4),type varchar(10),
@@ -37,6 +44,10 @@ create table courses(courseid serial primary key,code varchar(8) not null,name v
 
 create table studentsincourse(studentid int references users(userid),courseid int references courses(courseid), unique(studentid,courseid));
 create table coursesbyprof(profid int references users(userid), courseid int references courses(courseid),constraint course_prof_pkey unique(profid,courseid));
+create index studentsincourse_stid_key on studentsincourse(studentid);
+create index studentsincourse_cid_key on studentsincourse(courseid);
+create index coursesbyprof_cid_key on coursesbyprof(courseid);
+create index coursesbyprof_pid_key on coursesbyprof(profid);
 
 
 create table curr_courses(courseid serial primary key,code varchar(8) unique not null,name varchar(120),
@@ -46,8 +57,11 @@ create table curr_courses(courseid serial primary key,code varchar(8) unique not
   strength int, registered int);
 
 create table curr_stu_course(entrynum varchar(30) references users(alias),courseid int references curr_courses(courseid), unique(entrynum,courseid));
-
+create index curr_stu_course_courseid_key on curr_stu_course(courseid);
+create index curr_stu_coures_entrynum_key on curr_stu_course(entrynum);
 create table curr_prof_course(profalias varchar(30) references users(alias), courseid int references curr_courses(courseid),unique(profalias,courseid));
+create index curr_prof_course_profalias_key on curr_prof_course(profalias);
+create index curr_prof_course_courseid_key on curr_prof_course(courseid);
 
 create table curr_prof(profalias varchar(30) primary key,profname varchar(70));
 create table curr_stu(entrynum varchar(30) primary key,studentname varchar(70));
@@ -68,7 +82,11 @@ insert into groups(alias)
   groups1 order by gid);
 drop table groups1;
 
-\copy usersgroups from '/home/vishwajeet/Desktop/COL362/IITD_TimeSchedule/finaltables/finallast/usersingroup.csv' delimiter '$';
+create table usersgroups1 (userid int,gid int);
+\copy usersgroups1 from '/home/vishwajeet/Desktop/COL362/IITD_TimeSchedule/finaltables/finallast/usersingroup.csv' delimiter '$';
+insert into usersgroups (select alias as useralias,alias as groupalias from usersgroup1 natural join users natural join groups order by groupalias,useralias)
+drop table usersgroups1;
+
 \copy slotdetails from '/home/vishwajeet/Desktop/COL362/IITD_TimeSchedule/finaltables/finallast/slotdetails.csv' delimiter '$';
 
 \copy courses1 from '/home/vishwajeet/Desktop/COL362/IITD_TimeSchedule/finaltables/finallast/courses.csv' delimiter '$';

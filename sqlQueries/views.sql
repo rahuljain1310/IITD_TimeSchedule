@@ -1,7 +1,7 @@
-create index namesorted on users(name);
-create index curr_stu_sorted on curr_stu(name);
-create index curr_prof_sorted on curr_prof(name);
-create index coursenamesorted on courses(name);
+-- create index namesorted on users(name);
+-- create index curr_stu_sorted on curr_stu(name);
+-- create index curr_prof_sorted on curr_prof(name);
+-- create index coursenamesorted on courses(name);
 
 
 

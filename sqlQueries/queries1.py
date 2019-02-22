@@ -74,7 +74,7 @@ usrgrp where
 alias = %s
 order by gal
 # -- to find groups--
-search_grp="select gal"\
+search_group="select gal"\
 "from groups"\
 "where gal ilike concat('%',%s,'%')"
 # --- to get users of a group---
