@@ -11,17 +11,17 @@ class CourseDetails extends React.Component {
       };
     }
     componentDidMount() {
-      fetch('http://localhost:5000/courses_all')
-        .then(res => {
-            console.log(res)
-            res.json()
-        })
-        .then(
-          (result) => {
-            console.log(result)
+      const { code } = this.props.match.params
+      fetch('http://localhost:5000/course_details/?='+code, {
+        method: 'GET',
+        dataType: 'json'
+      })
+        .then(res => res.json())
+        .then((rjson) => {
+            console.log(rjson)
             this.setState({
               isLoaded: true,
-              courses: result.courses
+              courses: rjson.results
             });
           },
           (error) => {
@@ -44,9 +44,7 @@ class CourseDetails extends React.Component {
           <ul>
             {courses.map(course => (
               <li key={course.name}>
-                <a href="http://localhost:5000/">
                     {course.name} {course.code}
-                </a>
               </li>
             ))}
           </ul>

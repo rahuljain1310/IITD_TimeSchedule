@@ -1,0 +1,22 @@
+tr {
+    height: 20px;
+    text-align: center;
+    background-color: white;
+    color: black;
+    border-bottom: 2px gray dotted;
+}
+
+tr:hover {
+    background-color: black;
+    color: white
+}
+
+td {
+    padding: 5px 10px;
+    width: 200px;
+}
+
+table {
+    margin: 40px;
+    border: 2px gray solid;
+}
