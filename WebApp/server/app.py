@@ -42,36 +42,36 @@ cour = [
 
 ## API's
 @app.route("/course_details/",methods = ['GET'])
-def course_details():     
-    code = request.args.get('code')             ## Got the only argument now send the json only 
+def course_details():
+    code = request.args.get('code')             ## Got the only argument now send the json only
     return jsonify({'results':cour})
 
 # @app.route("/student_details/",methods = ['GET'])
-# def student_details():    
-#     alias = request.args.get('alias')             ## Got the only argument now send the json only 
+# def student_details():
+#     alias = request.args.get('alias')             ## Got the only argument now send the json only
 #     return jsonify({'results':cour})
-    
+
 # @app.route("/faculty_details/",methods = ['GET'])
-# def faculty_details():    
-#     alias = request.args.get('alias')             ## Got the only argument now send the json only 
+# def faculty_details():
+#     alias = request.args.get('alias')             ## Got the only argument now send the json only
 #     return jsonify({'results':cour})
 
 @app.route("/user_details/",methods = ['GET'])
-def user_details():    
-    alias = request.args.get('alias')             ## Got the only argument now send the json only 
+def user_details():
+    alias = request.args.get('alias')             ## Got the only argument now send the json only
     return jsonify({'results':cour})
 
 @app.route("/usergroup_details/",methods = ['GET'])
-def usergroup_details():    
-    groupinput = request.args.get('groupinput')   ## Got the only argument now send the json only 
+def usergroup_details():
+    groupinput = request.args.get('groupinput')   ## Got the only argument now send the json only
     cur.execute("select * from courses limit 20")
     course = cur.fetchall()
     print(course)
     return jsonify({'results':cour})
 
 @app.route("/event_details/",methods = ['GET'])
-def event_details():    
-    event = request.args.get('event')   ## Got the only argument now send the json only 
+def event_details():
+    event = request.args.get('event')   ## Got the only argument now send the json only
     return jsonify({'results':cour})
 
 @app.route("/findcourses/",methods = ['GET'])
@@ -85,33 +85,33 @@ def findcourses():
     if (slot==''):
         if (year==''):
             if (semester=='1'):
-                cur.execute(rq.allco,code,name,2018,1)
+                cur.execute(rq.allco,(code,name,2018,1))
             else:
-                cur.execute(rq.curco,code,name)
+                cur.execute(rq.curco,(code,name))
         else:
             try:
                 year=int(year)
                 if (semester==''):
                     semester=2
                 semester=int(semseter)
-                cur.execute(rq.allco,code,name,year,semester)
+                cur.execute(rq.allco,(code,name,year,semester))
             except:
-                cur.execute(rq.curco,code,name)
+                cur.execute(rq.curco,(code,name))
     else:
         if (year==''):
             if (semester=='1'):
-                cur.execute(rq.allco_slot,code,name,slot,2018,1)
+                cur.execute(rq.allco_slot,(code,name,slot,2018,1))
             else:
-                cur.execute(rq.curco_slot,code,name,slot)
+                cur.execute(rq.curco_slot,(code,name,slot))
         else:
             try:
                 year=int(year)
                 if (semester==''):
                     semester=2
                 semester=int(semseter)
-                cur.execute(rq.allco_slot,code,name,slot,year,semester)
+                cur.execute(rq.allco_slot,(code,name,slot,year,semester))
             except:
-                cur.execute(rq.curco_slot,code,name,slot)
+                cur.execute(rq.curco_slot,(code,name,slot))
     # print(code)
 
     course = cur.fetchall()
@@ -140,11 +140,11 @@ def findusers():
     # query_string = "select * from demo limit 20"   ## Need to Work On this API .. Replace this query
 
     if usertype ==1:
-        cur.execute(rq.search_stu,alias,name)
+        cur.execute(rq.search_stu,(alias,name))
     elif usertype ==2:
-        cur.execute(rq.search_prof,alias,name)
+        cur.execute(rq.search_prof,(alias,name))
     else:
-        cur.execute(rq.search_user,alias,name)
+        cur.execute(rq.search_user,(alias,name))
         cur.commit()
     return jsonify({'results':cur.fetchall()})
 ## All directed to Index.html
