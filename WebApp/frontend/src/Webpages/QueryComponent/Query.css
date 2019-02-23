@@ -3,6 +3,7 @@
     text-align: center;
     background-color: white;
     color: black;
+    border-bottom: 1px gray solid;
 }
 
 #query tr:hover {
@@ -11,16 +12,20 @@
 }
 
 #query td {
-    padding: 0 10px;
+    padding: 5px 10px;
+    font-size: 14px;
+    width: auto;
+    min-width: 50px;
     max-width: 150px;
 }
 
 #query table {
     margin: 40px;
-    border: none;
+    align-self: auto;
+    border: 1px gray solid;
 }
 
-#query a, a:hover, a:visited, a:active {
+#query a, #query a:hover,#query a:visited, #query a:active {
     color: white;
     text-decoration: none;
 }

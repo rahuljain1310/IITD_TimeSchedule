@@ -1,5 +1,6 @@
 import React from 'react';
 import Query from '../QueryComponent/Query'
+import {Button} from 'react-bootstrap'
 
 export default class SearchCourses extends React.Component {
     constructor(props) {
@@ -51,7 +52,7 @@ export default class SearchCourses extends React.Component {
 
     render() {
         return (
-        <div>
+        <div className="search_div">
             <input type="text" onChange={ (e) => this.setState({alias: e.target.value}) } value={ this.state.alias } placeholder="alias"/>
             <input type="text" onChange={ (e) => this.setState({name: e.target.value}) } value={ this.state.name } placeholder="name"/>
             <select  onChange={this.seturlpath} value={ this.state.type } >
@@ -59,7 +60,7 @@ export default class SearchCourses extends React.Component {
                 <option value="1">Student</option>
                 <option value="2">Faculty</option>
             </select>
-            <button onClick={this.queryUsers}> Go </button>
+            <Button variant="outline-primary" onClick={this.queryUsers}> Go </Button>
             <Query urlpath={this.state.urlpath} results={this.state.users} hyperlink={true}/>
         </div>
 

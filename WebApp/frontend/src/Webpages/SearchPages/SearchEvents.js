@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Query from '../QueryComponent/Query.js'
+import {Button} from 'react-bootstrap'
 
 export default class SearchEvents extends React.Component {
     constructor(props) {
@@ -39,11 +40,11 @@ export default class SearchEvents extends React.Component {
 
     render() {
         return (
-        <div>
+        <div className="search_div">
             <input type="text" onChange={ (e) => this.setState({host: e.target.value}) } value={ this.state.host } placeholder="host"/>
             <input type="text" onChange={ (e) => this.setState({name: e.target.value}) } value={ this.state.name } placeholder="name"/>
             <input type="text" onChange={ (e) => this.setState({group: e.target.value}) } value={ this.state.group } placeholder="Group"/>
-            <button onClick={this.queryEvents}> Go </button>
+            <Button onClick={this.queryEvents}> Go </Button>
             <Query results={this.state.events} urlpath={this.state.urlpath} hyperlink={true}/>
         </div>
 

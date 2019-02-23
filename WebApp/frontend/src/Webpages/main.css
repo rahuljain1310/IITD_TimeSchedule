@@ -1,4 +1,27 @@
 main {
     margin-top: 50px;
     overflow: hidden;
+    align-content: center;
+}
+
+.search_div input {
+    height: 30px;
+    margin: 10px;
+    padding: 20px;
+}
+
+.search_div select {
+    margin: 10px;
+    height: 30px;
+    padding: 20px;
+}
+
+.search_div {
+    margin: 10px;
+    padding: 10px;
+}
+
+.search_div button {
+    margin: 10px;
+    width: 100px;
 }

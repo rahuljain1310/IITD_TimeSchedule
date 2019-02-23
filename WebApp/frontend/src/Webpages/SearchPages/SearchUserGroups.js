@@ -1,5 +1,6 @@
 import React from 'react';
 import Query from '../QueryComponent/Query.js'
+import {Button} from 'react-bootstrap'
 
 export default class SearchUserGroups extends React.Component {
     constructor(props) {
@@ -36,9 +37,9 @@ export default class SearchUserGroups extends React.Component {
 
     render() {
         return (
-        <div>
+        <div className="search_div">
             <input type="text" onChange={ (e) => this.setState({groupinput: e.target.value}) } value={ this.state.groupinput } placeholder="User Groups"/>
-            <button onClick={this.queryusergroups}> Go </button>
+            <Button onClick={this.queryusergroups}> Go </Button>
             <Query results={this.state.usergroups} urlpath={this.state.urlpath} hyperlink={true}/>
         </div>
 

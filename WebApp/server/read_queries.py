@@ -59,10 +59,10 @@ get_groups="select groupalias,name from usersgroups,users where useralias= %s an
 
 get_all_events = "with groups_in as ("\
 "select groupalias,name from usersgroups,users where useralias= %s and users.alias=useralias)"\
-  "select id,groupalias,name,linkto from groups_in,events
-  "where events.alias = groups_in.groupalias
+"select id,groupalias,name,linkto from groups_in,events"\
+"where events.alias = groups_in.groupalias"
 
-get_weekly_timetable =
+
 # time table of user
 
 

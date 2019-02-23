@@ -6,11 +6,11 @@ export default class Navigation extends Component {
     return (
         <nav>
             <ul>
-                <li><a href="#home">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li><a href="/search_courses">Courses</a></li>
-                <li><a href="/user">Users</a></li>
-                <li><a href="/group">Groups</a></li>
-                <li><a href="/event">Events</a></li>
+                <li><a href="/search_users">Users</a></li>
+                <li><a href="/search_usergroups">Groups</a></li>
+                <li><a href="/search_events">Events</a></li>
             </ul>
         </nav>
     );
