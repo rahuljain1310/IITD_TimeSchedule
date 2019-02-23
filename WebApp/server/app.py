@@ -9,7 +9,8 @@ import insertions
 # from flask_sqlalchemy import SQLAlchemy
 # from models import db
 from flask_cors import CORS
-
+curr_year=2018
+curr_sem=2
 import psycopg2 as ps
 conn = ps.connect("dbname=postgres user=postgres password=postgres")
 cur = conn.cursor()
@@ -28,7 +29,6 @@ CORS(app)
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
 # db.init_app(app)
-
 cour = [
     {
         "name": "MATHS",
@@ -78,21 +78,57 @@ def event_details():
 def findcourses():
     print("API Call for Finding Courses")         ## Need to Work On this API
     code = request.args.get('code')
-    print(code)
-    cur.execute("select * from courses limit 20")
+    name = request.args.get('name')
+    slot = request.args.get('slot')
+    semester = request.args.get('semester')
+    year = request.args.get('year')
+    if (slot==''):
+        if (year==''):
+            if (semester=='1'):
+                cur.execute(allco,code,name,2018,1)
+            else:
+                cur.execute(cur_co,code,name)
+        else:
+            try:
+                year=int(year)
+                if (semester==''):
+                    semester=2
+                semester=int(semseter)
+                cur.execute(allco,code,name,year,semester)
+            except:
+                cur.execute(curco,code,name)
+    else:
+        if (year==''):
+            if (semester=='1'):
+                cur.execute(allco_slot,code,name,slot,2018,1)
+            else:
+                cur.execute(curco_slo,code,name,slot)
+        else:
+            try:
+                year=int(year)
+                if (semester==''):
+                    semester=2
+                semester=int(semseter)
+                cur.execute(allco_slot,code,name,slot,year,semester)
+            except:
+                cur.execute(curco_slot,code,name,slot)
+    # print(code)
+
     course = cur.fetchall()
-    print(course)
+    # print(course)
+    cur.commit()
     return jsonify({'results':course})
 
 @app.route("/findusergroups/",methods = ['GET'])
 def findusergroups():
-    print("API Call for Finding Courses")         ## Need to Work On this API
-    code = request.args.get('code')
-    print(code)
-    cur.execute("select * from courses limit 20")
-    course = cur.fetchall()
-    print(course)
-    return jsonify({'results':course})
+    print("API Call for Finding Groups")       ## Need to Work On this API
+    alias = request.args.get('groupalias')
+    # print(code)
+    cur.execute(search_group,alias)
+    groups = cur.fetchall()
+    # print(course)
+    cur.commit()
+    return jsonify({'results':groups})
 
 @app.route("/findusers/",methods = ['GET'])
 def findusers():
@@ -101,19 +137,16 @@ def findusers():
     name = request.args.get('name')
     usertype = request.args.get('type')
     print(alias+name+usertype)
-    query_string = "select * from courses limit 20"    ## Need to Work On this API .. Replace this query
-    cur.execute(query_string)
-    return jsonify({'results':cur.fetchall()})
+    # query_string = "select * from demo limit 20"   ## Need to Work On this API .. Replace this query
 
-@app.route("/findevents/",methods = ['GET'])
-def findevents():
-    print("API Call for Finding Users")         
-    host = request.args.get('host')
-    name = request.args.get('name')
-    query_string = "select * from courses limit 20"    ## Need to Work On this API .. Replace this query
-    cur.execute(query_string)
+    if usertype ==1:
+        cur.execute(search_stu,alias,name)
+    elif usertype ==2:
+        cur.execute(search_prof,alias,name)
+    else:
+        cur.execute(search_user,alias,name)
+        cur.commit()
     return jsonify({'results':cur.fetchall()})
-
 ## All directed to Index.html
 ## React Router Redirects to Respective Components
 @app.route("/", methods=['GET', 'POST'])
@@ -140,3 +173,4 @@ def redirect(x):
 if __name__ == "__main__":
     app.config['DEBUG'] = True
     app.run()
+# extrra functions
