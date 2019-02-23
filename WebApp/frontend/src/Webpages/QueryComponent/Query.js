@@ -12,7 +12,7 @@ export default class Query extends React.Component {
         return (
         <table>
             {this.props.results.map( (row) => (
-                <a href={this.props.hyperlink && this.props.urlpath+"/?x="+row[0]}><Row tr={row}></Row></a>
+                <Row tr={row} hyperlink={this.props.hyperlink} urlpath={this.props.urlpath}></Row>
             ))}
         </table>
         )
