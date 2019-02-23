@@ -42,8 +42,31 @@ cour = [
 
 ## API's
 @app.route("/course_details/",methods = ['GET'])
+<<<<<<< HEAD
 def course_details():      ## Returns All courses
     code = request.args.get('code')             ## Got the only argument now send the json only
+=======
+def course_details():     
+    code = request.args.get('code')             ## Got the only argument now send the json only 
+>>>>>>> refs/remotes/origin/master
+    return jsonify({'results':cour})
+
+@app.route("/student_details/",methods = ['GET'])
+def student_details():    
+    alias = request.args.get('alias')             ## Got the only argument now send the json only 
+    return jsonify({'results':cour})
+    
+@app.route("/faculty_details/",methods = ['GET'])
+def faculty_details():    
+    alias = request.args.get('alias')             ## Got the only argument now send the json only 
+    return jsonify({'results':cour})
+
+@app.route("/usergroup_details/",methods = ['GET'])
+def usergroup_details():    
+    groupinput = request.args.get('groupinput')             ## Got the only argument now send the json only 
+    cur.execute("select * from demo limit 20")
+    course = cur.fetchall()
+    print(course)
     return jsonify({'results':cour})
 
 @app.route("/findcourses/",methods = ['GET'])
@@ -54,8 +77,17 @@ def findcourses():
     cur.execute("select * from demo limit 20")
     course = cur.fetchall()
     print(course)
-    return jsonify({'results':cour})
+    return jsonify({'results':course})
 
+@app.route("/findusergroups/",methods = ['GET'])
+def findusergroups():
+    print("API Call for Finding Courses")       ## Need to Work On this API
+    code = request.args.get('code')
+    print(code)
+    cur.execute("select * from demo limit 20")
+    course = cur.fetchall()
+    print(course)
+    return jsonify({'results':course})
 
 @app.route("/findusers/",methods = ['GET'])
 def findusers():
@@ -71,14 +103,21 @@ def findusers():
 ## All directed to Index.html
 ## React Router Redirects to Respective Components
 @app.route("/", methods=['GET', 'POST'])
-@app.route("/courses/<code>")
-@app.route("/student/<alias>")
-@app.route("/faculty/<alias>")
 @app.route("/timetable", methods=['GET','POST'])
 @app.route("/search_courses")
 @app.route("/search_users")
 def index():
     return render_template('index.html')
+
+@app.route("/courses/<x>")
+@app.route("/student/<x>")
+@app.route("/faculty/<x>")
+def details(x):
+    return render_template('index.html')
+
+@app.route("/user/<x>")
+def redirect(x):
+    return "Redirect this page to student or faculty on the basis of its category"
 
 if __name__ == "__main__":
     app.config['DEBUG'] = True

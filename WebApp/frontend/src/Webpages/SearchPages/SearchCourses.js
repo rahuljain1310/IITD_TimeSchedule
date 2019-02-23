@@ -12,7 +12,7 @@ export default class SearchCourses extends React.Component {
             year : "",
             semester : "",
             courses: [],
-            urlpath: "/courses"
+            urlpath: "/courses/"
         };
     }
 

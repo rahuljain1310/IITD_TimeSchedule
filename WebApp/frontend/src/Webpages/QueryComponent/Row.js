@@ -7,11 +7,15 @@ export default class Row extends React.Component {
     }
 
     render() {
+        let y = this.props.tr
+        let x = y[Object.keys(y)[0]];
         return (
         <tr>
-            { Object.keys(this.props.tr).map((key, index) => (
-                <td>{this.props.tr[key]}</td>
-            ))}
+            <a href={this.props.hyperlink && this.props.urlpath+x}>
+                { Object.keys(y).map((key, index) => (
+                    <td>{y[key]}</td>
+                ))}
+            </a>
         </tr>
         )
     }

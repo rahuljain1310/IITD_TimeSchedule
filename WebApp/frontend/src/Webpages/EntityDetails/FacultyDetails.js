@@ -1,18 +1,17 @@
 import React from 'react';
 
-export default class CourseDetails extends React.Component {
+export default class FacultyDetails extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
         error: null,
         isLoaded: false,
-        course_details: []
+        faculty_details: []
       };
     }
     componentDidMount() {
-      const { code } = this.props.match.params
-      console.log(code)
-      fetch('http://localhost:5000/course_details/?code='+code, {
+      const { alias } = this.props.match.params
+      fetch('http://localhost:5000/course_details/?='+alias, {
         method: 'GET',
         dataType: 'json'
       })
@@ -21,7 +20,7 @@ export default class CourseDetails extends React.Component {
             console.log(rjson)
             this.setState({
               isLoaded: true,
-              course_details: rjson.results
+              faculty_details: rjson.results
             });
           },
           (error) => {
@@ -34,7 +33,7 @@ export default class CourseDetails extends React.Component {
     }
   
     render() {
-      const { error, isLoaded, course_details } = this.state;
+      const { error, isLoaded, faculty_details } = this.state;
       if (error) {
         return <div>Error: {error.message}</div>;
       } else if (!isLoaded) {
@@ -42,7 +41,7 @@ export default class CourseDetails extends React.Component {
       } else {
         return (
           <ul>
-            {course_details.map(course => (
+            {faculty_details.map(course => (
               <li key={course.name}>
                     {course.name} {course.code}
               </li>

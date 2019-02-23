@@ -10,7 +10,7 @@ export default class SearchCourses extends React.Component {
             name : "",
             type : 0,
             users: [],
-            urlpath: "/user"
+            urlpath: "/user/"
         };
     }
 
@@ -40,9 +40,9 @@ export default class SearchCourses extends React.Component {
     seturlpath = (e) => {
         let t = e.target.value
         let x
-        if(t == 1) x = "/student"
-        else if (t==2) x = "/faculty"
-        else x = "/users"
+        if(t == 1) x = "/student/"
+        else if (t==2) x = "/faculty/"
+        else x = "/users/="
         this.setState({
             type: e.target.value,
             urlpath: x,
