@@ -12,7 +12,7 @@ export default class SearchUserGroups extends React.Component {
     }
 
     queryusergroups = (e) => {
-        let cq = "?groupinput="+this.state.groupinput
+        let cq = "?groupalias="+this.state.groupinput
         fetch('http://localhost:5000/findusergroups/'+cq, {
             method: 'GET',
             dataType: 'json'
