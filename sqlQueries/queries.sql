@@ -173,11 +173,11 @@ as slottimings where type = %s or type = %s or type = %s
 
 
 with astudentc18_2 as (
-select * from cbys18_2
+select code from curr_courses_of_student
 where entrynum = %s )
 ,
 stdctiming18_2 as (
-select days,code,slot,begintime,endtime from
+select days,code,slotdetails.slotname,begintime,endtime from
 astudentc18_2 left outer join slotdetails
 where astudentc18_2.slot = slotdetails.slotname
 or (astudentc18_2.prac_dur > 0 and slotdetails.slotname = concat('P',astudentc18_2.slot,groupedin))
@@ -192,3 +192,10 @@ order by
   when days='Sat' then 6
   when days='Sun' then 7 end ,begintime
 ) select * from stdctiming18_2;
+
+with groups_in as (
+select groupalias,name from usersgroups,users where useralias= %s and users.alias=useralias)
+,
+  select id,groupalias,name,linkto from
+  groups_in,events
+  where events.alias = groups_in.groupalias

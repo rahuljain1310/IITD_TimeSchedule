@@ -4,6 +4,8 @@ import requests
 import json
 from flask import request, jsonify
 from flask import Flask, render_template
+import read_queries
+import insertions
 # from flask_sqlalchemy import SQLAlchemy
 # from models import db
 from flask_cors import CORS
@@ -38,10 +40,10 @@ cour = [
     }
 ]
 
-## API's 
+## API's
 @app.route("/course_details/",methods = ['GET'])
 def course_details():      ## Returns All courses
-    code = request.args.get('code')             ## Got the only argument now send the json only 
+    code = request.args.get('code')             ## Got the only argument now send the json only
     return jsonify({'results':cour})
 
 @app.route("/findcourses/",methods = ['GET'])
@@ -57,7 +59,7 @@ def findcourses():
 
 @app.route("/findusers/",methods = ['GET'])
 def findusers():
-    print("API Call for Finding Users")         
+    print("API Call for Finding Users")
     alias = request.args.get('alias')
     name = request.args.get('name')
     usertype = request.args.get('type')
