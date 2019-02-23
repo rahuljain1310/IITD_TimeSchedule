@@ -4,8 +4,8 @@ import requests
 import json
 from flask import request, jsonify
 from flask import Flask, render_template
-import read_queries
-import insertions
+import read_queries as rq
+import insertions as iq
 # from flask_sqlalchemy import SQLAlchemy
 # from models import db
 from flask_cors import CORS
@@ -85,33 +85,33 @@ def findcourses():
     if (slot==''):
         if (year==''):
             if (semester=='1'):
-                cur.execute(allco,code,name,2018,1)
+                cur.execute(rq.allco,code,name,2018,1)
             else:
-                cur.execute(cur_co,code,name)
+                cur.execute(rq.curco,code,name)
         else:
             try:
                 year=int(year)
                 if (semester==''):
                     semester=2
                 semester=int(semseter)
-                cur.execute(allco,code,name,year,semester)
+                cur.execute(rq.allco,code,name,year,semester)
             except:
-                cur.execute(curco,code,name)
+                cur.execute(rq.curco,code,name)
     else:
         if (year==''):
             if (semester=='1'):
-                cur.execute(allco_slot,code,name,slot,2018,1)
+                cur.execute(rq.allco_slot,code,name,slot,2018,1)
             else:
-                cur.execute(curco_slo,code,name,slot)
+                cur.execute(rq.curco_slot,code,name,slot)
         else:
             try:
                 year=int(year)
                 if (semester==''):
                     semester=2
                 semester=int(semseter)
-                cur.execute(allco_slot,code,name,slot,year,semester)
+                cur.execute(rq.allco_slot,code,name,slot,year,semester)
             except:
-                cur.execute(curco_slot,code,name,slot)
+                cur.execute(rq.curco_slot,code,name,slot)
     # print(code)
 
     course = cur.fetchall()
@@ -124,7 +124,7 @@ def findusergroups():
     print("API Call for Finding Groups")       ## Need to Work On this API
     alias = request.args.get('groupalias')
     # print(code)
-    cur.execute(search_group,alias)
+    cur.execute(rq.search_group,alias)
     groups = cur.fetchall()
     # print(course)
     cur.commit()
@@ -140,11 +140,11 @@ def findusers():
     # query_string = "select * from demo limit 20"   ## Need to Work On this API .. Replace this query
 
     if usertype ==1:
-        cur.execute(search_stu,alias,name)
+        cur.execute(rq.search_stu,alias,name)
     elif usertype ==2:
-        cur.execute(search_prof,alias,name)
+        cur.execute(rq.search_prof,alias,name)
     else:
-        cur.execute(search_user,alias,name)
+        cur.execute(rq.search_user,alias,name)
         cur.commit()
     return jsonify({'results':cur.fetchall()})
 ## All directed to Index.html
