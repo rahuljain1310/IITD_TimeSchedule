@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+body {margin:0;}
+
+
+
+ul {
+
+  list-style-type: none;
+
+  margin: 0;
+
+  padding: 0;
+
+  overflow: hidden;
+
+  background-color: #333;
+
+  position: fixed;
+
+  top: 0;
+
+  width: 100%;
+
+}
+
+
+
+li {
+
+  float: left;
+
+}
+
+
+
+li a {
+
+  display: block;
+
+  color: white;
+
+  text-align: center;
+
+  padding: 14px 16px;
+
+  text-decoration: none;
+
+}
+
+
+
+li a:hover:not(.active) {
+
+  background-color: #111;
+
+}
+
+
+
+.active {
+
+  background-color: #4CAF50;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+
+<ul>
+
+  <li><a class="/" href="#home">Home</a></li>
+
+  <li><a href="/course">Courses</a></li>
+
+  <li><a href="/user">Users</a></li>
+
+  <li><a href="/group">Groups</a></li>
+
+  <li><a href="/event">Events</a></li>
+
+ 
+
+</ul>
+
+
+
+<div style="padding:20px;margin-top:30px;background-color:#1abc9c;height:1500px;">
+
+  <form action="{{url_for('search')}}" method=POST"">
+
+  Course Code<br>
+
+  <input type="text" name="Code" >
+
+  <br>
+
+  Course Name<br>
+
+  <input type="text" name="Name" >
+
+  <br><br>
+
+  Slot<br>
+
+  <input type="text" name="Slot" >
+
+  <br><br>
+
+  Year<br>
+
+  <input type="text" name="Year" >
+
+  <br><br>
+
+  Semester<br>
+
+  <input type="text" name="Sem" >
+
+  <br><br>
+
+  <input type="submit" value="Search">
+
+</form> 
+
+
+
+  
+
+</div>
+
+
+
+
+
+
+
+</body>
+
+</html>
+
