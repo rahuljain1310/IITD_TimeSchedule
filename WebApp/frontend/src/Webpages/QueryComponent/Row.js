@@ -1,21 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-
 export default class Row extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
+    redirect = () => {
         let y = this.props.tr
         let x = y[Object.keys(y)[0]];
+        window.location.href=this.props.urlpath+x
+    }
+    render() {
+        let y = this.props.tr
         return (
-        <tr>
-            <a href={this.props.hyperlink && this.props.urlpath+x}>
+        <tr onClick={this.props.hyperlink && this.redirect}>
                 { Object.keys(y).map((key, index) => (
-                    <td>{y[key]}</td>
+                    <td key={index}>{y[key]}</td>
                 ))}
-            </a>
         </tr>
         )
     }

@@ -41,30 +41,40 @@ cour = [
 ## API's 
 @app.route("/course_details/",methods = ['GET'])
 def course_details():     
-    code = request.args.get('code')             ## Got the only argument now send the json only 
+    code = request.args.get('code')               ## Got the only argument now send the json only 
     return jsonify({'results':cour})
 
-@app.route("/student_details/",methods = ['GET'])
-def student_details():    
-    alias = request.args.get('alias')             ## Got the only argument now send the json only 
-    return jsonify({'results':cour})
+# @app.route("/student_details/",methods = ['GET'])
+# def student_details():    
+#     alias = request.args.get('alias')             ## Got the only argument now send the json only 
+#     return jsonify({'results':cour})
     
-@app.route("/faculty_details/",methods = ['GET'])
-def faculty_details():    
+# @app.route("/faculty_details/",methods = ['GET'])
+# def faculty_details():    
+#     alias = request.args.get('alias')             ## Got the only argument now send the json only 
+#     return jsonify({'results':cour})
+
+@app.route("/user_details/",methods = ['GET'])
+def user_details():    
     alias = request.args.get('alias')             ## Got the only argument now send the json only 
     return jsonify({'results':cour})
 
 @app.route("/usergroup_details/",methods = ['GET'])
 def usergroup_details():    
-    groupinput = request.args.get('groupinput')             ## Got the only argument now send the json only 
+    groupinput = request.args.get('groupinput')   ## Got the only argument now send the json only 
     cur.execute("select * from demo limit 20")
     course = cur.fetchall()
     print(course)
     return jsonify({'results':cour})
 
+@app.route("/event_details/",methods = ['GET'])
+def event_details():    
+    event = request.args.get('event')   ## Got the only argument now send the json only 
+    return jsonify({'results':cour})
+
 @app.route("/findcourses/",methods = ['GET'])
 def findcourses():
-    print("API Call for Finding Courses")       ## Need to Work On this API
+    print("API Call for Finding Courses")         ## Need to Work On this API
     code = request.args.get('code')
     print(code)
     cur.execute("select * from demo limit 20")
@@ -74,7 +84,7 @@ def findcourses():
 
 @app.route("/findusergroups/",methods = ['GET'])
 def findusergroups():
-    print("API Call for Finding Courses")       ## Need to Work On this API
+    print("API Call for Finding Courses")         ## Need to Work On this API
     code = request.args.get('code')
     print(code)
     cur.execute("select * from demo limit 20")
@@ -89,7 +99,16 @@ def findusers():
     name = request.args.get('name')
     usertype = request.args.get('type')
     print(alias+name+usertype)
-    query_string = "select * from demo limit 20"   ## Need to Work On this API .. Replace this query
+    query_string = "select * from demo limit 20"    ## Need to Work On this API .. Replace this query
+    cur.execute(query_string)
+    return jsonify({'results':cur.fetchall()})
+
+@app.route("/findevents/",methods = ['GET'])
+def findevents():
+    print("API Call for Finding Users")         
+    host = request.args.get('host')
+    name = request.args.get('name')
+    query_string = "select * from demo limit 20"    ## Need to Work On this API .. Replace this query
     cur.execute(query_string)
     return jsonify({'results':cur.fetchall()})
 
@@ -99,12 +118,16 @@ def findusers():
 @app.route("/timetable", methods=['GET','POST'])
 @app.route("/search_courses")
 @app.route("/search_users")
+@app.route("/search_usergroups")
+@app.route("/search_events")
 def index():
     return render_template('index.html')
 
 @app.route("/courses/<x>")
-@app.route("/student/<x>")
-@app.route("/faculty/<x>")
+# @app.route("/student/<x>")
+# @app.route("/faculty/<x>")
+@app.route("/usergroups/<x>")
+@app.route("/event/<x>")
 def details(x):
     return render_template('index.html')
 

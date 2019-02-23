@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Query from '../QueryComponent/Query'
 
 export default class SearchCourses extends React.Component {
@@ -38,14 +37,14 @@ export default class SearchCourses extends React.Component {
     }
 
     seturlpath = (e) => {
-        let t = e.target.value
-        let x
-        if(t == 1) x = "/student/"
-        else if (t==2) x = "/faculty/"
-        else x = "/users/="
+        // let t = e.target.value
+        // let x
+        // if(t == 1) x = "/student/"
+        // else if (t==2) x = "/faculty/"
+        // else x = "/users/="
         this.setState({
             type: e.target.value,
-            urlpath: x,
+            // urlpath: x,
         })
     }
 
@@ -55,8 +54,8 @@ export default class SearchCourses extends React.Component {
         <div>
             <input type="text" onChange={ (e) => this.setState({alias: e.target.value}) } value={ this.state.alias } placeholder="alias"/>
             <input type="text" onChange={ (e) => this.setState({name: e.target.value}) } value={ this.state.name } placeholder="name"/>
-            <select  onChange={this.seturlpath} value={ this.state.type }>
-                <option selected="select" value="0">All</option>
+            <select  onChange={this.seturlpath} value={ this.state.type } >
+                <option value="0">All</option>
                 <option value="1">Student</option>
                 <option value="2">Faculty</option>
             </select>
