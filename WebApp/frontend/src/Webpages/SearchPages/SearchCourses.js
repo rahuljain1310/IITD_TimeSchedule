@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Query from '../QueryComponent/Query.js'
-import {Bu, ButtonttButton} from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
 
 export default class SearchCourses extends React.Component {
     constructor(props) {
