@@ -8,8 +8,11 @@ create_group="insert into groups(alias) values(%s)"
 
 insert_user="insert into users(alias,name) values(%s,%s)"
 
-assign_groupto_user="insert into usersgroups(userid,gid) (select userid,gid from users,groups where users.alias = %s and groups.alias = %s)"
+assign_groupto_user="insert into usersgroups values(%s,%s)"
 
 create_slot="insert into slotdetails (%s,%s,%s,%s)"
 
 create_event="select create_event(%s,%s,%s,%s)"
+
+update_webpage="update users set webpage = %s where users.alias = %s"
+update_groupedin="update curr_courses_of_student set groupedin = %s where entrynum = %s and code= %s"

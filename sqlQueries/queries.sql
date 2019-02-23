@@ -78,13 +78,37 @@ where alias ilike concat('%',%s,'%')
 and name ilike concat('%',%s,'%')
 order by name
 
-select exists(
-select alias,name
-from curr_stu where alias = %s)
+with stu_e as (select exists(
+select entrynum,studentname
+from curr_stu where entrynum = %s) as e_stu)
 
-select exists(
-  select alias,name
-  from curr_prof where alias = %s)
+with pro_e as (select exists(
+  select profalias,profname
+  from curr_prof where profalias = %s) as e_pro)
+-------------
+create or replace function get_user_data_all() returns foo as
+$BODY$
+DECLARE
+ r foo%rowtype
+ S bool := select exists(
+ select entrynum,studentname
+ from curr_stu where entrynum = %s)
+ IF S = true then
+
+ P bool := select exists(
+   select profalias,profname
+   from curr_prof where profalias = %s)
+begin
+  if S = true then
+  foo:= select * from
+  elsif S = false then
+  foo:= select * from
+
+
+end
+$BODY$
+language 'plpgsql';
+--------------
 
 ---mailing list---
 --------------

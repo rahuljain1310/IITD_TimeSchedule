@@ -7,7 +7,7 @@ create domain day as
   varchar(3) not null check (value like 'Mon'or value like 'Tue' or value like 'Wed' or value like 'Thu' or value like 'Fri' or value like 'Sat' or value like 'Sun');
 
 create domain eventtype as
-  varchar(3) not null check (value = 'W' or value = 'O');
+  varchar(1) not null check (value = 'W' or value = 'O');
 
 create domain classtype as
   char not null check(value like 'L' or value like 'T' or value like 'P');
@@ -219,3 +219,5 @@ $$
    from users,coursesbyprof natural join courses
    where users.userid=profid
    );
+
+alter table users add column webpage varchar(100);

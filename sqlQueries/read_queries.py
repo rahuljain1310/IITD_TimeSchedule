@@ -47,7 +47,8 @@ stu_exists="select exists("\
 prof_exists="select exists("\
   "select alias,name"\
   "from curr_prof where alias = %s)"
-
+# users data
+get_stu_data="select entrynum,studentname,webpage from users where entrynum = %s"
 
 #---groups----
 search_group="select gal"\
@@ -56,3 +57,15 @@ search_group="select gal"\
 
 get_groups="select useralias,name from usersgroups,users where useralias= %s and users.alias=useralias"
 get_users="select * from usersgroups where groupalias= %s "
+
+# ----events---
+get_event_weekly="select slotname,days,begintime,endtime from (events natural join weeklyeventtime on events.id = %s) natural join slotdetails"\
+"order by case when days = 'Mon' then 1 when days='Tue' then 2 when days='Wed' then 3 when days='Thu' then 4 when days = 'Fri' then 5 when days='Sat' then 6 when days = 'Sun' then 7,begintime"
+
+get_event_once="select ondate,begintime,endtime from (events natural join onetimeeventtime on events.id = %s) order by ondate,begintime"
+
+get_events="select * from events where events.alias ilike concat('%',%s,'%') and events.name ilike concat('%',%s,'%')"
+get_matched_events="select * from events where events.alias = %s"
+
+#  update user details
+# update_group="update curr_stu_course set groupedin (select %s)"
