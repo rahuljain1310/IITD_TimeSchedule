@@ -147,6 +147,20 @@ def findusers():
         cur.execute(rq.search_user,(alias,name))
         cur.commit()
     return jsonify({'results':cur.fetchall()})
+
+@app.route("/findevents/",methods = ['GET'])
+def findevents():
+    print("API Call for Finding Events")       ## Need to Work On this API
+    host = request.args.get('host')
+    name = request.args.get('name')
+    group = request.args.get('group')
+    # cur.execute(rq.search_group,alias)
+    # groups = cur.fetchall()
+    # print(course)
+    # cur.commit()
+    return jsonify({'results':cour})
+
+
 ## All directed to Index.html
 ## React Router Redirects to Respective Components
 @app.route("/", methods=['GET', 'POST'])
@@ -173,4 +187,5 @@ def redirect(x):
 if __name__ == "__main__":
     app.config['DEBUG'] = True
     app.run()
+    
 # extrra functions

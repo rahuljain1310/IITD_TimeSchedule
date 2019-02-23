@@ -16,7 +16,7 @@ export default class SearchEvents extends React.Component {
     }
 
     queryEvents = (e) => {
-        let cq = "?host="+this.state.host+'&name='+this.state.name
+        let cq = "?host="+this.state.host+'&name='+this.state.name+'&group='+this.state.group
         fetch('http://localhost:5000/findevents/'+cq, {
             method: 'GET',
             dataType: 'json'
