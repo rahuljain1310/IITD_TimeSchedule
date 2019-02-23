@@ -22,7 +22,7 @@ search_user="select alias,name"\
 "from users"\
 "where alias ilike concat('%%',%s,'%%') and name ilike concat('%%',%s,'%%') order by name"
 
-search_stu="select alias,name from curr_stu where alias ilike concat('%%',%s,'%%') and name ilike concat('%',%s,'%') order by name"
+search_stu="select alias,name from curr_stu where alias ilike concat('%%',%s,'%%') and name ilike concat('%%',%s,'%%') order by name"
 
 search_prof="select alias,name"\
 "from curr_prof"\
@@ -61,7 +61,7 @@ get_all_events = "with groups_in as ("\
 #---groups----
 search_group="select gal"\
 "from groups"\
-"where gal ilike concat('%',%s,'%')"
+"where gal ilike concat('%%',%s,'%%')"
 
 get_groups="select useralias,name from usersgroups,users where useralias= %s and users.alias=useralias"
 get_users="select * from usersgroups where groupalias= %s "

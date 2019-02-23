@@ -7,7 +7,7 @@ get_oldco="select * from courses where code = %s and year = %s and semester = %s
 get_co="select * from curr_courses where code = %s"
 
 
-allco_slot="select code,name,slot,credits from courses where code ilike concat('%',%s,'%') and name ilike concat('%',%s,'%') and slot = %s and year = %s and semester = %s"
+allco_slot="select code,name,slot,credits from courses where code ilike concat('%',%s,'%') and name ilike concat('%%',%s,'%%') and slot = %s and year = %s and semester = %s"
 
 allco="select code,name,slot,credits from courses where code ilike concat('%',%s,'%') and name ilike concat('%',%s,'%') and year = %s and semester = %s"
 
@@ -28,14 +28,14 @@ oldco_prof="select courses_by_prof.code,courses_by_prof.name as coursename,slot,
 # ---users details----
 search_user="select alias,name"\
 "from users"\
-"where alias ilike concat('%',%s,'%') and name ilike concat('%',%s,'%') order by name"
+"where alias ilike concat('%%',%s,'%%') and name ilike concat('%%',%s,'%%') order by name"
 
-search_stu="select alias,name from curr_stu where alias ilike concat('%',%s,'%') and name ilike concat('%',%s,'%') order by name"
+search_stu="select alias,name from curr_stu where alias ilike concat('%%',%s,'%%') and name ilike concat('%%',%s,'%%') order by name"
 
 search_prof="select alias,name"\
 "from curr_prof"\
-"where alias ilike concat('%',%s,'%')"\
-"and name ilike concat('%',%s,'%')"\
+"where alias ilike concat('%%',%s,'%%')"\
+"and name ilike concat('%%',%s,'%%')"\
 "order by name"
 
 # defined as currently doing some course
@@ -69,7 +69,7 @@ get_weekly_timetable =
 #---groups----
 search_group="select gal"\
 "from groups"\
-"where gal ilike concat('%',%s,'%')"
+"where gal ilike concat('%%',%s,'%%')"
 
 get_groups="select useralias,name from usersgroups,users where useralias= %s and users.alias=useralias"
 get_users="select * from usersgroups where groupalias= %s "
@@ -86,7 +86,7 @@ get_eventtime_once="select ondate,begintime,endtime from (events natural join on
 
 
 # events page
-get_events="select * from events where events.alias ilike concat('%',%s,'%') and events.name ilike concat('%',%s,'%')"
+get_events="select * from events where events.alias ilike concat('%%',%s,'%%') and events.name ilike concat('%%',%s,'%%')"
 
 
 #  get students slots
