@@ -84,7 +84,7 @@ drop table groups1;
 
 create table usersgroups1 (userid int,gid int);
 \copy usersgroups1 from '/home/vishwajeet/Desktop/COL362/IITD_TimeSchedule/finaltables/finallast/usersingroup.csv' delimiter '$';
-insert into usersgroups (select alias as useralias,alias as groupalias from usersgroup1 natural join users natural join groups order by groupalias,useralias)
+insert into usersgroups (select user.alias as useralias,groups.alias as groupalias from usersgroups1,users,groups where usersgroups1.gid = groups.gid and users.userid = usersgroups1.userid order by groupalias,useralias);
 drop table usersgroups1;
 
 \copy slotdetails from '/home/vishwajeet/Desktop/COL362/IITD_TimeSchedule/finaltables/finallast/slotdetails.csv' delimiter '$';

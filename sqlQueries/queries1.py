@@ -15,6 +15,7 @@ import json
 from flask import request, jsonify
 from flask import Flask, render_template
 from flask_cors import CORS
+
 conn = ps.connect("dbname=postgres user=postgres password=postgres")
 cur = conn.cursor()
 get_oldco="select * from courses where code = %s and year = %s and sem = %s"
