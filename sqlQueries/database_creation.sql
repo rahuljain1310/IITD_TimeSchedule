@@ -12,7 +12,7 @@ create domain eventtype as
 create domain classtype as
   char not null check(value like 'L' or value like 'T' or value like 'P');
 
-create table users(userid serial primary key,alias varchar(30) unique not null,name varchar(70));
+create table users(userid serial primary key,alias varchar(30) unique not null,name varchar(70),webpage varchar(100),password varchar(30));
 
 create table groups(gid serial primary key, alias varchar(30) not null unique);
 
@@ -26,6 +26,10 @@ create index weeklyeventtime_id_key on weeklyeventtime(id);
 create table onetimeeventtime(id int references events(id),ondate date,begintime time(0),endtime time(0));
 create index onetimeeventtime_id_key on onetimeeventtime(id);
 create index onetimeeventtime_time_key on onetimeeventtime(ondate,begintime);
+
+create table groupshost(groupalias varchar(30) references groups(alias),useralias varchar(30) references users(alias),unique(groupalias,useralias));
+create index groupshost_id_key on groupshost(groupalias);
+create index groupshost_useralias_key on groupshost(useralias);
 
 create table slotdetails(slotname varchar(4),days day not null,begintime time(0) not null,endtime time(0) not null);
 
@@ -84,7 +88,7 @@ drop table groups1;
 
 create table usersgroups1 (userid int,gid int);
 \copy usersgroups1 from '/home/vishwajeet/Desktop/COL362/IITD_TimeSchedule/finaltables/finallast/usersingroup.csv' delimiter '$';
-insert into usersgroups (select user.alias as useralias,groups.alias as groupalias from usersgroups1,users,groups where usersgroups1.gid = groups.gid and users.userid = usersgroups1.userid order by groupalias,useralias);
+insert into usersgroups (select users.alias as useralias,groups.alias as groupalias from usersgroups1,users,groups where usersgroups1.gid = groups.gid and users.userid = usersgroups1.userid order by groupalias,useralias);
 drop table usersgroups1;
 
 \copy slotdetails from '/home/vishwajeet/Desktop/COL362/IITD_TimeSchedule/finaltables/finallast/slotdetails.csv' delimiter '$';
@@ -166,36 +170,45 @@ create or replace function insert_prof_in_course(alias1 varchar(30),code1 varcha
   returns void as
 $$
 BEGIN
-insert into curr_prof_course (
+  insert into curr_prof_course (
   select userid,curr_courses.courseid
   from curr_courses,users
   where users.alias = alias1 and curr_courses.code = code1
-);
+  );
 
-insert into profbycourse (
+  insert into profbycourse (
   select userid,courses.courseid
   from courses,users
   where users.alias = alias1 and courses.code = code1
   and year = year and semester = sem
-);
+  );
 END
 $$
  LANGUAGE 'plpgsql';
 
 
-create or replace function create_event(alias1 varchar(30),name1 varchar(120),type1 varchar(1),linkto varchar(120))
-  returns void as
+create or replace function create_event(useralias1 varchar(30),alias1 varchar(30),name1 varchar(120),linkto varchar(120))
+  returns bool as
 $$
+  DECLARE
+    verify bool:='t';
+    group_exists bool;
   begin
-insert into groups(alias) (with bool1 as (select exists
-    (select alias from groups where alias=alias1) as tmp2)
-   select alias1 from bool1 where bool1.tmp2 = 'f');
-
-insert into events(alias,name,type,linkto)
-  values (alias1,name1,type1,linkto);
+    group_exists:= exists(select * from groups where alias = alias1);
+    if group_exists = 't' then
+      verify:= exists(select * from groupshost where groupalias = alias1 and useralias = useralias1);
+      if verify = 'f' then return 'f'; end if;
+    end if;
+    insert into groups(alias) values(alias1);
+    insert into groupshost values (alias1,useralias1);
+    insert into events(alias,name,linkto)
+    values (alias1,name1,linkto);
+    return 't';
 END
 $$
  LANGUAGE 'plpgsql';
+
+
 
  create view curr_courses_of_student as
    (select curr_stu.entrynum as entrynum,curr_stu.studentname as studentname,code,curr_courses.name as coursename,curr_courses.type,slot,groupedin,credits,lec_dur,tut_dur,prac_dur,registered,strength
@@ -221,3 +234,35 @@ $$
    );
 
 alter table users add column webpage varchar(100);
+alter table curr_courses add column webpage varchar(100);
+
+  create or replace function get_day(da date) returns varchar(3) as
+    $$
+    declare
+      d int := extract(dow from da);
+    begin
+      if d = 0 then return 'Sun';
+      elsif d = 1 then return 'Mon';
+      elsif d = 2 then return 'Tue';
+      elsif d = 3 then return 'Wed';
+      elsif d = 4 then return 'Thu';
+      elsif d = 5 then return 'Fri';
+      elsif d = 6 then return 'Sat';
+      else return 'Non';
+      end if;
+    end
+    $$
+    language 'plpgsql';
+
+create or replace function assign_groupto_user(hosta1 varchar(30),groupa1 varchar(30),usera1 varchar(30))
+  returns bool as
+  $$
+  declare
+  verify bool:= exists(select * from groupshost where groupalias = groupa1 and useralias = hosta1);
+  begin
+    if verify='f' then return 'f'; end if;
+    insert into usersgroups values(usera1,groupa1);
+    return 't';
+  end
+  $$
+  language 'plpgsql'
