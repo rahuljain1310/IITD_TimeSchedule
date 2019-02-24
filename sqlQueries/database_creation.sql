@@ -60,12 +60,12 @@ create table curr_courses(courseid serial primary key,code varchar(8) unique not
   check (credits = lec_dur+tut_dur+prac_dur/2 ),
   strength int, registered int);
 
-create table curr_stu_course(entrynum varchar(30) references users(alias),courseid int references curr_courses(courseid), unique(entrynum,courseid));
-create index curr_stu_course_courseid_key on curr_stu_course(courseid);
+create table curr_stu_course(entrynum varchar(30) references users(alias),coursecode int references curr_courses(code), unique(entrynum,coursecode));
+create index curr_stu_course_coursecode_key on curr_stu_course(coursecode);
 create index curr_stu_coures_entrynum_key on curr_stu_course(entrynum);
-create table curr_prof_course(profalias varchar(30) references users(alias), courseid int references curr_courses(courseid),unique(profalias,courseid));
+create table curr_prof_course(profalias varchar(30) references users(alias),coursecode int references curr_courses(code),unique(profalias,coursecode));
 create index curr_prof_course_profalias_key on curr_prof_course(profalias);
-create index curr_prof_course_courseid_key on curr_prof_course(courseid);
+create index curr_prof_course_coursecode_key on curr_prof_course(coursecode);
 
 create table curr_prof(profalias varchar(30) primary key,profname varchar(70));
 create table curr_stu(entrynum varchar(30) primary key,studentname varchar(70));
@@ -116,129 +116,22 @@ insert into curr_courses(code,name,slot,type,credits,lec_dur,
   courses);
 
   insert into curr_prof_course (select alias as profalias,
-    courseid from coursesbyprof,users
-    where coursesbyprof.profid=users.userid);
+    code from coursesbyprof,users,curr_courses
+    where coursesbyprof.profid=users.userid
+  and courses.courseid=coursesbyprof.courseid);
 
   insert into curr_stu_course (select alias as entrynum,courseid
     from studentsincourse,users
     where users.userid = studentsincourse.studentid);
 
   alter table curr_stu_course add column groupedin int;
-
   update curr_stu_course set groupedin = 1;
 
   insert into curr_stu (select distinct entrynum,name from users,curr_stu_course where alias=entrynum);
   insert into curr_prof (select distinct profalias,name from users,curr_prof_course where alias=profalias);
 
 
-CREATE OR REPLACE FUNCTION insert_new_course(code varchar(8),name varchar(120),slot varchar(4),type varchar(10),credits int,lec_dur int,
- tut_dur int,prac_dur int,strength int,registered int,year int default :curr_year, semester int default :curr_sem) RETURNS VOID AS
-$$
-declare groupexists bool:='t';
-BEGIN
-    groupexists:=  exists(select * from groups where alias = code);
-    if (groupexists='f') then
-    INSERT INTO groups(alias) values(code);
-    end if;
-   INSERT INTO courses(code,name,slot,type,credits,lec_dur,
-     tut_dur,prac_dur,strength,registered,year,semester) VALUES (code,name,slot,type,credits,lec_dur,
-       tut_dur,prac_dur,strength,registered,year,semester);
-   INSERT INTO curr_courses(code,name,slot,type,credits,lec_dur,
-     tut_dur,prac_dur,strength,registered) VALUES (code,name,slot,type,credits,lec_dur,
-       tut_dur,prac_dur,strength,registered);
 
-END
-$$
- LANGUAGE 'plpgsql';
-
-create or replace function insert_course() returns trigger as
-  $BODY$
-  begin
-    INSERT INTO
-      courses(code,name,slot,type,credits,lec_dur,
-        tut_dur,prac_dur,strength,registered) VALUES (new.code,new.name,new.slot,new.type,new.credits,new.lec_dur,new.tut_dur,new.prac_dur,new.strength,new.registered,TG_ARGV[0],TG_ARGV[1]);
-    RETURN new;
-  end;
-  $BODY$
-  language 'plpgsql';
-
-CREATE TRIGGER new_course_insert AFTER INSERT ON curr_courses
-execute procedure insert_course(2018,2);
-
-create or replace function change_course_trigger(year int,sem int) returns void as
-  $$
-    BEGIN
-    drop trigger if exists new_course_insert on curr_courses;
-    CREATE TRIGGER new_course_insert BEFORE INSERT ON curr_courses
-    execute procedure insert_course(year,semester);
-    END;
-  $$
-language 'plpgsql';
-
-CREATE TRIGGER stu_add
-
-create or replace function insert_stu_in_course(alias1 varchar(30),code1 varchar(8),grouped int,year int default :curr_year, sem int default :curr_sem)
- returns void as
-$$
-BEGIN
-insert into curr_stu_course (
- select userid,curr_courses.courseid
- from curr_courses,users
- where users.alias = alias1 and curr_courses.code = code1
- and groupedin = grouped
-);
-
-insert into studentsincourse(
- select userid,courses.courseid
- from courses,users
- where users.alias = alias1 and courses.code = code1
- and year = year and semester = sem
-);
-END
-$$
-LANGUAGE 'plpgsql';
-
-create or replace function insert_prof_in_course(alias1 varchar(30),code1 varchar(8),year int default :curr_year, sem int default :curr_sem)
-  returns void as
-$$
-BEGIN
-  insert into curr_prof_course (
-  select userid,curr_courses.courseid
-  from curr_courses,users
-  where users.alias = alias1 and curr_courses.code = code1
-  );
-
-  insert into profbycourse (
-  select userid,courses.courseid
-  from courses,users
-  where users.alias = alias1 and courses.code = code1
-  and year = year and semester = sem
-  );
-END
-$$
- LANGUAGE 'plpgsql';
-
-
-create or replace function create_event(useralias1 varchar(30),alias1 varchar(30),name1 varchar(120),linkto varchar(120))
-  returns bool as
-$$
-  DECLARE
-    verify bool:='t';
-    group_exists bool;
-  begin
-    group_exists:= exists(select * from groups where alias = alias1);
-    if group_exists = 't' then
-      verify:= exists(select * from groupshost where groupalias = alias1 and useralias = useralias1);
-      if verify = 'f' then return 'f'; end if;
-    end if;
-    insert into groups(alias) values(alias1);
-    insert into groupshost values (alias1,useralias1);
-    insert into events(alias,name,linkto)
-    values (alias1,name1,linkto);
-    return 't';
-END
-$$
- LANGUAGE 'plpgsql';
 
 
 
@@ -266,35 +159,5 @@ $$
    );
 
 alter table users add column webpage varchar(100);
+alter table users add column password varchar(30);
 alter table curr_courses add column webpage varchar(100);
-
-  create or replace function get_day(da date) returns varchar(3) as
-    $$
-    declare
-      d int := extract(dow from da);
-    begin
-      if d = 0 then return 'Sun';
-      elsif d = 1 then return 'Mon';
-      elsif d = 2 then return 'Tue';
-      elsif d = 3 then return 'Wed';
-      elsif d = 4 then return 'Thu';
-      elsif d = 5 then return 'Fri';
-      elsif d = 6 then return 'Sat';
-      else return 'Non';
-      end if;
-    end
-    $$
-    language 'plpgsql';
-
-create or replace function assign_groupto_user(hosta1 varchar(30),groupa1 varchar(30),usera1 varchar(30))
-  returns bool as
-  $$
-  declare
-  verify bool:= exists(select * from groupshost where groupalias = groupa1 and useralias = hosta1);
-  begin
-    if verify='f' then return 'f'; end if;
-    insert into usersgroups values(usera1,groupa1);
-    return 't';
-  end
-  $$
-  language 'plpgsql'
