@@ -162,7 +162,7 @@ create or replace function insert_course() returns trigger as
   $BODY$
   language 'plpgsql';
 
-CREATE TRIGGER new_course_insert BEFORE INSERT ON curr_courses
+CREATE TRIGGER new_course_insert AFTER INSERT ON curr_courses
 execute procedure insert_course(2018,2);
 
 create or replace function change_course_trigger(year int,sem int) returns void as
@@ -174,6 +174,8 @@ create or replace function change_course_trigger(year int,sem int) returns void 
     END;
   $$
 language 'plpgsql';
+
+CREATE TRIGGER stu_add
 
 create or replace function insert_stu_in_course(alias1 varchar(30),code1 varchar(8),grouped int,year int default :curr_year, sem int default :curr_sem)
  returns void as
