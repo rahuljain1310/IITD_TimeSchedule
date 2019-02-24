@@ -201,7 +201,7 @@ def event_details():
     event_weekly = cur.fetchall()
     cur.execute(rq.get_eventtime_once,(eventid,))
     event_timeonce = cur.fetchall()
-    return jsonify({'e_group':event_group,'e_name':event_name,'e_linkto':event_linkto,'e_users':event_users,'e_weekly':event_weekly})
+    return jsonify({'e_id':eventid,'e_group':event_group,'e_name':event_name,'e_linkto':event_linkto,'e_users':event_users,'e_weekly':event_weekly})
 
 ## FIND API
 @app.route("/findcourses/",methods = ['GET'])

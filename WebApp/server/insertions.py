@@ -39,5 +39,6 @@ create_slot="insert into slotdetails (%s,%s,%s,%s)"
 # events
 insert_event="insert into events(alias,name,linkto) values(%s,%s,%s)"
 copy_users_to_group="insert into usersgroups (select useralias,%s from usersgroups where groupalias = %s )"
+set_eventtimeonce="insert into onetimeeventtime values(%s,%s,%s)"
 # update year semester
 update_year_sem="select update_current_year_semester(%s,%s)"
