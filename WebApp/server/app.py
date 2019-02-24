@@ -32,29 +32,62 @@ CORS(app)
 
 
 ## INSERT API's
+@app.route("/")
+def donothing:
+@app.route("/update_yearsem",methods=['GET'])
+def updatesession:
+    curr_sem = 1+ (curr_sem % 2)
+    if (curr_sem=1):
+        curr_year=curr_year+1
+    cur.execute(update_year_sem,(curr_year,curr_sem))
+@app.route("/add_slot/",methods=['GET'])
+def addslot:
+    slotcode = request.args.get('slot')
+    begintime = request.args.get('begintime')
+    endtime = request.args.get('endtime')
+    day = request.args.get('day')
+    try:
+        cur.execute(create_slot,(slotcode,day,begintime,endtime))
+    except:
+        pass
+    conn.commit()
+    return jasonify({'results':''})
 @app.route("/update_course/",methods=['GET'])
 def updatecourse():
     code = request.args.get('code')
-    change = request.args.get('name')
+    name = request.args.get('name')
+    strength = request.args.get('strength')
+    webpage = request.args.get('webpage')
     type = request.args.get('type')
     group = request.args.get('group')
     # 0 indicates change name
     # 1 indicate register student
-    #  2 indicates register prof
-    # 3 indicates update webpage
-    # 4 indicates change grouped in
+    # 5 indicates
     try:
         if (type=='0'):
-            cur.execute(iq.update_course_name,(code,change))
+            if (name!=''):
+                cur.execute(iq.update_course_name,(name,code))
+                conn.commit()
+            if (strength!='')
+                try:
+                    cur.execute(iq.change_strength,(int(strength),code))
+                    conn.commit()
+                except:
+                    pass
+            if (webpage!='')
+                cur.execute(iq.change_coursepage,(webpage,code))
+                conn.commit()
         elif (type=='1'):
-            cur.execute(iq.register_student,(code,change))
-            cur.execute(iq.update_groupedin,(group,change,code))
+            try:
+                cur.execute(iq.register_student,(code,name))
+                conn.commit()
+            except:
+                pass
+            cur.execute(iq.update_groupedin,(group,name,code))
+            conn.commit()
         elif (type=='2'):
-            cur.execute(iq.assign_prof,(code,change))
-        elif (type=='3'):
-            cur.execute(iq.update_course_webpage,(code,change))
-        elif (type=='4'):
-            cur.execute(iq.update_groupedin,(group,change,code))
+            cur.execute(iq.assign_prof,(code,name))
+            conn.commit()
         else:
             pass;
         conn.commit()
@@ -80,8 +113,41 @@ def updateuser():
 @app.route("/update_event/",methods=['GET'])
 def updateevent():
     type = request.args.get('type')
-    # 0 for update
-
+    # 0 for add weekly time, 1 for add exact date and
+    eventid = request.args.get('eventid')
+    ondate = request.args.get('ondate')
+    begintime = request.args.get('begintime')
+    endtime = request.args.get('endtime')
+    venue = request.args.get('venue')
+    slot = request.args.get('slot')
+    try:
+        if type==0:
+            cur.execute(iq.set_eventtimeweekly,(eventid,slot,venue))
+        elif type==1:
+            cur.execute(iq.set_eventtimeonce,(eventid,ondate,begintime,endtime,venue))
+        else:
+            raise Exception()
+        return jasonify({'results':})
+    except:
+        return jasonify({'results':/8+})
+@app.route("/ins_user",methods=['GET'])
+def insertuser():
+    alias = requset.args.get('alias')
+    name = request.args.get('name')
+    webpage = request.args.get('webpage')
+    try:
+        cur.execute(insert_user,(alias,name,webpage))
+        return jasonify({'result':'inserted'})
+    except:
+        return jasonify({'result':''})
+@app.route("/update_user",methods=['GET'])
+def updateuser():
+    alias = request.args.get('alias')
+    name = request.args.get('name')
+    webpage = request.args.get('webpage')
+    cur.execute(update_user_name,(name,alias))
+    cur.execute(update_user_webpage,(webpage,alias))
+    return jasonify({})
 @app.route("/ins_course/",methods=['GET'])
 def insertcourse():
     code = request.args.get('code')
@@ -110,7 +176,6 @@ def insertevent():
     # print(param)
     # return null
     return jsonify({'results':[{"a":1,"b":1}]})
-@app.route("/ins_event/",methods=['GET'])
 
 ## DETAIL API's
 @app.route("/course_details/",methods = ['GET'])
@@ -158,25 +223,37 @@ def course_details():
 @app.route("/user_details/",methods = ['GET'])
 def user_details():
     alias = request.args.get('alias')
-    name = request.args.get('name')
-    type = request.args.get('type')
-    group = request.args.get('code')
-    if (group==''):
-        if (type=='0'):
-            cur.execute(rq.search_user,(alias,name))
-        elif (type=='1'):
-            cur.execute(rq.search_stu,(alias,name))
-        else:
-            cur.execute(rq.search_prof,(alias,name))
-        ## Got the only argument now send the json only
+    cur.execute(rq.get_user_data,(alias,))
+    userdata= cur.fetchall()
+
+    username = userdata[0][0]
+    userwebpage = userdata[0][0]
+    cur.execute(rq.get_events_hosted,(alias,))
+    events_hosted = cur.fetchall()
+    cur.execute(rq.get_all_events,(alias,))
+    all_events = cur.fetchall()
+    cur.execute(rq.get_groups,(alias,))
+    in_groups = cur.fetchall()
+    cur.execute(rq.co_stu,(alias,))
+    cur_course_registered = cur.fetchall()
+    cur.execute(rq.oldco_stu,(alias,))
+    old_courses_registered = cur.fetchal()
+    cur.execute(rq.co_prof,(alias,))
+    cur_courses_taken = cur.fetchall()
+    cur.execute(rq.oldco_prof,(alias,))
+    old_courses_taken = cur.fetchall()
+
+    if (len(cur_courses_registered)!=0):
+        type1 = 'cur_stu'
+    elif (len(old_courses_registered)!=0):
+        type1 = 'old_stu'
+    elif (len(cur_courses_taken)!=0):
+        type1 = 'cur_prof'
+    elif (len(old_courses_taken)!=0):
+        type1 = 'old_prof'
     else:
-        if (type=='0'):
-            cur.execute(rq.search_user_withgroup,(alias,name,group))
-        elif (type=='1'):
-            cur.execute(rq.search_stu_with_group,(alias,name,group))
-        else:
-            cur.execute(rq.search_prof_withgroup,(alias,name,group))
-    return jsonify({'results':cur.fetchall()})
+        type1 = 'otheruser'
+    return jsonify({'alias':alias,'username':username,'userwebpage':userwebpage,'cur_course_registered':cur_courses_registered,'old_courses_registered':old_courses_registered,'cur_courses_taken':cur_courses_taken,'old_courses_taken':old_courses_taken,'events_hosted':events_hosted,'all_events':all_events,'type1':type1,'in_groups':in_groups})
 
 @app.route("/usergroup_details/",methods = ['GET'])
 def usergroup_details():

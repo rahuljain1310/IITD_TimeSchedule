@@ -183,7 +183,7 @@ create or replace function change_name() returns trigger as
 create trigger chang_name after update of name on curr_courses
   for each row execute procedure change_name(2018,2);
 
-  create or replace function update_current_year_semester(year int,sem int) returns void as
+create or replace function update_current_year_semester(year int,sem int) returns void as
     $$
     begin
       drop trigger if exists chang_name on curr_courses;
@@ -193,14 +193,43 @@ create trigger chang_name after update of name on curr_courses
       create trigger chang_name after update of name on curr_courses
         for each row execute procedure change_name(year,sem);
       drop trigger if exists stu_add on curr_stu_course;
+      create trigger chang_strr after update of name on curr_courses
+        for each row execute procedure change_strength(year,sem);
+      drop trigger if exists stu_add on curr_stu_course;
       CREATE TRIGGER stu_add AFTER INSERT ON curr_stu_course
-      execute procedure insert_stu_course(year,sem);
+      for each row execute procedure insert_stu_course(year,sem);
       drop trigger if exists prof_add on curr_prof_course;
       CREATE TRIGGER prof_add AFTER INSERT ON curr_prof_course
-      execute procedure insert_prof_course(year,sem);
+      for each row execute procedure insert_prof_course(year,sem);
       drop trigger if exists new_course_insert on curr_courses;
       CREATE TRIGGER new_course_insert AFTER INSERT ON curr_courses
-      execute procedure insert_course(year,semester);
+      for each row execute procedure insert_course(year,sem);
+      drop trigger if exists deregister_student on curr_stu_course;
+      CREATE TRIGGER deregister_student after delete on curr_stu_course
+      for each row execute procedure dreg_stu(year,sem);
+      truncate curr_stu,curr_prof,curr_courses,curr_stu_course,curr_prof_course;
     end;
     $$
     language 'plpgsql';
+create or replace function dreg_stu() returns trigger as
+  $$
+  begin
+    update curr_courses set registered = registered -1;
+    delete from studentsincourse where studentid = (select userid from users where users.alias = old.entrynum limit 1) and courseid = (select courseid from courses where code=old.coursecode and year = cast(TG_ARGV[0] as int) and sem = cast(TG_ARGV[1] as int) limit 1);
+    return old;
+  end;
+  $$
+  language 'plpgsql';
+create trigger deregister_student after delete on curr_stu_course
+  for each row execute procedure dreg_stu(2018,2);
+
+  create or replace function change_strength() returns trigger as
+    $$
+    begin
+    update courses set strength = new.strength where code = new.code and year = cast(TG_ARGV[0] as int) and semester = cast(TG_ARGV[1] as int);
+      return new;
+    end;
+    $$
+    language 'plpgsql';
+create trigger change_strr after update on curr_courses
+  for each row execute procedure change_strength(2018,2);
