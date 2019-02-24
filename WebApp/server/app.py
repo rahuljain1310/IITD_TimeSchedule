@@ -43,8 +43,33 @@ cour = [
 ## API's
 @app.route("/course_details/",methods = ['GET'])
 def course_details():
-    code = request.args.get('code')             ## Got the only argument now send the json only
-    return jsonify({'results':cour})
+    code = request.args.get('code')
+    # year = request.args.get('year')
+    # semester = request.args.get('semester')
+    # if (year=='')
+
+    cur1 = conn.cursor()
+    cur2 = conn.cursor()
+    cur1.execute(rq.get_all_co,(code))
+    cur2.execute(rq.get_co,(code))
+    oldcourses = cur1.fetchall()
+    curcourse = cur2.fetchall()[0]
+    # curcode = curcourse[0][1]
+    # curname = curcourse[0][2]
+    # curslot = curcourse[0][3]
+    # curtype = curcourse[0][4]
+    # curcredits = curcourse[0][5]
+    # curlec = curcourse[0][6]
+    # curtut = curcourse[0][7]
+    # curprac = curcourse[0][8]
+    # curstrength = curcourse[0][9]
+    # curregist = curcourse[0][10]
+    cur1.execute(rq.get_profs_courses,(code))
+    profs = cur1.fetchall()
+    cur1.execute(rq.get_stu_course,(code))
+    registered = cur1.fetchall()
+
+    return jsonify({'oldcourse':cour,'coursedetails':curcourse,'profs':prof,'students':registered})
 
 # @app.route("/student_details/",methods = ['GET'])
 # def student_details():
@@ -58,12 +83,31 @@ def course_details():
 
 @app.route("/user_details/",methods = ['GET'])
 def user_details():
-    alias = request.args.get('alias')             ## Got the only argument now send the json only
-    return jsonify({'results':cour})
+    alias = request.args.get('alias')
+    name = request.args.get('name')
+    type = request.args.get('type')
+    group = request.args.get('code')
+    if (group==''):
+        if (type=='0'):
+            cur.execute(rq.search_users,(alias,name))
+        elif (type=='1'):
+            cur.execute(rq.search_stu,(alias,name))
+        else
+            cur.execute(rq.search_prof,(alias,name))
+        ## Got the only argument now send the json only
+    else:
+        if (type=='0'):
+            cur.execute(rq.search_user_withgroup,(alias,name,group))
+        elif (type=='1'):
+            cur.execute(rq.search_stu_with_group,(alias,name,group))
+        else
+            cur.execute(rq.search_prof_with_group,(alias,name,group))
+    return jsonify({'results':cur.fetchall()})
 
 @app.route("/usergroup_details/",methods = ['GET'])
 def usergroup_details():
-    groupinput = request.args.get('groupinput')   ## Got the only argument now send the json only
+    groupinput = request.args.get('groupinput')
+       ## Got the only argument now send the json only
     cur.execute("select * from courses limit 20")
     course = cur.fetchall()
     print(course)
@@ -71,7 +115,8 @@ def usergroup_details():
 
 @app.route("/event_details/",methods = ['GET'])
 def event_details():
-    event = request.args.get('event')   ## Got the only argument now send the json only
+    eventid = request.args.get('eventid')   ## Got the only argument now send the json only
+    cur.execute()
     return jsonify({'results':cour})
 
 @app.route("/findcourses/",methods = ['GET'])
@@ -139,9 +184,9 @@ def findusers():
     print(alias+name+usertype)
     # query_string = "select * from demo limit 20"   ## Need to Work On this API .. Replace this query
 
-    if usertype ==1:
+    if usertype =='1':
         cur.execute(rq.search_stu,(alias,name))
-    elif usertype ==2:
+    elif usertype =='2':
         cur.execute(rq.search_prof,(alias,name))
     else:
         cur.execute(rq.search_user,(alias,name))
@@ -151,14 +196,16 @@ def findusers():
 @app.route("/findevents/",methods = ['GET'])
 def findevents():
     print("API Call for Finding Events")       ## Need to Work On this API
-    host = request.args.get('host')
+    # host = request.args.get('host')
     name = request.args.get('name')
     group = request.args.get('group')
-    # cur.execute(rq.search_group,alias)
+
+    cur.execute(rq.search_events,(group,name))
+    outtarray = cur.fetchall()
     # groups = cur.fetchall()
     # print(course)
     # cur.commit()
-    return jsonify({'results':cour})
+    return jsonify({'results':outtarray})
 
 
 ## All directed to Index.html
@@ -187,5 +234,5 @@ def redirect(x):
 if __name__ == "__main__":
     app.config['DEBUG'] = True
     app.run()
-    
+
 # extrra functions
