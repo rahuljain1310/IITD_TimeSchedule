@@ -29,16 +29,7 @@ CORS(app)
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
 # db.init_app(app)
-cour = [
-    {
-        "name": "MATHS",
-        "code": "MTL106",
-    },
-    {
-        "name": "NOL",
-        "code": "COL",
-    }
-]
+
 
 ## API's
 @app.route("/course_details/",methods = ['GET'])
@@ -69,7 +60,7 @@ def course_details():
     cur1.execute(rq.get_stu_course,(code))
     registered = cur1.fetchall()
 
-    return jsonify({'oldcourse':cour,'coursedetails':curcourse,'profs':prof,'students':registered})
+    return jsonify({'oldcourse':oldcourses,'coursedetails':curcourse,'profs':profs,'students':registered})
 
 # @app.route("/student_details/",methods = ['GET'])
 # def student_details():
@@ -106,18 +97,30 @@ def user_details():
 
 @app.route("/usergroup_details/",methods = ['GET'])
 def usergroup_details():
-    groupinput = request.args.get('groupinput')
+    alias = request.args.get('groupinput')
        ## Got the only argument now send the json only
-    cur.execute("select * from courses limit 20")
-    course = cur.fetchall()
-    print(course)
-    return jsonify({'results':cour})
+    cur.execute(rq.get_users,(alias))
+    users = cur.fetchall()
+    cur.execute(rq.get_events,(alias))
+    events = cur.fetchall()
+    # print(course)
+    return jsonify({'groupalias':alias,'users':users,'events':events})
 
 @app.route("/event_details/",methods = ['GET'])
 def event_details():
     eventid = request.args.get('eventid')   ## Got the only argument now send the json only
-    cur.execute()
-    return jsonify({'results':cour})
+    cur.execute(rq.get_exact_event,eventid)
+    eventdetails = cur.fetchall()[0]
+    event_group = eventdetails[0]
+    event_name = eventdetails[1]
+    event_linkto = eventdetails[2]
+    cur.execute(rq.get_users,event_group)
+    event_users = cur.fetchall()
+    cur.execute(get_eventtime_weekly,(eventid))
+    event_weekly = cur.fetchall()
+    cur.execute(get_evemttime_once,(eventid))
+    event_timeonce = cur.fetchall()
+    return jsonify({'e_group':event_group,'e_name':event_name,'e_linkto':event_linkto,'e_users':event_users,'e_weekly':event_weekly})
 
 @app.route("/findcourses/",methods = ['GET'])
 def findcourses():
@@ -172,7 +175,7 @@ def findusergroups():
     cur.execute(rq.search_group,alias)
     groups = cur.fetchall()
     # print(course)
-    cur.commit()
+
     return jsonify({'results':groups})
 
 @app.route("/findusers/",methods = ['GET'])

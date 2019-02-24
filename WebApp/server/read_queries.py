@@ -80,10 +80,10 @@ search_group="select gal "\
 get_groups="select useralias,name from usersgroups,users where useralias= %s and users.alias=useralias"
 get_users="select * from usersgroups where groupalias= %s "
 
-get_events="select id,alias,name from events where alias = %s"
+get_events="select id,name,linkto from events where alias = %s"
 
 # ----events---
-get_exact_event="select * from events where events.id = %s"
+get_exact_event="select alias,name,linkto from events where events.id = %s"
 
 get_eventtime_weekly="select slotname,days,begintime,endtime from (events natural join weeklyeventtime on events.id = %s) natural join slotdetails "\
 "order by case when days = 'Mon' then 1 when days='Tue' then 2 when days='Wed' then 3 when days='Thu' then 4 when days = 'Fri' then 5 when days='Sat' then 6 when days = 'Sun' then 7,begintime"
