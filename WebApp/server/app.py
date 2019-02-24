@@ -259,13 +259,9 @@ def findusergroups():
     print("API Call for Finding Groups")       ## Need to Work On this API
     alias1 = request.args.get('groupalias')
     print(alias1)
-    # print(code)
-
     cur.execute(rq.search_group,(alias1,))
-
-
     groups = cur.fetchall()
-    # print(course)
+    print(groups)
     conn.commit()
     return jsonify({'results':groups})
 

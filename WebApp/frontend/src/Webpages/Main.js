@@ -15,10 +15,11 @@ import SearchUserGroups from './SearchPages/SearchUserGroups'
 import SearchEvents from './SearchPages/SearchEvents'
 import InsertCourse from './InsertionPages/InsertCourse'
 import InsertEvent from './InsertionPages/InsertEvent';
+import UpdateCourse from './UpdatePages/UpdateCourse'
 
 export default function Main() {
   return (
-      <main>
+      <main className="container">
             <Switch>
               <Route exact path='/' component={Home}/>
               <Route path='/timetable' component={Timetable}/>
@@ -34,6 +35,7 @@ export default function Main() {
               <Route path='/search_events' component={SearchEvents}/>
               <Route path='/insert_course' component={InsertCourse}/>
               <Route path='/insert_event' component={InsertEvent}/>
+              <Route path='/update_course' component={UpdateCourse}/>
             </Switch>
       </main>
   );
