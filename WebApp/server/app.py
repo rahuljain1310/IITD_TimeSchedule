@@ -56,6 +56,7 @@ def updatecourse():
         elif (type=='4'):
             cur.execute(iq.update_groupedin,(group,change,code))
         else:
+            pass;
         conn.commit()
         return jsonify({'results':})
     except:
@@ -71,6 +72,7 @@ def updateuser():
         elif type=='1':
             cur.execute(iq.update_user_webpage,(change,alias))
         else:
+            pass;
         conn.commit()
         return jsonify({'results':})
     except:
@@ -184,8 +186,9 @@ def usergroup_details():
     users = cur.fetchall()
     cur.execute(rq.get_events,(alias,))
     events = cur.fetchall()
+    groups_host = cur.execute(rq.get_hosts,(alias,))
     # print(course)
-    return jsonify({'groupalias':alias,'users':users,'events':events})
+    return jsonify({'groups_host':groups_host,'groupalias':alias,'users':users,'events':events})
 
 @app.route("/event_details/",methods = ['GET'])
 def event_details():
@@ -201,7 +204,8 @@ def event_details():
     event_weekly = cur.fetchall()
     cur.execute(rq.get_eventtime_once,(eventid,))
     event_timeonce = cur.fetchall()
-    return jsonify({'e_id':eventid,'e_group':event_group,'e_name':event_name,'e_linkto':event_linkto,'e_users':event_users,'e_weekly':event_weekly})
+    event_hosts = cur.execute(get_hosts,(event_group,))
+    return jsonify({'e_id':eventid,'e_group':event_group,'e_name':event_name,'e_linkto':event_linkto,'e_users':event_users,'e_weekly':event_weekly,'e_hosts':event_hosts})
 
 ## FIND API
 @app.route("/findcourses/",methods = ['GET'])

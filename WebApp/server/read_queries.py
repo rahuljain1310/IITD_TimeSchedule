@@ -79,7 +79,7 @@ search_group="select alias "\
 
 get_groups="select useralias,name from usersgroups,users where useralias= %s and users.alias=useralias"
 get_users="select * from usersgroups where groupalias= %s "
-
+get_hosts="select * from groupshost where groupalias = %s "
 get_events="select id,name,linkto from events where alias = %s"
 
 # ----events---
