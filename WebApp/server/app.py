@@ -395,7 +395,7 @@ def findevents():
 @app.route("/search_events")
 @app.route("/insert_course")
 @app.route("/insert_event")
-@app.route("/register_student")
+@app.route("/insert_usergroup")
 def index():
     return render_template('index.html')
 

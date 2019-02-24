@@ -16,6 +16,8 @@ import SearchEvents from './SearchPages/SearchEvents'
 import InsertCourse from './InsertionPages/InsertCourse'
 import InsertEvent from './InsertionPages/InsertEvent';
 import UpdateCourse from './UpdatePages/UpdateCourse'
+import InsertUsergroup from './InsertionPages/InsertUsergroup';
+import InsertUser from './InsertionPages/InsertUser';
 
 export default function Main() {
   return (
@@ -35,6 +37,8 @@ export default function Main() {
               <Route path='/search_events' component={SearchEvents}/>
               <Route path='/insert_course' component={InsertCourse}/>
               <Route path='/insert_event' component={InsertEvent}/>
+              <Route path='/insert_usergroup' component={InsertUsergroup}/>
+              <Route path='/insert_user' component={InsertUser}/>
               <Route path='/update_course' component={UpdateCourse}/>
             </Switch>
       </main>
