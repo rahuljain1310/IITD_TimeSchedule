@@ -41,10 +41,11 @@ export default class SearchEvents extends React.Component {
     render() {
         return (
         <div className="search_div">
+            <h3>Search Events:</h3>
             <input type="text" onChange={ (e) => this.setState({host: e.target.value}) } value={ this.state.host } placeholder="host"/>
             <input type="text" onChange={ (e) => this.setState({name: e.target.value}) } value={ this.state.name } placeholder="name"/>
             <input type="text" onChange={ (e) => this.setState({group: e.target.value}) } value={ this.state.group } placeholder="Group"/>
-            <Button onClick={this.queryEvents}> Go </Button>
+            <br/><Button onClick={this.queryEvents}> Search </Button> <span>OR &nbsp;&nbsp;&nbsp; Create a <a href="/insert_event">Event</a></span>
             <Query results={this.state.events} urlpath={this.state.urlpath} hyperlink={true}/>
         </div>
 

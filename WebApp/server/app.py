@@ -60,7 +60,7 @@ def course_details():
 
     cur1.execute(rq.get_all_co,(code,curr_year,curr_sem))
 
-    cur2.execute(rq.get_co,(code))
+    cur2.execute(rq.get_co,(code,))
     oldcourses = cur1.fetchall()
     curcourse = cur2.fetchall()[0]
     # curcode = curcourse[0][1]
@@ -73,9 +73,9 @@ def course_details():
     # curprac = curcourse[0][8]
     # curstrength = curcourse[0][9]
     # curregist = curcourse[0][10]
-    cur1.execute(rq.get_profs_courses,(code))
+    cur1.execute(rq.get_profs_courses,(code,))
     profs = cur1.fetchall()
-    cur1.execute(rq.get_stu_course,(code))
+    cur1.execute(rq.get_stu_course,(code,))
     registered = cur1.fetchall()
 
     return jsonify({'oldcourse':oldcourses,'coursedetails':curcourse,'profs':profs,'students':registered})
@@ -117,9 +117,9 @@ def user_details():
 def usergroup_details():
     alias = request.args.get('groupinput')
        ## Got the only argument now send the json only
-    cur.execute(rq.get_users,(alias))
+    cur.execute(rq.get_users,(alias,))
     users = cur.fetchall()
-    cur.execute(rq.get_events,(alias))
+    cur.execute(rq.get_events,(alias,))
     events = cur.fetchall()
     # print(course)
     return jsonify({'groupalias':alias,'users':users,'events':events})
@@ -127,16 +127,16 @@ def usergroup_details():
 @app.route("/event_details/",methods = ['GET'])
 def event_details():
     eventid = request.args.get('eventid')   ## Got the only argument now send the json only
-    cur.execute(rq.get_exact_event,eventid)
+    cur.execute(rq.get_exact_event,(eventid,))
     eventdetails = cur.fetchall()[0]
     event_group = eventdetails[0]
     event_name = eventdetails[1]
     event_linkto = eventdetails[2]
-    cur.execute(rq.get_users,event_group)
+    cur.execute(rq.get_users,(event_group,))
     event_users = cur.fetchall()
-    cur.execute(rq.get_eventtime_weekly,(eventid))
+    cur.execute(rq.get_eventtime_weekly,(eventid,))
     event_weekly = cur.fetchall()
-    cur.execute(rq.get_eventtime_once,(eventid))
+    cur.execute(rq.get_eventtime_once,(eventid,))
     event_timeonce = cur.fetchall()
     return jsonify({'e_group':event_group,'e_name':event_name,'e_linkto':event_linkto,'e_users':event_users,'e_weekly':event_weekly})
 
@@ -189,9 +189,11 @@ def findcourses():
 @app.route("/findusergroups/",methods = ['GET'])
 def findusergroups():
     print("API Call for Finding Groups")       ## Need to Work On this API
-    alias = request.args.get('groupalias')
+    alias1 = request.args.get('groupalias')
+    print(alias1)
     # print(code)
-    cur.execute(rq.search_group,alias)
+    cur.execute(rq.search_group,(alias1,))
+    
     groups = cur.fetchall()
     # print(course)
     conn.commit()
@@ -224,6 +226,7 @@ def findevents():
 
     cur.execute(rq.search_events,(group,name))
     outtarray = cur.fetchall()
+    print(outtarray)
     # groups = cur.fetchall()
     # print(course)
     # cur.commit()

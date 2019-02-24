@@ -5,7 +5,7 @@ export default class CourseDetails extends React.Component {
       super(props);
       this.state = {
         error: null,
-        isLoaded: false,
+        isLoaded: true,
         course_details: []
       };
     }
@@ -21,13 +21,13 @@ export default class CourseDetails extends React.Component {
             console.log(rjson)
             this.setState({
               isLoaded: true,
-              course_details: rjson.results
+              course_details: rjson.coursedetails
             });
           },
           (error) => {
             this.setState({
               isLoaded: true,
-              error
+              // error
             });
           }
         )
@@ -48,17 +48,21 @@ export default class CourseDetails extends React.Component {
           //     </li>
           //   ))}
           // </ul>
-          <div class="container">
-            <div class="row">
-              <div class="span4">
-                <div class="inner-heading">
-                  <h2>{this.props.name}</h2>
-                  <h4>{this.props.code}</h4>
-                </div>
-              </div>
-              <div class="span8">
-              </div>
-            </div>
+          <div className="container">
+              <header>
+                  <h2>COL362 Intro. To Database</h2>
+              </header>
+            <article>
+              <h4>Instructor : {this.props.instructor}</h4>
+              <h4>Credits : {this.props.credit}</h4>
+              <h4>Strength : {this.props.strngth}</h4>
+              <h4>Lecture Hours :{this.props.l}</h4>
+              <h4>Tutorial Hours : {this.props.t}</h4>
+              <h4>Practical Hours :{this.props.p}</h4>
+              <a>SLOT : {this.props.slot}</a>
+              <h3> <a href="/web">Course Webpage</a> </h3>
+              <div> <a href="/col216students">Registered Students</a></div>
+            </article>
           </div>
         );
       }

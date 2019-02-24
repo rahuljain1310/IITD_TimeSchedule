@@ -52,35 +52,35 @@ export default class InsertCourses extends React.Component {
         <div className="search_div">
             <label>Course Code :  </label> 
             <input type="text" onChange={ (e) => this.setState({code: e.target.value}) } value={ this.state.code } placeholder="E.g. COL362"/>
-            <br/><span className="error">{this.state.codeError}</span><br/>
+            <br/>
 
             <label>Course Name :  </label>
             <input type="text" onChange={ (e) => this.setState({name: e.target.value}) } value={ this.state.name } placeholder="E.g. Intro. to DBMS"/>
-            <br/><span className="error">{this.state.nameError}</span><br/>
+            <br/>
 
             <label>Slot        :  </label>
             <input type="text" onChange={ (e) => this.setState({slot: e.target.value}) } value={ this.state.slot } placeholder=""/>
-            <br/><span className="error">{this.state.slotError}</span><br/>
+            <br/>
 
             <label>Type   :</label>
             <input type="text" onChange={ (e) => this.state.setState({type: e.target.value}) } value={ this.state.type } placeholder="Year"/>
-            <br/><span className="error">{this.state.yearError}</span><br/>
+            <br/>
 
             <label>L    :</label>
             <input type="text" onChange={ (e) => this.setState({L: e.target.value}) } value={ this.state.L } placeholder="L"/>
-            <br/><span className="error">{this.state.semesterError}</span><br/>
+            <br/>
 
             <label>T   :</label>
             <input type="text" onChange={ (e) => this.setState({T: e.target.value}) } value={ this.state.T } placeholder="T"/>
-            <br/><span className="error">{this.state.semesterError}</span><br/>
+            <br/>
 
             <label>P    :</label>
             <input type="text" onChange={ (e) => this.setState({P: e.target.value}) } value={ this.state.P } placeholder="P"/>
-            <br/><span className="error">{this.state.semesterError}</span><br/>
+            <br/>
 
             <label>Strength    :</label>
             <input type="text" onChange={ (e) => this.setState({strength: e.target.value}) } value={ this.state.strength } placeholder="strength"/>
-            <br/><span className="error">{this.state.semesterError}</span><br/>
+            <br/>
 
             <Button onClick={this.insert}> Add Course </Button> 
             <br/>

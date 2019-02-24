@@ -11,19 +11,21 @@ export default class InsertEvent extends React.Component {
             eventname : "",
             venue : "",
             linkDescription : "",
-            // courses: [],
             error: "",
-            // urlpath: "/event/"
         };
     }
 
     insert = (e) => {
-        if(this.state.usergroup==="") {
+        let {usergroup, eventname,venue, linkDescription} = this.state;
+        if(usergroup==="" || eventname=="" || venue=="") {
             this.setState ({
                 error : "Fill the fields completely"                
             })
             return
         }
+        this.setState ({
+            error : "Adding Event"                
+        })
         let cq = "?usergroup="+this.state.usergroup+'&eventname='+this.state.eventname+'&venue='+this.state.venue+'&linkDescription='+this.state.linkDescription
         fetch('http://localhost:5000/ins_event/'+cq, {
             method: 'GET',
@@ -49,20 +51,20 @@ export default class InsertEvent extends React.Component {
         return (
         <div className="search_div">
             <label>Usergroup :  </label> 
-            <input linkDescription="text" onChange={ (e) => this.setState({usergroup: e.target.value}) } value={ this.state.usergroup } placeholder="E.g. COL362"/>
-            <br/><span className="error">{this.state.codeError}</span><br/>
+            <input type="text" onChange={ (e) => this.setState({usergroup: e.target.value}) } value={ this.state.usergroup } placeholder="E.g. COL362"/>
+            <br/>
 
             <label>Eventname :  </label>
-            <input linkDescription="text" onChange={ (e) => this.setState({eventname: e.target.value}) } value={ this.state.eventname } placeholder="E.g. Intro. to DBMS"/>
-            <br/><span className="error">{this.state.nameError}</span><br/>
+            <input type="text" onChange={ (e) => this.setState({eventname: e.target.value}) } value={ this.state.eventname } placeholder="E.g. Intro. to DBMS"/>
+            <br/>
 
             <label>Venue :  </label>
-            <input linkDescription="text" onChange={ (e) => this.setState({venue: e.target.value}) } value={ this.state.venue } placeholder=""/>
-            <br/><span className="error">{this.state.slotError}</span><br/>
+            <input type="text" onChange={ (e) => this.setState({venue: e.target.value}) } value={ this.state.venue } placeholder=""/>
+            <br/>
 
             <label>Any linkDescription:</label>
-            <input linkDescription="text" onChange={ (e) => this.state.setState({linkDescription: e.target.value}) } value={ this.state.linkDescription } placeholder="Year"/>
-            <br/><span className="error">{this.state.yearError}</span><br/>
+            <input type="text" onChange={ (e) => this.setState({linkDescription: e.target.value}) } value={ this.state.linkDescription } placeholder="Year"/>
+            <br/>
 
             {/* <label>L    :</label>
             <input linkDescription="text" onChange={ (e) => this.setState({L: e.target.value}) } value={ this.state.L } placeholder="L"/>
