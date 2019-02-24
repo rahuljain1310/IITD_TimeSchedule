@@ -5,7 +5,7 @@
 get_oldco="select * from courses where code = %s and year = %s and semester = %s"
 
 get_co="select * from curr_courses where code = %s"
-get_all_co="select code,name,credits,year,semester,strength,registered from courses where code = %s year<> %s and semester <> %s"
+get_all_co="select code,name,credits,year,semester,strength,registered from courses where code = %s and year<> %s and semester <> %s"
 
 
 allco_slot="select code,name,slot,credits from courses where code ilike concat('%%',%s,'%%') and name ilike concat('%%',%s,'%%') and slot = %s and year = %s and semester = %s"
@@ -26,21 +26,21 @@ search_user = "select alias,name "\
 "from users  "\
 "where alias ilike concat('%%',%s,'%%') and name ilike concat('%%',%s,'%%') order by name "
 
-search_prof_withgroup="select alias,name "\
+search_prof_withgroup="select profalias,profname "\
 "from curr_prof,usersgroups where usersgroups.useralias=curr_prof.profalias and "\
-"where alias ilike concat('%%',%s,'%%') "\
-"and name ilike concat('%%',%s,'%%') and groupalias= %s"\
-"order by name"
-search_stu_with_group="select alias,name from curr_stu,users where users.useralias=curr_stu.entrynum and "\
-"where alias ilike concat('%%',%s,'%%') and name ilike concat('%%',%s,'%%') and groupalias = %s order by name"
+" profalias ilike concat('%%',%s,'%%') "\
+"and profname ilike concat('%%',%s,'%%') and groupalias= %s"\
+"order by profname"
+search_stu_with_group="select entrynum,studentname from curr_stu,usersgroups where usersgroups.useralias=curr_stu.entrynum and "\
+" entrynum ilike concat('%%',%s,'%%') and studentname ilike concat('%%',%s,'%%') and groupalias = %s order by studentname"
 
-search_stu="select alias,name from curr_stu where alias ilike concat('%%',%s,'%%') and name ilike concat('%%',%s,'%%') order by name"
+search_stu="select entrynum,studentname from curr_stu where entrynum ilike concat('%%',%s,'%%') and studentname ilike concat('%%',%s,'%%') order by studentname"
 
-search_prof="select alias,name "\
+search_prof="select profalias,profname "\
 "from curr_prof "\
-"where alias ilike concat('%%',%s,'%%') "\
-"and name ilike concat('%%',%s,'%%') "\
-"order by name"
+"where profalias ilike concat('%%',%s,'%%') "\
+"and profname ilike concat('%%',%s,'%%') "\
+"order by profname"
 
 get_profs_courses="select profalias,profname from curr_courses_by_prof where code=%s"
 get_stu_course="select entrynum,studentname,groupedin from curr_courses_of_student where code = %s"
