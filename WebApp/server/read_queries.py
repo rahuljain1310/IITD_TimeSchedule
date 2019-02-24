@@ -75,7 +75,7 @@ get_all_events = "with groups_in as ( "\
 #---groups----
 search_group="select alias "\
 "from groups "\
-"where alias ilike concat('%%',%s,'%%')"
+"where alias ilike concat('%%',%s,'%%') "
 
 get_groups="select useralias,name from usersgroups,users where useralias= %s and users.alias=useralias"
 get_users="select * from usersgroups where groupalias= %s "

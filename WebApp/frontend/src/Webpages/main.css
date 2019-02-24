@@ -1,6 +1,7 @@
 main {
-    margin-top: 50px;
     overflow: hidden;
+    margin: 50px;
+    padding: 20px 0px;
     align-content: center;
 }
 
@@ -20,10 +21,24 @@ main {
 
 .search_div {
     margin: 10px;
+    margin-bottom: 0px;
     padding: 10px;
+    align-content: center;
+    text-align: center;
 }
 
 .search_div button {
     margin: 10px;
     width: auto;
 }
+
+
+article {
+    max-width: 2000px;
+    /* float: left; */
+    padding: 20px;
+    width: 100%;
+    margin-top: 20px;
+    background-color: #f1f1f1;
+    height: 500px; 
+  }

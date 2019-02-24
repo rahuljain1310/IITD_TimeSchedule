@@ -20,7 +20,8 @@
 }
 
 #query table {
-    margin: 40px;
+    margin: 30px auto;
+    width: 90%;
     align-self: auto;
     border: 1px gray solid;
 }
@@ -28,4 +29,10 @@
 #query a, #query a:hover,#query a:visited, #query a:active {
     color: white;
     text-decoration: none;
+}
+
+#query {
+    padding: 0px;
+    overflow-y: auto;
+    overflow-x: visible;
 }
