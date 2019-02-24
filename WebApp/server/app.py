@@ -57,7 +57,7 @@ def course_details():
 
     cur1 = conn.cursor()
     cur2 = conn.cursor()
-    cur1.execute(rq.get_all_co,(code))
+    cur1.execute(rq.get_all_co,(code,code))
     cur2.execute(rq.get_co,(code))
     oldcourses = cur1.fetchall()
     curcourse = cur2.fetchall()[0]
