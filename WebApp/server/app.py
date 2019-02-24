@@ -43,31 +43,42 @@ def updatecourse():
     #  2 indicates register prof
     # 3 indicates update webpage
     # 4 indicates change grouped in
-    if (type=='0'):
-        cur.execute(iq.update_course_name,(code,change))
-    elif (type=='1'):
-        cur.execute(iq.register_student,(code,change))
-    elif (type=='2'):
-        cur.execute(iq.assign_prof,(code,change))
-    elif (type=='3'):
-        cur.execute(iq.update_course_webpage,(code,change))
-    elif (type=='4'):
-        cur.execute(iq.update_groupedin,(group,change,code))
-    conn.commit()
-    return
+    try:
+        if (type=='0'):
+            cur.execute(iq.update_course_name,(code,change))
+        elif (type=='1'):
+            cur.execute(iq.register_student,(code,change))
+            cur.execute(iq.update_groupedin,(group,change,code))
+        elif (type=='2'):
+            cur.execute(iq.assign_prof,(code,change))
+        elif (type=='3'):
+            cur.execute(iq.update_course_webpage,(code,change))
+        elif (type=='4'):
+            cur.execute(iq.update_groupedin,(group,change,code))
+        else:
+        conn.commit()
+        return jsonify({'results':})
+    except:
+        return jsonify({'results':})
 @app.route("/update_user/",methods=['GET'])
 def updateuser():
     alias = request.args.get('alias')
     type = request.args.get('type')
     change = request.args.get('change')
-    if type=='0':
-        cur.execute(iq.update_user_name,(change,alias))
-    elif type=='1':
-        cur.execute(iq.update_user_webpage,(change,alias))
-    else:
-    conn.commit()
+    try:
+        if type=='0':
+            cur.execute(iq.update_user_name,(change,alias))
+        elif type=='1':
+            cur.execute(iq.update_user_webpage,(change,alias))
+        else:
+        conn.commit()
+        return jsonify({'results':})
+    except:
+        return jsonify({'results':})
 @app.route("/update_event/",methods=['GET'])
 def updateevent():
+    type = request.args.get('type')
+    # 0 for update
 
 @app.route("/ins_course/",methods=['GET'])
 def insertcourse():
