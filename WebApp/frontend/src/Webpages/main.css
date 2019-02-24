@@ -5,7 +5,7 @@ main {
     align-content: center;
 }
 
-.search_div input {
+.search_div input{
     height: 30px;
     margin: 10px;
     width: auto;
@@ -13,12 +13,28 @@ main {
     padding: 20px;
 }
 
+.update_div input {
+    margin: 5px;
+    height: 30px;
+    vertical-align: middle;
+    padding: 10px;
+}
+
+.update-input {
+    min-width: 250px;
+}
+
+
 .search_div select {
     margin: 10px;
-    height: 45px;
+    height: 30px;
     width: 120px;
     padding: 5px;
 
+}
+
+.update_div {
+    margin: 20px;
 }
 
 .search_div {
@@ -29,7 +45,7 @@ main {
     text-align: center;
 }
 
-.search_div button {
+.search_div button, .update_div button {
     margin: 10px;
     width: auto;
 }

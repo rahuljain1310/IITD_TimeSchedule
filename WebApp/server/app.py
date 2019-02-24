@@ -32,16 +32,15 @@ CORS(app)
 
 
 ## INSERT API's
-@app.route("/")
-def donothing:
+
 @app.route("/update_yearsem",methods=['GET'])
-def updatesession:
+def updatesession():
     curr_sem = 1+ (curr_sem % 2)
-    if (curr_sem=1):
+    if (curr_sem==1):
         curr_year=curr_year+1
-    cur.execute(update_year_sem,(curr_year,curr_sem))
+    cur.execute(rq.update_year_sem,(curr_year,curr_sem))
 @app.route("/add_slot/",methods=['GET'])
-def addslot:
+def addslot():
     slotcode = request.args.get('slot')
     begintime = request.args.get('begintime')
     endtime = request.args.get('endtime')
@@ -51,7 +50,7 @@ def addslot:
     except:
         pass
     conn.commit()
-    return jasonify({'results':''})
+    return jsonify({'results':''})
 @app.route("/update_course/",methods=['GET'])
 def updatecourse():
     code = request.args.get('code')
@@ -68,13 +67,13 @@ def updatecourse():
             if (name!=''):
                 cur.execute(iq.update_course_name,(name,code))
                 conn.commit()
-            if (strength!='')
+            if (strength!=''):
                 try:
                     cur.execute(iq.change_strength,(int(strength),code))
                     conn.commit()
                 except:
                     pass
-            if (webpage!='')
+            if (webpage!=''):
                 cur.execute(iq.change_coursepage,(webpage,code))
                 conn.commit()
         elif (type=='1'):
@@ -128,27 +127,28 @@ def updateevent():
             cur.execute(iq.set_eventtimeonce,(eventid,ondate,begintime,endtime,venue))
         else:
             raise Exception()
-        return jasonify({'results':})
+        return jsonify({'results':"Event Added Successfully"})
     except:
-        return jasonify({'results':/8+})
+        return jsonify({'results':"Event not added Successfully"})
 @app.route("/ins_user",methods=['GET'])
 def insertuser():
-    alias = requset.args.get('alias')
+    alias = request.args.get('alias')
     name = request.args.get('name')
     webpage = request.args.get('webpage')
     try:
         cur.execute(insert_user,(alias,name,webpage))
-        return jasonify({'result':'inserted'})
+        return jsonify({'result':'inserted'})
     except:
-        return jasonify({'result':''})
-@app.route("/update_user",methods=['GET'])
-def updateuser():
-    alias = request.args.get('alias')
-    name = request.args.get('name')
-    webpage = request.args.get('webpage')
-    cur.execute(update_user_name,(name,alias))
-    cur.execute(update_user_webpage,(webpage,alias))
-    return jasonify({})
+        return jsonify({'result':''})
+
+# @app.route("/update_user",methods=['GET'])
+# def updateuser():
+#     alias = request.args.get('alias')
+#     name = request.args.get('name')
+#     webpage = request.args.get('webpage')
+#     cur.execute(rq.update_user_name,(name,alias))
+#     cur.execute(rq.update_user_webpage,(webpage,alias))
+#     return jsonify({})
 
 @app.route("/ins_course/",methods=['GET'])
 def insertcourse():
@@ -246,7 +246,7 @@ def user_details():
     cur.execute(rq.oldco_prof,(alias,))
     old_courses_taken = cur.fetchall()
 
-    if (len(cur_courses_registered)!=0):
+    if (len(cur_course_registered)!=0):
         type1 = 'cur_stu'
     elif (len(old_courses_registered)!=0):
         type1 = 'old_stu'
@@ -256,7 +256,7 @@ def user_details():
         type1 = 'old_prof'
     else:
         type1 = 'otheruser'
-    return jsonify({'alias':alias,'username':username,'userwebpage':userwebpage,'cur_course_registered':cur_courses_registered,'old_courses_registered':old_courses_registered,'cur_courses_taken':cur_courses_taken,'old_courses_taken':old_courses_taken,'events_hosted':events_hosted,'all_events':all_events,'type1':type1,'in_groups':in_groups})
+    return jsonify({'alias':alias,'username':username,'userwebpage':userwebpage,'cur_course_registered':cur_course_registered,'old_courses_registered':old_courses_registered,'cur_courses_taken':cur_courses_taken,'old_courses_taken':old_courses_taken,'events_hosted':events_hosted,'all_events':all_events,'type1':type1,'in_groups':in_groups})
 
 
 @app.route("/usergroup_details/",methods = ['GET'])
@@ -330,7 +330,7 @@ def findcourses():
     # print(code)
 
     course = cur.fetchall()
-    # print(course)
+    print(course)
     conn.commit()
     return jsonify({'results':course})
 

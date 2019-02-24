@@ -16,18 +16,17 @@ export default class UpdateCourse extends React.Component {
             linkDescription: "",
             lkDisabled: true,
             isLoaded: false,
+            alias: "",
+            groupno:"",
+            update_error: "",
+            register_error: "",
         };
     }
 
     update = (e) => {
-        if(this.state.code==="") {
-            this.setState ({
-                error : "Fill the fields completely"                
-            })
-            return
-        }
-        let cq = "?code="+this.state.code+'&name='+this.state.name+'&slot='+this.state.slot+'&type='+this.state.type+'&L='+this.state.L+'&T='+this.state.T+'&P='+this.state.P+'&strength='+this.state.strength
-        fetch('http://localhost:5000/ins_course/'+cq, {
+
+        let cq = "?strength="+this.state.Strength+'&name='+this.state.name+'&link='+this.state.linkDescription
+        fetch('http://localhost:5000/upd_course/'+cq, {
             method: 'GET',
             dataType: 'json'
           })
@@ -35,42 +34,77 @@ export default class UpdateCourse extends React.Component {
             .then((jsres) => {
                 console.log(jsres)
                 let x = jsres.results
-                window.location.href=this.state.urlpath+this.state.code
               },
               (error) => {
                 this.setState({
-                  error:"Course Not Added, Check Fields"
+                  error:"Not Added, Check Fields"
                 });
               }
             )
     }
 
+    registerStudent = (e) => {
+        let {alias, groupno} = this.state
+        this.setState({
+            register_error: "Registering Student"
+        })
+        let cq = "?alias="+alias+"&groupno="+groupno
+        fetch('http://localhost:5000/registerStudent/'+cq, {
+            method: 'GET',
+            dataType: 'json'
+          })
+            .then(res => res.json())
+            .then((jsres) => {
+                console.log(jsres)
+                let x = jsres.results
+                this.setState({
+                    error:"Student Registered"
+                })
+              },
+              (error) => {
+                this.setState({
+                  error:"Registering A Student Failed"
+                });
+              }
+            )
+        setTimeout(() => this.setState({error:""}), 2000);
+
+    }
+
     render() {
         return (
-        <div className="search_div">
+        <div className="update_div">
             <h3>Update Course: &nbsp; {this.state.code} </h3>
-          
             <br/>
             <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
                 <Tab eventKey="UpdateCourse" title="Update Course Details">
-                    <label>Course Name :</label>
-                    <input type="checkbox" onChange={ (e) => this.setState({NameDisabled: !this.state.NameDisabled}) } name="CheckName"> Change Name</input>
-                    <input type="text" disabled={this.state.NameDisabled} onChange={ (e) => this.setState({name: e.target.value}) } value={ this.state.name } placeholder="E.g. Introduction to DBMS"/>
-                    <br/>  
-                    <label>Strength :</label>
-                    <input type="checkbox" onChange={ (e) => this.setState({StrengthDisabled: !this.state.StrengthDisabled}) } name="CheckName"> Change Name</input>
-                    <input type="text" disabled={this.state.StrengthDisabled}  onChange={ (e) => this.setState({strength: e.target.value}) } value={ this.state.strength } placeholder="E.g. 78"/>
-                    
-                    <label>Strength :</label>
-                    <input type="checkbox" onChange={ (e) => this.setState({lkDisabled: !this.state.lkDisabled}) } name="CheckName"> Change Name</input>
-                    <input type="text" disabled={this.state.lkDisabled}  onChange={ (e) => this.setState({strength: e.target.value}) } value={ this.state.strength } placeholder="E.g. 78"/>
-               
-                    <br/><Button onClick={this.update}> Update Course </Button> 
-                    <span>{this.state.error}</span>
+                    <div className="update_div">
+                        <label>Course Name :</label><br/>
+                        <input type="checkbox" onChange={ (e) => this.setState({NameDisabled: !this.state.NameDisabled,name:""} ) } name="CheckName"/> 
+                        <input type="text" className="update-input" disabled={this.state.NameDisabled} onChange={ (e) => this.setState({name: e.target.value}) } value={ this.state.name } placeholder="E.g. Introduction to DBMS"/>
+                        <br/>  
+                        <label>Strength :</label><br/>
+                        <input type="checkbox" onChange={ (e) => this.setState({StrengthDisabled: !this.state.StrengthDisabled,strength:""}) } name="CheckName"/>  
+                        <input type="text" className="update-input" disabled={this.state.StrengthDisabled}  onChange={ (e) => this.setState({strength: e.target.value}) } value={ this.state.strength } placeholder="E.g. 78"/>
+                        <br/>
+                        <label>Link Description :</label><br/>
+                        <input type="checkbox" onChange={ (e) => this.setState({lkDisabled: !this.state.lkDisabled,linkDescription:""}) } name="CheckName"/>
+                        <input type="text" className="update-input" disabled={this.state.lkDisabled}  onChange={ (e) => this.setState({linkDescription: e.target.value}) } value={ this.state.linkDescription } placeholder="www..iitd.example.com"/>
+                        <br/><Button onClick={this.update}> Update Course </Button> 
+                        <span>{this.state.update_error}</span>
+                    </div>
                 </Tab>
-                <Tab eventKey="RegisterS" title="Register Student">
-                    <label>Register Student</label>
-                    <br/>
+                <Tab eventKey="Register" title="Register Student">
+                    <div  className="update_div">
+                        <label>Student Entry No. :</label><br/>
+                        <input type="text" className="update-input" onChange={ (e) => this.setState({alias: e.target.value}) } value={ this.state.name } placeholder="EE1170476"/>
+                        <br/>
+                        <label>Group No. :</label><br/>
+                        <input type="text" className="update-input" onChange={ (e) => this.setState({groupno: e.target.value}) } value={ this.state.groupno } placeholder="Cycle of Student"/>
+                        <br/><Button onClick={this.registerStudent}> Register Stuents </Button> 
+                        <br/>
+                        <span>{this.state.register_error}</span>
+                    </div>
                 </Tab>
             </Tabs>
         </div>
