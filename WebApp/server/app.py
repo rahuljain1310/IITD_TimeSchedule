@@ -60,8 +60,8 @@ def updatecourse():
         conn.commit()
         return jsonify({'results':"Updated Successfully"})
     except:
-        return null
-        
+        return 0
+
 @app.route("/update_user/",methods=['GET'])
 def updateuser():
     alias = request.args.get('alias')
@@ -73,14 +73,14 @@ def updateuser():
         elif type=='1':
             cur.execute(iq.update_user_webpage,(change,alias))
         else:
-            pass;
+            pass
         conn.commit()
-        return jsonify({'results':})
+        return jsonify({'results':"Updated Successfully"})
     except:
-        return jsonify({'results':})
+        return 0
 @app.route("/update_event/",methods=['GET'])
 def updateevent():
-    type = request.args.get('type')
+    type1 = request.args.get('type')
     # 0 for update
 
 @app.route("/ins_course/",methods=['GET'])
@@ -88,16 +88,15 @@ def insertcourse():
     code = request.args.get('code')
     name = request.args.get('name')
     slot = request.args.get('slot')
-    type = request.args.get('type')
+    type1 = request.args.get('type')
     # credits= request.args.get('credits')
     L = float(request.args.get('L'))
     T = float(request.args.get('T'))
     P = float(request.args.get('P'))
     Strength = request.args.get('Strength')
-    cur.execute(iq.insert_new_course,(code,name,slot,type,L+T+P/2,L,T,P,Strength,0))
+    cur.execute(iq.insert_course,(code,name,slot,type1,L+T+P/2,L,T,P,Strength,0))
     conn.commit()
-    print(param)
-    # return null
+    # return 0
     return jsonify({'results':[{"a":1,"b":1}]})
 
 @app.route("/ins_event/",methods=['GET'])
@@ -109,7 +108,7 @@ def insertevent():
     cur.execute(iq.insert_event,(usergroup,eventname,linkDescription))
     conn.commit()
     # print(param)
-    # return null
+    # return 0
     return jsonify({'results':[{"a":1,"b":1}]})
 @app.route("/ins_event/",methods=['GET'])
 
@@ -139,6 +138,7 @@ def course_details():
     # curprac = curcourse[0][8]
     # curstrength = curcourse[0][9]
     # curregist = curcourse[0][10]
+    print(curcourse)
     cur1.execute(rq.get_profs_courses,(code,))
     profs = cur1.fetchall()
     cur1.execute(rq.get_stu_course,(code,))
@@ -158,25 +158,25 @@ def course_details():
 
 @app.route("/user_details/",methods = ['GET'])
 def user_details():
-    alias = request.args.get('alias')
+    alias1 = request.args.get('alias')
     name = request.args.get('name')
-    type = request.args.get('type')
+    type1 = request.args.get('type')
     group = request.args.get('code')
     if (group==''):
-        if (type=='0'):
-            cur.execute(rq.search_user,(alias,name))
-        elif (type=='1'):
-            cur.execute(rq.search_stu,(alias,name))
+        if (type1=='0'):
+            cur.execute(rq.search_user,(alias1,name))
+        elif (type1=='1'):
+            cur.execute(rq.search_stu,(alias1,name))
         else:
-            cur.execute(rq.search_prof,(alias,name))
+            cur.execute(rq.search_prof,(alias1,name))
         ## Got the only argument now send the json only
     else:
-        if (type=='0'):
-            cur.execute(rq.search_user_withgroup,(alias,name,group))
-        elif (type=='1'):
-            cur.execute(rq.search_stu_with_group,(alias,name,group))
+        if (type1=='0'):
+            cur.execute(rq.search_user_withgroup,(alias1,name,group))
+        elif (type1=='1'):
+            cur.execute(rq.search_stu_with_group,(alias1,name,group))
         else:
-            cur.execute(rq.search_prof_withgroup,(alias,name,group))
+            cur.execute(rq.search_prof_withgroup,(alias1,name,group))
     return jsonify({'results':cur.fetchall()})
 
 @app.route("/usergroup_details/",methods = ['GET'])
@@ -205,7 +205,7 @@ def event_details():
     event_weekly = cur.fetchall()
     cur.execute(rq.get_eventtime_once,(eventid,))
     event_timeonce = cur.fetchall()
-    event_hosts = cur.execute(get_hosts,(event_group,))
+    event_hosts = cur.execute(rq.get_hosts,(event_group,))
     return jsonify({'e_id':eventid,'e_group':event_group,'e_name':event_name,'e_linkto':event_linkto,'e_users':event_users,'e_weekly':event_weekly,'e_hosts':event_hosts})
 
 ## FIND API
@@ -274,17 +274,23 @@ def findusers():
     print("API Call for Finding Users")
     alias = request.args.get('alias')
     name = request.args.get('name')
-    usertype = request.args.get('type')
-    print(alias+name+usertype)
-    # query_string = "select * from demo limit 20"   ## Need to Work On this API .. Replace this query
-
-    if usertype =='1':
-        cur.execute(rq.search_stu,(alias,name))
-    elif usertype =='2':
-        cur.execute(rq.search_prof,(alias,name))
+    type = request.args.get('type')
+    group = request.args.get('code')
+    if (group==''):
+        if (type=='0'):
+            cur.execute(rq.search_user,(alias,name))
+        elif (type=='1'):
+            cur.execute(rq.search_stu,(alias,name))
+        else:
+            cur.execute(rq.search_prof,(alias,name))
+        ## Got the only argument now send the json only
     else:
-        cur.execute(rq.search_user,(alias,name))
-        conn.commit()
+        if (type=='0'):
+            cur.execute(rq.search_user_withgroup,(alias,name,group))
+        elif (type=='1'):
+            cur.execute(rq.search_stu_with_group,(alias,name,group))
+        else:
+            cur.execute(rq.search_prof_withgroup,(alias,name,group))
     return jsonify({'results':cur.fetchall()})
 
 @app.route("/findevents/",methods = ['GET'])
