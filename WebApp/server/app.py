@@ -32,20 +32,72 @@ CORS(app)
 
 
 ## INSERT API's
+@app.route("/update_course/",methods=['GET'])
+def updatecourse():
+    code = request.args.get('code')
+    change = request.args.get('name')
+    type = request.args.get('type')
+    group = request.args.get('group')
+    # 0 indicates change name
+    # 1 indicate register student
+    #  2 indicates register prof
+    # 3 indicates update webpage
+    # 4 indicates change grouped in
+    if (type=='0'):
+        cur.execute(iq.update_course_name,(code,change))
+    elif (type=='1'):
+        cur.execute(iq.register_student,(code,change))
+    elif (type=='2'):
+        cur.execute(iq.assign_prof,(code,change))
+    elif (type=='3'):
+        cur.execute(iq.update_course_webpage,(code,change))
+    elif (type=='4'):
+        cur.execute(iq.update_groupedin,(group,change,code))
+    conn.commit()
+    return
+@app.route("/update_user/",methods=['GET'])
+def updateuser():
+    alias = request.args.get('alias')
+    type = request.args.get('type')
+    change = request.args.get('change')
+    if type=='0':
+        cur.execute(iq.update_user_name,(change,alias))
+    elif type=='1':
+        cur.execute(iq.update_user_webpage,(change,alias))
+    else:
+    conn.commit()
+@app.route("/update_event/",methods=['GET'])
+def updateevent():
+    
 @app.route("/ins_course/",methods=['GET'])
 def insertcourse():
-    param = request.args
+    code = request.args.get('code')
+    name = request.args.get('name')
+    slot = request.args.get('slot')
+    type = request.args.get('type')
+    # credits= request.args.get('credits')
+    L = float(request.args.get('L'))
+    T = float(request.args.get('T'))
+    P = float(request.args.get('P'))
+    Strength = request.args.get('Strength')
+    cur.execute(iq.insert_new_course,(code,name,slot,type,L+T+P/2,L,T,P,Strength,0))
+    conn.commit()
     print(param)
     # return null
     return jsonify({'results':[{"a":1,"b":1}]})
 
 @app.route("/ins_event/",methods=['GET'])
 def insertevent():
-    param = request.args
-    print(param)
+    usergroup = request.args.get('usergroup')
+    eventname = request.args.get('eventname')
+    # venue = request.args.get('venue')
+    linkDescription =request.args.get('linkDescription')
+    cur.execute(iq.insert_event,(usergroup,eventname,linkDescription))
+    conn.commit()
+    # print(param)
     # return null
     return jsonify({'results':[{"a":1,"b":1}]})
-
+@app.route("/ins_event/",methods=['GET'])
 
 ## DETAIL API's
 @app.route("/course_details/",methods = ['GET'])
@@ -191,7 +243,7 @@ def findusergroups():
     print("API Call for Finding Groups")       ## Need to Work On this API
     alias = request.args.get('groupalias')
     # print(code)
-    cur.execute(rq.search_group,alias)
+    cur.execute(rq.search_group,(alias,))
     groups = cur.fetchall()
     # print(course)
     conn.commit()
