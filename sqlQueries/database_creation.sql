@@ -134,16 +134,37 @@ insert into curr_courses(code,name,slot,type,credits,lec_dur,
 CREATE OR REPLACE FUNCTION insert_new_course(code varchar(8),name varchar(120),slot varchar(4),type varchar(10),credits int,lec_dur int,
  tut_dur int,prac_dur int,strength int,registered int,year int default :curr_year, semester int default :curr_sem) RETURNS VOID AS
 $$
+declare groupexists bool:='t';
 BEGIN
+    groupexists:=  exists(select * from groups where alias = code);
+    if (groupexists='f') then
+    INSERT INTO groups(alias) values(code);
+    end if;
    INSERT INTO courses(code,name,slot,type,credits,lec_dur,
      tut_dur,prac_dur,strength,registered,year,semester) VALUES (code,name,slot,type,credits,lec_dur,
        tut_dur,prac_dur,strength,registered,year,semester);
    INSERT INTO curr_courses(code,name,slot,type,credits,lec_dur,
      tut_dur,prac_dur,strength,registered) VALUES (code,name,slot,type,credits,lec_dur,
        tut_dur,prac_dur,strength,registered);
+
 END
 $$
  LANGUAGE 'plpgsql';
+
+create or replace function insert_course(year int,sem int) returns trigger as
+  $BODY$
+  begin
+    INSERT INTO
+      courses(code,name,slot,type,credits,lec_dur,
+        tut_dur,prac_dur,strength,registered) VALUES (new.code,new.name,new.slot,new.type,new.credits,new.lec_dur,new.tut_dur,new.prac_dur,new.strength,new.registered,year,sem);
+    RETURN new;
+  end;
+  $BODY$
+  language 'plpgsql';
+
+CREATE TRIGGER new_course_insert BEFORE INSERT ON curr_courses
+execute procedure
+
 
 create or replace function insert_stu_in_course(alias1 varchar(30),code1 varchar(8),grouped int,year int default :curr_year, sem int default :curr_sem)
  returns void as

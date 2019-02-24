@@ -5,7 +5,7 @@
 get_oldco="select * from courses where code = %s and year = %s and semester = %s"
 
 get_co="select * from curr_courses where code = %s"
-get_all_co="select code,name,credits,year,semester,strength,registered from (select * from courses where code = %s except select * from curr_courses where code = %s) as tmp"
+get_all_co="select code,name,credits,year,semester,strength,registered from (select code,name,credits,year,semester,strength,registered from courses where code = %s except select code,name,credits,year,semester,strength,registered from curr_courses where code = %s) as tmp"
 
 
 allco_slot="select code,name,slot,credits from courses where code ilike concat('%%',%s,'%%') and name ilike concat('%%',%s,'%%') and slot = %s and year = %s and semester = %s"
