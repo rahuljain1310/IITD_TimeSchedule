@@ -1,5 +1,6 @@
 import React from 'react';
 import Query from '../QueryComponent/Query'
+import { Button, Tabs, Tab } from 'react-bootstrap';
 
 export default class UserGroupDetails extends React.Component {
     constructor(props) {
@@ -7,7 +8,9 @@ export default class UserGroupDetails extends React.Component {
       this.state = {
         error: null,
         isLoaded: false,
-        usergroup_details: [],
+        groupalias: "",
+        users: [],
+        events: [],
         urlpath: "/user/"
       };
     }
@@ -22,7 +25,9 @@ export default class UserGroupDetails extends React.Component {
             console.log(rjson)
             this.setState({
               isLoaded: true,
-              usergroup_details: rjson.results
+              users: rjson.users,
+              groupalias: rjson.groupalias,
+              events: rjson.events,
             });
           },
           (error) => {
@@ -35,14 +40,24 @@ export default class UserGroupDetails extends React.Component {
     }
   
     render() {
-      const { error, isLoaded, usergroup_details } = this.state;
+      const { error, isLoaded, users } = this.state;
       if (error) {
         return <div>Error: {error.message}</div>;
       } else if (!isLoaded) {
         return <div>Loading...</div>;
       } else {
         return (
-            <Query results={this.state.usergroup_details} urlpath={this.state.urlpath} hyperlink={true}/>
+          <div>
+            <h2>{this.state.groupalias}</h2>
+            <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
+              <Tab eventKey="Events" title="Events">
+                <Query results={this.state.events} urlpath={'/event/'} hyperlink={true}/>  
+              </Tab>
+              <Tab eventKey="Users" title="Users">
+                <Query results={this.state.users} urlpath={this.state.urlpath} hyperlink={true}/>  
+              </Tab>
+            </Tabs>;
+          </div>
         );
       }
     }

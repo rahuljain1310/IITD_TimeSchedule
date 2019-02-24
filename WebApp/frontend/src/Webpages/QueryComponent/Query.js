@@ -6,7 +6,7 @@ export default class Query extends React.Component {
     render() {
         return (
         <div>
-            <article id="query">
+            <div id="query">
                 <table className="table table-bordered table-hover">
                     <tbody>
                     {this.props.results.map( (row,index) => (
@@ -14,7 +14,7 @@ export default class Query extends React.Component {
                     ))}
                     </tbody>
                 </table>
-            </article>   
+            </div>   
         </div>
         )
     }

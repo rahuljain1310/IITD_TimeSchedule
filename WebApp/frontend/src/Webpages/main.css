@@ -1,6 +1,7 @@
 main {
-    margin-top: 50px;
     overflow: hidden;
+    margin: 50px;
+    padding: 20px 0px;
     align-content: center;
 }
 
