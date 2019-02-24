@@ -12,8 +12,10 @@ main {
 
 .search_div select {
     margin: 10px;
-    height: 30px;
-    padding: 20px;
+    height: 45px;
+    width: 120px;
+    padding: 5px;
+
 }
 
 .search_div {
@@ -23,5 +25,5 @@ main {
 
 .search_div button {
     margin: 10px;
-    width: 100px;
+    width: auto;
 }

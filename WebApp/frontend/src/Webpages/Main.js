@@ -2,6 +2,7 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Home from './Home'
 import Timetable from './Timetable'
+import "./main.css"
 import CourseDetails from './EntityDetails/CourseDetails'
 import StudentDetails from './EntityDetails/StudentDetails'
 import FacultyDetails from './EntityDetails/FacultyDetails'
@@ -12,7 +13,8 @@ import SearchCourses from './SearchPages/SearchCourses'
 import SearchUsers from './SearchPages/SearchUsers'
 import SearchUserGroups from './SearchPages/SearchUserGroups'
 import SearchEvents from './SearchPages/SearchEvents'
-import "./main.css"
+import InsertCourse from './InsertionPages/InsertCourse'
+import InsertEvent from './InsertionPages/InsertEvent';
 
 export default function Main() {
   return (
@@ -30,6 +32,8 @@ export default function Main() {
               <Route path='/search_users' component={SearchUsers}/>
               <Route path='/search_usergroups' component={SearchUserGroups}/>
               <Route path='/search_events' component={SearchEvents}/>
+              <Route path='/insert_course' component={InsertCourse}/>
+              <Route path='/insert_event' component={InsertEvent}/>
             </Switch>
       </main>
   );

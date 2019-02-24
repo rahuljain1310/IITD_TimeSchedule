@@ -31,7 +31,23 @@ CORS(app)
 # db.init_app(app)
 
 
-## API's
+## INSERT API's
+@app.route("/ins_course/",methods=['GET'])
+def insertcourse():
+    param = request.args
+    print(param)
+    # return null
+    return jsonify({'results':[{"a":1,"b":1}]})
+
+@app.route("/ins_event/",methods=['GET'])
+def insertevent():
+    param = request.args
+    print(param)
+    # return null
+    return jsonify({'results':[{"a":1,"b":1}]})
+
+
+## DETAIL API's
 @app.route("/course_details/",methods = ['GET'])
 def course_details():
     code = request.args.get('code')
@@ -41,7 +57,9 @@ def course_details():
 
     cur1 = conn.cursor()
     cur2 = conn.cursor()
+
     cur1.execute(rq.get_all_co,(code,curr_year,curr_sem))
+
     cur2.execute(rq.get_co,(code))
     oldcourses = cur1.fetchall()
     curcourse = cur2.fetchall()[0]
@@ -80,10 +98,10 @@ def user_details():
     group = request.args.get('code')
     if (group==''):
         if (type=='0'):
-            cur.execute(rq.search_users,(alias,name))
+            cur.execute(rq.search_user,(alias,name))
         elif (type=='1'):
             cur.execute(rq.search_stu,(alias,name))
-        else
+        else:
             cur.execute(rq.search_prof,(alias,name))
         ## Got the only argument now send the json only
     else:
@@ -91,8 +109,8 @@ def user_details():
             cur.execute(rq.search_user_withgroup,(alias,name,group))
         elif (type=='1'):
             cur.execute(rq.search_stu_with_group,(alias,name,group))
-        else
-            cur.execute(rq.search_prof_with_group,(alias,name,group))
+        else:
+            cur.execute(rq.search_prof_withgroup,(alias,name,group))
     return jsonify({'results':cur.fetchall()})
 
 @app.route("/usergroup_details/",methods = ['GET'])
@@ -116,12 +134,13 @@ def event_details():
     event_linkto = eventdetails[2]
     cur.execute(rq.get_users,event_group)
     event_users = cur.fetchall()
-    cur.execute(get_eventtime_weekly,(eventid))
+    cur.execute(rq.get_eventtime_weekly,(eventid))
     event_weekly = cur.fetchall()
-    cur.execute(get_evemttime_once,(eventid))
+    cur.execute(rq.get_eventtime_once,(eventid))
     event_timeonce = cur.fetchall()
     return jsonify({'e_group':event_group,'e_name':event_name,'e_linkto':event_linkto,'e_users':event_users,'e_weekly':event_weekly})
 
+## FIND API
 @app.route("/findcourses/",methods = ['GET'])
 def findcourses():
     print("API Call for Finding Courses")         ## Need to Work On this API
@@ -164,7 +183,7 @@ def findcourses():
 
     course = cur.fetchall()
     # print(course)
-    cur.commit()
+    conn.commit()
     return jsonify({'results':course})
 
 @app.route("/findusergroups/",methods = ['GET'])
@@ -175,7 +194,7 @@ def findusergroups():
     cur.execute(rq.search_group,alias)
     groups = cur.fetchall()
     # print(course)
-
+    conn.commit()
     return jsonify({'results':groups})
 
 @app.route("/findusers/",methods = ['GET'])
@@ -193,7 +212,7 @@ def findusers():
         cur.execute(rq.search_prof,(alias,name))
     else:
         cur.execute(rq.search_user,(alias,name))
-        cur.commit()
+        conn.commit()
     return jsonify({'results':cur.fetchall()})
 
 @app.route("/findevents/",methods = ['GET'])
@@ -219,6 +238,9 @@ def findevents():
 @app.route("/search_users")
 @app.route("/search_usergroups")
 @app.route("/search_events")
+@app.route("/insert_course")
+@app.route("/insert_event")
+@app.route("/register_student")
 def index():
     return render_template('index.html')
 
