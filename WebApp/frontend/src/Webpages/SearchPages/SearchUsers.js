@@ -2,12 +2,13 @@ import React from 'react';
 import Query from '../QueryComponent/Query'
 import {Button} from 'react-bootstrap'
 
-export default class SearchCourses extends React.Component {
+export default class SearchUsers extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             alias : "",
             name : "",
+            code: "",
             type : 0,
             users: [],
             urlpath: "/user/"
@@ -15,7 +16,7 @@ export default class SearchCourses extends React.Component {
     }
 
     queryUsers = (e) => {
-        let cq = "?alias="+this.state.alias+'&name='+this.state.name+'&type='+this.state.type
+        let cq = "?alias="+this.state.alias+'&name='+this.state.name+'&type='+this.state.type+"&code="+this.state.code
         fetch('http://localhost:5000/findusers/'+cq, {
             method: 'GET',
             dataType: 'json'
@@ -55,6 +56,7 @@ export default class SearchCourses extends React.Component {
         <div className="search_div">
             <input type="text" onChange={ (e) => this.setState({alias: e.target.value}) } value={ this.state.alias } placeholder="alias"/>
             <input type="text" onChange={ (e) => this.setState({name: e.target.value}) } value={ this.state.name } placeholder="name"/>
+            <input type="text" onChange={ (e) => this.setState({code: e.target.value}) } value={ this.state.code } placeholder="Course Code"/>
             <select  onChange={this.seturlpath} value={ this.state.type } >
                 <option value="0">All</option>
                 <option value="1">Student</option>
