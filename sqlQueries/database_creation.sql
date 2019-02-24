@@ -151,20 +151,29 @@ END
 $$
  LANGUAGE 'plpgsql';
 
-create or replace function insert_course(year int,sem int) returns trigger as
+create or replace function insert_course() returns trigger as
   $BODY$
   begin
     INSERT INTO
       courses(code,name,slot,type,credits,lec_dur,
-        tut_dur,prac_dur,strength,registered) VALUES (new.code,new.name,new.slot,new.type,new.credits,new.lec_dur,new.tut_dur,new.prac_dur,new.strength,new.registered,year,sem);
+        tut_dur,prac_dur,strength,registered) VALUES (new.code,new.name,new.slot,new.type,new.credits,new.lec_dur,new.tut_dur,new.prac_dur,new.strength,new.registered,TG_ARGV[0],TG_ARGV[1]);
     RETURN new;
   end;
   $BODY$
   language 'plpgsql';
 
 CREATE TRIGGER new_course_insert BEFORE INSERT ON curr_courses
-execute procedure
+execute procedure insert_course(2018,2);
 
+create or replace function change_course_trigger(year int,sem int) returns void as
+  $$
+    BEGIN
+    drop trigger if exists new_course_insert on curr_courses;
+    CREATE TRIGGER new_course_insert BEFORE INSERT ON curr_courses
+    execute procedure insert_course(year,semester);
+    END;
+  $$
+language 'plpgsql';
 
 create or replace function insert_stu_in_course(alias1 varchar(30),code1 varchar(8),grouped int,year int default :curr_year, sem int default :curr_sem)
  returns void as
