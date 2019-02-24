@@ -38,8 +38,9 @@ export default class SearchUserGroups extends React.Component {
     render() {
         return (
         <div className="search_div">
+            <h3>Search Usergroup:</h3>
             <input type="text" onChange={ (e) => this.setState({groupinput: e.target.value}) } value={ this.state.groupinput } placeholder="User Groups"/>
-            <Button onClick={this.queryusergroups}> Go </Button>
+            <br/><Button onClick={this.queryusergroups}> Search </Button> <span>OR &nbsp;&nbsp;&nbsp; Create a <a href="/insert_usergroup">Usergroup</a></span>
             <Query results={this.state.usergroups} urlpath={this.state.urlpath} hyperlink={true}/>
         </div>
 

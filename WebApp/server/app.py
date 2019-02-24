@@ -56,11 +56,12 @@ def updatecourse():
         elif (type=='4'):
             cur.execute(iq.update_groupedin,(group,change,code))
         else:
-            pass;
+            pass
         conn.commit()
-        return jsonify({'results':})
+        return jsonify({'results':"Updated Successfully"})
     except:
-        return jsonify({'results':})
+        return null
+        
 @app.route("/update_user/",methods=['GET'])
 def updateuser():
     alias = request.args.get('alias')
