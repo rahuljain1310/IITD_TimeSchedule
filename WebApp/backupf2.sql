@@ -65,6 +65,23 @@ CREATE FUNCTION public.assign_groupto_user(hosta1 character varying, groupa1 cha
 ALTER FUNCTION public.assign_groupto_user(hosta1 character varying, groupa1 character varying, usera1 character varying) OWNER TO postgres;
 
 --
+-- Name: change_course_trigger(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.change_course_trigger(year integer, sem integer) RETURNS void
+    LANGUAGE plpgsql
+    AS $$
+    BEGIN
+    drop trigger if exists new_course_insert on curr_courses;
+    CREATE TRIGGER new_course_insert AFTER INSERT ON curr_courses
+    execute procedure insert_course(year,semester);
+    END;
+  $$;
+
+
+ALTER FUNCTION public.change_course_trigger(year integer, sem integer) OWNER TO postgres;
+
+--
 -- Name: change_name(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -95,6 +112,29 @@ CREATE FUNCTION public.change_strength() RETURNS trigger
 
 
 ALTER FUNCTION public.change_strength() OWNER TO postgres;
+
+--
+-- Name: code_day(public.day); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.code_day(day1 public.day) RETURNS integer
+    LANGUAGE plpgsql
+    AS $$
+begin
+  case 
+    when day1='Sun' then return 0;
+    when day1='Mon' then return 1;
+    when day1='Tue' then return 2;
+    when day1='Wed' then return 3;
+    when day1='Thu' then return 4;
+    when day1='Fri' then return 5;
+    when day1='Sat' then return 6;
+  end case;
+end;
+$$;
+
+
+ALTER FUNCTION public.code_day(day1 public.day) OWNER TO postgres;
 
 --
 -- Name: create_event(character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
@@ -151,20 +191,20 @@ ALTER FUNCTION public.dreg_stu() OWNER TO postgres;
 CREATE FUNCTION public.get_day(da date) RETURNS character varying
     LANGUAGE plpgsql
     AS $$
-    declare
-      d int := extract(dow from da);
-    begin
-      if d = 0 then return 'Sun';
-      elsif d = 1 then return 'Mon';
-      elsif d = 2 then return 'Tue';
-      elsif d = 3 then return 'Wed';
-      elsif d = 4 then return 'Thu';
-      elsif d = 5 then return 'Fri';
-      elsif d = 6 then return 'Sat';
-      else return 'Non';
-      end if;
-    end
-    $$;
+  declare
+    d int := extract(dow from da);
+  begin
+    if d = 0 then return 'Sun';
+    elsif d = 1 then return 'Mon';
+    elsif d = 2 then return 'Tue';
+    elsif d = 3 then return 'Wed';
+    elsif d = 4 then return 'Thu';
+    elsif d = 5 then return 'Fri';
+    elsif d = 6 then return 'Sat';
+    else return 'Non';
+    end if;
+  end
+  $$;
 
 
 ALTER FUNCTION public.get_day(da date) OWNER TO postgres;
@@ -193,7 +233,7 @@ CREATE FUNCTION public.insert_course() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
   begin
-      if (exists (select * from groups where alias = new.code)) then
+      if (exists (select * from groups where alias = new.code)) = 'f' then
         insert into groups(alias) values(new.code);
       end if;
       insert into courses(code,name,slot,type,credits,lec_dur,
@@ -247,8 +287,11 @@ BEGIN
   if exists(select * from usersgroups where useralias=new.profalias and groupalias=new.coursecode) then else
   insert into usersgroups values(new.profalias,new.coursecode);
   end if;
+  if exists(select * from groupshost where useralias=new.profalias and groupalias=new.coursecode) then else
+  insert into groupshost values(new.coursecode,new.profalias);
+  end if;
   return new;
-END
+END;
 $$;
 
 
@@ -305,6 +348,40 @@ CREATE FUNCTION public.insert_stu_course() RETURNS trigger
 ALTER FUNCTION public.insert_stu_course() OWNER TO postgres;
 
 --
+-- Name: prof_add_trigger(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.prof_add_trigger(year integer, sem integer) RETURNS void
+    LANGUAGE plpgsql
+    AS $$
+      BEGIN
+      drop trigger if exists prof_add on curr_prof_course;
+      CREATE TRIGGER prof_add AFTER INSERT ON curr_prof_course
+      execute procedure insert_prof_course(year,semester);
+      END;
+    $$;
+
+
+ALTER FUNCTION public.prof_add_trigger(year integer, sem integer) OWNER TO postgres;
+
+--
+-- Name: stu_add_trigger(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.stu_add_trigger(year integer, sem integer) RETURNS void
+    LANGUAGE plpgsql
+    AS $$
+    BEGIN
+    drop trigger if exists stu_add on curr_stu_course;
+    CREATE TRIGGER stu_add AFTER INSERT ON curr_stu_course
+    execute procedure insert_stu_course(year,semester);
+    END;
+  $$;
+
+
+ALTER FUNCTION public.stu_add_trigger(year integer, sem integer) OWNER TO postgres;
+
+--
 -- Name: update_current_year_semester(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -319,14 +396,21 @@ CREATE FUNCTION public.update_current_year_semester(year integer, sem integer) R
       create trigger chang_name after update of name on curr_courses
         for each row execute procedure change_name(year,sem);
       drop trigger if exists stu_add on curr_stu_course;
+      create trigger chang_strr after update of name on curr_courses
+        for each row execute procedure change_strength(year,sem);
+      drop trigger if exists stu_add on curr_stu_course;
       CREATE TRIGGER stu_add AFTER INSERT ON curr_stu_course
-      execute procedure insert_stu_course(year,sem);
+      for each row execute procedure insert_stu_course(year,sem);
       drop trigger if exists prof_add on curr_prof_course;
       CREATE TRIGGER prof_add AFTER INSERT ON curr_prof_course
-      execute procedure insert_prof_course(year,sem);
+      for each row execute procedure insert_prof_course(year,sem);
       drop trigger if exists new_course_insert on curr_courses;
       CREATE TRIGGER new_course_insert AFTER INSERT ON curr_courses
-      execute procedure insert_course(year,semester);
+      for each row execute procedure insert_course(year,sem);
+      drop trigger if exists deregister_student on curr_stu_course;
+      CREATE TRIGGER deregister_student after delete on curr_stu_course
+      for each row execute procedure dreg_stu(year,sem);
+      truncate curr_stu,curr_prof,curr_courses,curr_stu_course,curr_prof_course;
     end;
     $$;
 
@@ -52941,6 +53025,808 @@ COPY public.groups (gid, alias) FROM stdin;
 --
 
 COPY public.groupshost (groupalias, useralias) FROM stdin;
+AMD310	tiwariv
+AMD811	arghya
+AMD812	arghya
+AMD813	arghya
+AMD814	arghya
+AMD895	ajeetk
+AMD897	shashankrv
+AML702	vchalama
+AML706	hegde
+AML731	gsingh
+AML793	mpmathew
+AML795	shashankrv
+AML831	bppatel
+AML832	ssantapuri
+AML835	mahajan
+AMP776	sns
+APL100	maloy
+APL102	rajesh
+APL105	ag
+APL300	ajeetk
+APL705	pradyum
+APL711	adewan
+APL713	sawan
+APL720	arjunsharma
+APL750	sureshn
+APL767	ngosvami
+APL774	murali
+APL796	sroy
+APL871	suhail
+APV707	pradyum
+ASD882	ssahany
+ASL340	sagnik
+ASL350	vimlesh
+ASL360	skm
+ASL734	mathilis
+ASL736	akrishna
+ASL737	adrao
+ASL738	ssahany
+ASL751	rkkunchala
+ASL754	dilipganguly
+ASL760	drsbr
+ASP820	san81
+BBD451	elangovan
+BBD452	elangovan
+BBD851	ashishmisra
+BBD852	ashishmisra
+BBD853	ashishmisra
+BBD854	ashishmisra
+BBD895	ritu
+BBL341	shilpi
+BBL431	zia
+BBL432	sunath
+BBL433	elangovan
+BBL434	sundar
+BBL443	ashishmisra
+BBL445	gopal
+BBL736	anarang
+BBL740	ashokks
+BBL742	sree
+BBL745	preeti
+BBL746	sarojm
+BBL747	pmishra
+BBL749	ritu
+BBQ301	elangovan
+BBQ302	shilpi
+BBQ303	sarojm
+BED800	ritu
+BMD802	jayanta
+BML735	anupsm
+BML737	anupsm
+BML740	joshid
+BML750	sandeepjha
+BML760	sandeepjha
+BML771	dineshk
+BML820	harpal
+BML860	sneetu
+BMP743	jayanta
+BSD895	jharshan
+CHD771	shalinig
+CHD871	shalinig
+CHD872	shalinig
+CHD873	shalinig
+CHD874	shalinig
+CLD411	jphirani
+CLD412	jphirani
+CLD413	jphirani
+CLD414	jphirani
+CLD415	jphirani
+CLD771	shalinig
+CLD781	shalinig
+CLD782	shalinig
+CLD880	shalinig
+CLD881	shalinig
+CLD882	shalinig
+CLL121	goelg
+CLL122	dbhatia
+CLL231	jphirani
+CLL251	mcramteke
+CLL271	arathore
+CLL352	anilverma
+CLL361	munawar
+CLL371	roys
+CLL402	sreedevi
+CLL475	aksaroha
+CLL722	anupam
+CLL727	kkpant
+CLL731	vvbuwa
+CLL732	haider
+CLL733	ratan
+CLL766	ashoknb
+CLL767	sudip
+CLL768	jayati
+CLL771	vs225
+CLL772	paresh
+CLL779	shalinig
+CLL782	munawar
+CLL786	rajkh
+CLL788	kodamana
+CLL793	sgupta
+CLP302	vs225
+CLP704	haider
+CLQ301	ashoknb
+CLQ302	ratan
+CLV797	kcjha
+CMD641	sapra
+CMD807	njain
+CML100	slgholap
+CML521	bjayaram
+CML522	ppingole
+CML523	ramesh
+CML524	dkbp
+CML525	sisn
+CML526	dtanmay
+CML665	sdeep
+CML673	nalinp
+CML682	shankar
+CML724	kmanna
+CML729	jaideo
+CML737	njain
+CML738	elias
+CML739	skkhare
+CML740	ravips
+CML801	hkashyap
+CMP100	pramitc
+CMP521	ramesh
+CMP522	dtanmay
+CMP728	jaideo
+COD310	srikanta
+COD492	ragesh
+COD494	ragesh
+COD891	srikanta
+COD892	srsarangi
+COD893	srsarangi
+COD895	srikanta
+COL100	suban
+COL106	amitk
+COL216	anshul
+COL226	sanjiva
+COL331	srsarangi
+COL352	ssen
+COL362	ramanath
+COL380	svs
+COL632	ramanath
+COL633	srsarangi
+COL724	saran
+COL726	narain
+COL729	sbansal
+COL740	scgupta
+COL758	naveen
+COL772	mausam
+COL774	parags
+COL781	pkalra
+COL786	rahulgarg
+COL812	panda
+COL863	ragesh
+COL864	chetan
+COL872	ragesh
+COL886	srsarangi
+COP290	riju
+COP315	mbala
+COP701	riju
+COQ301	saroj
+COQ302	bagchi
+COQ303	chetan
+COQ304	saran
+COS310	srikanta
+COS799	srikanta
+COV878	parags
+COV880	rahulgarg
+COV883	bagchi
+COV884	saroj
+COV887	saran
+COV888	srikanta
+CRD802	ankurgupta
+CRD811	ankurgupta
+CRD812	ankurgupta
+CRD814	ankurgupta
+CRL702	arunkm
+CRL704	prabhubabu
+CRL706	rbahl
+CRL712	crf182109
+CRL722	samareshdas
+CRL724	ananjan
+CRL732	prsingh
+CRV742	arunkm
+CSD411	ragesh
+CSD853	srsarangi
+CVC772	knjha
+CVD411	akswamy
+CVD412	akswamy
+CVD700	araman
+CVD710	tanusree
+CVD720	gazala
+CVD721	gazala
+CVD756	supratic
+CVD757	supratic
+CVD758	supratic
+CVD772	knjha
+CVD773	knjha
+CVD776	umapaul
+CVD777	knjha
+CVD778	umapaul
+CVD801	araman
+CVD810	tanusree
+CVD811	tanusree
+CVD832	chakma
+CVD854	nezam
+CVD895	kaushal
+CVL100	harshakota
+CVL212	arunku
+CVL222	ramana
+CVL242	krishnan
+CVL244	umapaul
+CVL261	rrkalaga
+CVL281	smathur
+CVL313	harshakota
+CVL342	supratic
+CVL381	chakma
+CVL382	chahar
+CVL422	ramana
+CVL431	araman
+CVL443	madan
+CVL482	chakma
+CVL702	araman
+CVL703	mdatta
+CVL705	bmanna
+CVL706	shahu
+CVL712	kgsharma
+CVL713	kgsharma
+CVL714	tanusree
+CVL715	raoks
+CVL721	alappat
+CVL723	aryav
+CVL724	aknema
+CVL727	arunku
+CVL728	mukeshk
+CVL734	kaushal
+CVL735	nkgarg
+CVL743	akswamy
+CVL746	manojm
+CVL760	gurmail
+CVL761	drsahoo
+CVL762	matsagar
+CVL774	knjha
+CVL775	kciyer
+CVL776	akjain
+CVL778	cet172046
+CVL811	tanusree
+CVL830	akeshari
+CVL833	rkhosa
+CVL838	gosain
+CVL841	manojm
+CVL845	akswamy
+CVL847	geetamt
+CVL849	rrkalaga
+CVL850	nezam
+CVL861	sbhalla
+CVL863	gurmail
+CVL864	sbhalla
+CVL865	drsahoo
+CVL871	bishnoi
+CVL874	umapaul
+CVL875	ce1140348
+CVP222	araman
+CVP242	krishnan
+CVP261	akswamy
+CVP281	kaushal
+CVP342	supratic
+CVP730	nkgarg
+CVP731	dhanya
+CVP756	akjain
+CVP771	bishnoi
+CVP800	bmanna
+CVP810	raoks
+CVQ301	alappat
+CVS810	raoks
+DSD792	srinivasanv
+DSD799	srinivasanv
+DSD802	satishdubey
+DSD892	jyoti
+DSL712	shahani
+DSL714	shahani
+DSL734	cshakher
+DSL737	satishdubey
+DSL782	jyoti
+DSL811	alvyas
+DSP704	gufranskhan
+DSP711	pvmrao
+DSP722	srinivasanv
+DSP741	sumerid
+DSR772	sumerid
+DSR812	jyoti
+DSS720	gufranskhan
+DTD899	bishalp.cstaff
+EED854	lalank
+EED898	nsenroy
+EET410	sbhasin
+ELD411	bmitra
+ELD431	bmitra
+ELD450	bmitra
+ELD451	bmitra
+ELD452	bmitra
+ELD453	bmitra
+ELD454	bmitra
+ELD455	bmitra
+ELD456	bmitra
+ELD457	bmitra
+ELD458	bmitra
+ELD459	bmitra
+ELD780	sumeet
+ELD800	deepakpatil
+ELD802	deepakpatil
+ELD810	lalank
+ELD811	lalank
+ELD812	lalank
+ELD831	msingh
+ELD832	msingh
+ELD851	amitjain
+ELD852	amitjain
+ELD871	nsenroy
+ELD872	nsenroy
+ELD880	sumeet
+ELD881	sumeet
+ELD895	abhyankar
+ELL100	mvchary
+ELL201	adixit
+ELL205	shankar.prakriya
+ELL212	debanjan
+ELL225	deepakpatil
+ELL231	msingh
+ELL301	shaunak
+ELL303	nsenroy
+ELL319	lalank
+ELL332	bhuvan
+ELL365	rahman
+ELL400	bkpanigrahi
+ELL402	swadesd
+ELL409	jayadeva
+ELL411	rkmallik
+ELL457	sumeet
+ELL703	mnabi
+ELL705	ink
+ELL715	maggarwal
+ELL717	vivekv
+ELL719	sdjoshi
+ELL720	seshan
+ELL723	abhishek.dixit
+ELL725	swadesd
+ELL726	adhawan
+ELL730	mamidala
+ELL731	msarkar
+ELL742	bmitra
+ELL752	amitjain
+ELL759	rkmahesh
+ELL760	ssnag
+ELL769	anandarup
+ELL776	prbijwe
+ELL778	sukumar
+ELL783	sumantra
+ELL784	sumantra
+ELL791	jayadeva
+ELL802	sbhasin
+ELL803	janas
+ELL805	subashish
+ELL814	vkjain
+ELL815	manav
+ELL821	saifkm
+ELL822	jbseo
+ELL823	brejesh
+ELL824	jharshan
+ELL833	shouri
+ELL850	spramanick
+ELL851	bsingh
+ELL870	abhyankar
+ELL880	sumeet
+ELL888	prathoshap
+ELL896	hmgupta
+ELP203	anandarup
+ELP302	bhuvan
+ELP305	rahman
+ELP311	brejesh
+ELP720	subrat
+ELP725	seshan
+ELP736	shouri
+ELP801	janas
+ELP832	jayadeva
+ELP852	bsingh
+ELP853	mvchary
+ELP871	sukumar
+ELQ301	janas
+ELS310	shouri
+ELS330	shouri
+ELS880	subrat
+ELV780	sumantra
+ELV781	sumantra
+EPC410	santanu1
+ESL300	ruma
+ESL330	supravat
+ESL340	krk
+ESL350	tyagisk
+ESL360	dpsahu
+ESL710	subra
+ESL714	dibakar
+ESL718	tsb
+ESL730	rams
+ESL734	dpsahu
+ESL750	tarak
+ESL755	spathak
+ESL796	sumit
+ESL840	tyagisk
+ESL871	ruma
+ESL880	krk
+ESP713	kaushiksaha
+ESQ301	spathak
+ESQ303	sumit
+ESQ304	rams
+ESQ306	tyagisk
+ESQ307	ruma
+ESQ308	krk
+ESQ309	subra
+ESQ310	kaushiksaha
+HSD700	sarbeswar
+HSL262	yaj
+HSL701	upasna
+HSL702	asagar
+HSL713	debasis
+HSL719	sbpaul
+HSL731	arjunghosh
+HSL751	sanil
+HSL766	yaj
+HSL772	richa
+HSL800A	milindw
+HSL800B	milindw
+HSL841	pritha
+HSL852	ssawhney
+HSL860	milindw
+HSV319	jayan
+HSV748	samar
+HSV781	upasna
+HUL211A	jayan
+HUL211B	ankush
+HUL212	debasis
+HUL231	skhanna
+HUL239	rbnair
+HUL242	samar
+HUL261	vsingh
+HUL267	singhk
+HUL271	sarbeswar
+HUL274	milindw
+HUL286A	upasna
+HUL286B	rkaur
+HUL307	angelie
+HUL315	sbpaul
+HUL316	jayan
+HUL320	saptarshi
+HUL335	ssawhney
+HUL356	bpuri
+HUL360	sanil
+HUL362	psingh
+HUL370	sm1
+HUL371A	nthayyil
+HUL371B	asagar
+HUL375	fibrahim
+HUL376	aurora
+HUL378	mahuya
+HUL380	richa
+HUL381A	sm1
+HUL381B	avaidya
+HUL743	psanyal
+HUL763	vsingh
+HUL843	rbnair
+HUL861	sm1
+HUL874	sarbeswar
+HUL875	aurora
+HUL888	avaidya
+HUV705	asagar
+HUV751	samar
+ITL702	ntandon
+ITL711	fatima
+ITL714	dkumar
+ITL717	jbijwe
+JID802	dkumar
+JOD802	mrshenoy
+JOP792	vivekv
+JPD802	bhabani
+JRD301	saha
+JSD801	rams
+JSD802	rams
+JTD792	brejesh
+JTD802	jharshan
+JVD809	jayadeva
+JVD811	jayadeva
+JVD812	jayadeva
+MAD852	siva
+MCD310	pmpandey
+MCD411	akdarpe
+MCD412	akdarpe
+MCD812	subhra.datta
+MCD832	sks
+MCD862	varunr
+MCD882	suniljha
+MCD895	jpkhatait
+MCL131	aravindan
+MCL132	dravi
+MCL133	nareshb
+MCL136	ghoshs
+MCL142	ravimr
+MCL201	jkdutt
+MCL212	svmodak
+MCL241	pmvs
+MCL311	dkdubey
+MCL321	singhsp
+MCL331	aravindan
+MCL343	kmayank
+MCL347	debabrata
+MCL361	varunr
+MCL380	sanjeevj
+MCL421	achawla
+MCL443	agupta
+MCL705	skohli
+MCL723	sudipto
+MCL730	datla
+MCL733	akdarpe
+MCL736	achawla
+MCL738	saha
+MCL741	singhsp
+MCL743	kgupta
+MCL745	rkk
+MCL747	jpkhatait
+MCL754	nomesh
+MCL759	vashisthp
+MCL770	nomesh
+MCL771	gupta
+MCL778	spandey
+MCL782	pmpandey
+MCL784	pvmrao
+MCL786	pvrao
+MCL813	subhra.datta
+MCL814	bray
+MCL818	kkant
+MCL821	raya
+MCL822	prem
+MCL823	prabal
+MCL825	pmvs
+MCL826	bahga
+MCL865	kseth
+MCP100	sks
+MCP101	suniljha
+MCP261	varunr
+MCP301	skohli
+MCP331	ghoshs
+MCP332	spandey
+MCQ301	saha
+MCQ302	prem
+MCQ303	aravindan
+MCV849	svmodak
+MEC410	nareshb
+MED411	akdarpe
+MED412	akdarpe
+MSD792	shvetasingh
+MSD890	shvetasingh
+MSD891	shvetasingh
+MSD892	shvetasingh
+MSL301	ganuthula
+MSL303	mahim
+MSL700	sushil
+MSL705A	kanika
+MSL705B	kanika
+MSL705C	kanika
+MSL706	mpgupta
+MSL708A	shvetasingh
+MSL708B	pkjain
+MSL711A	sanjaydhir
+MSL711B	sanjaydhir
+MSL713A	vignes
+MSL713B	arpankar
+MSL713C	mpgupta
+MSL720A	seemash
+MSL720B	seemash
+MSL721	amlendu
+MSL723	mahim
+MSL727A	shuchi
+MSL727B	shuchi
+MSL727C	shuchi
+MSL733A	shuchi
+MSL733B	ganuthula
+MSL733C	ganuthula
+MSL740	sprsingh
+MSL745A	jmadaan
+MSL745B	jmadaan
+MSL780	amlendu
+MSL802	skjain
+MSL806	smitak
+MSL825	sushil
+MSL827	hmishra
+MSL849	shankar
+MSL859	mpgupta
+MSL863	harishc
+MSL865	harishc
+MSL870	shvetasingh
+MSL871	smitak
+MSL873	ssyadav
+MSL874	smitak
+MSL875	ssyadav
+MSL878	arpankar
+MSL879	smitak
+MSL886	arpankar
+MSL894	vignes
+MSL896	amlendu
+MST894	shuchi
+MSV802	shvetasingh
+MSV803	vignes
+MSV805	seemash
+MTD350	viswa
+MTD421	vikassingh
+MTD702	sreenadh
+MTD852	siva
+MTD854	siva
+MTL100	shravankumar
+MTL101	scsr
+MTL102	vvksrini
+MTL103	vikassingh
+MTL106	dharmar
+MTL108	apmehra
+MTL122	adasgupta
+MTL145	shiv
+MTL390	niladri
+MTL411	siva
+MTL506	ritumoni
+MTL507	biplab
+MTL508	minati
+MTL509	kamana
+MTL510	skundu
+MTL725	majee
+MTL730	rksharma
+MTL732	mmehra
+MTL742	priyadarshi
+MTL755	ritumoni
+MTL768	bspanda
+MTL782	bspanda
+MTL792	sreenadh
+MTP290	kamana
+NEN101	bishalp.cstaff
+NLN101	arjunghosh
+PTL702	akghosh
+PTL706	bhabani
+PTL709	ssaha
+PTL712	lnebhani
+PTP720	bhabani
+PTV700	bhabani
+PYD411	rsdhaka
+PYD412	rsdhaka
+PYD414	rsdhaka
+PYD562	akshukla
+PYD658	pintu
+PYD802	mrshenoy
+PYD852	mrshenoy
+PYL100	amartya
+PYL102	pankajs
+PYL111	vsaxena
+PYL112	joyee
+PYL114	muduli
+PYL202	rnarula
+PYL204	saswata
+PYL302	hkmalik
+PYL304	smanna
+PYL306	mukesh
+PYL312	mrshenoy
+PYL331	tphyspg
+PYL552	amita
+PYL555	joyee
+PYL556	ajitk
+PYL558	varsha
+PYL560	pkg
+PYL563	sujeetc
+PYL651	pintu
+PYL659	akshukla
+PYL704	akt
+PYL705	brmehta
+PYL707	rmala
+PYL725	rsdhaka
+PYL726	gbreddy
+PYL727	santanu1
+PYL742	vravi
+PYL743	agnihotri
+PYL744	tobiastoll
+PYL746	maratherahul
+PYL748	bkanseri
+PYL752	aloka
+PYL756	psenthil
+PYL760	dsmehta
+PYL762	kedark
+PYL770	kumarsunil
+PYL772	pha172189
+PYL780	gufranskhan
+PYL792	ravi
+PYL800	hcgupta
+PYL879	joby
+PYL891	akumar
+PYP100	nkhare
+PYP212	kumarsunil
+PYP222	ravisoni
+PYP562	psenthil
+PYP702	pintu
+PYP762	joby
+PYP764	joby
+PYQ303	joby
+PYS300	santanu1
+RDD750	phari
+RDL700	phari
+RDL701	kdashora
+RDL710	vivekk
+RDL722	vkvijay
+RDL726	snn
+RDL740	anushree
+RDL760	ssatya
+RDP750	phari
+RDQ301	jksahu
+RDQ302	snn
+RDQ303	vivekk
+RDQ304	rchandra
+RDQ305	kdashora
+SBC796	csdey
+SBD301	achugh
+SBD895	achugh
+SBL100	mbanerjee
+SBL201	ashokpatel
+SBL701	amittal
+SBL703	bkundu
+SBL704	vperumal
+SBL705	tkchaudhuri
+SBL714	achugh
+SBL720	ashokpatel
+SBP200	amittal
+SBS800	achugh
+SBV750	achugh
+SBV884	jgomes
+SID880	panda
+SID890	panda
+SIL765	bnj
+SIV895	pkalra
+TTC410	majumdar
+TTT410	ishtiaque
+TXD357	rchat
+TXD358	rchat
+TXD401	jnsheikh
+TXD402	jnsheikh
+TXD803	majumdar
+TXD804	rajiv
+TXD806	bsbutola
+TXL211	rajiv
+TXL221	dipayan
+TXL231	majumdar
+TXL241	kushal
+TXL361	apurba
+TXL371	ishtiaque
+TXL372	behera
+TXL714	ashwini
+TXL715	manjeet
+TXL725	rsr
+TXL740	mangala
+TXL748	deepti
+TXL754	samrat
+TXL756	bsbutola
+TXL766	bipin
+TXL771	ankurgupta
+TXL775	rasamy
+TXL777	rchat
+TXL782	ishtiaque
+TXL783	arawal
+TXP212	bgupta
+TXP221	rchat
+TXP231	majumdar
+TXP241	wazed
+TXP361	apurba
+TXP716	mangala
+TXP725	rsr
+TXP748	jnsheikh
+TXP761	rasamy
+TXQ302	kushal
+VED750	ravimr
+VEL700	ravimr
 \.
 
 
@@ -174797,6 +175683,14 @@ ALTER TABLE ONLY public.groupshost
 
 
 --
+-- Name: groupshost groupshost_useralias_fkey1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.groupshost
+    ADD CONSTRAINT groupshost_useralias_fkey1 FOREIGN KEY (useralias, groupalias) REFERENCES public.usersgroups(useralias, groupalias);
+
+
+--
 -- Name: onetimeeventtime onetimeeventtime_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -174848,4 +175742,3 @@ ALTER TABLE ONLY public.weeklyeventtime
 -- PostgreSQL database dump complete
 --
 
-INSERT INTO groupshost (select groups.alias as )
