@@ -13,7 +13,7 @@ curr_year=2018
 curr_sem=2
 import psycopg2 as ps
 # conn = ps.connect("dbname=project_3 user=postgres password=Ishu@1003 host=localhost port=5432")
-conn = ps.connect("dbname=project_2 user=postgres password=postgres ")
+conn = ps.connect("dbname=postgres user=postgres password=postgres ")
 cur = conn.cursor()
 
 app = Flask(__name__, static_folder="../frontend/build/static", template_folder="../frontend/build")
@@ -415,7 +415,7 @@ def index():
 @app.route("/courses/<x>")
 # @app.route("/student/<x>")
 # @app.route("/faculty/<x>")
-@app.route("/usergroups/<x>")
+@app.route("/usergroup/<x>")
 @app.route("/event/<x>")
 def details(x):
     return render_template('index.html')
