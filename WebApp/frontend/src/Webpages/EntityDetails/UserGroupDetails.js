@@ -57,10 +57,10 @@ export default class UserGroupDetails extends React.Component {
                 <Query results={this.state.grouphost} urlpath="/user/" hyperlink={true}/>  
               </Tab>
               <Tab eventKey="Events" title="Events">
-                {/* <Query results={this.state.events} urlpath="/event/" hyperlink={true}/>   */}
+                <Query results={this.state.events} urlpath="/event/" hyperlink={true}/>  
               </Tab>
               <Tab eventKey="Users" title="Users">
-                {/* <Query results={this.state.users} urlpath="/user/" hyperlink={true}/>   */}
+                <Query results={this.state.users} urlpath="/user/" hyperlink={true}/>  
               </Tab>
             </Tabs>
           </div>
