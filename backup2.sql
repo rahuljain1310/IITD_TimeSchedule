@@ -537,9 +537,9 @@ CREATE VIEW public.curr_courses_by_prof AS
     curr_courses.prac_dur,
     curr_courses.registered,
     curr_courses.strength
-   FROM ((public.curr_prof
-     JOIN public.curr_prof_course USING (profalias))
-     CROSS JOIN public.curr_courses);
+   FROM ((public.curr_prof_course
+      JOIN public.curr_courses on public.curr_prof_course.coursecode=public.curr_courses.code)
+      JOIN public.curr_prof USING (profalias));
 
 
 ALTER TABLE public.curr_courses_by_prof OWNER TO postgres;
@@ -610,7 +610,7 @@ CREATE VIEW public.curr_courses_of_student AS
     curr_courses.registered,
     curr_courses.strength
    FROM ((public.curr_courses
-     CROSS JOIN public.curr_stu_course)
+     JOIN public.curr_stu_course on public.curr_stu_course.coursecode = public.curr_courses.code)
      JOIN public.curr_stu USING (entrynum));
 
 
@@ -174843,3 +174843,4 @@ ALTER TABLE ONLY public.weeklyeventtime
 -- PostgreSQL database dump complete
 --
 
+SET search_path = public;
