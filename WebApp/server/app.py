@@ -241,8 +241,16 @@ def user_details():
     cur.execute(rq.get_user_data,(alias,))
     userdata= cur.fetchall()
     print(userdata)
-    # username = userdata[0][0]
-    # userwebpage = userdata[0][0]
+    username = ""
+    userwebpage = ""
+    try:
+        username = userdata[0][0]
+    except:
+        pass
+    try:
+        userwebpage = userdata[0][0]
+    except:
+        pass
     cur.execute(rq.get_events_hosted,(alias,))
     events_hosted = cur.fetchall()
     cur.execute(rq.get_all_events,(alias,))

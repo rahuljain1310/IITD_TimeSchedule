@@ -40,16 +40,9 @@ export default class UserDetails extends React.Component {
         return <div>Loading...</div>;
       } else {
         return (
-            <div>
-                 {/* <ul>
-                    {user_details.map(course => (
-                    <li key={course.name}>
-                            {course.name} {course.code}
-                    </li>
-                    ))}
-                </ul> */}
-                {user_details}
-            </div>
+          <div>
+            {  JSON.stringify(this.state.event_details,null,2) }
+          </div>
         
         );
       }

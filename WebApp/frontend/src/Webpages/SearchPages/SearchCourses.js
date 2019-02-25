@@ -50,6 +50,7 @@ export default class SearchCourses extends React.Component {
             <input type="text" onChange={ (e) => this.setState({year: e.target.value}) } value={ this.state.year } placeholder="Year"/>
             <input type="text" onChange={ (e) => this.setState({semester: e.target.value}) } value={ this.state.semester } placeholder="Semester"/>
             <br/><Button onClick={this.queryCourses}> Search </Button> <span>OR &nbsp;&nbsp;&nbsp; Add a <a href="/insert_course">Course</a></span>
+            <span> &nbsp;&nbsp;&nbsp;OR &nbsp;&nbsp;&nbsp; Update a <a href="/update_course">Course</a></span>
             <Query results={this.state.courses} urlpath={this.state.urlpath} hyperlink={true}/>
         </div>
         )
