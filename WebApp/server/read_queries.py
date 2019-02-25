@@ -56,16 +56,18 @@ prof_exists="select exists( "\
 # users data
 get_user_data = "select name,webpage from users where alias = %s"
 co_stu="select curr_courses_of_student.code,curr_courses_of_student.coursename,slot,curr_courses_of_student.type,credits from curr_courses_of_student where entrynum = %s"
-oldco_stu="select courses_of_student.code,courses_of_student.name as coursename,slot,credits from courses_of_student where entrynum = %s and year = %s and semester = %s"
+oldco_stu="select courses_of_student.code,courses_of_student.coursename as coursename,slot,credits from courses_of_student where entrynum = %s and year = %s and semester = %s"
+alloldco_stu="select courses_of_student.code,courses_of_student.coursename as coursename,slot,credits from courses_of_student where entrynum = %s and year <> %s and semester <> %s"
 co_prof="select curr_courses_by_prof.code,curr_courses_by_prof.coursename as coursename,slot,credits from curr_courses_by_prof where profalias = %s"
-oldco_prof="select courses_by_prof.code,courses_by_prof.name as coursename,slot,credits from courses_by_prof where profalias = %s and year = %s and semester = %s"
+oldco_prof="select courses_by_prof.code,courses_by_prof.coursename as coursename,slot,credits from courses_by_prof where profalias = %s and year = %s and semester = %s"
+alloldco_prof="select courses_by_prof.code,courses_by_prof.coursename as coursename,slot,credits from courses_by_prof where profalias = %s and year <> %s and semester <> %s"
 
 get_events_hosted = "select id,groupalias,name,linkto from events,groupshost where groupshost.useralias = %s and groupshost.groupalias = events.alias "
 get_groups="select groupalias,name from usersgroups,users where useralias= %s and users.alias=useralias"
 
 get_all_events = "with groups_in as ( "\
-"select groupalias,name from usersgroups,users where useralias= %s and users.alias=useralias) "\
-"select id,groupalias,name,linkto from groups_in,events "\
+"select groupalias,users.name from usersgroups,users where useralias= %s and users.alias=useralias) "\
+"select id,groupalias,events.name,linkto from groups_in,events "\
 "where events.alias = groups_in.groupalias"
 
 
@@ -85,10 +87,10 @@ get_events="select id,name,linkto from events where alias = %s"
 # ----events---
 get_exact_event="select alias,name,linkto from events where events.id = %s"
 
-get_eventtime_weekly="select slotname,days,begintime,endtime from (events natural join weeklyeventtime on events.id = %s) natural join slotdetails "\
-"order by case when days = 'Mon' then 1 when days='Tue' then 2 when days='Wed' then 3 when days='Thu' then 4 when days = 'Fri' then 5 when days='Sat' then 6 when days = 'Sun' then 7,begintime"
+get_eventtime_weekly="select slotname,days,begintime,endtime from (events natural join weeklyeventtime ) natural join slotdetails where events.id = %s" \
+"order by code_day(days), begintime"
 
-get_eventtime_once="select ondate,begintime,endtime from (events natural join onetimeeventtime on events.id = %s) order by ondate,begintime"
+get_eventtime_once="select ondate,begintime,endtime from (events natural join onetimeeventtime) where events.id = %s order by ondate,begintime"
 
 
 # events page

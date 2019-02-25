@@ -233,3 +233,19 @@ create trigger deregister_student after delete on curr_stu_course
     language 'plpgsql';
 create trigger change_strr after update on curr_courses
   for each row execute procedure change_strength(2018,2);
+
+create or replace function code_day(day1 day) returns int as
+$$
+begin
+  case 
+    when day1='Sun' then return 0;
+    when day1='Mon' then return 1;
+    when day1='Tue' then return 2;
+    when day1='Wed' then return 3;
+    when day1='Thu' then return 4;
+    when day1='Fri' then return 5;
+    when day1='Sat' then return 6;
+  end case;
+end;
+$$
+language 'plpgsql';

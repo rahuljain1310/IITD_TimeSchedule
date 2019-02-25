@@ -12,7 +12,7 @@ from flask_cors import CORS
 curr_year=2018
 curr_sem=2
 import psycopg2 as ps
-conn = ps.connect("dbname=postgres user=postgres password=postgres")
+conn = ps.connect("dbname=project_2 user=postgres password=postgres")
 cur = conn.cursor()
 
 app = Flask(__name__, static_folder="../frontend/build/static", template_folder="../frontend/build")
@@ -228,9 +228,10 @@ def user_details():
     alias = request.args.get('alias')
     cur.execute(rq.get_user_data,(alias,))
     userdata= cur.fetchall()
+    print(userdata)
 
-    username = userdata[0][0]
-    userwebpage = userdata[0][0]
+    # username = userdata[0][0]
+    # userwebpage = userdata[0][0]
     cur.execute(rq.get_events_hosted,(alias,))
     events_hosted = cur.fetchall()
     cur.execute(rq.get_all_events,(alias,))
@@ -239,11 +240,11 @@ def user_details():
     in_groups = cur.fetchall()
     cur.execute(rq.co_stu,(alias,))
     cur_course_registered = cur.fetchall()
-    cur.execute(rq.oldco_stu,(alias,))
-    old_courses_registered = cur.fetchal()
+    cur.execute(rq.alloldco_stu,(alias,curr_year,curr_sem))
+    old_courses_registered = cur.fetchall()
     cur.execute(rq.co_prof,(alias,))
     cur_courses_taken = cur.fetchall()
-    cur.execute(rq.oldco_prof,(alias,))
+    cur.execute(rq.alloldco_prof,(alias,curr_year,curr_sem))
     old_courses_taken = cur.fetchall()
 
     if (len(cur_course_registered)!=0):
@@ -286,7 +287,7 @@ def event_details():
     cur.execute(rq.get_eventtime_once,(eventid,))
     event_timeonce = cur.fetchall()
     event_hosts = cur.execute(rq.get_hosts,(event_group,))
-    return jsonify({'e_id':eventid,'e_group':event_group,'e_name':event_name,'e_linkto':event_linkto,'e_users':event_users,'e_weekly':event_weekly,'e_hosts':event_hosts})
+    return jsonify({'e_id':eventid,'e_group':event_group,'e_name':event_name,'e_linkto':event_linkto,'e_users':event_users,'e_weekly':event_weekly,'e_hosts':event_hosts,'e_time':event_timeonce})
 
 ## FIND API
 @app.route("/findcourses/",methods = ['GET'])
