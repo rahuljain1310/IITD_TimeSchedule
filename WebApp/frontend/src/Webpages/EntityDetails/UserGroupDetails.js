@@ -9,14 +9,16 @@ export default class UserGroupDetails extends React.Component {
         error: null,
         isLoaded: false,
         groupalias: "",
+        grouphost: [],
         users: [],
         events: [],
         urlpath: "/user/"
       };
     }
     componentDidMount() {
-      const { alias } = this.props.match.params
-      fetch('http://localhost:5000/usergroup_details/?groupinput='+alias, {
+      const { groupcode } = this.props.match.params
+      console.log(this.props)
+      fetch('http://localhost:5000/usergroup_details/?groupinput='+groupcode, {
         method: 'GET',
         dataType: 'json'
       })
@@ -28,6 +30,7 @@ export default class UserGroupDetails extends React.Component {
               users: rjson.users,
               groupalias: rjson.groupalias,
               events: rjson.events,
+              grouphost: rjson.groups_host,
             });
           },
           (error) => {
@@ -50,13 +53,16 @@ export default class UserGroupDetails extends React.Component {
           <div>
             <h2>{this.state.groupalias}</h2>
             <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
+              <Tab eventKey="Hosts" title="Hosts">
+                <Query results={this.state.grouphost} urlpath="/user/" hyperlink={true}/>  
+              </Tab>
               <Tab eventKey="Events" title="Events">
-                <Query results={this.state.events} urlpath={'/event/'} hyperlink={true}/>  
+                {/* <Query results={this.state.events} urlpath="/event/" hyperlink={true}/>   */}
               </Tab>
               <Tab eventKey="Users" title="Users">
-                <Query results={this.state.users} urlpath={this.state.urlpath} hyperlink={true}/>  
+                {/* <Query results={this.state.users} urlpath="/user/" hyperlink={true}/>   */}
               </Tab>
-            </Tabs>;
+            </Tabs>
           </div>
         );
       }

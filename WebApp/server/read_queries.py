@@ -67,7 +67,7 @@ get_groups="select groupalias,name from usersgroups,users where useralias= %s an
 
 get_all_events = "with groups_in as ( "\
 "select groupalias,users.name from usersgroups,users where useralias= %s and users.alias=useralias) "\
-"select id,groupalias,events.name,linkto from groups_in,events "\
+"select events.id,groupalias,events.name,linkto from groups_in,events "\
 "where events.alias = groups_in.groupalias"
 
 

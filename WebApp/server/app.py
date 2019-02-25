@@ -12,7 +12,8 @@ from flask_cors import CORS
 curr_year=2018
 curr_sem=2
 import psycopg2 as ps
-conn = ps.connect("dbname=project_2 user=postgres password=postgres")
+# conn = ps.connect("dbname=project_3 user=postgres password=Ishu@1003 host=localhost port=5432")
+conn = ps.connect("dbname=project_2 user=postgres password=postgres ")
 cur = conn.cursor()
 
 app = Flask(__name__, static_folder="../frontend/build/static", template_folder="../frontend/build")
@@ -168,15 +169,26 @@ def insertcourse():
 
 @app.route("/ins_event/",methods=['GET'])
 def insertevent():
+    user = request.args.get('user')
     usergroup = request.args.get('usergroup')
     eventname = request.args.get('eventname')
     # venue = request.args.get('venue')
     linkDescription =request.args.get('linkDescription')
-    cur.execute(iq.insert_event,(usergroup,eventname,linkDescription))
+    cur.execute(iq.insert_event,(user,usergroup,eventname,linkDescription))
+    returned = cur.fetchall()[0][0]
+    a = ""
+    if returned == 0:
+        a='success'
+    elif returned == 1:
+        a='permission denied'
+    elif returned == 2:
+        a='user does not exist'
+    else:
+        a='undefined error'
     conn.commit()
     # print(param)
     # return 0
-    return jsonify({'results':[{"a":1,"b":1}]})
+    return jsonify({'results':a})
 
 ## DETAIL API's
 @app.route("/course_details/",methods = ['GET'])
@@ -229,9 +241,8 @@ def user_details():
     cur.execute(rq.get_user_data,(alias,))
     userdata= cur.fetchall()
     print(userdata)
-
-    username = userdata[0][0]
-    userwebpage = userdata[0][0]
+    # username = userdata[0][0]
+    # userwebpage = userdata[0][0]
     cur.execute(rq.get_events_hosted,(alias,))
     events_hosted = cur.fetchall()
     cur.execute(rq.get_all_events,(alias,))
@@ -268,7 +279,8 @@ def usergroup_details():
     users = cur.fetchall()
     cur.execute(rq.get_events,(alias,))
     events = cur.fetchall()
-    groups_host = cur.execute(rq.get_hosts,(alias,))
+    cur.execute(rq.get_hosts,(alias,))
+    groups_host = cur.fetchall()
     # print(course)
     return jsonify({'groups_host':groups_host,'groupalias':alias,'users':users,'events':events})
 

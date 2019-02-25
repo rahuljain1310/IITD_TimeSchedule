@@ -538,8 +538,8 @@ CREATE VIEW public.curr_courses_by_prof AS
     curr_courses.registered,
     curr_courses.strength
    FROM ((public.curr_prof
-     JOIN public.curr_prof_course USING (profalias))
-     CROSS JOIN public.curr_courses);
+     JOIN public.curr_prof_course USING (profalias)) as public.tmp
+     CROSS JOIN public.curr_courses on public.curr_courses.coursecode=public.tmp.code);
 
 
 ALTER TABLE public.curr_courses_by_prof OWNER TO postgres;
