@@ -81,31 +81,68 @@ CREATE FUNCTION public.change_name() RETURNS trigger
 ALTER FUNCTION public.change_name() OWNER TO postgres;
 
 --
+-- Name: change_strength(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.change_strength() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+    begin
+    update courses set strength = new.strength where code = new.code and year = cast(TG_ARGV[0] as int) and semester = cast(TG_ARGV[1] as int);
+      return new;
+    end;
+    $$;
+
+
+ALTER FUNCTION public.change_strength() OWNER TO postgres;
+
+--
 -- Name: create_event(character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
-CREATE FUNCTION public.create_event(useralias1 character varying, alias1 character varying, name1 character varying, linkto character varying) RETURNS boolean
+CREATE FUNCTION public.create_event(useralias1 character varying, alias1 character varying, name1 character varying, linkto character varying) RETURNS integer
     LANGUAGE plpgsql
     AS $$
   DECLARE
     verify bool:='t';
     group_exists bool;
+    user_exists bool;
   begin
+    user_exists :=exists(select * from users where alias = useralias1);
+    if (user_exists = 'f') then return 2;
+    end if; --user does not exist
     group_exists:= exists(select * from groups where alias = alias1);
     if group_exists = 't' then
       verify:= exists(select * from groupshost where groupalias = alias1 and useralias = useralias1);
-      if verify = 'f' then return 'f'; end if;
+      if verify = 'f' then return 1; end if; -- do not have permission
     end if;
     insert into groups(alias) values(alias1);
     insert into groupshost values (alias1,useralias1);
     insert into events(alias,name,linkto)
     values (alias1,name1,linkto);
-    return 't';
+    return 0;
 END
 $$;
 
 
 ALTER FUNCTION public.create_event(useralias1 character varying, alias1 character varying, name1 character varying, linkto character varying) OWNER TO postgres;
+
+--
+-- Name: dreg_stu(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.dreg_stu() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+  begin
+    update curr_courses set registered = registered -1;
+    delete from studentsincourse where studentid = (select userid from users where users.alias = old.entrynum limit 1) and courseid = (select courseid from courses where code=old.coursecode and year = cast(TG_ARGV[0] as int) and sem = cast(TG_ARGV[1] as int) limit 1);
+    return old;
+  end;
+  $$;
+
+
+ALTER FUNCTION public.dreg_stu() OWNER TO postgres;
 
 --
 -- Name: get_day(date); Type: FUNCTION; Schema: public; Owner: postgres
@@ -207,6 +244,9 @@ BEGIN
   where users.alias = new.profalias and courses.code = new.coursecode
   and year = cast(TG_ARGV[0] as int) and semester  = cast(TG_argv[1] as int)
   );
+  if exists(select * from usersgroups where useralias=new.profalias and groupalias=new.coursecode) then else
+  insert into usersgroups values(new.profalias,new.coursecode);
+  end if;
   return new;
 END
 $$;
@@ -251,7 +291,13 @@ CREATE FUNCTION public.insert_stu_course() RETURNS trigger
     insert into studentsincourse (select userid,courseid from users,courses
     where users.alias=new.entrynum and courses.code=new.coursecode and courses.year =cast(TG_ARGV[0] as int)
     and courses.semester = cast(TG_ARGV[1] as int));
-    return new;
+    update curr_courses set registered = registered+1 where code=new.coursecode;
+    if exists(select * from usersgroups where useralias = new.entrynum and groupalias = new.coursecode) then
+    else
+    insert into usersgroups values(new.entrynum,new.coursecode);
+    end if;
+      return new;
+
   end;
   $$;
 
@@ -495,9 +541,9 @@ CREATE VIEW public.curr_courses_by_prof AS
     curr_courses.prac_dur,
     curr_courses.registered,
     curr_courses.strength
-   FROM ((public.curr_prof
-     JOIN public.curr_prof_course USING (profalias))
-     CROSS JOIN public.curr_courses);
+   FROM ((public.curr_prof_course
+     JOIN public.curr_courses ON (((curr_prof_course.coursecode)::text = (curr_courses.code)::text)))
+     JOIN public.curr_prof USING (profalias));
 
 
 ALTER TABLE public.curr_courses_by_prof OWNER TO postgres;
@@ -568,7 +614,7 @@ CREATE VIEW public.curr_courses_of_student AS
     curr_courses.registered,
     curr_courses.strength
    FROM ((public.curr_courses
-     CROSS JOIN public.curr_stu_course)
+     JOIN public.curr_stu_course ON (((curr_stu_course.coursecode)::text = (curr_courses.code)::text)))
      JOIN public.curr_stu USING (entrynum));
 
 
@@ -649,7 +695,7 @@ ALTER SEQUENCE public.groups_gid_seq OWNED BY public.groups.gid;
 --
 
 CREATE TABLE public.groupshost (
-    id integer,
+    groupalias character varying(30),
     useralias character varying(30)
 );
 
@@ -725,7 +771,8 @@ ALTER TABLE public.usersgroups OWNER TO postgres;
 
 CREATE TABLE public.weeklyeventtime (
     id integer,
-    slotname character varying(4) NOT NULL
+    slotname character varying(4) NOT NULL,
+    venue character varying(30)
 );
 
 
@@ -50810,6 +50857,7 @@ tt1160915	VEL700	1
 
 COPY public.events (id, alias, name, linkto) FROM stdin;
 1	cs117	col216 help session	
+2	COL362	iNREO	
 \.
 
 
@@ -52892,7 +52940,7 @@ COPY public.groups (gid, alias) FROM stdin;
 -- Data for Name: groupshost; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.groupshost (id, useralias) FROM stdin;
+COPY public.groupshost (groupalias, useralias) FROM stdin;
 \.
 
 
@@ -174409,7 +174457,7 @@ zia	wtl
 -- Data for Name: weeklyeventtime; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.weeklyeventtime (id, slotname) FROM stdin;
+COPY public.weeklyeventtime (id, slotname, venue) FROM stdin;
 \.
 
 
@@ -174431,14 +174479,14 @@ SELECT pg_catalog.setval('public.curr_courses_courseid_seq', 807, true);
 -- Name: events_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.events_id_seq', 1, true);
+SELECT pg_catalog.setval('public.events_id_seq', 3, true);
 
 
 --
 -- Name: groups_gid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.groups_gid_seq', 2067, true);
+SELECT pg_catalog.setval('public.groups_gid_seq', 2068, true);
 
 
 --
@@ -174529,11 +174577,11 @@ ALTER TABLE ONLY public.groups
 
 
 --
--- Name: groupshost groupshost_id_useralias_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: groupshost groupshost_groupalias_useralias_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.groupshost
-    ADD CONSTRAINT groupshost_id_useralias_key UNIQUE (id, useralias);
+    ADD CONSTRAINT groupshost_groupalias_useralias_key UNIQUE (groupalias, useralias);
 
 
 --
@@ -174600,7 +174648,7 @@ CREATE INDEX events_name_key ON public.events USING btree (name);
 -- Name: groupshost_id_key; Type: INDEX; Schema: public; Owner: postgres
 --
 
-CREATE INDEX groupshost_id_key ON public.groupshost USING btree (id);
+CREATE INDEX groupshost_id_key ON public.groupshost USING btree (groupalias);
 
 
 --
@@ -174667,6 +174715,20 @@ CREATE TRIGGER chang_name AFTER UPDATE OF name ON public.curr_courses FOR EACH R
 
 
 --
+-- Name: curr_courses change_strr; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER change_strr AFTER UPDATE ON public.curr_courses FOR EACH ROW EXECUTE PROCEDURE public.change_strength('2018', '2');
+
+
+--
+-- Name: curr_stu_course deregister_student; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER deregister_student AFTER DELETE ON public.curr_stu_course FOR EACH ROW EXECUTE PROCEDURE public.dreg_stu('2018', '2');
+
+
+--
 -- Name: curr_courses incr_regis; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -174719,11 +174781,11 @@ ALTER TABLE ONLY public.events
 
 
 --
--- Name: groupshost groupshost_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: groupshost groupshost_groupalias_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.groupshost
-    ADD CONSTRAINT groupshost_id_fkey FOREIGN KEY (id) REFERENCES public.events(id);
+    ADD CONSTRAINT groupshost_groupalias_fkey FOREIGN KEY (groupalias) REFERENCES public.groups(alias);
 
 
 --
