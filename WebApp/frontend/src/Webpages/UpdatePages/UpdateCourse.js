@@ -24,8 +24,9 @@ export default class UpdateCourse extends React.Component {
     }
 
     update = (e) => {
-
-        let cq = "?strength="+this.state.Strength+'&name='+this.state.name+'&link='+this.state.linkDescription
+        
+        const { code } = this.props.match.params
+        let cq = "?strength="+this.state.Strength+'&name='+this.state.name+'&link='+this.state.linkDescription+'&code='+code+'&type=1'
         fetch('http://localhost:5000/upd_course/'+cq, {
             method: 'GET',
             dataType: 'json'
@@ -33,7 +34,7 @@ export default class UpdateCourse extends React.Component {
             .then(res => res.json())
             .then((jsres) => {
                 console.log(jsres)
-                let x = jsres.results
+                let x = jsres
               },
               (error) => {
                 this.setState({
@@ -56,7 +57,7 @@ export default class UpdateCourse extends React.Component {
             .then(res => res.json())
             .then((jsres) => {
                 console.log(jsres)
-                let x = jsres.results
+                let x = jsres
                 this.setState({
                     error:"Student Registered"
                 })

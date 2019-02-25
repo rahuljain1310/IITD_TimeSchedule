@@ -93,7 +93,7 @@ def updatecourse():
         conn.commit()
         return jsonify({'results':"Updated Successfully"})
     except:
-        return 0
+        return jsonify({'results':"Not Updated"})
 
 @app.route("/update_user/",methods=['GET'])
 def updateuser():
@@ -236,8 +236,8 @@ def course_details():
 
 @app.route("/user_details/",methods = ['GET'])
 def user_details():
-
     alias = request.args.get('alias')
+    print(alias)
     cur.execute(rq.get_user_data,(alias,))
     userdata= cur.fetchall()
     print(userdata)
@@ -425,6 +425,7 @@ def index():
 # @app.route("/faculty/<x>")
 @app.route("/usergroup/<x>")
 @app.route("/event/<x>")
+@app.route("/update_course/<x>")
 def details(x):
     return render_template('index.html')
 

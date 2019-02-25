@@ -52,6 +52,7 @@ export default class CourseDetails extends React.Component {
         return (
           <div className="container">
               <h2>{x[1]}: &nbsp; {x[2]} </h2>
+              <span> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Update <a href={"/update_course/"+x[1]}>Course</a></span>
              <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
               <Tab eventKey="Current Course" title="Current Course">
                 <article>

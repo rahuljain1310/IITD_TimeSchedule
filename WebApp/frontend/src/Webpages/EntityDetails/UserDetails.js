@@ -11,7 +11,8 @@ export default class UserDetails extends React.Component {
     }
     componentDidMount() {
       const { alias } = this.props.match.params
-      fetch('http://localhost:5000/user_details/?='+alias, {
+      console.log(alias)
+      fetch('http://localhost:5000/user_details/?alias='+alias, {
         method: 'GET',
         dataType: 'json'
       })
@@ -41,7 +42,7 @@ export default class UserDetails extends React.Component {
       } else {
         return (
           <div>
-            {  JSON.stringify(this.state.event_details,null,2) }
+            {  JSON.stringify(this.state.user_details,null,2) }
           </div>
         
         );
