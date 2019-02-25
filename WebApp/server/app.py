@@ -12,8 +12,8 @@ from flask_cors import CORS
 curr_year=2018
 curr_sem=2
 import psycopg2 as ps
-conn = ps.connect("dbname=project_3 user=postgres password=Ishu@1003 host=localhost port=5432")
-# conn = ps.connect("dbname=postgres user=postgres password=postgres ")
+# conn = ps.connect("dbname=project_3 user=postgres password=Ishu@1003 host=localhost port=5432")
+conn = ps.connect("dbname=project_2 user=postgres password=postgres ")
 cur = conn.cursor()
 
 app = Flask(__name__, static_folder="../frontend/build/static", template_folder="../frontend/build")
@@ -176,18 +176,19 @@ def insertevent():
     linkDescription =request.args.get('linkDescription')
     cur.execute(iq.insert_event,(user,usergroup,eventname,linkDescription))
     returned = cur.fetchall()[0][0]
-    if returned = 0:
+    a = ""
+    if returned == 0:
         a='success'
-    elif returned = 1:
+    elif returned == 1:
         a='permission denied'
-    elif returned = 2:
+    elif returned == 2:
         a='user does not exist'
     else:
         a='undefined error'
     conn.commit()
     # print(param)
     # return 0
-    return jsonify({'results':a)
+    return jsonify({'results':a})
 
 ## DETAIL API's
 @app.route("/course_details/",methods = ['GET'])
@@ -278,7 +279,8 @@ def usergroup_details():
     users = cur.fetchall()
     cur.execute(rq.get_events,(alias,))
     events = cur.fetchall()
-    groups_host = cur.execute(rq.get_hosts,(alias,))
+    cur.execute(rq.get_hosts,(alias,))
+    groups_host = cur.fetchall()
     # print(course)
     return jsonify({'groups_host':groups_host,'groupalias':alias,'users':users,'events':events})
 

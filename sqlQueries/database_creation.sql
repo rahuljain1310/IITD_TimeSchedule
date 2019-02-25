@@ -136,8 +136,8 @@ insert into curr_courses(code,name,slot,type,credits,lec_dur,
 
 
  create view curr_courses_of_student as
-   (select curr_stu.entrynum as entrynum,curr_stu.studentname as studentname,code,curr_courses.name as coursename,curr_courses.type,slot,groupedin,credits,lec_dur,tut_dur,prac_dur,registered,strength
-   from curr_courses natural join curr_stu_course natural join curr_stu
+   (select entrynum,studentname,code,curr_courses.name as coursename,curr_courses.type,slot,groupedin,credits,lec_dur,tut_dur,prac_dur,registered,strength
+   from curr_courses join (curr_stu_course natural join curr_stu) as stucourse on curr_courses.code=stucourse.coursecode
  );
 
 
@@ -148,8 +148,8 @@ insert into curr_courses(code,name,slot,type,credits,lec_dur,
    );
 
  create view curr_courses_by_prof as
-   (select curr_prof.profalias as profalias,curr_prof.profname as profname,code,curr_courses.name as coursename,slot,curr_courses.type,credits,lec_dur,tut_dur,prac_dur,registered,strength
-   from curr_prof natural join curr_prof_course natural join curr_courses
+   (select profalias as profalias,profname,code,curr_courses.name as coursename,slot,curr_courses.type,credits,lec_dur,tut_dur,prac_dur,registered,strength
+   from (curr_prof natural join curr_prof_course) as profwithcourse join curr_courses on profwithcourse.coursecode = curr_courses.code
    );
 
  create view courses_by_prof as
