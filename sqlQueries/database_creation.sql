@@ -27,7 +27,7 @@ create table onetimeeventtime(id int references events(id),ondate date,begintime
 create index onetimeeventtime_id_key on onetimeeventtime(id);
 create index onetimeeventtime_time_key on onetimeeventtime(ondate,begintime);
 
-create table groupshost(groupalias varchar(30) references groups(alias),useralias varchar(30) references users(alias),unique(groupalias,useralias));
+create table groupshost(groupalias varchar(30) references groups(alias),useralias varchar(30) references users(alias),unique(groupalias,useralias), foreign key (useralias,groupalias)  references usersgroups(useralias,groupalias));
 create index groupshost_id_key on groupshost(groupalias);
 create index groupshost_useralias_key on groupshost(useralias);
 

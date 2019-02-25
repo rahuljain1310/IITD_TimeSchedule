@@ -54,7 +54,7 @@ language 'plpgsql'
 create or replace function insert_course() returns trigger as
   $BODY$
   begin
-      if (exists (select * from groups where alias = new.code)) then
+      if (exists (select * from groups where alias = new.code)) = 'f' then
         insert into groups(alias) values(new.code);
       end if;
       insert into courses(code,name,slot,type,credits,lec_dur,
@@ -122,8 +122,11 @@ BEGIN
   if exists(select * from usersgroups where useralias=new.profalias and groupalias=new.coursecode) then else
   insert into usersgroups values(new.profalias,new.coursecode);
   end if;
+  if exists(select * from groupshost where useralias=new.profalias and groupalias=new.coursecode) then else
+  insert into groupshost values(new.coursecode,new.profalias);
+  end if;
   return new;
-END
+END;
 $$
  LANGUAGE 'plpgsql';
 
