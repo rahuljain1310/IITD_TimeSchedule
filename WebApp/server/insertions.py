@@ -39,7 +39,7 @@ change_coursepage="""update curr_courses set webpage = %s where code = %s"""
 create_slot="insert into slotdetails (%s,%s,%s,%s)"
 
 # events
-insert_event="insert into events(alias,name,linkto) values(%s,%s,%s)"
+insert_event="select create_event(%s,%s,%s,%s) as returned"
 copy_users_to_group="insert into usersgroups (select useralias,%s from usersgroups where groupalias = %s )"
 set_eventtimeonce="insert into onetimeeventtime values(%s,%s,%s,%s,%s)"
 set_eventtimeweekly="insert into weeklyeventtime values(%s,%s,%s)"

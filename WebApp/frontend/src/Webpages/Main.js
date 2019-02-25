@@ -18,6 +18,7 @@ import InsertEvent from './InsertionPages/InsertEvent';
 import UpdateCourse from './UpdatePages/UpdateCourse'
 import InsertUsergroup from './InsertionPages/InsertUsergroup';
 import InsertUser from './InsertionPages/InsertUser';
+import ExtraDetails from './ExtraDetails'
 
 export default function Main() {
   return (
@@ -40,6 +41,7 @@ export default function Main() {
               <Route path='/insert_usergroup' component={InsertUsergroup}/>
               <Route path='/insert_user' component={InsertUser}/>
               <Route path='/update_course' component={UpdateCourse}/>
+              {/* <Route path='/details' component={ExtraDetails}/> */}
             </Switch>
       </main>
   );

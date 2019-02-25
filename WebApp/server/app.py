@@ -169,15 +169,25 @@ def insertcourse():
 
 @app.route("/ins_event/",methods=['GET'])
 def insertevent():
+    user = request.args.get('user')
     usergroup = request.args.get('usergroup')
     eventname = request.args.get('eventname')
     # venue = request.args.get('venue')
     linkDescription =request.args.get('linkDescription')
-    cur.execute(iq.insert_event,(usergroup,eventname,linkDescription))
+    cur.execute(iq.insert_event,(user,usergroup,eventname,linkDescription))
+    returned = cur.fetchall()[0][0]
+    if returned = 0:
+        a='success'
+    elif returned = 1:
+        a='permission denied'
+    elif returned = 2:
+        a='user does not exist'
+    else:
+        a='undefined error'
     conn.commit()
     # print(param)
     # return 0
-    return jsonify({'results':[{"a":1,"b":1}]})
+    return jsonify({'results':a)
 
 ## DETAIL API's
 @app.route("/course_details/",methods = ['GET'])
@@ -240,11 +250,11 @@ def user_details():
     in_groups = cur.fetchall()
     cur.execute(rq.co_stu,(alias,))
     cur_course_registered = cur.fetchall()
-    cur.execute(rq.oldco_stu,(alias,))
-    old_courses_registered = cur.fetchal()
+    cur.execute(rq.alloldco_stu,(alias,curr_year,curr_sem))
+    old_courses_registered = cur.fetchall()
     cur.execute(rq.co_prof,(alias,))
     cur_courses_taken = cur.fetchall()
-    cur.execute(rq.oldco_prof,(alias,))
+    cur.execute(rq.alloldco_prof,(alias,curr_year,curr_sem))
     old_courses_taken = cur.fetchall()
 
     if (len(cur_course_registered)!=0):
@@ -287,7 +297,7 @@ def event_details():
     cur.execute(rq.get_eventtime_once,(eventid,))
     event_timeonce = cur.fetchall()
     event_hosts = cur.execute(rq.get_hosts,(event_group,))
-    return jsonify({'e_id':eventid,'e_group':event_group,'e_name':event_name,'e_linkto':event_linkto,'e_users':event_users,'e_weekly':event_weekly,'e_hosts':event_hosts})
+    return jsonify({'e_id':eventid,'e_group':event_group,'e_name':event_name,'e_linkto':event_linkto,'e_users':event_users,'e_weekly':event_weekly,'e_hosts':event_hosts,'e_time':event_timeonce})
 
 ## FIND API
 @app.route("/findcourses/",methods = ['GET'])

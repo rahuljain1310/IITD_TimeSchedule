@@ -141,22 +141,26 @@ create trigger prof_add AFTER INSERT ON curr_prof_course
   language 'plpgsql';
 
 create or replace function create_event(useralias1 varchar(30),alias1 varchar(30),name1 varchar(120),linkto varchar(120))
-  returns bool as
+  returns int as
 $$
   DECLARE
     verify bool:='t';
     group_exists bool;
+    user_exists bool;
   begin
+    user_exists :=exists(select * from users where alias = useralias1);
+    if (user_exists = 'f') then return 2;
+    end if; --user does not exist
     group_exists:= exists(select * from groups where alias = alias1);
     if group_exists = 't' then
       verify:= exists(select * from groupshost where groupalias = alias1 and useralias = useralias1);
-      if verify = 'f' then return 'f'; end if;
+      if verify = 'f' then return 1; end if; -- do not have permission
     end if;
     insert into groups(alias) values(alias1);
     insert into groupshost values (alias1,useralias1);
     insert into events(alias,name,linkto)
     values (alias1,name1,linkto);
-    return 't';
+    return 0;
 END
 $$
  LANGUAGE 'plpgsql';
@@ -233,3 +237,19 @@ create trigger deregister_student after delete on curr_stu_course
     language 'plpgsql';
 create trigger change_strr after update on curr_courses
   for each row execute procedure change_strength(2018,2);
+
+create or replace function code_day(day1 day) returns int as
+$$
+begin
+  case 
+    when day1='Sun' then return 0;
+    when day1='Mon' then return 1;
+    when day1='Tue' then return 2;
+    when day1='Wed' then return 3;
+    when day1='Thu' then return 4;
+    when day1='Fri' then return 5;
+    when day1='Sat' then return 6;
+  end case;
+end;
+$$
+language 'plpgsql';

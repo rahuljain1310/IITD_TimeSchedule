@@ -1,8 +1,7 @@
 import React from 'react';
-import Query from '../QueryComponent/Query'
 import {Button} from 'react-bootstrap'
 
-export default class SearchUsers extends React.Component {
+export default class ExtraDetails extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -53,20 +52,20 @@ export default class SearchUsers extends React.Component {
 
     render() {
         return (
-        <div className="search_div">
-            <h3>Search User:</h3>
-            <input type="text" onChange={ (e) => this.setState({alias: e.target.value}) } value={ this.state.alias } placeholder="alias"/>
-            <input type="text" onChange={ (e) => this.setState({name: e.target.value}) } value={ this.state.name } placeholder="name"/>
-            <input type="text" onChange={ (e) => this.setState({code: e.target.value}) } value={ this.state.code } placeholder="group alias"/>
-            <select  onChange={this.seturlpath} value={ this.state.type } >
-                <option value="0">All</option>
-                <option value="1">Student</option>
-                <option value="2">Faculty</option>
-            </select>
-            <br/><Button onClick={this.queryUsers}> Search </Button> <span>OR &nbsp;&nbsp;&nbsp; Create a <a href="/insert_user">User</a></span>
-            <Query urlpath={this.state.urlpath} results={this.state.users} hyperlink={true}/>
-        </div>
-
+            <div className="row">
+                <div className="search_div">
+                    <h3>Search User:</h3>
+                    <input type="text" onChange={ (e) => this.setState({alias: e.target.value}) } value={ this.state.alias } placeholder="alias"/>
+                    <input type="text" onChange={ (e) => this.setState({name: e.target.value}) } value={ this.state.name } placeholder="name"/>
+                    <input type="text" onChange={ (e) => this.setState({code: e.target.value}) } value={ this.state.code } placeholder="group alias"/>
+                    <select  onChange={this.seturlpath} value={ this.state.type } >
+                        <option value="0">All</option>
+                        <option value="1">Student</option>
+                        <option value="2">Faculty</option>
+                    </select>
+                    <br/><Button onClick={this.queryUsers}> Search </Button> <span>OR &nbsp;&nbsp;&nbsp; Create a <a href="/insert_user">User</a></span>
+                </div>
+            </div>
         )
     }
 }
