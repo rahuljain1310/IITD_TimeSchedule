@@ -12,8 +12,8 @@ from flask_cors import CORS
 curr_year=2018
 curr_sem=2
 import psycopg2 as ps
-# conn = ps.connect("dbname=project_3 user=postgres password=Ishu@1003 host=localhost port=5432")
-conn = ps.connect("dbname=postgres user=postgres password=postgres ")
+conn = ps.connect("dbname=project_3 user=postgres password=Ishu@1003 host=localhost port=5432")
+# conn = ps.connect("dbname=postgres user=postgres password=postgres ")
 cur = conn.cursor()
 
 app = Flask(__name__, static_folder="../frontend/build/static", template_folder="../frontend/build")
@@ -113,8 +113,8 @@ def updateuser():
         return 0
 @app.route("/update_event/",methods=['GET'])
 def updateevent():
-    type = request.args.get('type')
-    # 0 for add weekly time, 1 for add exact date and
+    type1 = request.args.get('type')
+    # 0 for add weekly time, 1 for add exact date and time
     eventid = request.args.get('eventid')
     ondate = request.args.get('ondate')
     begintime = request.args.get('begintime')
@@ -122,9 +122,9 @@ def updateevent():
     venue = request.args.get('venue')
     slot = request.args.get('slot')
     try:
-        if type==0:
+        if type1==0:
             cur.execute(iq.set_eventtimeweekly,(eventid,slot,venue))
-        elif type==1:
+        elif type1==1:
             cur.execute(iq.set_eventtimeonce,(eventid,ondate,begintime,endtime,venue))
         else:
             raise Exception()
@@ -241,10 +241,6 @@ def user_details():
     cur.execute(rq.get_user_data,(alias,))
     userdata= cur.fetchall()
     print(userdata)
-<<<<<<< HEAD
-    username = userdata[0][0]
-    userwebpage = userdata[0][0]
-=======
     username = ""
     userwebpage = ""
     try:
@@ -255,7 +251,6 @@ def user_details():
         userwebpage = userdata[0][0]
     except:
         pass
->>>>>>> 5a8cddef9e7534c3a7548f2dcbaec3534082d58e
     cur.execute(rq.get_events_hosted,(alias,))
     events_hosted = cur.fetchall()
     cur.execute(rq.get_all_events,(alias,))

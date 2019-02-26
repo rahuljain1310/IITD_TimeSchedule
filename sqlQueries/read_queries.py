@@ -71,7 +71,7 @@ search_group="select gal "\
 "from groups "\
 "where gal ilike concat('%%',%s,'%%')"
 
-get_groups="select useralias,name from usersgroups,users where useralias= %s and users.alias=useralias"
+get_groups="select groupalias from usersgroups,users where useralias= %s and users.alias=useralias"
 get_users="select users.alias,users.name from usersgroups,users  where users.alias=usersgroups.useralias and usersgroups.groupalias= %s order by name "
 
 get_events="select id,alias,name from events where alias = %s"

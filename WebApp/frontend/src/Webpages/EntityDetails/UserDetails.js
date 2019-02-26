@@ -8,20 +8,6 @@ export default class UserDetails extends React.Component {
       this.state = {
         error: null,
         isLoaded: false,
-<<<<<<< HEAD
-        alias: "",
-        // user_details: {},
-        username: "",
-        userwebpage: "",
-        curr_course_registered: [],
-        old_courses_registered: [],
-        curr_courses_taken: [],
-        old_courses_taken: [],
-        events_hosted: [],
-        all_events: [],
-        type1: "",
-        in_groups: []
-=======
         all_events: [],
         type: 1,
         cur_course_registered: [],
@@ -33,7 +19,6 @@ export default class UserDetails extends React.Component {
         username: "",
         old_courses_taken: [],
         alias: "",
->>>>>>> 5a8cddef9e7534c3a7548f2dcbaec3534082d58e
       };
     }
     componentDidMount() {
@@ -48,20 +33,6 @@ export default class UserDetails extends React.Component {
             console.log(rjson)
             this.setState({
               isLoaded: true,
-<<<<<<< HEAD
-              alias: rjson.alias,
-              username: rjson.username,
-              userwebpage: rjson.userwebpage,
-              curr_courses_registered: rjson.curr_courses_registered,
-              old_courses_registered: rjson.old_courses_registered,
-              curr_courses_taken: rjson.curr_courses_taken,
-              old_courses_taken: rjson.old_courses_taken,
-              events_hosted: rjson.events_hosted,
-              all_events: rjson.all_events,
-              type1: rjson.type1,
-              in_groups: rjson.in_groups,
-              user_details: rjson
-=======
               user_details: rjson,
               all_events: rjson.all_events,
               alias: rjson.alias,
@@ -74,7 +45,6 @@ export default class UserDetails extends React.Component {
               old_courses_registered: rjson.old_courses_registered,
               old_courses_taken: rjson.old_courses_taken,
               userwebpage: "",
->>>>>>> 5a8cddef9e7534c3a7548f2dcbaec3534082d58e
             });
           },
           (error) => {
@@ -93,39 +63,6 @@ export default class UserDetails extends React.Component {
       } else if (!isLoaded) {
         return <div>Loading...</div>;
       } else {
-<<<<<<< HEAD
-          if (type1=='curr_stu') {
-
-          }
-          else if (type1=='old_stu'){
-
-          }
-          else if (type1=='curr_prof'){
-
-          }
-          else if (type1=='old_prof'){
-
-          }
-          else if (type1=='otheruser'){
-
-          }
-          else{
-            return (
-              <div>
-                   {/* <ul>
-                      {user_details.map(course => (
-                      <li key={course.name}>
-                              {course.name} {course.code}
-                      </li>
-                      ))}
-                  </ul> */}
-                  {user_details}
-              </div>
-          
-          );
-          }
-        
-=======
         return (
           <div>
               {/* <h3>Update User: &nbsp; {this.state.alias.toUpperCase()} </h3> */}
@@ -173,7 +110,6 @@ export default class UserDetails extends React.Component {
             </Tabs>
           </div>
         );
->>>>>>> 5a8cddef9e7534c3a7548f2dcbaec3534082d58e
       }
     }
   }
