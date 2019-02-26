@@ -1,0 +1,2916 @@
+%% ================================================================================
+%% This LaTeX file was created by AbiWord.                                         
+%% AbiWord is a free, Open Source word processor.                                  
+%% More information about AbiWord is available at http://www.abisource.com/        
+%% ================================================================================
+
+\documentclass[a4paper,portrait,12pt]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{calc}
+\usepackage{setspace}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage[normalem]{ulem}
+%% Please revise the following command, if your babel
+%% package does not support en-IN
+\usepackage[en]{babel}
+\usepackage{color}
+\usepackage{hyperref}
+ 
+\begin{document}
+
+
+\begin{flushleft}
+CSL 332 Course Project: Tower of Babel - Text based RPG
+\end{flushleft}
+
+
+\begin{flushleft}
+Babelonians:
+\end{flushleft}
+
+
+\begin{flushleft}
+Jyotesh Singh, 2011EE10554
+\end{flushleft}
+
+
+\begin{flushleft}
+Karan Goel, 2011EE50555
+\end{flushleft}
+
+
+\begin{flushleft}
+Tushar Gupta, 2011EE50564
+\end{flushleft}
+
+
+\begin{flushleft}
+Due date: April 20, 2014, 11:55pm IST
+\end{flushleft}
+
+
+
+
+
+1
+
+
+
+
+
+\begin{flushleft}
+Project Description
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Our project involves building a simple, non-graphical role-playing game. This was motivated by the variety
+\end{flushleft}
+
+
+\begin{flushleft}
+of RPGs that the creators have frequently played, and by wondering whether we can successfully emulate at
+\end{flushleft}
+
+
+\begin{flushleft}
+least a bare-bones RPG. Indeed, our team name ''Babelonians'' was inspired by our constant chatter (hence
+\end{flushleft}
+
+
+\begin{flushleft}
+the Tower of Babel) and interest in fantasy/history/mythology (hence the Babylonians).
+\end{flushleft}
+
+
+\begin{flushleft}
+The complete system allows users to create password-enabled user accounts, after users are lead to their
+\end{flushleft}
+
+
+\begin{flushleft}
+home screens. Users can choose to battle monsters, by purchasing a wide variety of weapons, armor and
+\end{flushleft}
+
+
+\begin{flushleft}
+weapons from the in-game store, or they can choose to rest at the Inn, to recuperate their health points (hp)
+\end{flushleft}
+
+
+\begin{flushleft}
+and energy. Our system keeps track of user statistics, including every single battle ever fought by a user, and
+\end{flushleft}
+
+
+\begin{flushleft}
+this is made available for the user to access. As users play more, they achieve higher levels and get access to
+\end{flushleft}
+
+
+\begin{flushleft}
+better weapons.
+\end{flushleft}
+
+
+\begin{flushleft}
+When a user registers, he is allowed to choose a race and is also asked to enter his unique username,
+\end{flushleft}
+
+
+\begin{flushleft}
+email and password. After registration, users battle monsters which are chosen by our battle engine based
+\end{flushleft}
+
+
+\begin{flushleft}
+on similar skill levels. Users have the option of attacking, defending against or fleeing from monsters. Every
+\end{flushleft}
+
+
+\begin{flushleft}
+move that is ever made by any user is stored by us, for them to access at a later time. A user's energy
+\end{flushleft}
+
+
+\begin{flushleft}
+depletes every time he fights a battle, which means he is forced to go to the Inn after 10 continuous battles.
+\end{flushleft}
+
+
+\begin{flushleft}
+Our Inn provides users a variety of options to regain their health; in addition users can also buy a potion for
+\end{flushleft}
+
+
+\begin{flushleft}
+hp regeneration at the weapon store. If a user beats a monster, he gains some gold and experience points
+\end{flushleft}
+
+
+\begin{flushleft}
+(xp), that is dropped by the monster. Users level up when their xp crosses a certain point.
+\end{flushleft}
+
+
+\begin{flushleft}
+The entities \& attributes that were designed by us are shown in Table 1, while the ER Diagram corresponding to this is shown in Figure 1.
+\end{flushleft}
+
+
+
+
+
+2
+
+
+
+
+
+\begin{flushleft}
+Data Sources and Statistics
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+We are using Final Fantasy 6 data for the XP/HP per level
+\end{flushleft}
+
+
+\begin{flushleft}
+http://www.gamefaqs.com/ps/562865-final-fantasy-vi/faqs/39433
+\end{flushleft}
+
+
+\begin{flushleft}
+which is unchanged. The equipment data is from
+\end{flushleft}
+
+
+\begin{flushleft}
+http://shrines.rpgclassics.com/snes/ff6/
+\end{flushleft}
+
+
+\begin{flushleft}
+We cleaned up this data and tweaked the prices in order to normalize them according to attack/defence
+\end{flushleft}
+
+
+\begin{flushleft}
+(using Wolfram Alpha for best fit curves) as we were not incorporating item drops or special abilities of
+\end{flushleft}
+
+
+\begin{flushleft}
+equipment in our game variant. We also tweaked the attack/defence to make sure that player \& monster
+\end{flushleft}
+
+
+\begin{flushleft}
+abilities are well matched. Player data was taken from
+\end{flushleft}
+
+
+\begin{flushleft}
+http://mmnet.iis.sinica.edu.tw/dl/wowah/
+\end{flushleft}
+
+
+\begin{flushleft}
+and was structed as show in Table 2. We only extracted Avatar Id, Level \& Race data from this table by
+\end{flushleft}
+
+
+\begin{flushleft}
+writing a Python script to extract unique player details.
+\end{flushleft}
+
+
+\begin{flushleft}
+Since privacy meant player/guild names were replaced by numbers, we generated our own names from
+\end{flushleft}
+
+
+\begin{flushleft}
+these dictionaries (http://home.hiwaay.net/ lkseitz/comics/herogen/herogen.cgi). To generate user email \&
+\end{flushleft}
+
+
+\begin{flushleft}
+password data, we generated csv data from http://www.mockaroo.com for 90000 odd players.
+\end{flushleft}
+
+
+
+
+
+1
+
+
+
+
+
+\begin{flushleft}
+\newpage
+Entity
+\end{flushleft}
+
+
+\begin{flushleft}
+users
+\end{flushleft}
+
+
+\begin{flushleft}
+player
+\end{flushleft}
+
+
+\begin{flushleft}
+moderators
+\end{flushleft}
+
+
+\begin{flushleft}
+race
+\end{flushleft}
+
+
+\begin{flushleft}
+armor
+\end{flushleft}
+
+
+\begin{flushleft}
+weapon
+\end{flushleft}
+
+
+\begin{flushleft}
+potion
+\end{flushleft}
+
+
+\begin{flushleft}
+level data
+\end{flushleft}
+
+
+\begin{flushleft}
+rest
+\end{flushleft}
+
+
+\begin{flushleft}
+move
+\end{flushleft}
+
+
+\begin{flushleft}
+inventory
+\end{flushleft}
+
+
+\begin{flushleft}
+monster
+\end{flushleft}
+
+
+\begin{flushleft}
+battle log
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Attributes
+\end{flushleft}
+
+
+\begin{flushleft}
+playerid, username, password, email, create time
+\end{flushleft}
+
+
+\begin{flushleft}
+playerid, username, racename, level, xp, gold, hp, energy,
+\end{flushleft}
+
+
+\begin{flushleft}
+restid, rest time, weaponid, armorid b, armorid h, armorid s
+\end{flushleft}
+
+
+\begin{flushleft}
+moderatorid, modname, email, password, create time
+\end{flushleft}
+
+
+\begin{flushleft}
+racename
+\end{flushleft}
+
+
+\begin{flushleft}
+armorid, name, level, gold, defense, armortype
+\end{flushleft}
+
+
+\begin{flushleft}
+weaponid, name, level, gold, attack
+\end{flushleft}
+
+
+\begin{flushleft}
+potionid, potion name, level, gold, type, percent
+\end{flushleft}
+
+
+\begin{flushleft}
+level, hp, xp
+\end{flushleft}
+
+
+\begin{flushleft}
+restid, restname, min level, rest seconds for max, gold
+\end{flushleft}
+
+
+\begin{flushleft}
+moveid, movename
+\end{flushleft}
+
+
+\begin{flushleft}
+playerid, equipmentid, equipmenttype
+\end{flushleft}
+
+
+\begin{flushleft}
+monsterid, name, hp, xp, level, gold, attack, defense
+\end{flushleft}
+
+
+\begin{flushleft}
+battleid, battle time, playerid, monsterid, player starthp,
+\end{flushleft}
+
+
+\begin{flushleft}
+win, player weapon, player armorb, player armorh, player armors,
+\end{flushleft}
+
+
+\begin{flushleft}
+dmg rnd1 for, dmg rnd2 for, dmg rnd3 for, dmg rnd4 for, dmg rnd5 for,
+\end{flushleft}
+
+
+\begin{flushleft}
+dmg rnd1 against, dmg rnd2 against, dmg rnd3 against, dmg rnd4 against, dmg rnd5 against,
+\end{flushleft}
+
+
+\begin{flushleft}
+player rnd1 move, player rnd2 move, player rnd3 move, player rnd4 move, player rnd5 move,
+\end{flushleft}
+
+
+\begin{flushleft}
+rnd1 potion, rnd2 potion, rnd3 potion, rnd4 potion, rnd5 potion
+\end{flushleft}
+
+
+\begin{flushleft}
+Table 1: List of Entities and Attributes
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Attribute Name
+\end{flushleft}
+
+
+\begin{flushleft}
+Query Time
+\end{flushleft}
+
+
+\begin{flushleft}
+Query Sequence
+\end{flushleft}
+
+
+\begin{flushleft}
+Avatar Id
+\end{flushleft}
+
+
+\begin{flushleft}
+Guild
+\end{flushleft}
+
+
+\begin{flushleft}
+Level
+\end{flushleft}
+
+
+\begin{flushleft}
+Race
+\end{flushleft}
+
+
+\begin{flushleft}
+Class
+\end{flushleft}
+
+
+\begin{flushleft}
+Zone
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Permitted Values
+\end{flushleft}
+
+
+\begin{flushleft}
+Date between Jan 2006 and Jan 2009
+\end{flushleft}
+
+
+\begin{flushleft}
+Integer $>$= 0
+\end{flushleft}
+
+
+\begin{flushleft}
+Integer $>$= 0
+\end{flushleft}
+
+
+\begin{flushleft}
+An integer within [1,513]
+\end{flushleft}
+
+
+\begin{flushleft}
+An integer within [1,80]
+\end{flushleft}
+
+
+\begin{flushleft}
+Blood Elf, Orc, Tauren, Troll, Undead
+\end{flushleft}
+
+
+\begin{flushleft}
+Death Knight, Druid, Hunter, Mage, Paladin, Priest, Rogue, Shaman, Warlock, Warrior
+\end{flushleft}
+
+
+\begin{flushleft}
+One of 229 zones in World of Warcraft worlds
+\end{flushleft}
+
+
+\begin{flushleft}
+Table 2: Structure of downloaded raw player data
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Monster data was taken from
+\end{flushleft}
+
+
+\begin{flushleft}
+http://www.rpglegion.com/ff6/monsters/monstersa.htm
+\end{flushleft}
+
+
+\begin{flushleft}
+and was cleaned up by tweaking xp \& gold earned (and changing names we didn't like!).
+\end{flushleft}
+
+
+\begin{flushleft}
+Finally, we wrote a Python script to simulate battles for the 90000 registered players (to populate the
+\end{flushleft}
+
+
+\begin{flushleft}
+battle log table), and essentially wrote player game histories. This script simulated our battle engine.
+\end{flushleft}
+
+
+\begin{flushleft}
+Other smaller tables such as the rest table, containing a handful of tuples were handwritten by us.
+\end{flushleft}
+
+
+\begin{flushleft}
+Table 3 shows the statistics of our data.
+\end{flushleft}
+
+
+
+
+
+3
+
+
+
+
+
+\begin{flushleft}
+Functionality and Working
+\end{flushleft}
+
+
+\begin{flushleft}
+1. User's View of the System
+\end{flushleft}
+
+
+\begin{flushleft}
+(a) Home:
+\end{flushleft}
+
+
+\begin{flushleft}
+The home page contains 3 major options; login, signup \& moderator login. A user can directly
+\end{flushleft}
+
+
+\begin{flushleft}
+login on this page (which leads to the {`}piazza' which is the player home page), or can click on
+\end{flushleft}
+
+
+\begin{flushleft}
+either of the signup/moderator login links.
+\end{flushleft}
+
+
+\begin{flushleft}
+On pressing login, a query to verify the username \& password details gets fired to the database.
+\end{flushleft}
+
+
+\begin{flushleft}
+We have utilized MD5 hashing in our database for passwords.
+\end{flushleft}
+
+
+\begin{flushleft}
+(b) Signup:
+\end{flushleft}
+
+
+\begin{flushleft}
+The signup page asks the player to enter account details - username, password \& email address,
+\end{flushleft}
+
+
+\begin{flushleft}
+as well as a race. On successfully signing up, the player is lead to the {`}piazza' once again.
+\end{flushleft}
+
+
+2
+
+
+
+
+
+\begin{flushleft}
+\newpage
+Table
+\end{flushleft}
+
+
+\begin{flushleft}
+users
+\end{flushleft}
+
+
+\begin{flushleft}
+player
+\end{flushleft}
+
+
+\begin{flushleft}
+race
+\end{flushleft}
+
+
+\begin{flushleft}
+armor
+\end{flushleft}
+
+
+\begin{flushleft}
+inventory
+\end{flushleft}
+
+
+\begin{flushleft}
+weapon
+\end{flushleft}
+
+
+\begin{flushleft}
+potion
+\end{flushleft}
+
+
+\begin{flushleft}
+rest
+\end{flushleft}
+
+
+\begin{flushleft}
+battle log
+\end{flushleft}
+
+
+\begin{flushleft}
+monster
+\end{flushleft}
+
+
+\begin{flushleft}
+move
+\end{flushleft}
+
+
+\begin{flushleft}
+level data
+\end{flushleft}
+
+
+\begin{flushleft}
+moderators
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+No. of Tuples
+\end{flushleft}
+
+
+88195
+
+
+88195
+
+
+5
+
+
+61
+
+
+352780
+
+
+67
+
+
+20
+
+
+5
+
+
+158755171
+
+
+360
+
+
+7
+
+
+99
+
+
+1
+
+
+
+
+
+\begin{flushleft}
+Time to Load
+\end{flushleft}
+
+
+\begin{flushleft}
+3948.697 ms
+\end{flushleft}
+
+
+\begin{flushleft}
+4473.113 ms
+\end{flushleft}
+
+
+\begin{flushleft}
+3.977 ms
+\end{flushleft}
+
+
+\begin{flushleft}
+5.122 ms
+\end{flushleft}
+
+
+\begin{flushleft}
+5137.343 ms
+\end{flushleft}
+
+
+\begin{flushleft}
+5.602 ms
+\end{flushleft}
+
+
+\begin{flushleft}
+7.663 ms
+\end{flushleft}
+
+
+\begin{flushleft}
+4.104 ms
+\end{flushleft}
+
+
+\begin{flushleft}
+1601025.655 ms
+\end{flushleft}
+
+
+\begin{flushleft}
+7.996 ms
+\end{flushleft}
+
+
+\begin{flushleft}
+6.710 ms
+\end{flushleft}
+
+
+\begin{flushleft}
+12.564 ms
+\end{flushleft}
+
+
+-
+
+
+
+
+
+\begin{flushleft}
+Raw Dataset Size
+\end{flushleft}
+
+
+\begin{flushleft}
+2 GB
+\end{flushleft}
+
+
+\begin{flushleft}
+2 GB
+\end{flushleft}
+
+
+\begin{flushleft}
+38 bytes
+\end{flushleft}
+
+
+\begin{flushleft}
+2 KB
+\end{flushleft}
+
+
+\begin{flushleft}
+2 KB
+\end{flushleft}
+
+
+\begin{flushleft}
+500 bytes
+\end{flushleft}
+
+
+\begin{flushleft}
+13 KB
+\end{flushleft}
+
+
+\begin{flushleft}
+1 KB
+\end{flushleft}
+
+
+-
+
+
+
+
+
+\begin{flushleft}
+Raw Dataset Size (Clean)
+\end{flushleft}
+
+
+\begin{flushleft}
+9.2 MB
+\end{flushleft}
+
+
+\begin{flushleft}
+5.5 MB
+\end{flushleft}
+
+
+\begin{flushleft}
+38 bytes
+\end{flushleft}
+
+
+\begin{flushleft}
+2 KB
+\end{flushleft}
+
+
+\begin{flushleft}
+5.4 MB
+\end{flushleft}
+
+
+\begin{flushleft}
+2 KB
+\end{flushleft}
+
+
+\begin{flushleft}
+532 bytes
+\end{flushleft}
+
+
+\begin{flushleft}
+104 bytes
+\end{flushleft}
+
+
+\begin{flushleft}
+16.25 GB
+\end{flushleft}
+
+
+\begin{flushleft}
+13 KB
+\end{flushleft}
+
+
+\begin{flushleft}
+154 bytes
+\end{flushleft}
+
+
+\begin{flushleft}
+1 KB
+\end{flushleft}
+
+
+-
+
+
+
+
+
+\begin{flushleft}
+Table 3: Data Statistics
+\end{flushleft}
+
+
+\begin{flushleft}
+On signing up, a query is fired to update the user \& player tables with the player's details and
+\end{flushleft}
+
+
+\begin{flushleft}
+default values for level, xp, hp, energy \& weapons.
+\end{flushleft}
+
+
+\begin{flushleft}
+(c) Moderator:
+\end{flushleft}
+
+
+\begin{flushleft}
+The moderator signin page asks for authentication for the moderator (which is cross checked by a
+\end{flushleft}
+
+
+\begin{flushleft}
+query like the player's signin), and then displays options for the moderator.
+\end{flushleft}
+
+
+\begin{flushleft}
+(d) Piazza:
+\end{flushleft}
+
+
+\begin{flushleft}
+The piazza displays the player's current status (name, level, hp, xp, energy, equipped weapon \&
+\end{flushleft}
+
+
+\begin{flushleft}
+armor names), and provides options to do/go to the following:
+\end{flushleft}
+
+
+\begin{flushleft}
+i.
+\end{flushleft}
+
+
+\begin{flushleft}
+ii.
+\end{flushleft}
+
+
+\begin{flushleft}
+iii.
+\end{flushleft}
+
+
+\begin{flushleft}
+iv.
+\end{flushleft}
+
+
+\begin{flushleft}
+v.
+\end{flushleft}
+
+
+\begin{flushleft}
+vi.
+\end{flushleft}
+
+
+\begin{flushleft}
+vii.
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Signout
+\end{flushleft}
+
+
+\begin{flushleft}
+Battle Home
+\end{flushleft}
+
+
+\begin{flushleft}
+Inventory
+\end{flushleft}
+
+
+\begin{flushleft}
+Inn
+\end{flushleft}
+
+
+\begin{flushleft}
+Shop
+\end{flushleft}
+
+
+\begin{flushleft}
+Leaderboard
+\end{flushleft}
+
+
+\begin{flushleft}
+Settings
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+(e) Battle Home:
+\end{flushleft}
+
+
+\begin{flushleft}
+At the Battle Home, the player can firslty choose to use an energy potion from his inventory (a
+\end{flushleft}
+
+
+\begin{flushleft}
+drop down list), whereupon queries will retrieve the energy effect of the potion, delete it from the
+\end{flushleft}
+
+
+\begin{flushleft}
+player's inventory and increase the player's energy in the player table.
+\end{flushleft}
+
+
+\begin{flushleft}
+Second, the player can go to the reports page to view his battle repots and the last option is the
+\end{flushleft}
+
+
+\begin{flushleft}
+player can choose to battle. In this case, the player is given 2 options - either battle monsters
+\end{flushleft}
+
+
+\begin{flushleft}
+better than his skill level, or those worse than his skill level. After this check, a query is generated
+\end{flushleft}
+
+
+\begin{flushleft}
+to check that the player is not resting in the inn (restid in the player table), and also has sufficient
+\end{flushleft}
+
+
+\begin{flushleft}
+energy to start another battle. (Note: Players must actively click {`}Wake up' at the Inn to stop
+\end{flushleft}
+
+
+\begin{flushleft}
+resting.
+\end{flushleft}
+
+
+\begin{flushleft}
+(f) Battle Start:
+\end{flushleft}
+
+
+\begin{flushleft}
+A query is first fired to select a monster and then queries to get monster details from table monster,
+\end{flushleft}
+
+
+\begin{flushleft}
+player's stats and the attack/defense/heal potions available in the player's inventory are loaded.
+\end{flushleft}
+
+
+\begin{flushleft}
+The battle proceeds as follows; players can choose to select {`}Attack', {`}Parry' or {`}Flee' whereupon
+\end{flushleft}
+
+
+\begin{flushleft}
+the battle engine calculates damage done, and depending on fled or knockout (or not), it relates
+\end{flushleft}
+
+
+\begin{flushleft}
+how much damage was done to which side, accounts for the effect of potions that are used in
+\end{flushleft}
+
+
+\begin{flushleft}
+rounds, etc. Players are allowed upto a maximum of 5 rounds to play against a monster. It also
+\end{flushleft}
+
+
+\begin{flushleft}
+keeps the player table, and the battle log updated with damage/move/potion used stats (for the
+\end{flushleft}
+
+
+\begin{flushleft}
+battle log), as well as hp/xp/gold/energy for the player table.
+\end{flushleft}
+
+
+\begin{flushleft}
+Once the battle is over, the current battle report is generated.
+\end{flushleft}
+
+
+
+
+
+3
+
+
+
+
+
+\begin{flushleft}
+\newpage
+(g) Battle Report:
+\end{flushleft}
+
+
+\begin{flushleft}
+This calculates xp, gold, etc. by pulling monster \& battle details (from the battle stats stored in
+\end{flushleft}
+
+
+\begin{flushleft}
+battle log using the current battle's id). It updates these values and the player's energy.
+\end{flushleft}
+
+
+\begin{flushleft}
+The entire battle is packaged into 1 transaction and is committed at the end, and then the battle
+\end{flushleft}
+
+
+\begin{flushleft}
+report for the current battle is shown in exactly the same fashion as on the player's Reports page.
+\end{flushleft}
+
+
+\begin{flushleft}
+(h) Reports:
+\end{flushleft}
+
+
+\begin{flushleft}
+This page first extracts player battle reports, 20 at a time in order of most recent first. The xp
+\end{flushleft}
+
+
+\begin{flushleft}
+and gold gained are recalculated for each report instead of being stored in the battle log table,
+\end{flushleft}
+
+
+\begin{flushleft}
+and then the entire statistics are shown on the screen.
+\end{flushleft}
+
+
+\begin{flushleft}
+The gold gained, and xp gained are calculated according to the following formula:
+\end{flushleft}
+
+
+\begin{flushleft}
+Gain = monstergold * (max(totaldamagedone,monstertotalhp))/monstertotalhp
+\end{flushleft}
+
+
+\begin{flushleft}
+(i) Inventory:
+\end{flushleft}
+
+
+\begin{flushleft}
+In the inventory, players can view equipped weapons, armor \& owned potions. The equipped
+\end{flushleft}
+
+
+\begin{flushleft}
+inventory is queried from the player table where it is stored directly (with name information from
+\end{flushleft}
+
+
+\begin{flushleft}
+the static tables). This is in addition to the ability to change the equipped weapons of the player
+\end{flushleft}
+
+
+\begin{flushleft}
+(through a drop down list), to other weapons purchased by the player.
+\end{flushleft}
+
+
+\begin{flushleft}
+These other weapons are displayed by querying the inventory table by playerid, and the current
+\end{flushleft}
+
+
+\begin{flushleft}
+equipment change is done by performing an update on the player table.
+\end{flushleft}
+
+
+\begin{flushleft}
+The other option that is available is to go back to the Piazza.
+\end{flushleft}
+
+
+\begin{flushleft}
+(j) Inn:
+\end{flushleft}
+
+
+\begin{flushleft}
+In the inn, players can sleep or wake depending on their current resting state. Sleeps can be chosen
+\end{flushleft}
+
+
+\begin{flushleft}
+between one of 5 variants (Against a Wall, Chair, Attic, Bed, Suite) which increase energy and
+\end{flushleft}
+
+
+\begin{flushleft}
+heal damage at different rates. When a player sleeps, his state is changed in the player table by a
+\end{flushleft}
+
+
+\begin{flushleft}
+query and he explicitly needs to wake himself to battle.
+\end{flushleft}
+
+
+\begin{flushleft}
+(k) Shop:
+\end{flushleft}
+
+
+\begin{flushleft}
+Players can buy or sell weapons/armor/potions at the shop. Weapons that are available to the
+\end{flushleft}
+
+
+\begin{flushleft}
+player to purchase (according to level and gold) are queried from the static tables, and once a
+\end{flushleft}
+
+
+\begin{flushleft}
+weapon is purchased from a player, his gold is updated in the player table, while the new weapon
+\end{flushleft}
+
+
+\begin{flushleft}
+is added to his inventory.
+\end{flushleft}
+
+
+\begin{flushleft}
+Players can also sell any number of weapons, except the currently equipped weapons (to prevent
+\end{flushleft}
+
+
+\begin{flushleft}
+the player from becoming weaponless/armorless). This is done by performing deletes on the
+\end{flushleft}
+
+
+\begin{flushleft}
+inventory table.
+\end{flushleft}
+
+
+\begin{flushleft}
+(l) Leaderboard:
+\end{flushleft}
+
+
+\begin{flushleft}
+The leaderboard displays the top 50 players in the entire game, based on xp. This is implemented
+\end{flushleft}
+
+
+\begin{flushleft}
+as a simple query on the player table.
+\end{flushleft}
+
+
+\begin{flushleft}
+(m) Settings:
+\end{flushleft}
+
+
+\begin{flushleft}
+Players are allowed to delete their accounts, as well as change their passwords. The query for
+\end{flushleft}
+
+
+\begin{flushleft}
+account deletion executes a trigger to delete the player information from the inventory \& battle log
+\end{flushleft}
+
+
+\begin{flushleft}
+tables. The query for password change updates the users table with the new MD5 hash of the
+\end{flushleft}
+
+
+\begin{flushleft}
+user's password.
+\end{flushleft}
+
+
+\begin{flushleft}
+2. Special Functionality
+\end{flushleft}
+
+
+\begin{flushleft}
+(a) Indexes:
+\end{flushleft}
+
+
+\begin{flushleft}
+Our battle log table has over 150 million rows, so we indexed the table on playerid using a B-Tree
+\end{flushleft}
+
+
+\begin{flushleft}
+index (the PostgreSQL website indicates that hash indexes are not recommended for use) for fast
+\end{flushleft}
+
+
+\begin{flushleft}
+lookups on battles fought by a particular player.
+\end{flushleft}
+
+
+\begin{flushleft}
+In addition, we also indexed the timestamps (also using a B-Tree index), to allow us to display
+\end{flushleft}
+
+
+\begin{flushleft}
+pages of entries (1-50, 51-100, etc.) at the browser end quickly.
+\end{flushleft}
+
+
+\begin{flushleft}
+(b) Constraints:
+\end{flushleft}
+
+
+\begin{flushleft}
+Aside from primary key constraints on every table, there are uniqueness constraints on users(username,
+\end{flushleft}
+
+
+\begin{flushleft}
+email), player(username), race(racename), armor(name), weapon(name), potion(potion name),
+\end{flushleft}
+
+
+\begin{flushleft}
+rest(restname), move(movename), monster(name).
+\end{flushleft}
+
+
+\begin{flushleft}
+There is also a referential constraint on playerid in users \& player.
+\end{flushleft}
+
+
+4
+
+
+
+
+
+\begin{flushleft}
+\newpage
+(c) Sequences:
+\end{flushleft}
+
+
+\begin{flushleft}
+We have several sequences which keep track of the next playerid/battleid that is to be handed out
+\end{flushleft}
+
+
+\begin{flushleft}
+when a new player joins or a new battle commences. Using
+\end{flushleft}
+
+
+\begin{flushleft}
+SELECT n e x t v a l ( ' sequence name ' ) ;
+\end{flushleft}
+
+
+\begin{flushleft}
+at the PHP front-end, we extract a new unique value that is next in the sequence. This also
+\end{flushleft}
+
+
+\begin{flushleft}
+ensures that no 2 players are assigned the same playerid due to concurrency issues as the sequence
+\end{flushleft}
+
+
+\begin{flushleft}
+lock is first acquired and then the sequence is incremented in this statement.
+\end{flushleft}
+
+
+\begin{flushleft}
+(d) Views
+\end{flushleft}
+
+
+\begin{flushleft}
+We created a materialized view for equipment (equipmentid, equipmentname, effect, gold, level,
+\end{flushleft}
+
+
+\begin{flushleft}
+type), to ease access of displaying available equipment in the shop, as well as inventory querying.
+\end{flushleft}
+
+
+\begin{flushleft}
+This view includes data from weapon, armor \& potion.
+\end{flushleft}
+
+
+\begin{flushleft}
+We also created views for displaying leaderboard data which takes too long to query instantaneously.
+\end{flushleft}
+
+
+\begin{flushleft}
+(e) Triggers
+\end{flushleft}
+
+
+\begin{flushleft}
+We implemented the following triggers to ensure player values of hp, energy are updated when he
+\end{flushleft}
+
+
+\begin{flushleft}
+levels up, and also to ensure that when a player signs up, he is assigned default inventory in the
+\end{flushleft}
+
+
+\begin{flushleft}
+inventory table.
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+CREATE FUNCTION u p d a t e x p g o l d ( ) RETURNS t r i g g e r as \$ u p d a t e x p g o l d \$
+\end{flushleft}
+
+
+\begin{flushleft}
+BEGIN
+\end{flushleft}
+
+
+\begin{flushleft}
+UPDATE p l a y e r SET hp = (SELECT hp from l e v e l d a t a where l e v e l = NEW. l e v e l ) ,
+\end{flushleft}
+
+
+\begin{flushleft}
+energy = 100;
+\end{flushleft}
+
+
+\begin{flushleft}
+RETURN NULL;
+\end{flushleft}
+
+
+\begin{flushleft}
+END;
+\end{flushleft}
+
+
+\begin{flushleft}
+\$update xp gold\$ language plpgsql ;
+\end{flushleft}
+
+
+\begin{flushleft}
+CREATE FUNCTION n e w p l a y e r i n v e n t o r y ( ) RETURNS t r i g g e r as \$ n e w p l a y e r i n v e n t o r y \$
+\end{flushleft}
+
+
+\begin{flushleft}
+BEGIN
+\end{flushleft}
+
+
+\begin{flushleft}
+INSERT into i n v e n t o r y
+\end{flushleft}
+
+
+\begin{flushleft}
+VALUES
+\end{flushleft}
+
+
+\begin{flushleft}
+(NEW. p l a y e r i d , 1 , ' Weapon ' ) ,
+\end{flushleft}
+
+
+\begin{flushleft}
+(NEW. p l a y e r i d , 1 , ' Bodywear ' ) ,
+\end{flushleft}
+
+
+\begin{flushleft}
+(NEW. p l a y e r i d , 1 , ' Helmet ' ) ,
+\end{flushleft}
+
+
+\begin{flushleft}
+(NEW. p l a y e r i d , 1 , ' S h i e l d ' )
+\end{flushleft}
+
+
+\begin{flushleft}
+RETURN NULL;
+\end{flushleft}
+
+
+\begin{flushleft}
+END;
+\end{flushleft}
+
+
+\begin{flushleft}
+\$newplayerinventory\$ language plpgsql ;
+\end{flushleft}
+
+
+\begin{flushleft}
+CREATE TRIGGER n e w p l a y e r i n v e n t o r y
+\end{flushleft}
+
+
+\begin{flushleft}
+AFTER INSERT on u s e r s
+\end{flushleft}
+
+
+\begin{flushleft}
+EXECUTE PROCEDURE u p d a t e i n v e n t o r y ( ) ;
+\end{flushleft}
+
+
+\begin{flushleft}
+CREATE TRIGGER l e v e l u p d a t e
+\end{flushleft}
+
+
+\begin{flushleft}
+AFTER UPDATE OF l e v e l ON p l a y e r
+\end{flushleft}
+
+
+\begin{flushleft}
+EXECUTE PROCEDURE u p d a t e x p g o l d ( ) ;
+\end{flushleft}
+
+
+\begin{flushleft}
+(f) Access Privileges:
+\end{flushleft}
+
+
+\begin{flushleft}
+We implemented 3 user modes: normal, moderator \& superuser. For each of these 3 modes, we
+\end{flushleft}
+
+
+\begin{flushleft}
+created the following access privileges:
+\end{flushleft}
+
+
+\begin{flushleft}
+i. Normal: This mode is only allowed to query our database using SELECT queries and any
+\end{flushleft}
+
+
+\begin{flushleft}
+player side queries which change dynamic tables (Eg - battle log, gold, xp, hp in player table,
+\end{flushleft}
+
+
+\begin{flushleft}
+password in users etc.) and not static tables in the database.
+\end{flushleft}
+
+
+\begin{flushleft}
+ii. Moderator: Mods are allowed to delete players from the user/player tables and are also allowed
+\end{flushleft}
+
+
+\begin{flushleft}
+to make insertions into the weapon, armor, potion, monster, level, race \& rest tables.
+\end{flushleft}
+
+
+5
+
+
+
+
+
+\begin{flushleft}
+\newpage
+iii. Superuser: The superuser has unlimited access privileges to the database.
+\end{flushleft}
+
+
+\begin{flushleft}
+3. List of Queries
+\end{flushleft}
+
+
+\begin{flushleft}
+(a) Login Page:
+\end{flushleft}
+
+
+\begin{flushleft}
+i. SELECT password FROM u s e r s WHERE username = \$1 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+(b) Moderator:
+\end{flushleft}
+
+
+\begin{flushleft}
+i. SELECT password from m o d e r a t o r s WHERE modname = \$1 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+ii. INSERT INTO monster
+\end{flushleft}
+
+
+\begin{flushleft}
+VALUES ( \$1 , \$2 , \$3 , \$4 , \$5 , \$6 , \$7 , \$8 ) ;
+\end{flushleft}
+
+
+\begin{flushleft}
+iii. DELETE FROM u s e r s where username = \$1 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+iv. UPDATE monster set a t t a c k = \$1 , xp = \$2 , g o l d = \$3 , d e f e n s e = \$4
+\end{flushleft}
+
+
+\begin{flushleft}
+, hp = \$5 where m o n s t e r i d = \$6 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+(c) Piazza:
+\end{flushleft}
+
+
+\begin{flushleft}
+i. s e l e c t  from p l a y e r where p l a y e r i d = \$1 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+ii. s e l e c t name from weapon where weaponid = \$1 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+iii. s e l e c t name from armor where armorid = \$1 and armortype = {`} Bodywear ' ;
+\end{flushleft}
+
+
+\begin{flushleft}
+iv. s e l e c t name from armor where armorid = \$1 and armortype = ' Helmet ' ;
+\end{flushleft}
+
+
+\begin{flushleft}
+v. s e l e c t name from armor where armorid = \$1 and armortype = ' S h i e l d ' ;
+\end{flushleft}
+
+
+\begin{flushleft}
+(d) Inventory:
+\end{flushleft}
+
+
+\begin{flushleft}
+i. update p l a y e r set a r m o r i d b = \$1 , a r m o r i d h = \$2 , a r m o r i d s = \$3
+\end{flushleft}
+
+
+\begin{flushleft}
+where p l a y e r i d = \$4 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+ii. s e l e c t name , a t t a c k , weaponid from i n v e n t o r y , weapon
+\end{flushleft}
+
+
+\begin{flushleft}
+where p l a y e r i d = \$1 and equipmenttype= ' Weapon ' and equipmentid=weaponid ;
+\end{flushleft}
+
+
+\begin{flushleft}
+iii. s e l e c t potion name , type , p e r c e n t from i n v e n t o r y , p o t i o n
+\end{flushleft}
+
+
+\begin{flushleft}
+where p l a y e r i d = \$1 and equipmenttype= ' P ot io n ' and equipmentid=p o t i o n i d ;
+\end{flushleft}
+
+
+\begin{flushleft}
+iv. s e l e c t name , d e f e n s e , armorid from i n v e n t o r y , armor
+\end{flushleft}
+
+
+\begin{flushleft}
+where p l a y e r i d = \$1 and equipmenttype= ' Helmet ' and equipmentid=armorid
+\end{flushleft}
+
+
+\begin{flushleft}
+and armortype = ' Helmet ' ;
+\end{flushleft}
+
+
+\begin{flushleft}
+v. s e l e c t name , d e f e n s e , armorid from i n v e n t o r y , armor
+\end{flushleft}
+
+
+\begin{flushleft}
+where p l a y e r i d = \$1 and equipmenttype= ' S h i e l d ' and equipmentid=armorid
+\end{flushleft}
+
+
+\begin{flushleft}
+and armortype = ' S h i e l d ' ;
+\end{flushleft}
+
+
+\begin{flushleft}
+vi. s e l e c t name , d e f e n s e , armorid from i n v e n t o r y , armor
+\end{flushleft}
+
+
+\begin{flushleft}
+where p l a y e r i d = \$1 and equipmenttype= ' Bodywear '
+\end{flushleft}
+
+
+\begin{flushleft}
+and equipmentid=armorid and armortype = ' Bodywear ' ;
+\end{flushleft}
+
+
+\begin{flushleft}
+(e) Inn:
+\end{flushleft}
+
+
+
+
+
+6
+
+
+
+
+
+\begin{flushleft}
+\newpage
+i. s e l e c t l e v e l , p l a y e r . gold , r e s t . gold , m i n l e v e l from p l a y e r , r e s t
+\end{flushleft}
+
+
+\begin{flushleft}
+where p l a y e r i d = \$1 and r e s t . r e s t i d = \$2 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+ii. update p l a y e r set r e s t i d = \$1 , r e s t t i m e = '' . d a t e ( 'Y$-$m$-$d H: i : s ' ) . ''
+\end{flushleft}
+
+
+\begin{flushleft}
+where p l a y e r i d = \$2 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+iii. s e l e c t r e s t i d , r e s t t i m e , energy , p l a y e r . hp as hp , l e v e l d a t a . hp as maxhp
+\end{flushleft}
+
+
+\begin{flushleft}
+from p l a y e r , l e v e l d a t a
+\end{flushleft}
+
+
+\begin{flushleft}
+where p l a y e r . l e v e l = l e v e l d a t a . l e v e l and p l a y e r i d = \$1 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+iv. s e l e c t r e s t s e c o n d s f o r m a x , restname from r e s t where r e s t i d = \$1 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+(f) Shop:
+\end{flushleft}
+
+
+\begin{flushleft}
+i. s e l e c t  from equipment where equipmenttype = \$1 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+ii. i n s e r t into i n v e n t o r y values ( \$1 , \$2 , \$3 ) ;
+\end{flushleft}
+
+
+\begin{flushleft}
+iii. delete from i n v e n t o r y where equipmentid = \$1 and p l a y e r i d = \$2
+\end{flushleft}
+
+
+\begin{flushleft}
+and equipmenttype = \$3 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+iv. update p l a y e r set g o l d = g o l d + \$ g o l d T r a n s f e r r e d ;
+\end{flushleft}
+
+
+\begin{flushleft}
+(g) Leaderboard:
+\end{flushleft}
+
+
+\begin{flushleft}
+i. s e l e c t  from p l a y e r order by xp desc l i m i t 5 0 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+ii. This returns the top 100 players in terms of win \% who have fought at least 10 battles.
+\end{flushleft}
+
+
+\begin{flushleft}
+create m a t e r i a l i z e d view w i n p e r c e n t as
+\end{flushleft}
+
+
+\begin{flushleft}
+s e l e c t username , avg ( win : : int : : d o u b l e p r e c i s i o n )  100 as p e r c e n t a g e w i n s
+\end{flushleft}
+
+
+\begin{flushleft}
+from b a t t l e l o g , u s e r s where b a t t l e l o g . p l a y e r i d = u s e r s . p l a y e r i d
+\end{flushleft}
+
+
+\begin{flushleft}
+group by username having count ( p l a y e r i d ) $>$ 10
+\end{flushleft}
+
+
+\begin{flushleft}
+order by p e r c e n t a g e w i n s desc l i m i t 1 0 0 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+iii. This returns the top 100 players in terms of average damage dealt per battle.
+\end{flushleft}
+
+
+\begin{flushleft}
+create m a t e r i a l i z e d view maxdmg as
+\end{flushleft}
+
+
+\begin{flushleft}
+s e l e c t username , avg ( d m g r n d 1 f o r+d m g r n d 2 f o r+
+\end{flushleft}
+
+
+\begin{flushleft}
+d m g r n d 3 f o r+d m g r n d 4 f o r+d m g r n d 5 f o r ) as avgdmg
+\end{flushleft}
+
+
+\begin{flushleft}
+from b a t t l e l o g , u s e r s where b a t t l e l o g . p l a y e r i d = u s e r s . p l a y e r i d
+\end{flushleft}
+
+
+\begin{flushleft}
+group by username order by avgdmg desc l i m i t 1 0 0 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+(h) Battle Home:
+\end{flushleft}
+
+
+\begin{flushleft}
+i. s e l e c t energy , p e r c e n t from p l a y e r , p o t i o n
+\end{flushleft}
+
+
+\begin{flushleft}
+where p l a y e r i d = \$1 and p o t i o n i d = \$2 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+ii. update p l a y e r set e n e r g y = e n e r g y + \$ e n e r g y T o I n c r e a s e where p l a y e r i d = \$1 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+iii. delete from i n v e n t o r y
+\end{flushleft}
+
+
+\begin{flushleft}
+where p l a y e r i d = \$1 and equipmentid = \$2 and equipmenttype = {`} P ot i on ' ;
+\end{flushleft}
+
+
+\begin{flushleft}
+iv. s e l e c t l e v e l , r e s t i d , r e s t t i m e , energy , hp , username from p l a y e r
+\end{flushleft}
+
+
+\begin{flushleft}
+where p l a y e r i d = \$1 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+v. s e l e c t hp from l e v e l d a t a where l e v e l = \ensuremath{\backslash} \$1 ;
+\end{flushleft}
+
+
+
+
+
+7
+
+
+
+
+
+\begin{flushleft}
+\newpage
+vi. s e l e c t p o t i o n i d , potion name , type , p e r c e n t from p o t i o n , i n v e n t o r y
+\end{flushleft}
+
+
+\begin{flushleft}
+where p l a y e r i d = \$1 and equipmenttype = {`} P ot i on '
+\end{flushleft}
+
+
+\begin{flushleft}
+and p o t i o n i d=equipmentid and type = 'E ' ;
+\end{flushleft}
+
+
+\begin{flushleft}
+vii. s e l e c t r e s t s e c o n d s f o r m a x from r e s t where r e s t i d = \$1 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+(i) Battle Start:
+\end{flushleft}
+
+
+\begin{flushleft}
+i. Randomly selects a monster of the appropriate level; where random() is handled by the
+\end{flushleft}
+
+
+\begin{flushleft}
+database at the back.
+\end{flushleft}
+
+
+\begin{flushleft}
+s e l e c t  from monster where l e v e l = \$1 l i m i t 1
+\end{flushleft}
+
+
+\begin{flushleft}
+o f f s e t ( s e l e c t t r u n c ( random ( )  ( num$-$1)+1) from ( s e l e c t count (  ) as num
+\end{flushleft}
+
+
+\begin{flushleft}
+from monster where l e v e l = \$1 ) as temp ) ;
+\end{flushleft}
+
+
+\begin{flushleft}
+ii. s e l e c t n e x t v a l ( ' b a t t l e i d s e q ' ) ;
+\end{flushleft}
+
+
+\begin{flushleft}
+iii. b e g i n ;
+\end{flushleft}
+
+
+\begin{flushleft}
+i n s e r t into b a t t l e l o g values ( \$1 , \$2 , \$3 , \$4 ,
+\end{flushleft}
+
+
+\begin{flushleft}
+NULL, \$5 , \$6 , \$7 , \$8 ,
+\end{flushleft}
+
+
+\begin{flushleft}
+NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+\end{flushleft}
+
+
+\begin{flushleft}
+NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+\end{flushleft}
+
+
+\begin{flushleft}
+NULL, NULL, NULL, NULL) ;
+\end{flushleft}
+
+
+\begin{flushleft}
+iv. delete from i n v e n t o r y where p l a y e r i d = \$1 and
+\end{flushleft}
+
+
+\begin{flushleft}
+equipmentid = \$2 and equipmenttype = ' P ot i on ' ;
+\end{flushleft}
+
+
+\begin{flushleft}
+v. update b a t t l e l o g set r n d \$ 1 p o t i o n = \$2 where b a t t l e i d = \$3 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+vi. update b a t t l e l o g set win = \$1 , dmg rnd$<$Round no.$>$ f o r = \$2 ,
+\end{flushleft}
+
+
+\begin{flushleft}
+dmg rnd$<$Round no.$>$ a g a i n s t = \$3 ,
+\end{flushleft}
+
+
+\begin{flushleft}
+p l a y e r r n d $<$Round no.$>$ move = \$4 where b a t t l e i d = \$5 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+vii. s e l e c t ( d m g r n d 1 f o r+d m g r n d 2 f o r+d m g r n d 3 f o r+d m g r n d 4 f o r+d m g r n d 5 f o r )
+\end{flushleft}
+
+
+\begin{flushleft}
+as dmgFor ,
+\end{flushleft}
+
+
+\begin{flushleft}
+( d m g r n d 1 a g a i n s t+d m g r n d 2 a g a i n s t+d m g r n d 3 a g a i n s t
+\end{flushleft}
+
+
+\begin{flushleft}
++d m g r n d 4 a g a i n s t+d m g r n d 5 a g a i n s t ) as dmgAgainst from b a t t l e l o g
+\end{flushleft}
+
+
+\begin{flushleft}
+where b a t t l e i d = \$1 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+viii. s e l e c t p o t i o n i d , potion name , type , p e r c e n t from p o t i o n , i n v e n t o r y
+\end{flushleft}
+
+
+\begin{flushleft}
+where p l a y e r i d = \$1 and equipmenttype = {`} P ot i on ' and
+\end{flushleft}
+
+
+\begin{flushleft}
+p o t i o n i d=equipmentid and type $<$$>$ 'E ' ;
+\end{flushleft}
+
+
+\begin{flushleft}
+(j) Battle Result \& Reports:
+\end{flushleft}
+
+
+\begin{flushleft}
+i. s e l e c t  from b a t t l e l o g where p l a y e r I d = \$1
+\end{flushleft}
+
+
+\begin{flushleft}
+order by timestamp desc l i m i t \$2 o f f s e t \$3 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+ii. s e l e c t name , xp , gold , hp from monster where m o n s t e r i d = \$1 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+iii. s e l e c t name from weapon where weaponid = \$1 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+iv. s e l e c t name from armor where armorid = \$1 and armortype = \$2 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+v. s e l e c t potion name , type , p e r c e n t from p o t i o n where p o t i o n i d = \$1 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+vi. s e l e c t  from b a t t l e l o g where b a t t l e i d = \$1 ;
+\end{flushleft}
+
+
+
+
+
+8
+
+
+
+
+
+\begin{flushleft}
+\newpage
+vii. update p l a y e r set xp = xp + \$xpGained , g o l d = g o l d + \$goldGained
+\end{flushleft}
+
+
+\begin{flushleft}
+where p l a y e r i d = \$1 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+viii. s e l e c t p l a y e r . xp , l e v e l d a t a . xp , p l a y e r . e n e r g y from p l a y e r , l e v e l d a t a
+\end{flushleft}
+
+
+\begin{flushleft}
+where p l a y e r i d =\$1 and l e v e l d a t a . l e v e l = p l a y e r . l e v e l +1;
+\end{flushleft}
+
+
+\begin{flushleft}
+ix. update p l a y e r set l e v e l = l e v e l + 1 where p l a y e r i d = \$1 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+x. update p l a y e r set e n e r g y = e n e r g y $-$ 10 where p l a y e r i d = \$1 ;
+\end{flushleft}
+
+
+\begin{flushleft}
+xi. Used to end the battle transaction once a battle is over and has not been interrupted (logout/crash).
+\end{flushleft}
+
+
+\begin{flushleft}
+commit ;
+\end{flushleft}
+
+
+\begin{flushleft}
+4. Query Times
+\end{flushleft}
+
+
+\begin{flushleft}
+Table 4 is a list of query times (averaged over 3 runs) of queries from Section 2.
+\end{flushleft}
+
+
+
+
+
+9
+
+
+
+
+
+\begin{flushleft}
+\newpage
+Figure 1: ER Diagram
+\end{flushleft}
+
+
+10
+
+
+
+
+
+\begin{flushleft}
+\newpage
+Query Number:
+\end{flushleft}
+
+
+\begin{flushleft}
+(a) i
+\end{flushleft}
+
+
+\begin{flushleft}
+(b) i
+\end{flushleft}
+
+
+\begin{flushleft}
+(b) ii
+\end{flushleft}
+
+
+\begin{flushleft}
+(b) iii
+\end{flushleft}
+
+
+\begin{flushleft}
+(b) iv
+\end{flushleft}
+
+
+\begin{flushleft}
+(c) i
+\end{flushleft}
+
+
+\begin{flushleft}
+(c) ii
+\end{flushleft}
+
+
+\begin{flushleft}
+(c) iii
+\end{flushleft}
+
+
+\begin{flushleft}
+(c) iv
+\end{flushleft}
+
+
+\begin{flushleft}
+(c) v
+\end{flushleft}
+
+
+\begin{flushleft}
+(d) i
+\end{flushleft}
+
+
+\begin{flushleft}
+(d) ii
+\end{flushleft}
+
+
+\begin{flushleft}
+(d) iii
+\end{flushleft}
+
+
+\begin{flushleft}
+(d) iv
+\end{flushleft}
+
+
+\begin{flushleft}
+(d) v
+\end{flushleft}
+
+
+\begin{flushleft}
+(d) vi
+\end{flushleft}
+
+
+\begin{flushleft}
+(e) i
+\end{flushleft}
+
+
+\begin{flushleft}
+(e) ii
+\end{flushleft}
+
+
+\begin{flushleft}
+(e) iii
+\end{flushleft}
+
+
+\begin{flushleft}
+(e) iv
+\end{flushleft}
+
+
+\begin{flushleft}
+(f) i
+\end{flushleft}
+
+
+\begin{flushleft}
+(f) ii
+\end{flushleft}
+
+
+\begin{flushleft}
+(f) iii
+\end{flushleft}
+
+
+\begin{flushleft}
+(f) iv
+\end{flushleft}
+
+
+\begin{flushleft}
+(g) i
+\end{flushleft}
+
+
+\begin{flushleft}
+(g) ii
+\end{flushleft}
+
+
+\begin{flushleft}
+(g) iii
+\end{flushleft}
+
+
+\begin{flushleft}
+(h) i
+\end{flushleft}
+
+
+\begin{flushleft}
+(h) ii
+\end{flushleft}
+
+
+\begin{flushleft}
+(h) iii
+\end{flushleft}
+
+
+\begin{flushleft}
+(h) iv
+\end{flushleft}
+
+
+\begin{flushleft}
+(h) v
+\end{flushleft}
+
+
+\begin{flushleft}
+(h) vi
+\end{flushleft}
+
+
+\begin{flushleft}
+(h) vii
+\end{flushleft}
+
+
+\begin{flushleft}
+(i) i
+\end{flushleft}
+
+
+\begin{flushleft}
+(i) ii
+\end{flushleft}
+
+
+\begin{flushleft}
+(i) iii
+\end{flushleft}
+
+
+\begin{flushleft}
+(i) iv
+\end{flushleft}
+
+
+\begin{flushleft}
+(i) v
+\end{flushleft}
+
+
+\begin{flushleft}
+(i) vi
+\end{flushleft}
+
+
+\begin{flushleft}
+(i) vii
+\end{flushleft}
+
+
+\begin{flushleft}
+(i) viii
+\end{flushleft}
+
+
+\begin{flushleft}
+(j) i
+\end{flushleft}
+
+
+\begin{flushleft}
+(j) ii
+\end{flushleft}
+
+
+\begin{flushleft}
+(j) iii
+\end{flushleft}
+
+
+\begin{flushleft}
+(j) iv
+\end{flushleft}
+
+
+\begin{flushleft}
+(j) v
+\end{flushleft}
+
+
+\begin{flushleft}
+(j) vi
+\end{flushleft}
+
+
+\begin{flushleft}
+(j) vii
+\end{flushleft}
+
+
+\begin{flushleft}
+(j) viii
+\end{flushleft}
+
+
+\begin{flushleft}
+(j) ix
+\end{flushleft}
+
+
+\begin{flushleft}
+(j) x
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Average Running Time
+\end{flushleft}
+
+
+\begin{flushleft}
+2.775ms
+\end{flushleft}
+
+
+\begin{flushleft}
+2.973ms
+\end{flushleft}
+
+
+\begin{flushleft}
+8.015ms
+\end{flushleft}
+
+
+\begin{flushleft}
+0.372ms
+\end{flushleft}
+
+
+\begin{flushleft}
+4.122ms
+\end{flushleft}
+
+
+\begin{flushleft}
+0.619ms
+\end{flushleft}
+
+
+\begin{flushleft}
+3.283ms
+\end{flushleft}
+
+
+\begin{flushleft}
+3.780ms
+\end{flushleft}
+
+
+\begin{flushleft}
+3.819ms
+\end{flushleft}
+
+
+\begin{flushleft}
+3.698ms
+\end{flushleft}
+
+
+\begin{flushleft}
+2.971ms
+\end{flushleft}
+
+
+\begin{flushleft}
+3.886ms
+\end{flushleft}
+
+
+\begin{flushleft}
+3.091ms
+\end{flushleft}
+
+
+\begin{flushleft}
+3.556ms
+\end{flushleft}
+
+
+\begin{flushleft}
+3.982ms
+\end{flushleft}
+
+
+\begin{flushleft}
+3.586ms
+\end{flushleft}
+
+
+\begin{flushleft}
+3.065ms
+\end{flushleft}
+
+
+\begin{flushleft}
+5.130ms
+\end{flushleft}
+
+
+\begin{flushleft}
+5.159ms
+\end{flushleft}
+
+
+\begin{flushleft}
+0.372ms
+\end{flushleft}
+
+
+\begin{flushleft}
+3.328ms
+\end{flushleft}
+
+
+\begin{flushleft}
+5.027ms
+\end{flushleft}
+
+
+\begin{flushleft}
+3.605ms
+\end{flushleft}
+
+
+\begin{flushleft}
+3.443ms
+\end{flushleft}
+
+
+\begin{flushleft}
+101.894ms
+\end{flushleft}
+
+
+\begin{flushleft}
+141425.233ms
+\end{flushleft}
+
+
+\begin{flushleft}
+1231903.074ms
+\end{flushleft}
+
+
+\begin{flushleft}
+9.305ms
+\end{flushleft}
+
+
+\begin{flushleft}
+0.594ms
+\end{flushleft}
+
+
+\begin{flushleft}
+3.912ms
+\end{flushleft}
+
+
+\begin{flushleft}
+0.572ms
+\end{flushleft}
+
+
+3.885
+
+
+\begin{flushleft}
+3.416ms
+\end{flushleft}
+
+
+\begin{flushleft}
+3.430ms
+\end{flushleft}
+
+
+\begin{flushleft}
+13.529ms
+\end{flushleft}
+
+
+\begin{flushleft}
+3.262ms
+\end{flushleft}
+
+
+\begin{flushleft}
+8.822ms
+\end{flushleft}
+
+
+\begin{flushleft}
+5.351ms
+\end{flushleft}
+
+
+\begin{flushleft}
+0.818ms
+\end{flushleft}
+
+
+\begin{flushleft}
+0.901ms
+\end{flushleft}
+
+
+\begin{flushleft}
+2.628ms
+\end{flushleft}
+
+
+\begin{flushleft}
+2.731ms
+\end{flushleft}
+
+
+\begin{flushleft}
+23.5ms
+\end{flushleft}
+
+
+\begin{flushleft}
+2.623ms
+\end{flushleft}
+
+
+\begin{flushleft}
+3.559ms
+\end{flushleft}
+
+
+\begin{flushleft}
+3.143ms
+\end{flushleft}
+
+
+\begin{flushleft}
+2.243ms
+\end{flushleft}
+
+
+\begin{flushleft}
+0.559ms
+\end{flushleft}
+
+
+\begin{flushleft}
+5.920ms
+\end{flushleft}
+
+
+\begin{flushleft}
+3.823ms
+\end{flushleft}
+
+
+\begin{flushleft}
+2.461ms
+\end{flushleft}
+
+
+\begin{flushleft}
+4.621ms
+\end{flushleft}
+
+
+
+
+
+\begin{flushleft}
+Table 4: Average Query Running Times
+\end{flushleft}
+
+
+
+
+
+11
+
+
+
+
+
+\newpage
+
+
+
+\end{document}

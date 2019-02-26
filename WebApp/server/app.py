@@ -303,14 +303,14 @@ def event_details():
     event_group = eventdetails[0]
     event_name = eventdetails[1]
     event_linkto = eventdetails[2]
-    cur.execute(rq.get_users,(event_group,))
-    event_users = cur.fetchall()
+    # cur.execute(rq.get_users,(event_group,))
+    # event_users = cur.fetchall()
     cur.execute(rq.get_eventtime_weekly,(eventid,))
     event_weekly = cur.fetchall()
     cur.execute(rq.get_eventtime_once,(eventid,))
     event_timeonce = cur.fetchall()
     event_hosts = cur.execute(rq.get_hosts,(event_group,))
-    return jsonify({'e_id':eventid,'e_group':event_group,'e_name':event_name,'e_linkto':event_linkto,'e_users':event_users,'e_weekly':event_weekly,'e_hosts':event_hosts,'e_time':event_timeonce})
+    return jsonify({'e_id':eventid,'e_group':event_group,'e_name':event_name,'e_linkto':event_linkto,'e_weekly':event_weekly,'e_hosts':event_hosts,'e_time':event_timeonce})
 
 ## FIND API
 @app.route("/findcourses/",methods = ['GET'])

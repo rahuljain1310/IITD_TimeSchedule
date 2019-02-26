@@ -61,12 +61,16 @@ create table curr_courses(courseid serial primary key,code varchar(8) unique not
   strength int, registered int);
 
 create table curr_stu_course(entrynum varchar(30) references users(alias),coursecode int references curr_courses(code), unique(entrynum,coursecode));
+-- 
+alter table curr_stu_course add constraint reference_curr_stu foreign key curr_stu_course(entrynum) references curr_stu(entrynum);
+
 create index curr_stu_course_coursecode_key on curr_stu_course(coursecode);
 create index curr_stu_coures_entrynum_key on curr_stu_course(entrynum);
 create table curr_prof_course(profalias varchar(30) references users(alias),coursecode int references curr_courses(code),unique(profalias,coursecode));
 create index curr_prof_course_profalias_key on curr_prof_course(profalias);
 create index curr_prof_course_coursecode_key on curr_prof_course(coursecode);
-
+--
+alter table 
 create table curr_prof(profalias varchar(30) primary key,profname varchar(70));
 create table curr_stu(entrynum varchar(30) primary key,studentname varchar(70));
 
