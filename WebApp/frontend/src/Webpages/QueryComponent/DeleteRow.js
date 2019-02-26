@@ -1,4 +1,5 @@
 import React from 'react';
+import {Button} from 'react-bootstrap'
 export default class DeleteRow extends React.Component {
     redirect = () => {
         let y = this.props.tr
@@ -15,9 +16,9 @@ export default class DeleteRow extends React.Component {
                     <td key={index}>{y[key]}</td>
                 ))}
                 <td>
-                <button type="button" class="btn btn-default btn-sm" onClick={this.props.delete(this.props.key,x)}>
-                    <span class="glyphicon glyphicon-remove"></span> Remove 
-                </button>
+                <Button type="button" className="btn btn-sm" onClick={(e) => this.props.delete(this.props.index,x)}>
+                    <span className="glyphicon glyphicon-remove"></span> {this.props.text} 
+                </Button>
                 </td>
         </tr>
         )

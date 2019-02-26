@@ -45,7 +45,7 @@ export default class DeleteQuery extends React.Component {
                 <table className="table table-bordered table-hover">
                     <tbody>
                     {this.state.results.map( (row,index) => (
-                        <DeleteRow tr={row} key={index} delete={this.deleterow()}/>
+                        <DeleteRow tr={row} key={index} index={index} delete={this.deleterow} text={this.props.text}/>
                     ))}
                     </tbody>
                 </table>
