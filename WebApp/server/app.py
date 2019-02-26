@@ -34,7 +34,12 @@ CORS(app)
 
 
 ## INSERT API's
-
+@app.route("/slotdetails",methods=['GET'])
+def slotdetails():
+    slotcode = request.args.get('slot')
+    cur.execute(rq.get_slot_details,(slotcode,))
+    slotdetails = cur.fetchall()
+    return jsonify({'results':slotdetails,'slotname':slotcode})
 @app.route("/update_yearsem",methods=['GET'])
 def updatesession():
     global curr_sem

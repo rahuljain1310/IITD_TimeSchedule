@@ -1,6 +1,6 @@
 
 # Reads requires no authentication
-
+get_slot_details="select days,begintime,endtime from slotdetails where slotname = %s"
 # courses details
 get_oldco="select * from courses where code = %s and year = %s and semester = %s"
 
@@ -79,8 +79,8 @@ search_group="select alias "\
 "from groups "\
 "where alias ilike concat('%%',%s,'%%') "
 
-get_groups="select useralias,name from usersgroups,users where useralias= %s and users.alias=useralias"
-get_users="select * from usersgroups where groupalias= %s "
+get_groups="select groupalias from usersgroups,users where useralias= %s and users.alias=useralias"
+get_users="select useralias,name from usersgroups,users where groupalias= %s and users.alias=usersgroups.useralias "
 get_hosts="select * from groupshost where groupalias = %s "
 get_events="select id,name,linkto from events where alias = %s"
 
