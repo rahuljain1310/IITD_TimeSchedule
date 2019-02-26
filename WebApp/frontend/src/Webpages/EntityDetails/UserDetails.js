@@ -9,7 +9,7 @@ export default class UserDetails extends React.Component {
         error: null,
         isLoaded: false,
         all_events: [],
-        type: 1,
+        type1: "cur_stu",
         cur_course_registered: [],
         cur_courses_taken: [],
         old_courses_registered: [],
@@ -36,7 +36,7 @@ export default class UserDetails extends React.Component {
               user_details: rjson,
               all_events: rjson.all_events,
               alias: rjson.alias,
-              type: rjson.type,
+              type1: rjson.type1,
               cur_course_registered: rjson.cur_course_registered,
               cur_courses_taken: rjson.cur_courses_taken,
               events_hosted: rjson.events_hosted,
@@ -67,7 +67,7 @@ export default class UserDetails extends React.Component {
           <div>
               {/* <h3>Update User: &nbsp; {this.state.alias.toUpperCase()} </h3> */}
               <br/>
-            {/* {  JSON.stringify(this.state.user_details,null,2) } */}
+            {/* {  JSON.stringify(this.state.user_details,null,"cur_prof") } */}
             <h4>{"Alias :    "+this.state.alias}</h4>
             <span> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Update <a href={"/update_user/"+this.state.alias}>User</a></span>
             <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
@@ -75,34 +75,34 @@ export default class UserDetails extends React.Component {
               <div className="update_div">
                 <h6>{"Username : "+this.state.username} </h6>
                 <h6>{"Username Webpage : "+this.state.userwebpage} </h6>
-                <h6>{this.state.type == 1 && "Usertype: Student"}</h6>
-                <h6>{this.state.type == 2 && "Usertype: Professor"}</h6>
+                <h6>{this.state.type1 == "cur_stu" && "Usertype: Student"}</h6>
+                <h6>{this.state.type1 == "cur_prof" && "Usertype: Professor"}</h6>
               </div>
               </Tab>
               <Tab eventKey="All events" title="All events">
                 <Query results={this.state.all_events} urlpath="/event/" hyperlink={true}/>
               </Tab>
-              { this.state.type == 1 &&
+              { this.state.type1 == "cur_stu" &&
               <Tab eventKey="454" title="Current Courses">
                 <Query results={this.state.cur_course_registered} urlpath="/course/" hyperlink={true}/>
               </Tab> }
-              { this.state.type == 2 &&
+              { this.state.type1 == "cur_prof" &&
               <Tab eventKey="455" title="Current Courses Taken">
                 <Query results={this.state.cur_courses_taken} urlpath="/course/" hyperlink={true}/>
               </Tab> }
               <Tab eventKey="456" title="Events Hosted">
                 <Query results={this.state.events_hosted} urlpath="/course/" hyperlink={true}/>
               </Tab>
-                { this.state.type == 1 &&
+                { (this.state.type1 == "cur_stu" || this.state.type1 == "old_stu" ) &&
               <Tab eventKey="545" title="Old Courses">
                 <Query results={this.state.old_courses_registered} urlpath="/course/" hyperlink={true}/>
               </Tab> }
-              { this.state.type == 2  && 
+              { (this.state.type1 == "cur_prof" || this.state.type1 == "cur_stu")  && 
               <Tab eventKey="3463" title="Old Courses Taken">
                 <Query results={this.state.old_courses_taken} urlpath="/course/" hyperlink={true}/>
               </Tab> }
               <Tab eventKey="64" title="In Groups">
-                <Query results={this.state.in_groups} urlpath={this.state.urlpath} hyperlink={true}/>
+                <Query results={this.state.in_groups} urlpath="/usergroup/" hyperlink={true}/>
               </Tab>
               {/* <Tab eventKey="UpdateUser" title="Update User Details">
                 <Query results={this.state.Student_registered} urlpath={this.state.urlpath} hyperlink={true}/>
