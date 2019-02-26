@@ -80,7 +80,7 @@ search_group="select alias "\
 "where alias ilike concat('%%',%s,'%%') "
 
 get_groups="select groupalias from usersgroups,users where useralias= %s and users.alias=useralias"
-get_users="select useralias,name from usersgroups,users where groupalias= %s and users.alias=usersgroups.useralias "
+get_users="select useralias,namea from usersgroups,users where groupalias= %s and users.alias=usersgroups.useralias "
 get_hosts="select * from groupshost where groupalias = %s "
 get_events="select id,name,linkto from events where alias = %s"
 
