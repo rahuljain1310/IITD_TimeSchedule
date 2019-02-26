@@ -10,7 +10,7 @@ export default class UpdateCourse extends React.Component {
             alias: alias,
             name : "",
             NameDisabled: true,
-            GroupnoDisabled: true,
+            UWDisabled: true,
             isLoaded: false,
             groupno: 1,
             update_error: "",
@@ -94,7 +94,6 @@ export default class UpdateCourse extends React.Component {
               }
             )
         setTimeout(() => this.setState({error:""}), 2000);
-
     }
 
     render() {
@@ -111,16 +110,17 @@ export default class UpdateCourse extends React.Component {
                         <br/>
                         { this.state.user_type==1 &&
                         <div>
-                        <label>Group No. :</label><br/>
-                        <input type="checkbox" onChange={ (e) => this.setState({GroupnoDisabled: !this.state.GroupnoDisabled,groupno:""} ) } name="CheckName"/> 
-                        <input type="text" className="update-input" disabled={this.state.GroupnoDisabled} onChange={ (e) => this.setState({groupno: e.target.value}) } value={ this.state.groupno } placeholder="Cycle of Student"/>
+                        <label>User Webpage :</label><br/>
+                        <input type="checkbox" onChange={ (e) => this.setState({UWDisabled: !this.state.UWDisabled,groupno:""} ) } name="CheckName"/> 
+                        <input type="text" className="update-input" disabled={this.state.UWDisabled} onChange={ (e) => this.setState({groupno: e.target.value}) } value={ this.state.groupno } placeholder="User Webpage"/>
                         </div>
                         }
                         <br/><Button onClick={this.update}> Update User </Button> 
                         <span>{this.state.update_error}</span>
                     </div>
                 </Tab>
-                { this.state.user_type==1 &&  <Tab eventKey="Drop" title="Drop Courses">
+                { this.state.user_type==1 && 
+                <Tab eventKey="Drop" title="Drop Courses">
                     <div  className="update_div">
                         <Query results={this.state.old_courses} urlpath={this.state.urlpath} hyperlink={true}/>
                         <h1></h1><br/><h1></h1>

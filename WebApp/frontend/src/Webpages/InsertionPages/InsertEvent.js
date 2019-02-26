@@ -50,6 +50,9 @@ export default class InsertEvent extends React.Component {
     render() {
         return (
         <div className="search_div">
+
+            <label></label>
+            
             <label>Usergroup :  </label> 
             <input type="text" onChange={ (e) => this.setState({usergroup: e.target.value}) } value={ this.state.usergroup } placeholder="E.g. COL362"/>
             <br/>

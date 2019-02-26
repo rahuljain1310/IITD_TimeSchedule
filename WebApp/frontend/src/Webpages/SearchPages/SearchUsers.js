@@ -57,7 +57,7 @@ export default class SearchUsers extends React.Component {
             <h3>Search User:</h3>
             <input type="text" onChange={ (e) => this.setState({alias: e.target.value}) } value={ this.state.alias } placeholder="alias"/>
             <input type="text" onChange={ (e) => this.setState({name: e.target.value}) } value={ this.state.name } placeholder="name"/>
-            <input type="text" onChange={ (e) => this.setState({code: e.target.value}) } value={ this.state.code } placeholder="group alias"/>
+            {/* <input type="text" onChange={ (e) => this.setState({code: e.target.value}) } value={ this.state.code } placeholder="group alias"/> */}
             <select  onChange={this.seturlpath} value={ this.state.type } >
                 <option value="0">All</option>
                 <option value="1">Student</option>
