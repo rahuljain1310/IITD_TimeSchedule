@@ -38,8 +38,15 @@ CORS(app)
 def dropCrs():
     course = request.args.get('code')
     alias = request.args.get('alias')
-    ### Deregister Student                             ### YAhan Kaaam kar 
-    return None
+    ### Deregister Student       
+    #                       ### YAhan Kaaam kar 
+    cur.execute(iq.deregister_student,(course,entrynum))
+    success = cur.fetchall()[0][0]
+    conn.commit()
+    if (success):
+        return jsonify({'results':success})
+    else:
+        return None
 
 
 
