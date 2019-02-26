@@ -95,14 +95,11 @@ export default class EventDetails extends React.Component {
             </Modal.Footer>
           </Modal>
           <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
-            {/* <Tab eventKey="Users" title="Users">
-              <Query results={this.state.e_users} urlpath="/user/" hyperlink={true}/>
+            <Tab eventKey="Users" title="Hosts">
+              <Query results={this.state.e_hosts} urlpath="/user/" hyperlink={true}/>
             </Tab>
-            <Tab eventKey="34" title="Update E">
-              <Query results={this.state.e_users} urlpath="/user/" hyperlink={true}/>
-            </Tab> */}
             <Tab eventKey="454" title="Time">
-              <Query results={this.state.e_time} urlpath="/course/" hyperlink={false}/>
+              <Query results={this.state.e_time} urlpath="" hyperlink={false}/>
             </Tab> 
             {/* { this.state.type == 2 &&
             <Tab eventKey="455" title="Current Courses Taken">

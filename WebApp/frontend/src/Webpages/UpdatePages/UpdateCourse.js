@@ -33,7 +33,7 @@ export default class UpdateCourse extends React.Component {
             .then(res => res.json())
             .then((jsres) => {
                 console.log(jsres)
-                let x = jsres
+                let x = jsres.results
                 this.setState({
                   update_error:"Successfully Updated"
                 });
@@ -53,7 +53,7 @@ export default class UpdateCourse extends React.Component {
         this.setState({
             register_error: "Registering Student"
         })
-        let cq = "?alias="+alias+"&groupno="+groupno
+        let cq = "?alias="+alias+"&groupno="+groupno+"&code="+this.state.code
         fetch('http://localhost:5000/registerStudent/'+cq, {
             method: 'GET',
             dataType: 'json'
@@ -73,7 +73,6 @@ export default class UpdateCourse extends React.Component {
               }
             )
         setTimeout(() => this.setState({register_error:""}), 2000);
-
     }
 
     render() {
