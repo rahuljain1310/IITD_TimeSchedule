@@ -241,10 +241,6 @@ def user_details():
     cur.execute(rq.get_user_data,(alias,))
     userdata= cur.fetchall()
     print(userdata)
-<<<<<<< HEAD
-    username = userdata[0][0]
-    userwebpage = userdata[0][0]
-=======
     username = ""
     userwebpage = ""
     try:
@@ -255,7 +251,6 @@ def user_details():
         userwebpage = userdata[0][0]
     except:
         pass
->>>>>>> 5a8cddef9e7534c3a7548f2dcbaec3534082d58e
     cur.execute(rq.get_events_hosted,(alias,))
     events_hosted = cur.fetchall()
     cur.execute(rq.get_all_events,(alias,))
