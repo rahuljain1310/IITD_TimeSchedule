@@ -26,10 +26,10 @@ export default class CourseDetails extends React.Component {
             console.log(rjson)
             this.setState({
               isLoaded: true,
-              course_details: rjson.curcourse,
+              course_details: rjson.coursedetails,
               prof_list: rjson.profs,
-              old_courses:rjson.oldcourses,
-              Student_registered:rjson.registered,
+              old_courses:rjson.oldcourse,
+              Student_registered:rjson.students,
             });
           },
           (error) => {
@@ -51,20 +51,21 @@ export default class CourseDetails extends React.Component {
       } else {
         return (
           <div className="container">
-              <h2>{x.curcode}: &nbsp; {x.curname} </h2>
+              <h2>{x[1]}: &nbsp; {x[2]} </h2>
+              <span> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Update <a href={"/update_course/"+x[1]}>Course</a></span>
              <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
               <Tab eventKey="Current Course" title="Current Course">
                 <article>
-                  <h5>Credits : {x.curcredits}</h5>
-                  <h5>Type : {x.curtype}</h5>
-                  <h5>Strength : {x.curstrength}</h5>
-                  <h5>Registered: {x.curregist}</h5>
-                  <h5>Lecture Hours :{x.curlec}</h5>
-                  <h5>Tutorial Hours : {x.curtut}</h5>
-                  <h5>Practical Hours :{x.curprac}</h5>
-                  <h5>Slot :{x.curslott}</h5>
+                  <h6>Credits : {x[5]}</h6>
+                  <h6>Type : {x[4]}</h6>
+                  <h6>Strength : {x[9]}</h6>
+                  <h6>Registered: {x[10]}</h6>
+                  <h6>Lecture Hours :{x[6]}</h6>
+                  <h6>Tutorial Hours : {x[7]}</h6>
+                  <h6>Practical Hours :{x[8]}</h6>
+                  <h6>Slot :{x[3]}</h6>
                   <br/><br/>
-                  <h5> <a href="/web">Course Webpage</a> </h5>
+                  <h6> <a href="/web">Course Webpage</a> </h6>
                 </article>
               </Tab>
               <Tab eventKey="Old Courses" title="Old Courses">

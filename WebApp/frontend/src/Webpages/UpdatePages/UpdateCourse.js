@@ -8,7 +8,7 @@ export default class UpdateCourse extends React.Component {
         super(props);
         const { code } = this.props.match.params
         this.state = {
-            code: "",
+            code: code,
             name : "",
             NameDisabled: true,
             Strength : "",
@@ -24,8 +24,8 @@ export default class UpdateCourse extends React.Component {
     }
 
     update = (e) => {
-
-        let cq = "?strength="+this.state.Strength+'&name='+this.state.name+'&link='+this.state.linkDescription
+        const { code } = this.props.match.params
+        let cq = "?strength="+this.state.Strength+'&name='+this.state.name+'&link='+this.state.linkDescription+'&code='+code+'&type=1'
         fetch('http://localhost:5000/upd_course/'+cq, {
             method: 'GET',
             dataType: 'json'
@@ -33,14 +33,19 @@ export default class UpdateCourse extends React.Component {
             .then(res => res.json())
             .then((jsres) => {
                 console.log(jsres)
-                let x = jsres.results
+                let x = jsres
+                this.setState({
+                  update_error:"Successfully Updated"
+                });
+                
               },
               (error) => {
                 this.setState({
-                  error:"Not Added, Check Fields"
+                  update_error:"Not Added, Check Fields"
                 });
               }
             )
+            setTimeout(() => this.setState({update_error:""}), 2000);
     }
 
     registerStudent = (e) => {
@@ -56,18 +61,18 @@ export default class UpdateCourse extends React.Component {
             .then(res => res.json())
             .then((jsres) => {
                 console.log(jsres)
-                let x = jsres.results
+                let x = jsres
                 this.setState({
-                    error:"Student Registered"
+                    register_error:"Student Registered"
                 })
               },
               (error) => {
                 this.setState({
-                  error:"Registering A Student Failed"
+                  register_error:"Register Student Failed"
                 });
               }
             )
-        setTimeout(() => this.setState({error:""}), 2000);
+        setTimeout(() => this.setState({register_error:""}), 2000);
 
     }
 

@@ -21,7 +21,7 @@ export default class EventDetails extends React.Component {
             console.log(rjson)
             this.setState({
               isLoaded: true,
-              event_details: rjson.results
+              event_details: rjson
             });
           },
           (error) => {
@@ -41,13 +41,11 @@ export default class EventDetails extends React.Component {
         return <div>Loading...</div>;
       } else {
         return (
-          <ul>
-            {event_details.map(course => (
-              <li key={course.name}>
-                    {course.name} {course.code}
-              </li>
-            ))}
-          </ul>
+          <div>
+            {  JSON.stringify(this.state.event_details,null,2) }
+          </div>
+            
+            
         );
       }
     }

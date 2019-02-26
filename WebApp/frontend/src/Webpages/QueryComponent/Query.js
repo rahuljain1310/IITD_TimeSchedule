@@ -4,6 +4,12 @@ import './Query.css'
 
 export default class Query extends React.Component {
     render() {
+        if(!this.props.results || this.props.results.length==0)
+            return (
+                <div>
+                    <br/>No Results Yet to be Displayed    
+                </div>
+            )
         return (
         <div>
             <div id="query">

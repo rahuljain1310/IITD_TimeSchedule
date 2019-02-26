@@ -12,8 +12,8 @@ from flask_cors import CORS
 curr_year=2018
 curr_sem=2
 import psycopg2 as ps
-conn = ps.connect("dbname=project_3 user=postgres password=Ishu@1003 host=localhost port=5432")
-# conn = ps.connect("dbname=project_2 user=postgres password=postgres ")
+# conn = ps.connect("dbname=project_3 user=postgres password=Ishu@1003 host=localhost port=5432")
+conn = ps.connect("dbname=postgres user=postgres password=postgres ")
 cur = conn.cursor()
 
 app = Flask(__name__, static_folder="../frontend/build/static", template_folder="../frontend/build")
@@ -93,7 +93,7 @@ def updatecourse():
         conn.commit()
         return jsonify({'results':"Updated Successfully"})
     except:
-        return 0
+        return jsonify({'results':"Not Updated"})
 
 @app.route("/update_user/",methods=['GET'])
 def updateuser():
@@ -236,13 +236,26 @@ def course_details():
 
 @app.route("/user_details/",methods = ['GET'])
 def user_details():
-
     alias = request.args.get('alias')
+    print(alias)
     cur.execute(rq.get_user_data,(alias,))
     userdata= cur.fetchall()
     print(userdata)
+<<<<<<< HEAD
     username = userdata[0][0]
     userwebpage = userdata[0][0]
+=======
+    username = ""
+    userwebpage = ""
+    try:
+        username = userdata[0][0]
+    except:
+        pass
+    try:
+        userwebpage = userdata[0][0]
+    except:
+        pass
+>>>>>>> 5a8cddef9e7534c3a7548f2dcbaec3534082d58e
     cur.execute(rq.get_events_hosted,(alias,))
     events_hosted = cur.fetchall()
     cur.execute(rq.get_all_events,(alias,))
@@ -415,8 +428,9 @@ def index():
 @app.route("/courses/<x>")
 # @app.route("/student/<x>")
 # @app.route("/faculty/<x>")
-@app.route("/usergroups/<x>")
+@app.route("/usergroup/<x>")
 @app.route("/event/<x>")
+@app.route("/update_course/<x>")
 def details(x):
     return render_template('index.html')
 
