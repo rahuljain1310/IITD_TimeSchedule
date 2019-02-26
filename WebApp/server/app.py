@@ -33,6 +33,16 @@ CORS(app)
 # db.init_app(app)
 
 
+## DROP API
+@app.route("/drop_course/",methods=['GET'])
+def dropCrs():
+    course = request.args.get('code')
+    alias = request.args.get('alias')
+    ### Deregister Student                             ### YAhan Kaaam kar 
+    return None
+
+
+
 ## INSERT API's
 @app.route("/slotdetails",methods=['GET'])
 def slotdetails():
