@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button,Tabs,Tab} from 'react-bootstrap'
 import Query from '../QueryComponent/Query';
+import DeleteQuery from '../QueryComponent/DeleteQuery'
 
 export default class UpdateCourse extends React.Component {
     constructor(props) {
@@ -15,7 +16,7 @@ export default class UpdateCourse extends React.Component {
             groupno: 1,
             update_error: "",
             user_type: 1,
-            cur_courses: [],
+            cur_courses: [5 ,7],
             drop_error: "",
             dropcode: "",
         };
@@ -30,11 +31,10 @@ export default class UpdateCourse extends React.Component {
         })
           .then(res => res.json())
           .then((rjson) => {
-              console.log(rjson)
+              console.log(rjson.cur_course_registered)
               this.setState({
                 isLoaded: true,
                 user_details: rjson,
-                // user_type: rjson.type,
                 cur_courses: rjson.cur_course_registered,
               });
             },
@@ -97,6 +97,7 @@ export default class UpdateCourse extends React.Component {
     }
 
     render() {
+        console.log(this.state.cur_courses)
         return (
         <div className="update_div">
             <h3>Update User: &nbsp; {this.state.alias.toUpperCase()} </h3>
@@ -122,7 +123,7 @@ export default class UpdateCourse extends React.Component {
                 { this.state.user_type==1 && 
                 <Tab eventKey="Drop" title="Drop Courses">
                     <div  className="update_div">
-                        <Query results={this.state.old_courses} urlpath={this.state.urlpath} hyperlink={true}/>
+                        <DeleteQuery results={this.state.cur_courses} deleteurl="/drop_course/" />
                         <h1></h1><br/><h1></h1>
                         <h6>Drop Course: </h6>
                         <input type="text" className="update-input" onChange={ (e) => this.setState({dropcode: e.target.value}) } value={ this.state.dropcode } placeholder="E.g. COL100"/>
