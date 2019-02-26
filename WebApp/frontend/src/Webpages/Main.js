@@ -16,6 +16,7 @@ import SearchEvents from './SearchPages/SearchEvents'
 import InsertCourse from './InsertionPages/InsertCourse'
 import InsertEvent from './InsertionPages/InsertEvent';
 import UpdateCourse from './UpdatePages/UpdateCourse'
+import UpdateUser from './UpdatePages/UpdateUser'
 import InsertUsergroup from './InsertionPages/InsertUsergroup';
 import InsertUser from './InsertionPages/InsertUser';
 import ExtraDetails from './ExtraDetails'
@@ -41,6 +42,7 @@ export default function Main() {
               <Route path='/insert_usergroup' component={InsertUsergroup}/>
               <Route path='/insert_user' component={InsertUser}/>
               <Route path='/update_course/:code' component={UpdateCourse}/>
+              <Route path='/update_user/:alias' component={UpdateUser}/>
               {/* <Route path='/details' component={ExtraDetails}/> */}
             </Switch>
       </main>
