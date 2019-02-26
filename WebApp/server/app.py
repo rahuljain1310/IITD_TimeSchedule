@@ -103,6 +103,18 @@ def updatecourse():
     except:
         return jsonify({'results':"Not Updated"})
 
+@app.route("/register_student/",methods=['GET'])
+def regstudent():
+    groupno = request.args.get('groupno')
+    code = request.args.get('code')
+    alias = request.args.get('alias')
+    try :
+        return jsonify({'results':'Successful'})
+    except:
+        return None
+    
+
+
 @app.route("/update_user/",methods=['GET'])
 def updateuser():
     alias = request.args.get('alias')

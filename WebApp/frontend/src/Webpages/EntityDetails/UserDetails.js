@@ -84,14 +84,14 @@ export default class UserDetails extends React.Component {
               </Tab>
               { this.state.type1 == "cur_stu" &&
               <Tab eventKey="454" title="Current Courses">
-                <Query results={this.state.cur_course_registered} urlpath="/course/" hyperlink={true}/>
+                <Query results={this.state.cur_course_registered} urlpath="/courses/" hyperlink={true}/>
               </Tab> }
               { this.state.type1 == "cur_prof" &&
               <Tab eventKey="455" title="Current Courses Taken">
-                <Query results={this.state.cur_courses_taken} urlpath="/course/" hyperlink={true}/>
+                <Query results={this.state.cur_courses_taken} urlpath="/courses/" hyperlink={true}/>
               </Tab> }
               <Tab eventKey="456" title="Events Hosted">
-                <Query results={this.state.events_hosted} urlpath="/course/" hyperlink={true}/>
+                <Query results={this.state.events_hosted} urlpath="/courses/" hyperlink={true}/>
               </Tab>
                 { (this.state.type1 == "cur_stu" || this.state.type1 == "old_stu" ) &&
               <Tab eventKey="545" title="Old Courses">
@@ -99,7 +99,7 @@ export default class UserDetails extends React.Component {
               </Tab> }
               { (this.state.type1 == "cur_prof" || this.state.type1 == "cur_stu")  && 
               <Tab eventKey="3463" title="Old Courses Taken">
-                <Query results={this.state.old_courses_taken} urlpath="/course/" hyperlink={true}/>
+                <Query results={this.state.old_courses_taken} urlpath="/courses/" hyperlink={true}/>
               </Tab> }
               <Tab eventKey="64" title="In Groups">
                 <Query results={this.state.in_groups} urlpath="/usergroup/" hyperlink={true}/>
