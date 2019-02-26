@@ -69,13 +69,13 @@ export default class CourseDetails extends React.Component {
                 </article>
               </Tab>
               <Tab eventKey="Old Courses" title="Old Courses">
-                <Query results={this.state.old_courses} urlpath={this.state.urlpath} hyperlink={true}/>  
+                <Query results={this.state.old_courses} urlpath="/course/" hyperlink={true}/>  
               </Tab>
               <Tab eventKey="Professor" title="Professor">
-                <Query results={this.state.prof_list} urlpath={this.state.urlpath} hyperlink={true}/>  
+                <Query results={this.state.prof_list} urlpath="/course/" hyperlink={true}/>  
               </Tab>
               <Tab eventKey="Registered Students" title="Registered Students">
-                <Query results={this.state.Student_registered} urlpath={this.state.urlpath} hyperlink={true}/>  
+                <Query results={this.state.Student_registered} urlpath="/user/" hyperlink={true}/>  
               </Tab>
             </Tabs>
           </div>
