@@ -41,7 +41,7 @@ export default class UpdateCourse extends React.Component {
               },
               (error) => {
                 this.setState({
-                  update_error:"Not Added, Check Fields"
+                  update_error:"Not Added, Check Fields Or Problem With The Server"
                 });
               }
             )
