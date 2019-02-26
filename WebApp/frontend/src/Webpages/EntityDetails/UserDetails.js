@@ -80,26 +80,26 @@ export default class UserDetails extends React.Component {
               </div>
               </Tab>
               <Tab eventKey="All events" title="All events">
-                <Query results={this.state.all_events} urlpath={this.state.urlpath} hyperlink={true}/>
+                <Query results={this.state.all_events} urlpath="/event/" hyperlink={true}/>
               </Tab>
               { this.state.type == 1 &&
               <Tab eventKey="454" title="Current Courses">
-                <Query results={this.state.cur_course_registered} urlpath={this.state.urlpath} hyperlink={true}/>
+                <Query results={this.state.cur_course_registered} urlpath="/course/" hyperlink={true}/>
               </Tab> }
               { this.state.type == 2 &&
               <Tab eventKey="455" title="Current Courses Taken">
-                <Query results={this.state.cur_courses_taken} urlpath={this.state.urlpath} hyperlink={true}/>
+                <Query results={this.state.cur_courses_taken} urlpath="/course/" hyperlink={true}/>
               </Tab> }
               <Tab eventKey="456" title="Events Hosted">
-                <Query results={this.state.events_hosted} urlpath={this.state.urlpath} hyperlink={true}/>
+                <Query results={this.state.events_hosted} urlpath="/course/" hyperlink={true}/>
               </Tab>
                 { this.state.type == 1 &&
               <Tab eventKey="545" title="Old Courses">
-                <Query results={this.state.old_courses_registered} urlpath={this.state.urlpath} hyperlink={true}/>
+                <Query results={this.state.old_courses_registered} urlpath="/course/" hyperlink={true}/>
               </Tab> }
               { this.state.type == 2  && 
               <Tab eventKey="3463" title="Old Courses Taken">
-                <Query results={this.state.old_courses_taken} urlpath={this.state.urlpath} hyperlink={true}/>
+                <Query results={this.state.old_courses_taken} urlpath="/course/" hyperlink={true}/>
               </Tab> }
               <Tab eventKey="64" title="In Groups">
                 <Query results={this.state.in_groups} urlpath={this.state.urlpath} hyperlink={true}/>
