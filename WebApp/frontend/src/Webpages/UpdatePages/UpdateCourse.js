@@ -24,7 +24,6 @@ export default class UpdateCourse extends React.Component {
     }
 
     update = (e) => {
-        
         const { code } = this.props.match.params
         let cq = "?strength="+this.state.Strength+'&name='+this.state.name+'&link='+this.state.linkDescription+'&code='+code+'&type=1'
         fetch('http://localhost:5000/upd_course/'+cq, {
