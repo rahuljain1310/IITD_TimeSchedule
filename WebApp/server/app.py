@@ -40,7 +40,7 @@ def dropCrs():
     alias = request.args.get('alias')
     ### Deregister Student       
     #                       ### YAhan Kaaam kar 
-    cur.execute(iq.deregister_student,(course,entrynum))
+    cur.execute(iq.deregister_student,(course,alias))
     success = cur.fetchall()[0][0]
     conn.commit()
     if (success):
