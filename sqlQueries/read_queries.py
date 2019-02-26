@@ -6,7 +6,7 @@ get_oldco="select * from courses where code = %s and year = %s and semester = %s
 
 get_co="select * from curr_courses where code = %s"
 
-
+get_slot_details = "select days,begintime,endtime from slotdetails where slotname= %s"
 allco_slot="select code,name,slot,credits from courses where code ilike concat('%',%s,'%') and name ilike concat('%%',%s,'%%') and slot = %s and year = %s and semester = %s"
 
 allco="select code,name,slot,credits from courses where code ilike concat('%',%s,'%') and name ilike concat('%',%s,'%') and year = %s and semester = %s"
