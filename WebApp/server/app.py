@@ -60,19 +60,15 @@ def addslot():
         pass
     conn.commit()
     return jsonify({'results':''})
-@app.route("/update_course/",methods=['GET'])
+@app.route("/upd_course/",methods=['GET'])
 def updatecourse():
     code = request.args.get('code')
     name = request.args.get('name')
     strength = request.args.get('strength')
     webpage = request.args.get('webpage')
-    type = request.args.get('type')
-    group = request.args.get('group')
-    # 0 indicates change name
-    # 1 indicate register student
-    # 5 indicates
+    # 0 indicates change name   # 1 indicate change webpage  # 2 indicates change strength
     try:
-        if (type=='0'):
+        if (type=='0'):               ## Bhai Time Bacha , 3 FIeld ek saath update karde
             if (name!=''):
                 cur.execute(iq.update_course_name,(name,code))
                 conn.commit()
@@ -101,18 +97,17 @@ def updatecourse():
         conn.commit()
         return jsonify({'results':"Updated Successfully"})
     except:
-        return jsonify({'results':"Not Updated"})
+        return None
 
-@app.route("/register_student/",methods=['GET'])
+@app.route("/register_student/",methods=['GET'])  
 def regstudent():
     groupno = request.args.get('groupno')
     code = request.args.get('code')
     alias = request.args.get('alias')
-    try :
+    try :                  ## Bhai Yahan Code likh De
         return jsonify({'results':'Successful'})
     except:
         return None
-    
 
 
 @app.route("/update_user/",methods=['GET'])
@@ -446,6 +441,7 @@ def index():
 @app.route("/usergroup/<x>")
 @app.route("/event/<x>")
 @app.route("/update_course/<x>")
+@app.route("/update_user/<x>")
 def details(x):
     return render_template('index.html')
 
