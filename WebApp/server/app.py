@@ -36,10 +36,12 @@ CORS(app)
 
 @app.route("/update_yearsem",methods=['GET'])
 def updatesession():
+    global curr_sem
+    global curr_year
     curr_sem = 1+ (curr_sem % 2)
     if (curr_sem==1):
         curr_year=curr_year+1
-    cur.execute(rq.update_year_semester,(curr_year,curr_sem))
+    cur.execute(iq.update_year_sem,(curr_year,curr_sem))
 @app.route("/add_slot/",methods=['GET'])
 def addslot():
     slotcode = request.args.get('slot')
