@@ -49,7 +49,7 @@ def slotdetails():
     slotcode = request.args.get('slot')
     cur.execute(rq.get_slot_details,(slotcode,))
     slotdetails = cur.fetchall()
-    return jsonify({'results':slotdetails,'slotname':slotcode})
+    return jsonify({'slotdetails':slotdetails,'slotname':slotcode})
 @app.route("/update_yearsem",methods=['GET'])
 def updatesession():
     global curr_sem
@@ -57,7 +57,11 @@ def updatesession():
     curr_sem = 1+ (curr_sem % 2)
     if (curr_sem==1):
         curr_year=curr_year+1
-    cur.execute(iq.update_year_sem,(curr_year,curr_sem))
+    try:
+        cur.execute(iq.update_year_sem,(curr_year,curr_sem))
+        return jsonify({'results':curr.fetchall()[0][0]})
+    except:
+        None
 @app.route("/add_slot/",methods=['GET'])
 def addslot():
     slotcode = request.args.get('slot')
@@ -66,10 +70,12 @@ def addslot():
     day = request.args.get('day')
     try:
         cur.execute(create_slot,(slotcode,day,begintime,endtime))
+        cur.fetchall()[0][0]
+        conn.commit()
+        return jsonify({'results':success})
     except:
-        pass
-    conn.commit()
-    return jsonify({'results':''})
+        return None
+    
 @app.route("/upd_course/",methods=['GET'])
 def updatecourse():
     code = request.args.get('code')
@@ -108,15 +114,70 @@ def updatecourse():
         return jsonify({'results':"Updated Successfully"})
     except:
         return None
-
+@app.route("/ins_usergroup/",methods=['GET'])
+def addusergroup():
+    alias = request.args.get('usergroup')
+    try:
+        cur.execute(iq.create_group,(alias,))
+        success = cur.fetchall()[0][0]
+        return jsonify({'results':success})
+    except:
+        return None
 @app.route("/register_student/",methods=['GET'])  
 def regstudent():
     groupno = request.args.get('groupno')
     code = request.args.get('code')
     alias = request.args.get('alias')
-    try :                  ## Bhai Yahan Code likh De
-        return jsonify({'results':'Successful'})
+    try :
+        cur.execute(iq.register_student,(alias,code,groupno)) 
+        success = cur.fetchall()[0][0]
+        cur.commit()                 ## Bhai Yahan Code likh De
+        return jsonify({'results':success})
     except:
+        return None
+
+@app.route("/remove_user/",methods=['GET'])
+def removeuser():
+    alias=request.args.get('alias')
+    cur.execute(iq.delete_user,(alias,))
+    conn.commit()
+    return jsonify({'results':''})
+
+@app.route("/removeuser_fromgroup/",methods=['GET'])
+def removeuserfromgroup():
+    ualias = request.args.get('useralias')
+    galias = request.args.get('groupalias')
+    cur.execute(iq.delete_user_from_group,(ualias,galias))
+    conn.commit()
+    return jsonify({'results':''})
+
+@app.route("/removegroupashost/",methods=['GET'])
+def removegroupashost():
+    groupalias = request.args.get('groupalias')
+    hostalias = request.args.get('hostalias')
+    cur.execute(iq.grouphost_exist,(groupalias,hostalias))
+    e1 = cur.fetchall()[0][0]
+    if (e1==False): 
+        return None
+    cur.execute(iq.delete_groups_host,(groupalias,hostalias))
+    succ = cur.fetchall()[0][0]
+    if (succ==True):
+        return None
+    else:
+        cur.execute(iq.delete_users_groups,(groupalias))
+        cur.execute(iq.delete_group,(groupalias))
+        conn.commit()
+        return jsonify({'results':''})
+@app.route("/removegroup",methods=['GET'])
+def removegroup():
+    alias = request.args.get('groupalias')
+    cur.execute(iq.delete_groups_host_all,(alias,))
+    cur.execute(iq.delete_usersgroups,(alias,))
+    cur.execute(iq.delete_group,(alias,))
+    success = cur.fetchall()[0][0]
+    if (success):
+        return jsonify({'results':True})
+    else:
         return None
 
 
@@ -248,16 +309,6 @@ def course_details():
     registered = cur1.fetchall()
 
     return jsonify({'oldcourse':oldcourses,'coursedetails':curcourse,'profs':profs,'students':registered})
-
-# @app.route("/student_details/",methods = ['GET'])
-# def student_details():
-#     alias = request.args.get('alias')             ## Got the only argument now send the json only
-#     return jsonify({'results':cour})
-
-# @app.route("/faculty_details/",methods = ['GET'])
-# def faculty_details():
-#     alias = request.args.get('alias')             ## Got the only argument now send the json only
-#     return jsonify({'results':cour})
 
 @app.route("/user_details/",methods = ['GET'])
 def user_details():
