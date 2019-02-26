@@ -67,15 +67,7 @@ create or replace function insert_course() returns trigger as
 CREATE TRIGGER new_course_insert AFTER INSERT ON curr_courses
 for each row execute procedure insert_course(2018,2);
 
-create or replace function change_course_trigger(year int,sem int) returns void as
-  $$
-    BEGIN
-    drop trigger if exists new_course_insert on curr_courses;
-    CREATE TRIGGER new_course_insert AFTER INSERT ON curr_courses
-    execute procedure insert_course(year,semester);
-    END;
-  $$
-language 'plpgsql';
+
 
 create or replace function insert_stu_course() returns trigger as
   $$
@@ -215,6 +207,9 @@ create or replace function update_current_year_semester(year int,sem int) return
       CREATE TRIGGER deregister_student after delete on curr_stu_course
       for each row execute procedure dreg_stu(year,sem);
       truncate curr_stu,curr_prof,curr_courses,curr_stu_course,curr_prof_course;
+      drop trigger if exists delete_prof_course on curr_prof_course;
+      create trigger delete_prof_course after delete on curr_prof_course
+      for each row execute procedure delete_prof_from_course(year,sem);
     end;
     $$
     language 'plpgsql';
@@ -222,7 +217,7 @@ create or replace function dreg_stu() returns trigger as
   $$
   begin
     update curr_courses set registered = registered -1;
-    delete from studentsincourse where studentid = (select userid from users where users.alias = old.entrynum limit 1) and courseid = (select courseid from courses where code=old.coursecode and year = cast(TG_ARGV[0] as int) and sem = cast(TG_ARGV[1] as int) limit 1);
+    delete from studentsincourse where studentid = (select userid from users where users.alias = old.entrynum limit 1) and courseid = (select courseid from courses where code=old.coursecode and year = cast(TG_ARGV[0] as int) and semester = cast(TG_ARGV[1] as int) limit 1);
     return old;
   end;
   $$
@@ -256,3 +251,27 @@ begin
 end;
 $$
 language 'plpgsql';
+
+create or replace function insert_eventtime() returns trigger as
+$$
+declare
+  collide bool:='f';
+  sound bool:='f';
+begin
+  sound:= new.begintime<new.endtime;
+  if (not sound) then return null; end if;
+  collide :=exists(select * from onetimeeventtime where id = new.id and ondate=new.ondate and 
+  not ((endtime<new.begintime) or (begintime>new.endtime)));
+  if (collide) then return null; end if;
+  return new;
+end;
+$$
+language 'plpgsql';
+
+create trigger insert_time before insert on onetimeeventtime 
+for each row execute procedure insert_eventtime();
+
+create view gradesheet as (
+  select alias as entrynum,users.name as name,tmp.code,tmp.year,tmp.semester,grade
+  from (studentsincourse natural join courses) as tmp,users where users.userid=tmp.studentid
+);

@@ -39,7 +39,7 @@ def updatesession():
     curr_sem = 1+ (curr_sem % 2)
     if (curr_sem==1):
         curr_year=curr_year+1
-    cur.execute(rq.update_year_sem,(curr_year,curr_sem))
+    cur.execute(rq.update_year_semester,(curr_year,curr_sem))
 @app.route("/add_slot/",methods=['GET'])
 def addslot():
     slotcode = request.args.get('slot')
@@ -241,8 +241,8 @@ def user_details():
     cur.execute(rq.get_user_data,(alias,))
     userdata= cur.fetchall()
     print(userdata)
-    # username = userdata[0][0]
-    # userwebpage = userdata[0][0]
+    username = userdata[0][0]
+    userwebpage = userdata[0][0]
     cur.execute(rq.get_events_hosted,(alias,))
     events_hosted = cur.fetchall()
     cur.execute(rq.get_all_events,(alias,))

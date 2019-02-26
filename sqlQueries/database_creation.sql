@@ -10,13 +10,13 @@ create domain eventtype as
   varchar(1) not null check (value = 'W' or value = 'O');
 
 create domain classtype as
-  char not null check(value like 'L' or value like 'T' or value like 'P');
+  char not null check(value like 'L' or value like 'T' or value like 'P' or);
 
 create table users(userid serial primary key,alias varchar(30) unique not null,name varchar(70),webpage varchar(100),password varchar(30));
 
 create table groups(gid serial primary key, alias varchar(30) not null unique);
 
-create table events(id serial primary key,alias varchar(30) references groups(alias),name varchar(120),type eventtype,linkto varchar(120));
+create table events(id serial primary key,alias varchar(30) references groups(alias),name varchar(120),linkto varchar(120));
 create index events_alias_key on events(alias);
 create index events_name_key on events(name);
 

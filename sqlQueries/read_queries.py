@@ -60,9 +60,9 @@ get_groups="select groupalias,name from usersgroups,users where useralias= %s an
 get_all_events = "with groups_in as ( "\
 "select groupalias,name from usersgroups,users where useralias= %s and users.alias=useralias) "\
   "select id,groupalias,name,linkto from groups_in,events "\
-  "where events.alias = groups_in.groupalias
+  "where events.alias = groups_in.groupalias"
 
-get_weekly_timetable =
+get_weekly_timetable = ""\
 # time table of user
 
 
@@ -72,7 +72,7 @@ search_group="select gal "\
 "where gal ilike concat('%%',%s,'%%')"
 
 get_groups="select useralias,name from usersgroups,users where useralias= %s and users.alias=useralias"
-get_users="select * from usersgroups where groupalias= %s "
+get_users="select users.alias,users.name from usersgroups,users  where users.alias=usersgroups.useralias and usersgroups.groupalias= %s order by name "
 
 get_events="select id,alias,name from events where alias = %s"
 
@@ -92,3 +92,4 @@ get_events="select * from events where events.alias ilike concat('%%',%s,'%%') a
 #  get students slots
 #  update user details
 # update_group="update curr_stu_course set groupedin (select %s)"
+update_year_semester="select update_current_year_semester(%s,%s) "
