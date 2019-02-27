@@ -2,6 +2,9 @@
 import os
 import requests
 import json
+# import Crypto
+# from Crypto.PublicKey import RSA
+# from Crypto import Random
 from flask import request, jsonify
 from flask import Flask, render_template
 import read_queries as rq
@@ -12,8 +15,8 @@ from flask_cors import CORS
 curr_year=2018
 curr_sem=2
 import psycopg2 as ps
-# conn = ps.connect("dbname=project_3 user=postgres password=Ishu@1003 host=localhost port=5432")
-conn = ps.connect("dbname=postgres user=postgres password=postgres ")
+conn = ps.connect("dbname=project_3 user=postgres password=Ishu@1003 host=localhost port=5432")
+# conn = ps.connect("dbname=postgres user=postgres password=postgres ")
 # conn = ps.connect("dbname=group_25 user=group_25 password=887-323-760 host=10.17.50.115 port=5432")
 cur = conn.cursor()
 
@@ -34,6 +37,27 @@ CORS(app)
 
 
 ## DROP API
+@app.route("/change_password/",methods=['GET'])
+def changepass():
+    alias = request.args.get('alias')
+    curr_pass = request.args.get('curr_password')
+    new_pass = request.args.get('new_password')
+    cur.execute(iq.update_pass,(new_pass,alias,curr_pass))
+    success = cur.fetchall()[0][0]
+    if (success):
+        return jsonify({'results':success})
+    else:
+        return None
+@app.route("/check_password/",methods=['GET'])
+def checkpass():
+    alias = request.args.get('alias')
+    password = request.args.get('password')
+    cur.execute(iq.login_user,(alias,password))
+    success = cur.fetchall()[0][0]
+    if (success):
+        return jsonify({'results':success})
+    else:
+        return None
 @app.route("/drop_course/",methods=['GET'])
 def dropCrs():
     course = request.args.get('code')
