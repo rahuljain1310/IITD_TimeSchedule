@@ -18,6 +18,7 @@ class Timetable extends React.Component {
     }
     
     render() {
+        console.log(this.state.events)
         return (
             <div className="update_div">
                 {this.state.events.map((object) => 
