@@ -24,8 +24,8 @@ from flask_cors import CORS
 curr_year=2018
 curr_sem=2
 import psycopg2 as ps
-# conn = ps.connect("dbname=project_3 user=postgres password=Ishu@1003 host=localhost port=5432")
-conn = ps.connect("dbname=postgres user=postgres password=postgres ")
+conn = ps.connect("dbname=project_3 user=postgres password=Ishu@1003 host=localhost port=5432")
+# conn = ps.connect("dbn ame=postgres user=postgres password=postgres ")
 # conn = ps.connect("dbname=group_25 user=group_25 password=887-323-760 host=10.17.50.115 port=5432")
 cur = conn.cursor()
 
@@ -384,7 +384,7 @@ def user_details():
     cur_courses_taken = cur.fetchall()
     cur.execute(rq.alloldco_prof,(alias,curr_year,curr_sem))
     old_courses_taken = cur.fetchall()
-    cur.execute(rq.weeklytimetable,(alias,))
+    cur.execute(rq.weeklytimetable,(alias,alias))
     timetable = cur.fetchall()
     if (len(cur_course_registered)!=0):
         type1 = 'cur_stu'
