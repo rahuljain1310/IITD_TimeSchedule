@@ -15,8 +15,8 @@ from flask_cors import CORS
 curr_year=2018
 curr_sem=2
 import psycopg2 as ps
-conn = ps.connect("dbname=project_3 user=postgres password=Ishu@1003 host=localhost port=5432")
-# conn = ps.connect("dbname=postgres user=postgres password=postgres ")
+# conn = ps.connect("dbname=project_3 user=postgres password=Ishu@1003 host=localhost port=5432")
+conn = ps.connect("dbname=postgres user=postgres password=postgres ")
 # conn = ps.connect("dbname=group_25 user=group_25 password=887-323-760 host=10.17.50.115 port=5432")
 cur = conn.cursor()
 
@@ -47,7 +47,7 @@ def changepass():
     if (success):
         return jsonify({'results':success})
     else:
-        return None
+        return jsonify()
 @app.route("/check_password/",methods=['GET'])
 def checkpass():
     alias = request.args.get('alias')
@@ -57,7 +57,7 @@ def checkpass():
     if (success):
         return jsonify({'results':success})
     else:
-        return None
+        return jsonify()
 @app.route("/drop_course/",methods=['GET'])
 def dropCrs():
     course = request.args.get('code')
@@ -71,7 +71,7 @@ def dropCrs():
     if True:
         return jsonify({'results':success})
     else:
-        return None
+        return jsonify()
 
 
 
@@ -93,7 +93,7 @@ def updatesession():
         cur.execute(iq.update_year_sem,(curr_year,curr_sem))
         return jsonify({'results':curr.fetchall()[0][0]})
     except:
-        None
+        return jsonify()
 @app.route("/add_slot/",methods=['GET'])
 def addslot():
     slotcode = request.args.get('slot')
@@ -106,7 +106,7 @@ def addslot():
         conn.commit()
         return jsonify({'results':success})
     except:
-        return None
+        return jsonify()
     
 @app.route("/upd_course/",methods=['GET'])
 def updatecourse():
@@ -145,7 +145,7 @@ def updatecourse():
         conn.commit()
         return jsonify({'results':"Updated Successfully"})
     except:
-        return None
+        return jsonify()
 @app.route("/ins_usergroup/",methods=['GET'])
 def addusergroup():
     alias = request.args.get('usergroup')
@@ -154,7 +154,7 @@ def addusergroup():
         success = cur.fetchall()[0][0]
         return jsonify({'results':success})
     except:
-        return None
+        return jsonify()
 @app.route("/register_student/",methods=['GET'])  
 def regstudent():
     groupno = request.args.get('groupno')
@@ -166,7 +166,7 @@ def regstudent():
         cur.commit()                 ## Bhai Yahan Code likh De
         return jsonify({'results':success})
     except:
-        return None
+        return jsonify()
 
 @app.route("/remove_user/",methods=['GET'])
 def removeuser():
@@ -190,11 +190,11 @@ def removegroupashost():
     cur.execute(iq.grouphost_exist,(groupalias,hostalias))
     e1 = cur.fetchall()[0][0]
     if (e1==False): 
-        return None
+        return jsonify()
     cur.execute(iq.delete_groups_host,(groupalias,hostalias))
     succ = cur.fetchall()[0][0]
     if (succ==True):
-        return None
+        return jsonify()
     else:
         cur.execute(iq.delete_users_groups,(groupalias))
         cur.execute(iq.delete_group,(groupalias))
@@ -210,7 +210,7 @@ def removegroup():
     if (success):
         return jsonify({'results':True})
     else:
-        return None
+        return jsonify()
 
 
 @app.route("/update_user/",methods=['GET'])

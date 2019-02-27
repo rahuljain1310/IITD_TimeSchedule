@@ -13,7 +13,7 @@ export default class UpdateCourse extends React.Component {
             NameDisabled: true,
             UWDisabled: true,
             isLoaded: false,
-            groupno: 1,
+            webpage: "",
             update_error: "",
             user_type: 0,
             cur_courses: [5 ,7],
@@ -49,7 +49,7 @@ export default class UpdateCourse extends React.Component {
       }
     
     update = (e) => {
-        let cq = "?alias="+this.state.alias+'&name='+this.state.name+'&groupno='+this.state.groupno
+        let cq = "?alias="+this.state.alias+'&name='+this.state.name+'&webpage='+this.state.webpage
         fetch('http://localhost:5000/update_user/'+cq, {
             method: 'GET',
             dataType: 'json'
@@ -71,7 +71,7 @@ export default class UpdateCourse extends React.Component {
     }
 
     // dropcourse = (e) => {
-    //     let {alias, groupno} = this.state
+    //     let {alias, webpage} = this.state
     //     this.setState({
     //         drop_error: "Registering Student"
     //     })
@@ -107,15 +107,13 @@ export default class UpdateCourse extends React.Component {
                     <div className="update_div">
                         <label>User Name :</label><br/>
                         <input type="checkbox" onChange={ (e) => this.setState({NameDisabled: !this.state.NameDisabled,name:""} ) } name="CheckName"/> 
-                        <input type="text" className="update-input" disabled={this.state.NameDisabled} onChange={ (e) => this.setState({name: e.target.value}) } value={ this.state.name } placeholder="E.g. Introduction to DBMS"/>
+                        <input type="text" className="update-input" disabled={this.state.NameDisabled} onChange={ (e) => this.setState({name: e.target.value}) } value={ this.state.name } placeholder="Rahul Jain"/>
                         <br/>
-                        { this.state.user_type==1 &&
                         <div>
                         <label>User Webpage :</label><br/>
-                        <input type="checkbox" onChange={ (e) => this.setState({UWDisabled: !this.state.UWDisabled,groupno:""} ) } name="CheckName"/> 
-                        <input type="text" className="update-input" disabled={this.state.UWDisabled} onChange={ (e) => this.setState({groupno: e.target.value}) } value={ this.state.groupno } placeholder="User Webpage"/>
+                        <input type="checkbox" onChange={ (e) => this.setState({UWDisabled: !this.state.UWDisabled,webpage:""} ) } name="CheckName"/> 
+                        <input type="text" className="update-input" disabled={this.state.UWDisabled} onChange={ (e) => this.setState({webpage: e.target.value}) } value={ this.state.webpage } placeholder="User Webpage"/>
                         </div>
-                        }
                         <br/><Button onClick={this.update}> Update User </Button> 
                         <span>{this.state.update_error}</span>
                     </div>
