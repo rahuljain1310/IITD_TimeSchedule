@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Query from '../QueryComponent/Query.js'
+import DeleteQuery from '../QueryComponent/DeleteQuery.js'
 import {Button,Tabs,Tab} from 'react-bootstrap'
 
 export default class UpdateCourse extends React.Component {
@@ -20,7 +21,34 @@ export default class UpdateCourse extends React.Component {
             groupno:"",
             update_error: "",
             register_error: "",
+            deregister_error: "",
+            student_registered: [],
+            done: "",
         };
+    }
+
+    componentDidMount() {
+      const { code } = this.props.match.params
+      fetch('http://localhost:5000/course_details/?code='+code, {
+        method: 'GET',
+        dataType: 'json'
+      })
+        .then(res => res.json())
+        .then((rjson) => {
+            let x = rjson.students
+            this.setState({
+              student_registered : x,
+              done: "yes"
+            })
+          },
+          (error) => {
+            console.log("Errro")
+            this.setState({
+              deregister_error: error,
+              student_registered: [1, 2]
+            });
+          }
+        )
     }
 
     update = (e) => {
@@ -76,6 +104,7 @@ export default class UpdateCourse extends React.Component {
     }
 
     render() {
+        console.log(this.state.student_registered)
         return (
         <div className="update_div">
             <h3>Update Course: &nbsp; {this.state.code} </h3>
@@ -101,7 +130,7 @@ export default class UpdateCourse extends React.Component {
                 <Tab eventKey="Register" title="Register Student">
                     <div  className="update_div">
                         <label>Student Entry No. :</label><br/>
-                        <input type="text" className="update-input" onChange={ (e) => this.setState({alias: e.target.value}) } value={ this.state.name } placeholder="EE1170476"/>
+                        <input type="text" className="update-input" onChange={ (e) => this.setState({alias: e.target.value}) } value={ this.state.alias } placeholder="EE1170476"/>
                         <br/>
                         <label>Group No. :</label><br/>
                         <input type="text" className="update-input" onChange={ (e) => this.setState({groupno: e.target.value}) } value={ this.state.groupno } placeholder="Cycle of Student"/>
@@ -110,6 +139,12 @@ export default class UpdateCourse extends React.Component {
                         <span>{this.state.register_error}</span>
                     </div>
                 </Tab>
+                { this.state.done == "yes" &&
+                <Tab eventKey="DeRegister" title="De-Register Student">
+                    <div  className="update_div">
+                      <DeleteQuery results={this.state.student_registered} deleteurl="/drop_course/?alias=" text="De-Register" extraparam={"&code="+this.state.code}/>
+                    </div>
+                </Tab> }
             </Tabs>
         </div>
         )

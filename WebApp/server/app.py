@@ -41,9 +41,10 @@ def dropCrs():
     ### Deregister Student       
     #                       ### YAhan Kaaam kar 
     cur.execute(iq.deregister_student,(course,alias))
-    success = cur.fetchall()[0][0]
+    success = cur.fetchall()
     conn.commit()
-    if (success):
+    print(success)
+    if True:
         return jsonify({'results':success})
     else:
         return None

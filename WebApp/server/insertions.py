@@ -26,12 +26,7 @@ delete_user="delete from users where users.alias = %s returning exists (select)"
 delete_user_from_group="delete from usersgroups where useralias= %s and groupalias = %s returning exists(select)"
 # courses change
 update_course_name="update curr_courses set name = %s where code = %s on conflict do nothing returning exists (select)"
-<<<<<<< HEAD
-    update_increment_registration="update curr_courses set registered = registered+1 where code = %s"
-
-=======
 update_increment_registration="update curr_courses set registered = registered+1 where code = %s"
->>>>>>> 1dfc4fe1f08508048a749171e4f67cf11c2fc183
 update_groupedin="update curr_courses_of_student set groupedin = %s where entrynum = %s and code= %s on conflict do nothing exists (select)"
 update_groupedinusergroup="update usersgroups set subgroup = %s where useralias = %s and groupalias = %s on conflict do nothing exists (select)"
 
