@@ -42,7 +42,8 @@ CORS(app)
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
 # db.init_app(app)
-
+cur.execute(rq.function_replace)
+conn.commit()
 def myconverter(o):
  if isinstance(o, datetime.datetime):
     return o.__str__()
