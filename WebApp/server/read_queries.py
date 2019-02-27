@@ -1,6 +1,6 @@
 
 # Reads requires no authentication
-get_slot_details="select days,begintime,endtime from slotdetails where slotname = %s"
+get_slot_details="select days,to_char(begintime,'HH24:MI'),to_char(endtime,'HH24:MI') from slotdetails where slotname = %s"
 # courses details
 get_oldco="select * from courses where code = %s and year = %s and semester = %s"
 
@@ -87,10 +87,10 @@ get_events="select id,name,linkto from events where alias = %s"
 # ----events---
 get_exact_event="select alias,name,linkto from events where events.id = %s"
 
-get_eventtime_weekly="select slotname,days,begintime,endtime from (events natural join weeklyeventtime ) natural join slotdetails where events.id = %s" \
-"order by code_day(days), begintime"
+get_eventtime_weekly="select slotname,days,to_char(begintime,'HH24:MI') as begin_time,to_char(endtime,'HH24:MI') from (events natural join weeklyeventtime ) natural join slotdetails where events.id = %s" \
+"order by code_day(days), begin_time"
 
-get_eventtime_once="select ondate,begintime,endtime from (events natural join onetimeeventtime) where events.id = %s order by ondate,begintime"
+get_eventtime_once="select ondate,to_char(begintime,'HH24:MI'),to_char(endtime,'HH:24:MI') from (events natural join onetimeeventtime) where events.id = %s order by ondate,to_char(begintime,'HH24:MI')"
 
 
 # events page
