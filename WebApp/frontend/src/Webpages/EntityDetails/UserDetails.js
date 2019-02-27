@@ -81,13 +81,15 @@ export default class UserDetails extends React.Component {
               </div>
               </Tab>
               <Tab eventKey="All events" title="All events">
-                {/* <Query results={this.state.all_events} urlpath="/event/" hyperlink={true}/> */}
-                <Timetable events={this.state.all_events}/>
+                <Query results={this.state.all_events} urlpath="/event/" hyperlink={true}/>
               </Tab>
               { this.state.type1 == "cur_stu" &&
               <Tab eventKey="454" title="Current Courses">
                 <Query results={this.state.cur_course_registered} urlpath="/courses/" hyperlink={true}/>
               </Tab> }
+              <Tab eventKey="459" title="Timetable">
+                <Timetable events={this.state.all_events}/>
+              </Tab>
               { this.state.type1 == "cur_prof" &&
               <Tab eventKey="455" title="Current Courses Taken">
                 <Query results={this.state.cur_courses_taken} urlpath="/courses/" hyperlink={true}/>

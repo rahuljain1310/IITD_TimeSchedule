@@ -11,6 +11,7 @@ export default class Navigation extends Component {
                 <li><a href="/search_users">Users</a></li>
                 <li><a href="/search_usergroups">Groups</a></li>
                 <li><a href="/search_events">Events</a></li>
+                <li><a href="/search_slots">Slots</a></li>
             </ul>
         </nav>
     );

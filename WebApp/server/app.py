@@ -2,6 +2,7 @@
 import os
 import requests
 import json
+import datetime
 # import Crypto
 # from Crypto.PublicKey import RSA
 # from Crypto import Random
@@ -42,6 +43,9 @@ CORS(app)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
 # db.init_app(app)
 
+def myconverter(o):
+ if isinstance(o, datetime.datetime):
+    return o.__str__()
 
 ## DROP API
 @app.route("/change_password/",methods=['GET'])
@@ -52,7 +56,7 @@ def changepass():
     cur.execute(iq.update_pass,(new_pass,alias,curr_pass))
     success = cur.fetchall()
     if (success!=[]):
-        return jsonify({'results':success})
+        return jsonify({'results':success},default=myconverter)
     else:
         return None
 @app.route("/check_password/",methods=['GET'])
@@ -83,12 +87,13 @@ def dropCrs():
 
 
 ## INSERT API's
-@app.route("/slotdetails",methods=['GET'])
+@app.route("/slotdetails/",methods=['GET'])
 def slotdetails():
     slotcode = request.args.get('slot')
     cur.execute(rq.get_slot_details,(slotcode,))
     slotdetails = cur.fetchall()
-    return jsonify({'slotdetails':slotdetails,'slotname':slotcode})
+    print(slotdetails)
+    return jsonify({'slotdetails':slotdetails})
 @app.route("/update_yearsem",methods=['GET'])
 def updatesession():
     global curr_sem
@@ -542,6 +547,7 @@ def index():
 @app.route("/event/<x>")
 @app.route("/update_course/<x>")
 @app.route("/update_user/<x>")
+@app.route("/search_slots")
 def details(x):
     return render_template('index.html')
 
