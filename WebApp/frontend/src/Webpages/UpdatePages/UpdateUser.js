@@ -15,7 +15,7 @@ export default class UpdateCourse extends React.Component {
             isLoaded: false,
             groupno: 1,
             update_error: "",
-            user_type: 1,
+            user_type: 0,
             cur_courses: [5 ,7],
             drop_error: "",
             dropcode: "",
@@ -31,10 +31,11 @@ export default class UpdateCourse extends React.Component {
         })
           .then(res => res.json())
           .then((rjson) => {
-              console.log(rjson.cur_course_registered)
+              console.log(rjson)
               this.setState({
                 isLoaded: true,
                 user_details: rjson,
+                user_type: rjson.type1,
                 cur_courses: rjson.cur_course_registered,
               });
             },
@@ -97,7 +98,6 @@ export default class UpdateCourse extends React.Component {
     }
 
     render() {
-        console.log(this.state.cur_courses)
         return (
         <div className="update_div">
             <h3>Update User: &nbsp; {this.state.alias.toUpperCase()} </h3>
@@ -120,17 +120,17 @@ export default class UpdateCourse extends React.Component {
                         <span>{this.state.update_error}</span>
                     </div>
                 </Tab>
-                { this.state.user_type==1 && 
+                { this.state.user_type=='cur_stu' && 
                 <Tab eventKey="Drop" title="Drop Courses">
                     <div  className="update_div">
-                        <DeleteQuery results={this.state.cur_courses} deleteurl="/drop_course/" />
+                        <DeleteQuery results={this.state.cur_courses} deleteurl="/drop_course/?code=" text="Drop Course" extraparam={"&alias="+this.state.alias}/>
                         <h1></h1><br/><h1></h1>
-                        <h6>Drop Course: </h6>
+                        {/* <h6>Drop Course: </h6>
                         <input type="text" className="update-input" onChange={ (e) => this.setState({dropcode: e.target.value}) } value={ this.state.dropcode } placeholder="E.g. COL100"/>
                         <br/>
                         <span>{this.state.drop_error}</span>
                         <br/><Button onClick={this.dropcourse}> Drop Course </Button> 
-                        <br/>
+                        <br/> */}
                     </div>
                 </Tab>
                 }

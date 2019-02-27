@@ -8,11 +8,11 @@ create_group="insert into groups(alias) values(%s) on conflict do nothing return
 
 # requires user authentication
 update_user_webpage="update users set webpage = %s where users.alias = %s returning exists (alias)"
-    login_user="select exists (select * from users where alias = %s and password = %s)"
+login_user="select exists (select * from users where alias = %s and password = %s)"
 
 
-    check_ifhost="select exists(select * from groupshost where groupalias = %s and useralias = %s)"
-    assign_groupto_user="select assign_groupto_user(%s,%s,%s)"
+check_ifhost="select exists(select * from groupshost where groupalias = %s and useralias = %s)"
+assign_groupto_user="select assign_groupto_user(%s,%s,%s)"
 
 
 
@@ -26,8 +26,12 @@ delete_user="delete from users where users.alias = %s returning exists (select)"
 delete_user_from_group="delete from usersgroups where useralias= %s and groupalias = %s returning exists(select)"
 # courses change
 update_course_name="update curr_courses set name = %s where code = %s on conflict do nothing returning exists (select)"
+<<<<<<< HEAD
     update_increment_registration="update curr_courses set registered = registered+1 where code = %s"
 
+=======
+update_increment_registration="update curr_courses set registered = registered+1 where code = %s"
+>>>>>>> 1dfc4fe1f08508048a749171e4f67cf11c2fc183
 update_groupedin="update curr_courses_of_student set groupedin = %s where entrynum = %s and code= %s on conflict do nothing exists (select)"
 update_groupedinusergroup="update usersgroups set subgroup = %s where useralias = %s and groupalias = %s on conflict do nothing exists (select)"
 
@@ -52,8 +56,8 @@ create_slot="insert into slotdetails (%s,%s,%s,%s) on conflict do nothing return
 
 # events
 insert_event="select create_event(%s,%s,%s,%s) as returned"
-    copy_users_to_group="insert into usersgroups (select useralias,%s from usersgroups where groupalias = %s )"
+copy_users_to_group="insert into usersgroups (select useralias,%s from usersgroups where groupalias = %s )"
 set_eventtimeonce="insert into onetimeeventtime values(%s,%s,%s,%s,%s) on conflict do nothing select exists (select)"
 set_eventtimeweekly="insert into weeklyeventtime values(%s,%s,%s) on conflict do nothing exists (select)"
 # update year semester
-    update_year_sem="select update_current_year_semester(%s,%s)"
+update_year_sem="select update_current_year_semester(%s,%s)"

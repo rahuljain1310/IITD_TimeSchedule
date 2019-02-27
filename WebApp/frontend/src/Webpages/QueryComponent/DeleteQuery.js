@@ -12,7 +12,7 @@ export default class DeleteQuery extends React.Component {
     }
 
     deleterow = (index, delelement) => {
-        fetch('http://localhost:5000'+this.props.deleteurl+delelement, {
+        fetch('http://localhost:5000'+this.props.deleteurl+delelement+this.props.extraparam, {
             method: 'GET',
             dataType: 'json'
             })
@@ -45,7 +45,7 @@ export default class DeleteQuery extends React.Component {
                 <table className="table table-bordered table-hover">
                     <tbody>
                     {this.state.results.map( (row,index) => (
-                        <DeleteRow tr={row} key={index} delete={this.deleterow()}/>
+                        <DeleteRow tr={row} key={index} index={index} delete={this.deleterow} text={this.props.text}/>
                     ))}
                     </tbody>
                 </table>
