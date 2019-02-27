@@ -30,7 +30,6 @@ cur = conn.cursor()
 
 app = Flask(__name__, static_folder="../frontend/build/static", template_folder="../frontend/build")
 CORS(app)
-
 # app = Flask(__name__, static_folder="../frontend/build/static", template_folder="../courses")
 # POSTGRES = {
 #     'user': 'postgres',

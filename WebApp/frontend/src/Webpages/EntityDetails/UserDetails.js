@@ -1,6 +1,8 @@
 import React from 'react';
 import {Button,Tabs,Tab} from 'react-bootstrap'
 import Query from '../QueryComponent/Query';
+let forge = require('node-forge');
+let rsa= forge.pki.rsa;
 
 export default class UserDetails extends React.Component {
     constructor(props) {

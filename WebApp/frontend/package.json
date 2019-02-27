@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "node-forge": "^0.8.1",
     "npx": "^10.2.0",
     "nvm": "0.0.4",
+    "pidcrypt": "0.0.31",
     "query-string": "^6.2.0",
     "react": "^16.8.2",
     "react-bootstrap": "^1.0.0-beta.5",

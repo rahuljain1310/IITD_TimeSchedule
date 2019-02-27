@@ -2,14 +2,14 @@
 
 # no authentication
 create_group="insert into groups(alias) values(%s) on conflict do nothing returning alias"
-
+create_pgcrypto="create extension pgcrypto"
 
 
 
 # requires user authentication
 update_user_webpage="update users set webpage = %s where users.alias = %s returning exists (alias)"
-login_user="select exists (select * from users where alias = %s and password = %s)"
-update_pass="update users set password = %s where users.alias = %s and  users.password = %s returning exists (select)"
+login_user="select exists (select * from users where alias = %s and password = crypt(%s,password))"
+update_pass="update users set password = crypt(%s,'md5') where users.alias = %s and  users.password = crypt(%s,users.password) returning exists (select)"
 
 check_ifhost="select exists(select * from groupshost where groupalias = %s and useralias = %s)"
 assign_groupto_user="select assign_groupto_user(%s,%s,%s)"

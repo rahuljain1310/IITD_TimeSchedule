@@ -2,6 +2,10 @@ import React from 'react';
 import {Button,Tabs,Tab} from 'react-bootstrap'
 import Query from '../QueryComponent/Query';
 import DeleteQuery from '../QueryComponent/DeleteQuery'
+var forge = require('node-forge');
+var rsa= forge.pki.rsa;
+
+
 
 export default class UpdateCourse extends React.Component {
     constructor(props) {
@@ -19,10 +23,20 @@ export default class UpdateCourse extends React.Component {
             cur_courses: [5 ,7],
             drop_error: "",
             dropcode: "",
+            Password: "",
+            locked: 1,  
         };
     }
 
     componentDidMount() {
+      let secretMessage = "HelloWorld";
+      let publickey = forge.pki.publicKeyFromPem('public_key.pem');
+      let encrypted = publickey.encrypt(secretMessage, "RSA-OAEP", {
+            md: forge.md.sha256.create(),
+            mgf1: forge.mgf1.create()
+        });
+
+      let base64 = forge.util.encode64(encrypted);
         const { alias } = this.props.match.params
         console.log(alias)
         fetch('http://localhost:5000/user_details/?alias='+alias, {
@@ -37,6 +51,7 @@ export default class UpdateCourse extends React.Component {
                 user_details: rjson,
                 user_type: rjson.type1,
                 cur_courses: rjson.cur_course_registered,
+                locked: rjson.locked,
               });
             },
             (error) => {
@@ -98,6 +113,13 @@ export default class UpdateCourse extends React.Component {
     // }
 
     render() {
+        if(this.state.locked==1) {
+          return (
+            <div>
+
+            </div>
+          )
+        } else
         return (
         <div className="update_div">
             <h3>Update User: &nbsp; {this.state.alias.toUpperCase()} </h3>
