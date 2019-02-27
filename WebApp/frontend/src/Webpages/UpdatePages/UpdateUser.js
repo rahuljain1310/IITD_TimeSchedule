@@ -70,32 +70,32 @@ export default class UpdateCourse extends React.Component {
             )
     }
 
-    dropcourse = (e) => {
-        let {alias, groupno} = this.state
-        this.setState({
-            drop_error: "Registering Student"
-        })
-        let cq = "?alias="+alias+"&code="+this.dropcode
-        fetch('http://localhost:5000/dropcourse/'+cq, {
-            method: 'GET',
-            dataType: 'json'
-          })
-            .then(res => res.json())
-            .then((jsres) => {
-                console.log(jsres)
-                let x = jsres
-                this.setState({
-                    drop_error:"Course Dropped"
-                })
-              },
-              (error) => {
-                this.setState({
-                  drop_error:"Dropping course failed"
-                });
-              }
-            )
-        setTimeout(() => this.setState({error:""}), 2000);
-    }
+    // dropcourse = (e) => {
+    //     let {alias, groupno} = this.state
+    //     this.setState({
+    //         drop_error: "Registering Student"
+    //     })
+    //     let cq = "?alias="+alias+"&code="+this.dropcode
+    //     fetch('http://localhost:5000/dropcourse/'+cq, {
+    //         method: 'GET',
+    //         dataType: 'json'
+    //       })
+    //         .then(res => res.json())
+    //         .then((jsres) => {
+    //             console.log(jsres)
+    //             let x = jsres
+    //             this.setState({
+    //                 drop_error:"Course Dropped"
+    //             })
+    //           },
+    //           (error) => {
+    //             this.setState({
+    //               drop_error:"Dropping course failed"
+    //             });
+    //           }
+    //         )
+    //     setTimeout(() => this.setState({error:""}), 2000);
+    // }
 
     render() {
         return (

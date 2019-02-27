@@ -21,7 +21,7 @@ export default class DeleteQuery extends React.Component {
                 console.log(jsres)
                     let x = jsres
                     let newresults = this.state.results
-                    newresults.splice(x,1)
+                    newresults.splice(index,1)
                     this.setState({
                         results: newresults,
                     })
