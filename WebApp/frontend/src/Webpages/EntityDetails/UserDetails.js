@@ -17,6 +17,7 @@ export default class UserDetails extends React.Component {
         user_details: {},
         events_hosted: [],
         in_groups: [],
+        Timetable: [],
         username: "",
         old_courses_taken: [],
         alias: "",
@@ -46,6 +47,7 @@ export default class UserDetails extends React.Component {
               old_courses_registered: rjson.old_courses_registered,
               old_courses_taken: rjson.old_courses_taken,
               userwebpage: "",
+              Timetable: rjson.timetable,
             });
           },
           (error) => {
@@ -88,7 +90,7 @@ export default class UserDetails extends React.Component {
                 <Query results={this.state.cur_course_registered} urlpath="/courses/" hyperlink={true}/>
               </Tab> }
               <Tab eventKey="459" title="Timetable">
-                <Timetable events={this.state.all_events}/>
+                <Timetable events={this.state.Timetable}/>
               </Tab>
               { this.state.type1 == "cur_prof" &&
               <Tab eventKey="455" title="Current Courses Taken">

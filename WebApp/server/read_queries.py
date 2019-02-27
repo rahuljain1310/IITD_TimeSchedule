@@ -101,20 +101,21 @@ weeklytimetable="with astudentc18_2 as ( "\
 "select * from curr_courses_of_student "\
 "where entrynum = %s ) "\
 ", stdctiming18_2 as ( "\
-"select slotdetails.days,code,name,cast(begintime as text),cast(endtime as text),'' from "\
+"select slotdetails.days,code,coursename,to_char(begintime,'HH24:MI'),to_char(endtime,'HH24:MI' ),'' as venue from "\
 "astudentc18_2, slotdetails "\
 "where astudentc18_2.slot = slotdetails.slotname "\
 "or (astudentc18_2.prac_dur > 0 and slotdetails.slotname like concat('P',astudentc18_2.slot,1)) "\
 "or (astudentc18_2.tut_dur > 0 and slotdetails.slotname like concat('T',astudentc18_2.slot,1)) "\
-"order by code_day(days) ) select * from stdctiming18_2 "\
+"order by code_day(days) ) select * from stdctiming18_2 "
+
 "union "\
-"select days,groupalias,cast(begintime as text),cast(endtime as text),venue from "\
+"select days,groupalias,name,to_char(begintime,'HH24:MI'),to_char(endtime,'HH24:MI'),venue from "\
 "(select * from (events natural join weeklyeventtime ) as tmp join usersgroups on "\
 "usersgroups.groupalias=tmp.alias and usersgroups.useralias= %s ) as tmp2 natural join slotdetails order by code_day(days)"
 
 #  get students slots
 #  update user details
-# update_group="update curr_stu_course set groupedin (select %s)"
+# # update_group="update curr_stu_course set groupedin (select %s)"
 # select * from (
 # with astudentc18_2 as ( 
 # select * from curr_courses_of_student 
