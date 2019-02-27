@@ -10,6 +10,7 @@ export default class DeleteRow extends React.Component {
     render() {
         let y = this.props.tr
         let x = y[Object.keys(y)[0]];
+        console.log(x)
         return (
         <tr onClick={this.props.hyperlink && this.redirect}>
                 { Object.keys(y).map((key, index) => (

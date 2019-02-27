@@ -12,7 +12,7 @@ export default class DeleteQuery extends React.Component {
     }
 
     deleterow = (index, delelement) => {
-        fetch('http://localhost:5000'+this.props.deleteurl+delelement, {
+        fetch('http://localhost:5000'+this.props.deleteurl+delelement+this.props.extraparam, {
             method: 'GET',
             dataType: 'json'
             })

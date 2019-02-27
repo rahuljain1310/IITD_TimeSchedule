@@ -123,7 +123,7 @@ export default class UpdateCourse extends React.Component {
                 { this.state.user_type=='cur_stu' && 
                 <Tab eventKey="Drop" title="Drop Courses">
                     <div  className="update_div">
-                        <DeleteQuery results={this.state.cur_courses} deleteurl="/drop_course/" text="Drop Course" />
+                        <DeleteQuery results={this.state.cur_courses} deleteurl="/drop_course/?code=" text="Drop Course" extraparam={"&alias="+this.state.alias}/>
                         <h1></h1><br/><h1></h1>
                         {/* <h6>Drop Course: </h6>
                         <input type="text" className="update-input" onChange={ (e) => this.setState({dropcode: e.target.value}) } value={ this.state.dropcode } placeholder="E.g. COL100"/>
