@@ -9,6 +9,14 @@ from flask import request, jsonify
 from flask import Flask, render_template
 import read_queries as rq
 import insertions as iq
+import Crypto
+from Crypto.PublicKey import RSA
+from Crypto import Random
+import ast
+random_generator = Random.new().read
+key = RSA.generate(1024, random_generator) #generate pub and priv key
+publickey = key.publickey()
+
 # from flask_sqlalchemy import SQLAlchemy
 # from models import db
 from flask_cors import CORS
@@ -43,8 +51,8 @@ def changepass():
     curr_pass = request.args.get('curr_password')
     new_pass = request.args.get('new_password')
     cur.execute(iq.update_pass,(new_pass,alias,curr_pass))
-    success = cur.fetchall()[0][0]
-    if (success):
+    success = cur.fetchall()
+    if (success!=[]):
         return jsonify({'results':success})
     else:
         return None
@@ -53,8 +61,8 @@ def checkpass():
     alias = request.args.get('alias')
     password = request.args.get('password')
     cur.execute(iq.login_user,(alias,password))
-    success = cur.fetchall()[0][0]
-    if (success):
+    success = cur.fetchall()
+    if (success!=[]):
         return jsonify({'results':success})
     else:
         return None
@@ -187,12 +195,12 @@ def removegroupashost():
     groupalias = request.args.get('groupalias')
     hostalias = request.args.get('hostalias')
     cur.execute(iq.grouphost_exist,(groupalias,hostalias))
-    e1 = cur.fetchall()[0][0]
-    if (e1==False): 
+    e1 = cur.fetchall()
+    if (e1==[]): 
         return None
     cur.execute(iq.delete_groups_host,(groupalias,hostalias))
-    succ = cur.fetchall()[0][0]
-    if (succ==True):
+    succ = cur.fetchall()
+    if (succ!=[]):
         return None
     else:
         cur.execute(iq.delete_users_groups,(groupalias))
@@ -205,8 +213,8 @@ def removegroup():
     cur.execute(iq.delete_groups_host_all,(alias,))
     cur.execute(iq.delete_usersgroups,(alias,))
     cur.execute(iq.delete_group,(alias,))
-    success = cur.fetchall()[0][0]
-    if (success):
+    success = cur.fetchall()
+    if (success!=[]):
         return jsonify({'results':True})
     else:
         return None
