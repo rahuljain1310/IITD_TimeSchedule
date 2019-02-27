@@ -1,15 +1,7 @@
 .EventsinDay {
     position: relative;
     width: 2200px;
-    height: 60px;
     border-bottom: 1px brown solid;
 }
 
-.Packet {
-    position: absolute;
-}
-
-.Header {
-    
-}
 
