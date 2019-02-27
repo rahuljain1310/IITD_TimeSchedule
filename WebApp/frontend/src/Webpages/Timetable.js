@@ -18,12 +18,33 @@ class Timetable extends React.Component {
     }
     
     render() {
-        console.log(this.state.events)
-        return (
+      let {events} = this.state
+      let mon = []
+      let tue = []
+      let wed = []
+      let thurs = []
+      let fri = []
+      events.map((o)=> {
+        if(o[0]=="Mon")
+          mon.push(o)
+        if(o[0]=="Tue")
+          tue.push(o)
+        if(o[0]=="Wed")
+          wed.push(o)
+        if(o[0]=="Thu")
+          thurs.push(o)
+        if(o[0]=="Fri")
+          fri.push(o)
+      })
+
+      console.log(events)
+      return (
             <div className="update_div">
-                {this.state.events.map((object) => 
-                  <Day information={object}></Day>
-              )}
+                <Day information={mon} day="Monday" ></Day>
+                <Day information={tue} day="Tuesday" ></Day>
+                <Day information={wed} day="Wednesday" ></Day>
+                <Day information={thurs} day="Thursday" ></Day>
+                <Day information={fri} day="Friday" ></Day>
             </div>
         )
     }
