@@ -217,7 +217,9 @@ create or replace function dreg_stu() returns trigger as
   $$
   begin
     update curr_courses set registered = registered -1;
+    delete from usersgroups where useralias = old.entrynum and groupalias = old.coursecode;
     delete from studentsincourse where studentid = (select userid from users where users.alias = old.entrynum limit 1) and courseid = (select courseid from courses where code=old.coursecode and year = cast(TG_ARGV[0] as int) and semester = cast(TG_ARGV[1] as int) limit 1);
+    
     return old;
   end;
   $$

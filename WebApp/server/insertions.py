@@ -27,7 +27,11 @@ delete_user_from_group="delete from usersgroups where useralias= %s and groupali
 # courses change
 update_course_name="update curr_courses set name = %s where code = %s on conflict do nothing returning exists (select)"
     update_increment_registration="update curr_courses set registered = registered+1 where code = %s"
+
 update_groupedin="update curr_courses_of_student set groupedin = %s where entrynum = %s and code= %s on conflict do nothing exists (select)"
+update_groupedinusergroup="update usersgroups set subgroup = %s where useralias = %s and groupalias = %s on conflict do nothing exists (select)"
+
+
 register_student="insert into curr_stu_course values (%s,%s,%s) on conflict do nothing exists (select)"
 insert_course="insert into curr_courses(code,name,slot,type,credits,lec_dur,tut_dur,prac_dur,strength,registered) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) on conflict do nothing exists (select)"
 change_strength="update curr_courses set strength = %s where code = %s returning exists (select)"
