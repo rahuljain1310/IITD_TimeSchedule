@@ -1,36 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Day from './Day.js'
 
 class Timetable extends React.Component {
 
-    componentDidMount() {
-        const { code } = this.props.match.params
-        console.log(code)
-        fetch('http://localhost:5000/course_details/?code='+code, {
-          method: 'GET',
-          dataType: 'json'
-        })
-          .then(res => res.json())
-          .then((rjson) => {
-              console.log(rjson)
-              this.setState({
-                isLoaded: true,
-                course_details: rjson.results
-              });
-            },
-            (error) => {
-              this.setState({
-                isLoaded: true,
-                error
-              });
-            }
-          )
+    constructor(props) {
+      super(props)
+      this.state = {
+        events: [5 ,10],
       }
+    }
+
+    componentDidMount() {
+      this.setState({
+        events: this.props.events,
+      })   
+    }
     
     render() {
         return (
-            <div>
-               Hello
+            <div className="update_div">
+                {this.state.events.map((object) => 
+                  <Day information={object}></Day>
+              )}
             </div>
         )
     }

@@ -25,14 +25,15 @@ assign_prof="insert into curr_prof_course(profalias,coursecode) values(%s,%s) on
 delete_user="delete from users where users.alias = %s returning exists (select)"
 delete_user_from_group="delete from usersgroups where useralias= %s and groupalias = %s returning exists(select)"
 # courses change
-update_course_name="update curr_courses set name = %s where code = %s on conflict do nothing returning exists (select)"
+update_course_name="update curr_courses set name = %s where code = %s returning exists (select)"
+update_course="update curr_courses set name = %a,strength=%s,webpage=%s where code = %s "
 update_increment_registration="update curr_courses set registered = registered+1 where code = %s"
-update_groupedin="update curr_courses_of_student set groupedin = %s where entrynum = %s and code= %s on conflict do nothing exists (select)"
-update_groupedinusergroup="update usersgroups set subgroup = %s where useralias = %s and groupalias = %s on conflict do nothing exists (select)"
+update_groupedin="update curr_courses_of_student set groupedin = %s where entrynum = %s and code= %s  returning exists (select)"
+update_groupedinusergroup="update usersgroups set subgroup = %s where useralias = %s and groupalias = %s  returning  exists (select)"
 
 
-register_student="insert into curr_stu_course values (%s,%s,%s) on conflict do nothing exists (select)"
-insert_course="insert into curr_courses(code,name,slot,type,credits,lec_dur,tut_dur,prac_dur,strength,registered) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) on conflict do nothing exists (select)"
+register_student="insert into curr_stu_course values (%s,%s,%s) on conflict do nothing returning exists (select)"
+insert_course="insert into curr_courses(code,name,slot,type,credits,lec_dur,tut_dur,prac_dur,strength,registered) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) on conflict do nothing returning exists (select)"
 change_strength="update curr_courses set strength = %s where code = %s returning exists (select)"
 deregister_student="delete from curr_stu_course where coursecode = %s and entrynum = %s returning exists (select)"
 change_coursepage="""update curr_courses set webpage = %s where code = %s returning exists (select)"""
@@ -52,7 +53,7 @@ create_slot="insert into slotdetails (%s,%s,%s,%s) on conflict do nothing return
 # events
 insert_event="select create_event(%s,%s,%s,%s) as returned"
 copy_users_to_group="insert into usersgroups (select useralias,%s from usersgroups where groupalias = %s )"
-set_eventtimeonce="insert into onetimeeventtime values(%s,%s,%s,%s,%s) on conflict do nothing select exists (select)"
-set_eventtimeweekly="insert into weeklyeventtime values(%s,%s,%s) on conflict do nothing exists (select)"
+set_eventtimeonce="insert into onetimeeventtime values(%s,%s,%s,%s,%s) on conflict do nothing returning select exists (select)"
+set_eventtimeweekly="insert into weeklyeventtime values(%s,%s,%s) on conflict do nothing returning exists (select)"
 # update year semester
 update_year_sem="select update_current_year_semester(%s,%s)"

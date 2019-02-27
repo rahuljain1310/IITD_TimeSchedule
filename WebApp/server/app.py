@@ -9,6 +9,14 @@ from flask import request, jsonify
 from flask import Flask, render_template
 import read_queries as rq
 import insertions as iq
+# import Crypto
+# from Crypto.PublicKey import RSA
+# from Crypto import Random
+# import ast
+# random_generator = Random.new().read
+# key = RSA.generate(1024, random_generator) #generate pub and priv key
+# publickey = key.publickey()
+
 # from flask_sqlalchemy import SQLAlchemy
 # from models import db
 from flask_cors import CORS
@@ -43,21 +51,21 @@ def changepass():
     curr_pass = request.args.get('curr_password')
     new_pass = request.args.get('new_password')
     cur.execute(iq.update_pass,(new_pass,alias,curr_pass))
-    success = cur.fetchall()[0][0]
-    if (success):
+    success = cur.fetchall()
+    if (success!=[]):
         return jsonify({'results':success})
     else:
-        return jsonify()
+        return None
 @app.route("/check_password/",methods=['GET'])
 def checkpass():
     alias = request.args.get('alias')
     password = request.args.get('password')
     cur.execute(iq.login_user,(alias,password))
-    success = cur.fetchall()[0][0]
-    if (success):
+    success = cur.fetchall()
+    if (success!=[]):
         return jsonify({'results':success})
     else:
-        return jsonify()
+        return None
 @app.route("/drop_course/",methods=['GET'])
 def dropCrs():
     course = request.args.get('code')
@@ -71,7 +79,7 @@ def dropCrs():
     if True:
         return jsonify({'results':success})
     else:
-        return jsonify()
+        return None
 
 
 
@@ -93,7 +101,7 @@ def updatesession():
         cur.execute(iq.update_year_sem,(curr_year,curr_sem))
         return jsonify({'results':curr.fetchall()[0][0]})
     except:
-        return jsonify()
+        return None
 @app.route("/add_slot/",methods=['GET'])
 def addslot():
     slotcode = request.args.get('slot')
@@ -106,7 +114,7 @@ def addslot():
         conn.commit()
         return jsonify({'results':success})
     except:
-        return jsonify()
+        return None
     
 @app.route("/upd_course/",methods=['GET'])
 def updatecourse():
@@ -115,37 +123,29 @@ def updatecourse():
     strength = request.args.get('strength')
     webpage = request.args.get('webpage')
     # 0 indicates change name   # 1 indicate change webpage  # 2 indicates change strength
-    try:
-        if (type=='0'):               ## Bhai Time Bacha , 3 FIeld ek saath update karde
-            if (name!=''):
-                cur.execute(iq.update_course_name,(name,code))
-                conn.commit()
-            if (strength!=''):
-                try:
-                    cur.execute(iq.change_strength,(int(strength),code))
-                    conn.commit()
-                except:
-                    pass
-            if (webpage!=''):
-                cur.execute(iq.change_coursepage,(webpage,code))
-                conn.commit()
-        elif (type=='1'):
-            try:
-                cur.execute(iq.register_student,(code,name))
-                conn.commit()
-            except:
-                pass
-            cur.execute(iq.update_groupedin,(group,name,code))
-            conn.commit()
-        elif (type=='2'):
-            cur.execute(iq.assign_prof,(code,name))
-            conn.commit()
-        else:
-            pass
+    # try:                     ## Bhai Time Bacha , 3 FIeld ek saath update karde
+    if (name!=''):
+        cur.execute(iq.update_course_name,(name,code))
         conn.commit()
         return jsonify({'results':"Updated Successfully"})
-    except:
-        return jsonify()
+
+    if (strength!=''):
+        # try:
+        cur.execute(iq.change_strength,(int(strength),code))
+        print(cur.fetchall())
+        conn.commit()
+        return jsonify({'results':"Updated Successfully"})
+
+        # except:
+            # pass
+    if (webpage!=''):
+        cur.execute(iq.change_coursepage,(webpage,code))
+        conn.commit()
+        return jsonify({'results':"Updated Successfully"})
+    conn.commit()
+    return jsonify({'results':"Not Updated Successfully"})
+    # except:
+        # return None
 @app.route("/ins_usergroup/",methods=['GET'])
 def addusergroup():
     alias = request.args.get('usergroup')
@@ -154,19 +154,26 @@ def addusergroup():
         success = cur.fetchall()[0][0]
         return jsonify({'results':success})
     except:
-        return jsonify()
+        return None
 @app.route("/register_student/",methods=['GET'])  
 def regstudent():
     groupno = request.args.get('groupno')
     code = request.args.get('code')
     alias = request.args.get('alias')
+    success=[]
     try :
         cur.execute(iq.register_student,(alias,code,groupno)) 
-        success = cur.fetchall()[0][0]
-        cur.commit()                 ## Bhai Yahan Code likh De
-        return jsonify({'results':success})
+        success = cur.fetchall()
+        print(success)
     except:
-        return jsonify()
+        pass
+    conn.commit()
+    if (success!=[]):
+    # cur.commit()                 ## Bhai Yahan Code likh De
+        return jsonify({'results':success})
+    # except:
+    else:
+        return None
 
 @app.route("/remove_user/",methods=['GET'])
 def removeuser():
@@ -188,13 +195,13 @@ def removegroupashost():
     groupalias = request.args.get('groupalias')
     hostalias = request.args.get('hostalias')
     cur.execute(iq.grouphost_exist,(groupalias,hostalias))
-    e1 = cur.fetchall()[0][0]
-    if (e1==False): 
-        return jsonify()
+    e1 = cur.fetchall()
+    if (e1==[]): 
+        return None
     cur.execute(iq.delete_groups_host,(groupalias,hostalias))
-    succ = cur.fetchall()[0][0]
-    if (succ==True):
-        return jsonify()
+    succ = cur.fetchall()
+    if (succ!=[]):
+        return None
     else:
         cur.execute(iq.delete_users_groups,(groupalias))
         cur.execute(iq.delete_group,(groupalias))
@@ -206,11 +213,11 @@ def removegroup():
     cur.execute(iq.delete_groups_host_all,(alias,))
     cur.execute(iq.delete_usersgroups,(alias,))
     cur.execute(iq.delete_group,(alias,))
-    success = cur.fetchall()[0][0]
-    if (success):
+    success = cur.fetchall()
+    if (success!=[]):
         return jsonify({'results':True})
     else:
-        return jsonify()
+        return None
 
 
 @app.route("/update_user/",methods=['GET'])
