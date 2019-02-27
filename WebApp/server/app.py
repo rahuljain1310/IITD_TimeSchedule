@@ -31,7 +31,6 @@ cur = conn.cursor()
 
 app = Flask(__name__, static_folder="../frontend/build/static", template_folder="../frontend/build")
 CORS(app)
-
 # app = Flask(__name__, static_folder="../frontend/build/static", template_folder="../courses")
 # POSTGRES = {
 #     'user': 'postgres',
@@ -385,7 +384,8 @@ def user_details():
     cur_courses_taken = cur.fetchall()
     cur.execute(rq.alloldco_prof,(alias,curr_year,curr_sem))
     old_courses_taken = cur.fetchall()
-
+    cur.execute(rq.weeklytimetable,(alias,))
+    timetable = cur.fetchall()
     if (len(cur_course_registered)!=0):
         type1 = 'cur_stu'
     elif (len(old_courses_registered)!=0):
@@ -396,7 +396,7 @@ def user_details():
         type1 = 'old_prof'
     else:
         type1 = 'otheruser'
-    return jsonify({'alias':alias,'username':username,'userwebpage':userwebpage,'cur_course_registered':cur_course_registered,'old_courses_registered':old_courses_registered,'cur_courses_taken':cur_courses_taken,'old_courses_taken':old_courses_taken,'events_hosted':events_hosted,'all_events':all_events,'type1':type1,'in_groups':in_groups})
+    return jsonify({'alias':alias,'username':username,'userwebpage':userwebpage,'cur_course_registered':cur_course_registered,'old_courses_registered':old_courses_registered,'cur_courses_taken':cur_courses_taken,'old_courses_taken':old_courses_taken,'events_hosted':events_hosted,'all_events':all_events,'type1':type1,'in_groups':in_groups,'timetable':timetable})
 
 
 @app.route("/usergroup_details/",methods = ['GET'])

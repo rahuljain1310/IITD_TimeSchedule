@@ -149,7 +149,11 @@ $$
     group_exists:= exists(select * from groups where alias = alias1);
     if group_exists = 't' then
       verify:= exists(select * from groupshost where groupalias = alias1 and useralias = useralias1);
-      if verify = 'f' then return 1; end if; -- do not have permission
+      if verify = 'f' then return 1; 
+      else
+        insert into events(alias,name,linkto) values(alias1,name,linkto);
+        return 0;
+      end if; -- do not have permission
     end if;
     insert into groups(alias) values(alias1);
     insert into groupshost values (alias1,useralias1);
