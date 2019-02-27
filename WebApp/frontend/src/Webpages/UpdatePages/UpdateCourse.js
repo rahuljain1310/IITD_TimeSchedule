@@ -53,7 +53,7 @@ export default class UpdateCourse extends React.Component {
 
     update = (e) => {
         const { code } = this.props.match.params
-        let cq = "?strength="+this.state.Strength+'&name='+this.state.name+'&link='+this.state.linkDescription+'&code='+code+'&type=1'
+        let cq = "?strength="+this.state.Strength+'&nam==e='+this.state.name+'&link='+this.state.linkDescription+'&code='+code+'&type=1'
         fetch('http://localhost:5000/upd_course/'+cq, {
             method: 'GET',
             dataType: 'json'
@@ -82,17 +82,18 @@ export default class UpdateCourse extends React.Component {
             register_error: "Registering Student"
         })
         let cq = "?alias="+alias+"&groupno="+groupno+"&code="+this.state.code
-        fetch('http://localhost:5000/registerStudent/'+cq, {
+        fetch('http://localhost:5000/register_student/'+cq, {
             method: 'GET',
             dataType: 'json'
           })
             .then(res => res.json())
             .then((jsres) => {
                 console.log(jsres)
-                let x = jsres
+                let x = jsres.results
+                console.log(x)
                 this.setState({
                     register_error:"Student Registered"
-                })
+                });
               },
               (error) => {
                 this.setState({
@@ -104,7 +105,7 @@ export default class UpdateCourse extends React.Component {
     }
 
     render() {
-        console.log(this.state.student_registered)
+        // console.log(this.state.student_registered)
         return (
         <div className="update_div">
             <h3>Update Course: &nbsp; {this.state.code} </h3>
@@ -134,7 +135,7 @@ export default class UpdateCourse extends React.Component {
                         <br/>
                         <label>Group No. :</label><br/>
                         <input type="text" className="update-input" onChange={ (e) => this.setState({groupno: e.target.value}) } value={ this.state.groupno } placeholder="Cycle of Student"/>
-                        <br/><Button onClick={this.registerStudent}> Register Stuents </Button> 
+                        <br/><Button onClick={this.registerStudent}> Register Student </Button> 
                         <br/>
                         <span>{this.state.register_error}</span>
                     </div>

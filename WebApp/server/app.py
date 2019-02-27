@@ -9,13 +9,13 @@ from flask import request, jsonify
 from flask import Flask, render_template
 import read_queries as rq
 import insertions as iq
-import Crypto
-from Crypto.PublicKey import RSA
-from Crypto import Random
-import ast
-random_generator = Random.new().read
-key = RSA.generate(1024, random_generator) #generate pub and priv key
-publickey = key.publickey()
+# import Crypto
+# from Crypto.PublicKey import RSA
+# from Crypto import Random
+# import ast
+# random_generator = Random.new().read
+# key = RSA.generate(1024, random_generator) #generate pub and priv key
+# publickey = key.publickey()
 
 # from flask_sqlalchemy import SQLAlchemy
 # from models import db
@@ -23,8 +23,8 @@ from flask_cors import CORS
 curr_year=2018
 curr_sem=2
 import psycopg2 as ps
-conn = ps.connect("dbname=project_3 user=postgres password=Ishu@1003 host=localhost port=5432")
-# conn = ps.connect("dbname=postgres user=postgres password=postgres ")
+# conn = ps.connect("dbname=project_3 user=postgres password=Ishu@1003 host=localhost port=5432")
+conn = ps.connect("dbname=postgres user=postgres password=postgres ")
 # conn = ps.connect("dbname=group_25 user=group_25 password=887-323-760 host=10.17.50.115 port=5432")
 cur = conn.cursor()
 
@@ -100,7 +100,7 @@ def updatesession():
         cur.execute(iq.update_year_sem,(curr_year,curr_sem))
         return jsonify({'results':curr.fetchall()[0][0]})
     except:
-        None
+        return None
 @app.route("/add_slot/",methods=['GET'])
 def addslot():
     slotcode = request.args.get('slot')
@@ -122,37 +122,29 @@ def updatecourse():
     strength = request.args.get('strength')
     webpage = request.args.get('webpage')
     # 0 indicates change name   # 1 indicate change webpage  # 2 indicates change strength
-    try:
-        if (type=='0'):               ## Bhai Time Bacha , 3 FIeld ek saath update karde
-            if (name!=''):
-                cur.execute(iq.update_course_name,(name,code))
-                conn.commit()
-            if (strength!=''):
-                try:
-                    cur.execute(iq.change_strength,(int(strength),code))
-                    conn.commit()
-                except:
-                    pass
-            if (webpage!=''):
-                cur.execute(iq.change_coursepage,(webpage,code))
-                conn.commit()
-        elif (type=='1'):
-            try:
-                cur.execute(iq.register_student,(code,name))
-                conn.commit()
-            except:
-                pass
-            cur.execute(iq.update_groupedin,(group,name,code))
-            conn.commit()
-        elif (type=='2'):
-            cur.execute(iq.assign_prof,(code,name))
-            conn.commit()
-        else:
-            pass
+    # try:                     ## Bhai Time Bacha , 3 FIeld ek saath update karde
+    if (name!=''):
+        cur.execute(iq.update_course_name,(name,code))
         conn.commit()
         return jsonify({'results':"Updated Successfully"})
-    except:
-        return None
+
+    if (strength!=''):
+        # try:
+        cur.execute(iq.change_strength,(int(strength),code))
+        print(cur.fetchall())
+        conn.commit()
+        return jsonify({'results':"Updated Successfully"})
+
+        # except:
+            # pass
+    if (webpage!=''):
+        cur.execute(iq.change_coursepage,(webpage,code))
+        conn.commit()
+        return jsonify({'results':"Updated Successfully"})
+    conn.commit()
+    return jsonify({'results':"Not Updated Successfully"})
+    # except:
+        # return None
 @app.route("/ins_usergroup/",methods=['GET'])
 def addusergroup():
     alias = request.args.get('usergroup')
@@ -167,12 +159,19 @@ def regstudent():
     groupno = request.args.get('groupno')
     code = request.args.get('code')
     alias = request.args.get('alias')
+    success=[]
     try :
         cur.execute(iq.register_student,(alias,code,groupno)) 
-        success = cur.fetchall()[0][0]
-        cur.commit()                 ## Bhai Yahan Code likh De
-        return jsonify({'results':success})
+        success = cur.fetchall()
+        print(success)
     except:
+        pass
+    conn.commit()
+    if (success!=[]):
+    # cur.commit()                 ## Bhai Yahan Code likh De
+        return jsonify({'results':success})
+    # except:
+    else:
         return None
 
 @app.route("/remove_user/",methods=['GET'])

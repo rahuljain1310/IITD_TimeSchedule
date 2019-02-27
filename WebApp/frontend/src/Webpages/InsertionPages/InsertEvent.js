@@ -9,15 +9,15 @@ export default class InsertEvent extends React.Component {
         this.state = {
             usergroup : "",
             eventname : "",
-            venue : "",
+            user : "",
             linkDescription : "",
             error: "",
         };
     }
 
     insert = (e) => {
-        let {usergroup, eventname,venue, linkDescription} = this.state;
-        if(usergroup==="" || eventname=="" || venue=="") {
+        let {usergroup, eventname,user, linkDescription} = this.state;
+        if(usergroup==="" || eventname=="" || user=="") {
             this.setState ({
                 error : "Fill the fields completely"                
             })
@@ -26,7 +26,7 @@ export default class InsertEvent extends React.Component {
         this.setState ({
             error : "Adding Event"                
         })
-        let cq = "?usergroup="+this.state.usergroup+'&eventname='+this.state.eventname+'&venue='+this.state.venue+'&linkDescription='+this.state.linkDescription
+        let cq = "?usergroup="+this.state.usergroup+'&eventname='+this.state.eventname+'&user='+this.state.user+'&linkDescription='+this.state.linkDescription
         fetch('http://localhost:5000/ins_event/'+cq, {
             method: 'GET',
             dataType: 'json'
@@ -35,9 +35,18 @@ export default class InsertEvent extends React.Component {
             .then((jsres) => {
                 console.log(jsres)
                 let x = jsres.results
-                this.setState({
-                    error: "Event Added !"
-                })
+                console.log(x)
+                try {
+                    if(x!=='success')
+                    throw "500"
+                    this.setState({
+                        error: "Event Added !"
+                    })
+                } catch(e) {
+                    this.setState({
+                        error:"Course Not Added, Check Fields"
+                      });
+                }
               },
               (error) => {
                 this.setState({
@@ -61,29 +70,13 @@ export default class InsertEvent extends React.Component {
             <input type="text" onChange={ (e) => this.setState({eventname: e.target.value}) } value={ this.state.eventname } placeholder="E.g. Intro. to DBMS"/>
             <br/>
 
-            <label>Venue :  </label>
-            <input type="text" onChange={ (e) => this.setState({venue: e.target.value}) } value={ this.state.venue } placeholder=""/>
+            <label>User :  </label>
+            <input type="text" onChange={ (e) => this.setState({user: e.target.value}) } value={ this.state.user } placeholder=""/>
             <br/>
 
             <label>Any linkDescription:</label>
             <input type="text" onChange={ (e) => this.setState({linkDescription: e.target.value}) } value={ this.state.linkDescription } placeholder="Year"/>
             <br/>
-
-            {/* <label>L    :</label>
-            <input linkDescription="text" onChange={ (e) => this.setState({L: e.target.value}) } value={ this.state.L } placeholder="L"/>
-            <br/><span className="error">{this.state.semesterError}</span><br/>
-
-            <label>T   :</label>
-            <input linkDescription="text" onChange={ (e) => this.setState({T: e.target.value}) } value={ this.state.T } placeholder="T"/>
-            <br/><span className="error">{this.state.semesterError}</span><br/>
-
-            <label>P    :</label>
-            <input linkDescription="text" onChange={ (e) => this.setState({P: e.target.value}) } value={ this.state.P } placeholder="P"/>
-            <br/><span className="error">{this.state.semesterError}</span><br/>
-
-            <label>Strength    :</label>
-            <input linkDescription="text" onChange={ (e) => this.setState({strength: e.target.value}) } value={ this.state.strength } placeholder="strength"/>
-            <br/><span className="error">{this.state.semesterError}</span><br/> */}
 
             <Button onClick={this.insert}> Add Event </Button> 
             <br/>

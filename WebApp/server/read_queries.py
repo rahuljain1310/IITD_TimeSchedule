@@ -107,7 +107,9 @@ coursetimetable="with astudentc18_2 as ( "\
 "or (astudentc18_2.prac_dur > 0 and slotdetails.slotname like concat('P',astudentc18_2.slot,1)) "\
 "or (astudentc18_2.tut_dur > 0 and slotdetails.slotname like concat('T',astudentc18_2.slot,1)) "\
 "order by code_day(days) ) select * from stdctiming18_2 "
-
+union
+select * from (events natural join weeklyeventtime ) as tmp join usersgroups on 
+where 
 
 
 #  get students slots

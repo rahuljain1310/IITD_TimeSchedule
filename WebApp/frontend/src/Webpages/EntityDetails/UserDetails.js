@@ -1,8 +1,7 @@
 import React from 'react';
 import {Button,Tabs,Tab} from 'react-bootstrap'
 import Query from '../QueryComponent/Query';
-let forge = require('node-forge');
-let rsa= forge.pki.rsa;
+import Timetable from '../Timetable'
 
 export default class UserDetails extends React.Component {
     constructor(props) {
@@ -82,7 +81,8 @@ export default class UserDetails extends React.Component {
               </div>
               </Tab>
               <Tab eventKey="All events" title="All events">
-                <Query results={this.state.all_events} urlpath="/event/" hyperlink={true}/>
+                {/* <Query results={this.state.all_events} urlpath="/event/" hyperlink={true}/> */}
+                <Timetable events={this.state.all_events}/>
               </Tab>
               { this.state.type1 == "cur_stu" &&
               <Tab eventKey="454" title="Current Courses">
