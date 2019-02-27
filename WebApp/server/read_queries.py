@@ -97,21 +97,37 @@ get_eventtime_once="select ondate,begintime,endtime from (events natural join on
 search_events="select * from events where events.alias ilike concat('%%',%s,'%%') and events.name ilike concat('%%',%s,'%%')"
 # search_events_hosted = "select id,useralias,groupalias,name,linkto from events,groupshost where groupshost.useralias ilike concat('%%',%s,'%%') and groupshost.groupalias ilike concat('%%',%s,'%%') and events.name ilike concat('%%',%s,'%%') "
 
-coursetimetable="with astudentc18_2 as ( "\
+weeklytimetable="with astudentc18_2 as ( "\
 "select * from curr_courses_of_student "\
-"where entrynum = 'cs1170790' ) "\
+"where entrynum = %s ) "\
 ", stdctiming18_2 as ( "\
-"select slotdetails.days,code,slotdetails.slotname,begintime,endtime from "\
+"select slotdetails.days,code,name,slotdetails.slotname,begintime,endtime,'' from "\
 "astudentc18_2, slotdetails "\
 "where astudentc18_2.slot = slotdetails.slotname "\
 "or (astudentc18_2.prac_dur > 0 and slotdetails.slotname like concat('P',astudentc18_2.slot,1)) "\
 "or (astudentc18_2.tut_dur > 0 and slotdetails.slotname like concat('T',astudentc18_2.slot,1)) "\
-"order by code_day(days) ) select * from stdctiming18_2 "
-union
-select * from (events natural join weeklyeventtime ) as tmp join usersgroups on 
-where 
-
+"order by code_day(days) ) select * from stdctiming18_2 "\
+"union "\
+"select days,groupalias,name,slotname,begintime,endtime,venue from "\
+"(select * from (events natural join weeklyeventtime ) as tmp join usersgroups on "\
+"usersgroups.groupalias=tmp.alias and usersgroups.useralias= %s ) as tmp2 natural join slotdetails order by code_day(days)"
 
 #  get students slots
 #  update user details
 # update_group="update curr_stu_course set groupedin (select %s)"
+# select * from (
+# with astudentc18_2 as ( 
+# select * from curr_courses_of_student 
+# where entrynum = 'cs1170790' ) 
+# , stdctiming18_2 as ( 
+# select slotdetails.days,code,coursename,slotdetails.slotname,begintime,endtime,'' as venue from 
+# astudentc18_2, slotdetails 
+# where astudentc18_2.slot = slotdetails.slotname 
+# or (astudentc18_2.prac_dur > 0 and slotdetails.slotname like concat('P',astudentc18_2.slot,1)) 
+# or (astudentc18_2.tut_dur > 0 and slotdetails.slotname like concat('T',astudentc18_2.slot,1)) 
+# order by code_day(days) ) select * from stdctiming18_2 
+# union
+# select days,groupalias,name,slotname,begintime,endtime,venue from
+# (select * from (events natural join weeklyeventtime ) as tmp join usersgroups on 
+# usersgroups.groupalias=tmp.alias and usersgroups.useralias= 'cs1170790' ) as tmp2 natural join slotdetails
+# ) as tmp3 order by code_day(days)
